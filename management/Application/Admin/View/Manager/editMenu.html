@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/js/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加角色</title>
+</head>
+<body>
+<div class="pd-20">
+  <form method="post" action="{:U('Manager/editMenu')}" class="form form-horizontal" enctype="multipart/form-data" id="addmenu_form">
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="menu_name">菜单名称: </label>
+      <div class="formControls col-3">
+        <input id="menu_name" type="text" class="input-text" name="menu_name" placeholder="请输入2到16个字符的菜单名称" value="{$menu_info.m_cname}" datatype="*1-16" nullmsg="菜单名称不能为空"/>
+      </div>
+    </div>
+	
+	<div class="row cl">
+      <label class="form-label col-1 text-r" for="menu_directory">菜单描述: </label>
+      <div class="formControls col-3">
+        <input id="menu_directory" type="text" class="input-text" name="menu_directory" placeholder="请输入6到20个字符的菜单描述" value="{$menu_info.m_directory}" datatype="*1-50" nullmsg="菜单描述不能为空"/>
+      </div>
+    </div>
+
+	<div class="row cl">
+      <label class="form-label col-1 text-r" for="i_order">排序: </label>
+      <div class="formControls col-3">
+        <input id="i_order" type="text" class="input-text" name="i_order" placeholder="表输入排序数字" value="{$menu_info.i_order}" datatype="*1-10" nullmsg="请输入一个整数数字"/>
+      </div>
+    </div>
+
+
+	<div class="row cl">
+      <label class="form-label col-1 text-r" for="menu_logo">菜单logo: </label>
+      <div class="formControls col-8">
+    	<span class="btn-upload form-group">
+    	  <input class="input-text upload-url col-3" type="text" value="{$menu_info.m_imageurl}" name="menu_img" id="menu_logo" readonly>
+        <a href="javascript:void();" class="btn btn-primary"><i class="Hui-iconfont">&#xe646;</i> 浏览图片</a>
+    	  <input type="file" multiple name="menu_logo" value="{$menu_info.m_imageurl}" class="input-file" accept="image/*">
+    	</span>
+      </div>
+    </div>
+
+	<div class="row cl">
+      <label class="form-label col-1 text-r" for="menu_controller">控制器规则: </label>
+      <div class="formControls col-3">
+        <input id="menu_controller" type="text" value="{$menu_info.m_controller}" class="input-text" name="menu_controller" placeholder="例如：Manager/editMenu" datatype="*1-50" nullmsg="控制器规则不能为空"/>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="parentid">父节点: </label>
+      <div class="formControls col-3">
+       	<span class="select-box">
+       	  <select class="select" size="1" name="parentid">
+       	    <option value="0" <if condition="$menu_info.m_parentid eq 0">selected</if>>无</option>
+  		 	    <foreach name="menu_list" item="data">
+              <if condition="$data.m_type eq 1">
+  	       	    <option value="{$data.moduleid}" <eq name="data.moduleid" value="$menu_info.m_parentid">selected</eq>>{$data.html} {$data.m_cname}</option>
+              </if>
+         		</foreach>
+       	  </select>
+       	</span>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="m_type">菜单类型: </label>
+      <div class="formControls col-3">
+        <div class="check-box">
+           <input type="radio" name="m_type" id="type-1" value="1" <if condition="$menu_info.m_type eq 1">checked</if>>
+           <label for="type-1">模块</label>
+         </div>
+         <div class="check-box">
+           <input type="radio" name="m_type" id="type-2" value="2" <if condition="$menu_info.m_type eq 2">checked</if> >
+           <label for="type-2">操作</label>
+         </div>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="m_close">是否开放: </label>
+      <div class="formControls col-3">
+        <div class="check-box">
+           <input type="radio" name="m_close" id="radio-1" value="1" <if condition="$menu_info.m_close eq 1">checked</if>>
+           <label for="radio-1">开放</label>
+         </div>
+         <div class="check-box">
+           <input type="radio" name="m_close" id="radio-2" value="2" <if condition="$menu_info.m_close eq 2">checked</if>>
+           <label for="radio-2">不开放</label>
+         </div>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <input type="hidden" name="id" value="{$menu_info.moduleid}">
+      <div class="formControls col-5 col-offset-1">
+        <button type="submit" class="btn radius btn-primary">
+          <i class="Hui-iconfont">&#xe632;</i>
+          保存并提交
+        </button>
+        <button onClick="layer_close()" type="button" class="btn btn-default radius">
+          &nbsp;&nbsp;取消&nbsp;&nbsp;
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/icheck/jquery.icheck.min.js"></script>  -->
+<script type="text/javascript">
+	$(function(){
+
+		$('#addmenu_form').Validform({
+		    tiptype:2,
+		    callback:function(form){
+	      		form[0].submit();
+		    }
+	  	});
+
+	});
+</script> 
+</body>
+</html>

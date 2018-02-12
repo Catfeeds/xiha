@@ -1,0 +1,135 @@
+{template "content","zizhan_header"}
+<div id="container_page">
+	{template "content", "zizhan_navbar"}
+	<div id="content">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="5"></td>
+		  </tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+		        <td width="200" height="400" valign="top" background="{IMG_PATH}list1.gif">
+		        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td height="41" colspan="3" align="center" bgcolor="#3789b8">
+			            	<span style="padding-right: 20px; color: #fff;">{$CATEGORYS[$catid][catname]}</span></td>
+			          </tr>
+			        </table>
+			          <table width="90%" border="0" cellpadding="0" cellspacing="0" style="font-family:''宋体''; font-size:14px;">
+			          	
+			            <!--list-->
+			            <tr>
+			              	{pc:content action="lists" catid="$catid" num="25" siteid="$siteid" order="id DESC"}
+                                {loop $data $k $r}
+			          		    <td width="34" align="center"><img src="{IMG_PATH}bottom4.gif"  width="13" height="13"  alt=""/></td>
+			              		<td height="29">
+		              				<a href="{$r[url]}" id="s_c_id" target='_self'>{$r[title]}</a>
+			              		</td>
+	                            {/loop}
+	                        {/pc}
+			              <td width="7">&nbsp;</td>
+			            </tr>
+			            
+			            <tr>
+			              <td height="2"></td>
+			              <td></td>
+			              <td></td>
+			            </tr>
+			            <!--list-->
+			            
+			          </table>
+		        	</td>
+		        <td align="left" valign="top"><table width="98%"border="0" cellspacing="0" cellpadding="0">
+		          <tr>
+		            <td height="35" background="{IMG_PATH}ico2.gif" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		              <tr>
+		                <td width="421"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		                  <tr>
+		                    <td align="left">
+		                    	
+		                    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			                      <tr>
+			                        <td width="20" align="center">&nbsp;</td>
+			                        <td width="421"><table width="100%" border="0" cellspacing="0" ceinfo28955llpadding="0">
+			                          <tr>
+			                            <td align="left">
+			                            	 <a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文
+			                            	<!-- <a href="main.htm" title='返回首页'>首页</a>
+			                            	<span class="posSplit">&nbsp;&nbsp;</span>
+			                            	<a href="list-1.htm" title='校友荣光'>校友荣光</a>
+			                            	<span class="posSplit">&nbsp;&nbsp;</span>
+			                            	<a href="list-8.htm" title='创业之星'>创业之星</a> -->
+			                            </td>
+			                          </tr>
+			                        </table></td>
+			                        <td width="249"></td>
+			                      </tr>
+			                    </table>
+			                    
+		                    </td>
+		                    </tr>
+		                </table>
+		                </td>
+		              </tr>
+		            </table>
+		            </td>
+		          </tr>
+		          <tr>
+		            <td>
+		        		<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+		        			<!--list-->
+		        			<tr>
+		                      	<td width="22" height="25" align="center">
+		                      		<img src="{IMG_PATH}xb.gif"  width="9" height="10" />
+		                      	</td>
+	                      		<td align="left" height="25">
+	                      			<table width=100% border=0 cellspacing=0 cellpadding=0 class='columnStyle'>
+	                      				<tr>
+	                      					<td>
+                      							{pc:content action="lists" catid="$catid" order="id DESC" num="1" moreinfo="1"}
+													{loop $data $key $val}
+	                      								<a href="{$val['url']}" target='_blank' style=''>
+	                      									<font color=''>{$val['title']}</font>
+	                      								</a>
+													{/loop}
+												{/pc}
+												
+
+	                      					</td>
+	                      				</tr>
+	                      			</table>
+	                      		</td>
+		                    </tr>
+							<tr>
+		                       <td height="1" colspan="2" background="{IMG_PATH}xb.gif" ></td>
+		                    </tr>
+		        			<!--list-->
+
+		        		</table>
+		        		<table width=100% cellSpacing=0 cellPadding=0 border=0>
+		        			<tr>
+		        				<td height='10' align="center">
+		        					<font style="font-size:9pt"><span width="100%">
+									{$pages}
+		        					</span>
+		        					</font>
+		        				</td>
+		        			</tr>
+		        		</table>
+		            </td>
+		          </tr>
+		        </table>
+		        </td>
+		      </tr>
+		    </table>
+		    </td>
+		  </tr>
+		</table>
+	</div>
+	{template "content", "footer_category"}
+</div>
+</body>
+</html>

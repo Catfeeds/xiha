@@ -1,0 +1,79 @@
+<!--{include file="library/header.lbi"}-->
+<div class="tab-body" style="">
+	<div class="tab-panel active">
+        <div class="panel-head" style="position:fixed; width:100%; top:0px; z-index:9999; "><a href="index.php?action=member&op=index" class=""><strong>返回会员列表 >></strong></a></div>
+	</div>
+	<br />
+	<div class="tab" style="margin-top:30px;"> 
+		<div class="tab-head border-main"> 
+			<ul class="tab-nav"> 
+				<li>
+					<a href="index.php?action=member&op=show&type=appoint&id=<!--{$member_id}-->">预约学车</a>
+				</li> 
+				<li class="active">
+					<a href="index.php?action=member&op=show&type=signup&id=<!--{$member_id}-->">报名驾校</a>
+				</li> 
+				<li>
+					<a href="index.php?action=member&op=show&type=exam&id=<!--{$member_id}-->">在线模拟</a>
+				</li> 
+			</ul> 
+			</ul> 
+		</div>
+		<div class="tab-body" style="padding-top:10px;"> 
+			<!-- 信息展示 -->
+			<div class="tab-panel form-x active">
+				<div class="tab-panel form-x active">
+
+					<div class="media media-x">
+						<div class="media-body">
+							<div class="table-responsive"> 
+								<!--{if $memberinfo['orderlist']}-->
+								<table class="table table-bordered"> 
+									<tr>
+										<td width="10%" class="blue text-center text-big height-big">姓名</td>
+										<td width="45%"><input type="text" class="input input-auto" size="50" value="<!--{$memberinfo.orderlist.so_username}-->" disabled="disabled"></td>
+									</tr>
+									<tr>
+										<td width="10%" class="blue text-center text-big height-big">手机号</td>
+										<td><input type="text" class="input input-auto" size="50" value="<!--{$memberinfo.orderlist.so_phone}-->"  disabled="disabled"></td>
+									</tr>
+									<tr>
+										<td width="10%" class="blue text-center text-big height-big">驾照类型</td>
+										<td><input type="text" class="input input-auto" size="50" value="<!--{$memberinfo.orderlist.so_licence}-->" disabled="disabled"></td>
+									</tr>
+									<tr>
+										<td width="10%" class="blue text-center text-big height-big">报名价格</td>
+										<td><input type="text" class="input input-auto" size="50" value="<!--{$memberinfo.orderlist.so_final_price}-->" disabled="disabled"></td>
+									</tr>
+									<tr>
+										<td width="10%" class="blue text-center text-big height-big">订单号</td>
+										<td><input type="text" class="input input-auto" size="50" value="<!--{$memberinfo.orderlist.so_order_no}-->" disabled="disabled"></td>
+									</tr>
+									<tr>
+										<td width="10%" class="blue text-center text-big height-big">班制名称</td>
+										<td><input type="text" class="input input-auto" size="50" value="<!--{$memberinfo.orderlist.sh_title}-->" disabled="disabled"></td>
+									</tr>
+								</table>
+								<!--{else}-->
+									暂无报名记录
+								<!--{/if}-->
+							</div>
+						</div> 
+					</div> 
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+<script>
+	// 跳转页面
+	$('#skipping').click(function() {
+	    $(this).html('跳转中...');
+	    var selectpage = $('#selectpage').find('option:selected').val();
+	    location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&type=<!--{$type}-->&conditiontype=<!--{$conditiontype}-->&id=<!--{$member_id}-->&page="+selectpage;
+	})
+</script>
+
+<!--{include file="library/footer.lbi"}-->

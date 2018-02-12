@@ -1,0 +1,352 @@
+@charset "utf-8";
+/* CSS Document */
+.logo{}
+.logo img{ margin-top:10px;}
+.submenu{ text-align:right; font-family:Arial; line-height:30px;}
+.submenu a{ margin:0 5px;}
+
+.menu{ width:900px;height:50px;background:url("x_index_03.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/x_index_03.gif*/ no-repeat left top;}
+.menu_top{height:30px; line-height:30px;}
+.menu_top ul{ margin:0; padding:0; list-style:none;}
+.menu_top ul li{ width:90px;float:left; height:30px; line-height:30px; color:#eee; display:block;  text-align:center; font-size:12px; font-weight:bold; color:#eee; margin:0; cursor:pointer;}
+.menu_top ul li a{  text-decoration:none;color:#eee;}
+.menu_top ul li a:visited{  text-decoration:none;color:#eee;}
+.menu_top ul li a:hover{  text-decoration:none;color:#eee;}
+.nav_on{ width:90px;float:left; height:30px; line-height:30px; color:#eee; display:block; background:url("x_index_04.png")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/x_index_04.png*/ no-repeat;text-align:center; margin:0 ;cursor:pointer;}
+.menu_con{ width:900px;height:25px; line-height:25px; float:left; text-align:center;}
+#qh_con0, #qh_con1, #qh_con2, #qh_con3, #qh_con4, #qh_con5, #qh_con6, #qh_con7, #qh_con8{ width:900px; clear:both; text-align:center;}
+#qh_con0 ul{margin:0; padding-left:25px; list-style:none;}
+#qh_con1 ul{margin:0; padding-left:125px; list-style:none;}
+#qh_con2 ul{margin:0; padding-left:225px; list-style:none;}
+#qh_con3 ul{margin:0; padding-left:325px; list-style:none;}
+#qh_con4 ul{margin:0; padding-left:225px; list-style:none;}
+#qh_con5 ul{margin:0; padding-right:125px; list-style:none;}
+#qh_con6 ul{margin:0; padding-right:75px; list-style:none;}
+#qh_con7 ul{margin:0; padding-right:45px; list-style:none;}
+#qh_con8 ul{margin:0; padding-right:25px; list-style:none;}
+#qh_con0 ul li, #qh_con1 ul li, #qh_con2 ul li, #qh_con3 ul li{float:left;height:20px; line-height:20px;font-family:"宋体"; color:#edc1c1; text-align:center;}
+#qh_con4 ul li{float:left;height:20px; line-height:20px;font-family:"宋体"; color:#edc1c1; text-align:center;}
+#qh_con5 ul li{float:right;height:20px; line-height:20px;font-family:"宋体"; color:#edc1c1; text-align:center;}
+#qh_con6 ul li{float:right;height:20px; line-height:20px;font-family:"宋体"; color:#edc1c1; text-align:center;}
+#qh_con7 ul li{float:right;height:20px; line-height:20px;font-family:"宋体"; color:#edc1c1; text-align:center;}
+#qh_con8 ul li{float:right;height:20px; line-height:20px;font-family:"宋体"; color:#edc1c1; text-align:center;}
+#qh_con0 ul li span, #qh_con1 ul li span, #qh_con2 ul li span, #qh_con3 ul li span, #qh_con4 ul li span, #qh_con5 ul li span, #qh_con6 ul li span, #qh_con7 ul li span, #qh_con8 ul li span{ margin:0 10px;}
+#qh_con0 ul li a, #qh_con1 ul li a, #qh_con2 ul li a, #qh_con3 ul li a, #qh_con4 ul li a, #qh_con5 ul li a, #qh_con6 ul li a, #qh_con7 ul li a, #qh_con8 ul li a{ color:#f4d5d5; margin:0; padding:0;}
+#qh_con0 ul li a:hover, #qh_con1 ul li a:hover, #qh_con2 ul li a:hover, #qh_con3 ul li a:hover, #qh_con4 ul li a:hover, #qh_con5 ul li a:hover, #qh_con6 ul li a:hover, #qh_con7 ul li a:hover, #qh_con8 ul li a:hover{text-decoration:underline;	color:#f4d5d5; margin:0; padding:0;}
+
+
+.banner{}
+
+.news_information{ font-family:Arial;}
+.news_information h1{height:30px; line-height:30px; background:url("x_index_12.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/x_index_12.gif*/ no-repeat left bottom; font-size:14px; font-weight:bold;}
+.news_information h1 span{ float:right; margin-right:15px; color:#999; font-size:12px; font-weight:normal; font-family:"宋体";}
+.news_information h1 ul{ margin:0; padding:0; list-style:none;}
+.news_information h1 ul li{ width:92px; height:27px; float:left; display:block; font-size:14px; font-weight:bold; line-height:27px; text-align:center;color:#002a5f; cursor:pointer; background:none;}
+.news_information h1 ul li a, .notice h1 ul li a{ color:#002a5f; text-decoration:none; margin:0; padding:0;}
+.news_information h1 ul li a:visited{ color:#002a5f; text-decoration:none; margin:0; padding:0;}
+.news_information h1 ul li a:hover{ color:#002a5f; text-decoration:none; margin:0; padding:0;}
+.news_information h1 ul li.hover{ width:92px; height:27px; float:left; display:block; font-size:14px; background:#002a5f; color:#fff; text-align:center; line-height:30px;}
+.news_information h1 ul li.hover a, .notice h1 ul li.hover a{ color:#fff; text-decoration:none; margin:0; padding:0;}
+.news_information h1 ul li.hover a:visited{ color:#fff; text-decoration:none; margin:0; padding:0;}
+.news_information h1 ul li.hover a:hover{ color:#fff; text-decoration:none; margin:0; padding:0;}
+a.more:link{ color:#333; text-decoration:none;}
+a.more:visited{ color:#333; text-decoration:none;}
+a.more:hover{ color:#b30d20; text-decoration:underline;}
+.news_information ul{ margin:0 5px; padding:5px 0 10px 0; list-style:none;}
+.news_information ul li{ line-height:30px; background:url("index_30.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_30.jpg*/ repeat-x left bottom;}
+.news_information ul li a{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat 5px center; padding-left:15px;}
+.news_information ul li span{ float:right; margin-right:5px; color:#999; font-family:Arial;}
+
+#con_two_1{  height: 195px;}
+#con_two_1 ul{ margin:0 5px; padding:5px 0 10px 0; list-style:none;}
+#con_two_1 ul li{ line-height:30px; background:url("index_30.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_30.jpg*/ repeat-x left bottom;}
+#con_two_1 ul li a{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat 5px center; padding-left:15px;}
+#con_two_1 ul li span{ float:right; margin-right:5px; color:#999; font-family:Arial;}
+#con_two_1 font{ float:right; margin-right:10px; margin-top:3px; font-family:"宋体"; font-size:12px;}
+
+.notice{}
+.notice h1{height:30px; line-height:30px; background:url("index_26.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_26.jpg*/ no-repeat left bottom; font-size:14px; font-weight:bold;}
+.notice h1 span{ float:right; margin-right:15px; color:#999; font-size:12px; font-weight:normal; font-family:"宋体";}
+.notice h1 ul{ margin:0; padding:0; list-style:none;}
+.notice h1 ul li{ width:92px; height:27px; float:left; display:block; font-size:14px; font-weight:bold; line-height:27px; text-align:center;color:#002a5f; cursor:pointer;}
+.notice h1 ul li.hover{ width:92px; height:27px; float:left; display:block; font-size:14px; background:#002a5f; color:#fff; text-align:center; line-height:30px;}
+
+#con_one_1{}
+#con_one_1 ul{ margin:0 5px; padding:5px 0 10px 0; list-style:none;}
+#con_one_1 ul li{ line-height:30px; background:url("index_30.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_30.jpg*/ repeat-x left bottom;}
+#con_one_1 ul li a{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat 5px center; padding-left:15px;}
+#con_one_1 ul li span{ float:right; margin-right:5px; color:#999; font-family:Arial;}
+
+#con_one_2{}
+#con_one_2 ul{ margin:0 5px; padding:5px 0 10px 0; list-style:none;}
+#con_one_2 ul li{ line-height:30px; background:url("index_30.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_30.jpg*/ repeat-x left bottom;}
+#con_one_2 ul li a{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat 5px center; padding-left:15px;}
+#con_one_2 ul li span{ float:right; margin-right:5px; color:#999; font-family:Arial;}
+
+.media{ padding-bottom:12px;}
+.media h1{ height:32px; line-height:32px; font-size:14px; font-weight:bold; color:#b30d20; padding-left:20px;}
+.media h1 span{ float:right; margin-right:15px; color:#002a5f; font-size:12px; font-weight:normal; font-family:"宋体";}
+.media ul{ margin:0; padding:0px 15px 0px 10px; list-style:none;}
+.media ul li{line-height:24px;color:#002a5f; background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat 5px center; padding-left:10px; border-bottom:1px dotted #ccc;}
+.media ul li span{ float:right; margin-right:10px; font-family:Arial; color:#666; font-size:11px;}
+.media a{ color:#002a5f; text-decoration:none;}
+.media a:visited{ color:#002a5f; text-decoration:none;}
+.media a:hover{ color:#002a5f; text-decoration:underline;}
+
+.tv_news{}
+.tv_news h1{ height:30px; line-height:30px; background:url("index_28.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_28.jpg*/ no-repeat left bottom; font-size:14px; font-weight:bold;}
+.tv_news h1 font{ background:url("index_21.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_21.jpg*/ no-repeat 5px center; padding-left:15px; font-size:14px; color:#002a5f;}
+.tv_news h1 span{ float:right; margin-right:15px; color:#999; font-size:12px; font-weight:normal; font-family:"宋体";}
+.tv_news_con{ padding:10px 0 5px 0; text-align:center;}
+.tv_news_con img{ border:1px solid #ccc;}
+
+.net_work{ background:url("index_46.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_46.jpg*/ repeat-x;}
+.net_work h1{ height:30px; line-height:30px; font-size:14px; font-weight:bold; padding-left:20px; color:#002a5f;}
+.net_work_con{ padding:0 15px;}
+.button{ width:60px; height:20px; line-height:20px; border:none; background:url("index_51.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_51.jpg*/ no-repeat; font-weight:bold; color:#454a74; cursor:pointer; font-size:12px;margin-right:5px;}
+
+.right_con4_pic{}
+.right_con4_pic img{ margin-top:10px;}
+
+.service{ width:880px;padding-left:10px; line-height:28px; font-weight:bold; color:#002a5f;}
+.service{ float:left;}
+
+.friendlink{ height:48px;line-height:48px;}
+.friendlink img{ margin:4px 0 0 7px;}
+
+.foot{ height:64px; text-align:center; font-family:Arial; padding-top:12px;}
+
+
+
+/*列表页*/
+.news_nav{}
+h2{ height:30px; line-height:30px; background:url("university_list_03.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_03.jpg*/ no-repeat; font-size:14px; color:#eee; font-weight:bold; padding-left:28px;}
+.news_nav ul{ margin:0; padding:0; list-style:none;}
+.news_nav ul li{ height:30px; line-height:30px; background:url("university_list_05.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_05.jpg*/ no-repeat; font-weight:bold;}
+.news_nav ul li a{ color:#000; text-decoration:none; padding-left:40px;}
+.news_nav ul li a:hover{ height:30px; line-height:30px; background:url("university_list_19.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_19.jpg*/ no-repeat; color:#b30d20; display:block; text-decoration:none;}
+.news_nav_on{height:30px; line-height:30px; background:url("university_list_19.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_19.jpg*/ no-repeat; color:#b30d20; display:block;}
+.news_nav_on a:link{ height:30px; line-height:30px;background:url("university_list_19.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_19.jpg*/ no-repeat; color:#b30d20; display:block; text-decoration:none; overflow:hidden;}
+.news_nav_on a:visited{ height:30px; line-height:30px;background:url("university_list_19.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_19.jpg*/ no-repeat; color:#b30d20; display:block; text-decoration:none;overflow:hidden;}
+.news_nav_on a:hover{ height:30px; line-height:30px;background:url("university_list_19.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_19.jpg*/ no-repeat; color:#b30d20; display:block; text-decoration:none;overflow:hidden;}
+
+
+.new_recommend_con{ border:1px solid #ccc; border-top:none;}
+.new_recommend_con ul{ margin:0; padding:10px 0 10px 15px; list-style:none;}
+.new_recommend_con ul li{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; line-height:28px; padding-left:10px;}
+
+.list_pic{}
+.list_pic img{ margin-top:10px;}
+
+.list_search{ height:28px; line-height:28px;}
+
+.list_button{ width:62px; height:22px; line-height:22px; background:url("university_list_09.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_09.jpg*/ no-repeat; color:#666; border:none; cursor:pointer; font-size:12px;}
+.current_position{padding-left:12px; font-weight:bold; font-family:"宋体";}
+
+.list_content2{}
+.list_content2 ul{ margin:0; padding:20px 0 20px 12px; list-style:none;}
+.list_content2 ul li{ background:url("university_list_22.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_22.jpg*/ no-repeat left 10px; line-height:30px; padding-left:25px; font-size:14px;}
+.list_content2 ul li span{ color:#999; font-family:Arial; margin-left:15px; font-size:12px;}
+
+.next_page{ width:643px; height:38px; border:1px solid #ccc; background:#f9f9f9; line-height:38px; text-align:center; font-family:"宋体"; margin:0 auto 50px auto;}
+.next_page b{ color:#b30d20;}
+.list_close{ text-align:right; margin-right:30px; color:#848f9d;}
+.list_close_icon{ background:url("university_list_30.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_30.jpg*/ no-repeat; padding-left:22px;}
+.list_close_icon2{ background:url("university_list_32.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/university_list_32.jpg*/ no-repeat; padding-left:22px; margin-left:15px;}
+.list_close_font{ margin-left:15px;}
+.list_close a{ color:#848f9d; text-decoration:none;}
+.list_close a:visited{ color:#848f9d; text-decoration:none;}
+.list_close a:hover{ color:#848f9d; text-decoration:underline;}
+
+.article_content{ border-bottom:1px dotted #ccc; padding-bottom:20px; margin-bottom:10px;}
+.related_reading{}
+.related_reading h1{ height:30px; line-height:30px; font-size:14px; font-weight:bold; color:#002a5f; padding-left:15px;}
+.related_reading ul{ margin:0; padding:10px 0 20px 15px; list-style:none;}
+.related_reading ul li{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left 12px; padding-left:10px; font-size:14px; line-height:30px;color:#002a5f;}
+.related_reading ul li a{ color:#002a5f; text-decoration:none;}
+.related_reading ul li a:visited{ color:#002a5f; text-decoration:none;}
+.related_reading ul li a:hover{ color:#002a5f; text-decoration:underline;}
+.related_reading ul li span{ font-size:12px; font-weight:bold; font-family:Arial; margin-left:15px; font-weight:normal; color:#999;}
+
+
+/*图片列表*/
+.piclist_content{}
+.piclist_content ul{ margin:0; padding:10px 0 20px 5px; list-style:none;}
+.piclist_content ul li{ width:194px; float:left; margin:10px 0 0 20px; display:inline; text-align:center; line-height:30px;}
+.piclist_content ul li img{ border:3px solid #eeeeed;}
+
+
+
+/*学校概况*/
+.profiles_title{ padding-left:20px; background:url("profiles_06.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/profiles_06.jpg*/ no-repeat 10px center; height:28px; font-size:14px; font-weight:bold;}
+
+.sidebarleft_box1{}
+.sidebarleft_box1_con{ background:#fff; padding:15px 14px; border:1px solid #ccc; border-top:none;}
+.sidebarleft_box1_con ul{ margin:0; padding:0; list-style:none;}
+.sidebarleft_box1_con ul li{ height:36px; background:url("profiles_10.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/profiles_10.jpg*/ no-repeat; line-height:36px; font-size:14px; font-weight:bold; padding-left:30px;}
+
+.profiles_pic{}
+
+.profiles_notice{}
+.profiles_notice h1{ height:29px; line-height:29px; background:#002a5f; font-size:14px; font-weight:bold; color:#eee; padding-left:12px;}
+.profiles_notice h1 span{ background:url("profiles_42.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/profiles_42.jpg*/ no-repeat left 3px; padding-left:15px;}
+.profiles_notice ul{ margin:0; padding:10px 0  10px 15px; list-style:none;}
+.profiles_notice ul li{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; line-height:28px; padding-left:10px;}
+
+.mail_login{}
+.introduction{}
+h3{ height:24px; line-height:24px; background:url("profiles_11.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/profiles_11.jpg*/ repeat-x; border:1px solid #ebebeb; border-bottom:none; font-size:12px; padding-left:10px;}
+h3 font{ background:url("profiles_14.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/profiles_14.jpg*/ no-repeat left center; padding-left:20px; font-size:12px;}
+h3 span{ float:right; margin-right:10px; font-weight:normal; font-family:"宋体";}
+.introduction_con{ padding:15px 10px 10px 10px; line-height:26px; text-indent:2em;}
+.introduction_con img{ border:1px solid #ccc; float:left; margin-right:15px; text-indent:0;}
+
+.school_logo{}
+.school_logo ul{ margin:0; padding:0; list-style:none;}
+.school_logo ul li{ border:1px solid #ccc; width:148px; height:138px; float:left; margin:10px 0 0 16px; display:inline;vertical-align:middle; line-height:138px;text-align:center;}
+
+.incumbent_leader{}
+.incumbent_leader ul{ margin:0; padding:0; list-style:none;}
+.incumbent_leader ul li{width:146px;float:left; margin:10px 0 0 16px; display:inline; background:#4b4e6b; padding:2px; color:#efefef; text-align:center;}
+.incumbent_leader ul li span{ font-weight:bold; text-align:center; line-height:25px;}
+.incumbent_leader ul li p{ padding:0 5px; line-height:18px; text-indent:2em; text-align:left;}
+.profiles_more{ float:right; font-family:"宋体"; margin-right:10px; line-height:30px; margin-bottom:5px;}
+.incumbent_leader ul li a{ color:#fff; text-decoration:none;}
+.incumbent_leader ul li a:visited{ color:#fff; text-decoration:none;}
+.incumbent_leader ul li a:hover{ color:#fff; text-decoration:underline;}
+
+.profiles_evolution{}
+.profiles_evolution_con{ padding:12px 12px 12px 12px; line-height:24px; text-indent:2em;}
+
+.campus_view{}
+.campus_view ul{ margin:0; padding:0; list-style:none;}
+.campus_view ul li{border:1px solid #ccc; width:148px;float:left; margin:10px 0 0 16px; display:inline;text-align:center;}
+.campus_view ul li img{ display:block;}
+
+
+
+/*新闻中心*/
+.sidebarleft_box{}
+.sidebarleft_box h1{ height:29px; line-height:29px; background:url("news_03.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_03.jpg*/ no-repeat; padding-left:18px; font-weight:bold; font-size:14px; color:#b30d20;}
+.sidebarleft_box_con{ padding:0 4px; background:url("news_06.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_06.jpg*/ no-repeat center top #fff;}
+.sidebarleft_box_con ul{ margin:0; padding:10px 0 15px 10px; list-style:none;}
+.sidebarleft_box_con ul li{ background:url("news_menu_bg_07.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_menu_bg_07.jpg*/ no-repeat 8px center; line-height:29px;font-size:14px; font-weight:bold; margin:5px 0 0 0;}
+.sidebarleft_box_con ul li a{ color:#333; padding-left:25px; margin:0;}
+.sidebarleft_box_con ul li a:hover{ background:url("news_menu_bg_14.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_menu_bg_14.jpg*/ no-repeat left; color:#fff; display:block; margin:0; height:29px; text-decoration:none;}
+.sidebarleft_box_con_on{ background:url("news_menu_bg_14.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_menu_bg_14.jpg*/ no-repeat left; color:#fff; display:block; margin:0; height:29px; text-decoration:none;}
+.sidebarleft_box_con_on a:link{ background:url("news_menu_bg_14.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_menu_bg_14.jpg*/ no-repeat left; color:#fff; display:block; margin:0; height:29px; text-decoration:none;}
+.sidebarleft_box_con_on a:visited{ background:url("news_menu_bg_14.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_menu_bg_14.jpg*/ no-repeat left; color:#fff; display:block; margin:0; height:29px; text-decoration:none;}
+.sidebarleft_box_con_on a:hover{ background:url("news_menu_bg_14.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_menu_bg_14.jpg*/ no-repeat left; color:#fff; display:block; margin:0; height:29px; text-decoration:none;}
+
+
+.news_notice{}
+h4{ height:29px; line-height:29px; background:url("news_13.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_13.jpg*/ repeat-x; padding-left:20px; font-size:14px; font-weight:bold; color:#002a5f;}
+.news_notice ul{ margin:0; padding:10px 0 10px 20px; list-style:none;}
+.news_notice ul li{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; padding-left:10px; line-height:28px;}
+
+.specialpic{}
+.specialpic ul{ margin:0; padding:0 0 10px 0; list-style:none;}
+.specialpic ul li{ width:171px; margin:10px auto 0 auto;}
+
+.sidebarright_box_pic{}
+.sidebarright_box_text{}
+.sidebarright_box_text ul{ margin:0; padding:0; list-style:none;}
+.sidebarright_box_text ul li{ line-height:30px; font-size:14px; background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; padding-left:12px;}
+.sidebarright_box_text ul li span{ float:right; margin-right:10px; color:#999; font-size:12px; font-family:Arial;}
+
+.news_media{}
+.news_media h1{ height:29px; line-height:29px; background:url("news_18.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_18.jpg*/ repeat-x left top; padding-left:20px; color:#b30d20; font-size:14px; font-weight:bold;}
+.news_media h1 span{ float:right; margin-right:10px; font-size:12px; font-weight:normal; font-family:"宋体";}
+.news_media dl{ margin:0 10px; padding:10px 0 0 0; list-style:none;}
+.news_media dl dt{ border-bottom:1px dotted #ccc; padding-bottom:10px; padding-right:10px; margin-bottom:5px;}
+.news_media dl dt img{ border:1px solid #ccc; float:left; margin-right:10px;}
+.news_media dl dt b{ color:#b30d20; line-height:35px;}
+.news_media dl dt p{ text-indent:2em; line-height:20px;}
+.news_media dl dd{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; line-height:30px; padding-left:12px; margin:0;}
+.news_media dl dd span{ color:#999; float:right; margin-right:10px; font-family:Arial; font-size:11px;}
+
+.pic_new{}
+.pic_new h1{ height:30px; line-height:30px; background:url("news_21.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_21.jpg*/ repeat-x; font-size:14px; padding-left:20px; font-weight:bold; color:#002a5f;}
+.pic_new h1 span{ float:right; margin-right:10px; font-size:12px; font-weight:normal; font-family:"宋体";}
+.pic_new dl{ margin:0 10px; padding:0px 0 5px 0; list-style:none;}
+.pic_new dl dt{ border-bottom:1px dotted #ccc; margin:10px 0 5px 0; padding-bottom:10px;padding-bottom:10px;padding-bottom:10px \9; *padding-bottom:18px; _padding-bottom:18px;}
+.pic_new dl dt img{ border:1px solid #ccc; float:left; margin-right:10px;}
+.pic_new dl dt b{ color:#b30d20; line-height:35px;}
+.pic_new dl dt p{ text-indent:2em; line-height:20px;}
+.pic_new dl dd{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; line-height:30px; padding-left:12px; margin:0;}
+.pic_new dl dd span{ color:#999; float:right; margin-right:10px; font-family:Arial; font-size:11px;}
+
+
+.television_news{}
+h5{ height:30px; line-height:30px; background:url("news_18.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/news_18.jpg*/ repeat-x left top; padding-left:15px; font-size:14px; font-weight:bold; color:#002a5f;}
+h5 span{ float:right; margin-right:10px; font-size:12px; font-weight:normal; font-family:"宋体";}
+.television_news dl{ margin:0; padding:10px 0 10px 15px; width:315px; float:left;}
+.television_news dl dt{ border-bottom:1px dotted #ccc; padding-right:10px; margin:11px 0 0px 0; padding-bottom:14px;padding-bottom:10px \9; *padding-bottom:15px; _padding-bottom:15px;}
+.television_news dl dt img{ border:2px solid #ccc; float:left; margin-right:10px;}
+.television_news dl dt b{ color:#b30d20; line-height:35px;}
+.television_news dl dt p{ text-indent:2em; line-height:20px;}
+.television_news dl dd{ background:url("index_35.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/index_35.jpg*/ no-repeat left center; line-height:30px; padding-left:12px; margin:0;}
+.television_news dl dd span{ color:#999; float:right; margin-right:10px; font-family:Arial; font-size:11px;}
+
+
+/*机构设置*/
+.organization_sidebarright_box{ padding-bottom:15px;}
+.organization_sidebarright_box ul{ margin:15px 0 0 0; padding:0px 0 0px 0; list-style:none;}
+.organization_sidebarright_box ul li{ width:200px; float:left; line-height:22px; margin:0px 0 0px 15px; display:inline; height:22px; padding:4px 0;}
+.organization_sidebarright_box ul li a{ color:#333; padding-left:10px;}
+.organization_sidebarright_box ul li a:hover{ width:190px; height:22px; background:#b30d20; color:#fff; text-decoration:none; display:block; line-height:22px;}
+
+.organization_research{padding-bottom:15px;}
+.organization_research ul{ margin:15px 0 0 0; padding:0px 0 0px 0; list-style:none;}
+.organization_research ul li{ width:300px; float:left; line-height:22px; margin:0px 0 0px 20px; display:inline; height:22px; padding:4px 0;}
+.organization_research ul li a{ color:#333; padding-left:10px;}
+.organization_research ul li a:hover{ width:290px; height:22px; background:#b30d20; color:#fff; text-decoration:none; display:block; line-height:22px;}
+
+
+/*学校领导*/
+.school_leader{}
+.school_leader ul{ margin:0; padding:10px 0 0 0; list-style:none;}
+.school_leader ul li{ border-bottom:1px solid #ccc;margin-bottom:10px; padding-bottom:10px;}
+.school_leader ul li img{ border:2px solid #ccc; float:left; margin-right:20px;}
+.school_leader ul li b{ color:#002a5f; line-height:30px;}
+.school_leader ul li a{ color:#b40000; text-decoration:none;}
+.school_leader ul li a:visited{ color:#b40000; text-decoration:none;}
+.school_leader ul li a:hover{ color:#b40000; text-decoration:underline;}
+
+.lead_article_content{ border-bottom:1px dotted #ccc; padding:15px 0 20px 0; margin-bottom:10px; font-size:14px;}
+.lead_article_content img{ border:2px solid #ccc; float:left; margin-right:20px;}
+.lead_article_content b{ color:#002a5f; line-height:30px;}
+
+.policy_department1_box{}
+.policy_department1_box dl{ margin:0; padding:0; list-style:none;}
+.policy_department1_box dl dt{ height:30px;  border-top:1px solid #ccc; background:#fafafa; padding-left:12px; line-height:30px;width:380px; border-right:1px solid #ccc; float:left;}
+.policy_department1_box dl dt a{background:url("icon_03.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/icon_03.jpg*/ no-repeat left center; padding-left:18px;}
+.policy_department1_box dl dd{ width:380px;height:30px;  border-top:1px solid #ccc; background:#eee; padding-left:12px; line-height:30px;margin:0;border-right:1px solid #ccc; float:left;}
+.policy_department1_box dl dd a{background:url("icon_06.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/icon_06.jpg*/ no-repeat left center; padding-left:18px;}
+
+
+
+.policy_department12{ width:338px; float:left;}
+.policy_department12 dl{ margin:0; padding:0; list-style:none;}
+.policy_department12 dl dt{ height:30px;  border-top:1px solid #ccc; background:#fafafa; padding-left:12px; line-height:30px; clear:both;}
+.policy_department12 dl dt a{background:url("icon_03.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/icon_03.jpg*/ no-repeat left center; padding-left:18px;}
+.policy_department12 dl dd{ height:30px;  border-top:1px solid #ccc; background:#eee; padding-left:12px; line-height:30px; clear:both; margin:0;}
+.policy_department12 dl dd a{background:url("icon_06.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/css/images/icon_06.jpg*/ no-repeat left center; padding-left:18px;}
+
+
+/*留言板*/
+.message_position{ padding-left:15px; font-weight:bold; font-family:"宋体";}
+.article_pic_content{margin-bottom:10px;}
+.current_position2{padding-left:12px; font-weight:bold; font-family:"宋体"; border-left:1px solid #ccc;}
+
+/* 首页登录按钮 */
+.input_button {
+    background: url("dl_btn_bg.jpg")/*tpa=http://attachment.ahu.edu.cn/website/24429/images/dl_btn_bg.jpg*/ no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    height: 47px;
+    width: 34px;
+}
+
+.outer_television_news{ width:786px; float:left; margin-top:10px; border:1px solid #ccc; border-top:none;}
+

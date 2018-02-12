@@ -1,0 +1,167 @@
+/* page/xh_component/index.wxss */
+.index{
+    background-color: #FBF9FE;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    flex: 1;
+    min-height: 100%;
+    font-size: 32rpx;
+}
+.head{
+    padding: 80rpx;
+    line-height: 1;
+}
+.body{
+    overflow: hidden;
+}
+.title{
+    font-size: 52rpx;
+}
+.desc{
+    margin-top: 10rpx;
+    color: #888888;
+    font-size: 28rpx;
+}
+.xh-signup-bannerlist image {
+    width: 100%;
+    height: 180px;
+}
+.list-block .coach__ul {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: #fff;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+.widget__arrow{
+    position: absolute;
+    top: 28rpx;
+    right: 44rpx;
+    width: 32rpx;
+    height: 32rpx;
+}
+.list-block .coach__ul__li {
+    position: relative;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.list-block .item-content {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    min-height:2.2rem;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    padding-left:.75rem;
+    -webkit-box-pack:justify;
+    -ms-flex-pack:justify;
+    -webkit-justify-content:space-between;
+    justify-content:space-between;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+    align-items:center;
+}
+.list-block .item-media{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    padding-top:.35rem;
+    padding-bottom:.4rem;
+    -webkit-flex-shrink:0;
+    -ms-flex:0 0 auto;
+    -webkit-flex-shrink:0;
+    -ms-flex-negative:0;
+    flex-shrink:0;
+    -webkit-box-lines:single;
+    -moz-box-lines:single;
+    -webkit-flex-wrap:nowrap;
+    -ms-flex-wrap:none;
+    -ms-flex-wrap:nowrap;
+    flex-wrap:nowrap;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+    align-items:center;
+}
+.list-block .item-link .item-inner{
+    padding-right:1.5rem;
+    background-repeat:no-repeat;
+    background-position:97% center;
+    background-position:-webkit-calc(100% - .5rem) center;
+    background-position:calc(100% - .5rem) center;
+    background-size:.7rem;
+}
+.list-block li.media-item .item-title-row,.list-block.media-list .item-title-row{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    -webkit-box-pack:justify;
+    -ms-flex-pack:justify;
+    -webkit-justify-content:space-between;
+    justify-content:space-between;
+    margin-bottom: 5px;
+}
+
+.list-block .item-subtitle {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: .75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5px;    
+}
+.item-subtitle image {width: 32rpx; height: 32rpx;}
+.list-block .item-title {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-flex-shrink: 1;
+    -ms-flex: 0 1 auto;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+.list-block .item-inner {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    min-height: 2.2rem;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-top: .4rem;
+    padding-right: .75rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid #e7e7e7;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin-left: .75rem;
+}
+.list-block li.media-item .item-inner, .list-block.media-list .item-inner {
+    display: block;
+    padding-top: .5rem;
+    padding-bottom: .45rem;
+    -ms-flex-item-align: stretch;
+    -webkit-align-self: stretch;
+    align-self: stretch;
+}

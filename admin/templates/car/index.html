@@ -1,0 +1,114 @@
+<!--{include file="library/header.lbi"}-->
+	<form method="post">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>车辆列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="car_id[]" value="全选" />
+                <a href="index.php?action=car&op=add" class="button button-small border-green">添加车辆</a>
+                <!-- <input type="button" class="button button-small border-green" value="添加文章" /> -->
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+                <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="100">选择</th>
+                    <th width="200">名称</th>
+                    <th width="200">图片</th>
+                    <th width="220">车辆类型</th>
+                    <th width="220">车牌号</th>
+                    <th width="400">添加时间</th>
+                    <th width="100">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+
+                <!--{foreach $carlist as $key => $value}-->
+                <tr class="carlist">
+                    <td><input type="checkbox" name="car_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.id}-->" /></td>
+                    <td><!--{$value.name}--></td>
+                    <td>
+                    <!--{if $value.imgurl}-->
+                    <!--{foreach $value.imgurl as $key => $v}-->
+                        <a href="<!--{$v}-->" target="_blank"><img width="50px" height="50px;" src="<!--{$v}-->" alt=""></a>
+                    <!--{/foreach}-->
+                    <!--{else}-->
+                        <img src="templates/assests/images/logo.jpg" alt="">
+                    <!--{/if}-->
+                    </td>
+                    <td><!--{if $value.car_type == 1}--> <span class="tag bg-main">普通车型</span><!--{elseif $value.car_type == 2}--><span class="tag bg-yellow">加强车型</span><!--{else}--><span class="tag bg-green">模拟车型</span><!--{/if}--></td>
+                    <td><!--{$value.car_no}--></td>
+                    <td><!--{$value.addtime}--></td>
+
+                    <td>
+                        <a class="button border-blue button-little" href="index.php?action=car&op=edit&id=<!--{$value.id}-->"><span class="icon-edit text-blue"></span> 修改</a> 
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delcar(<!--{$value.id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+            </table>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+    // 跳转页面
+    $('#skipping').click(function() {
+        $(this).html('跳转中...');
+        var selectpage = $('#selectpage').find('option:selected').val();
+        location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&page="+selectpage;
+    })
+    
+    // 删除驾校
+    function delcar(id, obj) {
+        if(window.confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=car&op=del",
+                // dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.carlist').remove();
+                    }
+                }
+            })
+
+        } else {
+            return false;
+        }
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的教练信息！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

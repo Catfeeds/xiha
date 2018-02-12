@@ -1,0 +1,113 @@
+<!--{include file="library/header.lbi"}-->
+	<form method="post">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>班制列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="car_id[]" value="全选" />
+                <a href="index.php?action=school&op=addaddress" class="button button-small border-green">添加报名点</a>
+                <!-- <input type="button" class="button button-small border-green" value="添加文章" /> -->
+                <!-- <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" /> -->
+                <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="50">选择</th>
+                    <th width="50">ID</th>
+                    <th width="100">报名点</th>
+                    <th width="100">电话号码</th>
+                    <th width="100">添加时间</th>
+                    <th width="200">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                
+                <!--{if $address_list}-->
+                <!--{foreach $address_list as $key => $value}-->
+                <tr class="carlist">
+                    <td><input type="checkbox" name="car_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.id}-->" /></td>
+                    <td><!--{$value.id}--></td>
+                    <td><!--{$value.tl_train_address}--></td>
+                    <td><!--{$value.tl_phone}--></td>
+                    <td><!--{$value.addtime}--></td>
+                    <td>
+                        <a href="javascript:void(0)"  class="button border-blue button-little" onclick="javascript:edit('<!--{$value.id}-->', 'editaddress', '修改报名点')"><span class="icon-edit text-blue"></span> 修改</a> 
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:deladdress(<!--{$value.id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+                <!--{else}-->
+                暂无班制列表
+                <!--{/if}-->
+            </table>
+
+            <!-- 分页 -->
+<!--             <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div> -->
+        </div>
+    </form>
+    <script>
+    // 编辑信息
+    function edit(id, op, title) {
+        //iframe层-父子操作
+        layer.open({
+            type: 2,
+            title:title,
+            area: ['100%', '100%'],
+            shade:false,
+            moveType:1,
+            shift:0,
+            content: 'index.php?action=school&op='+op+'&id='+id
+        });
+    }
+    // 删除驾校
+    function deladdress(id, obj) {
+        if(window.confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=deladdress",
+                // dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.carlist').remove();
+                    }
+                }
+            })
+
+        } else {
+            return false;
+        }
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的车辆列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

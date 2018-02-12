@@ -1,0 +1,11 @@
+README
+
+thanks to gdc
+
+1. extension install:
+sudo pecl install swoole
+sudo pecl install hprose
+
+2. hprose directory is the framework which contains swoole support
+
+3. demo directory is the example directory

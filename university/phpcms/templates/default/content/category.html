@@ -1,0 +1,101 @@
+{template "content","header_category"}
+    <div class="wrapper" style="position: absolute; left: 0px; top: 46px; z-index: -1; height: 360px;">
+         <div class="inner" style="height:360px; max-width:1100px; background:url(statics/images/bg.jpg) no-repeat 0 0;">
+            <div frag="面板44">
+               <div frag="窗口44" portletmode="simpleColumnAttri">
+                      <img border='0' src="statics/images/picture.jpg" tppabs="statics/images/picture.jpg"  />
+               </div>
+            </div>
+         </div>
+    </div>
+
+</div>
+
+<div class="wrapper" id="container">
+    <div class="inner">
+        <div class="col_menu">
+            <div class="col_menu_head" frag="面板13">
+                <h2 class="col_name" frag="窗口13" portletmode="simpleColumnAnchor">
+                    <span class="col_name_text">
+                        <span class='Column_Anchor'>{catpos($catid)}</span>
+                    </span>
+                </h2>
+            </div>
+            <div class="col_menu_con" frag="面板14">
+                <div class="col_list" frag="窗口14" portletmode="simpleColumnList">
+                    <div id="wp_listcolumn_w14"> 
+                        <ul class="wp_listcolumn"> 
+                            {pc:content action="category" catid="17" num="25" siteid="$siteid" order="listorder DESC"}
+                                {loop $data $k $r}
+                                 <li {if $r[catid] == $catid}class="wp_column column-1 selected"{else}class="wp_column column-1"{/if}> 
+                                     <a href="{$r[url]}" tppabs="http://www.ahu.edu.cn/148/list.htm" title="{$r[catname]}" {if $r[catid]==$catid} class="selected"{/if} target="_self"><span class="column-name">{$r[catname]}</span></a> 
+                                 </li>
+                                {/loop}
+                            {/pc}
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col_news">
+            <div class="col_news_head" frag="面板15">
+                <ul class="col_metas clearfix" frag="窗口15" portletmode="simpleColumnAttri">
+                    <li class="col_path">
+                        <span class="path_name">当前位置：</span><a href="main.htm" tppabs="http://www.ahu.edu.cn/main.htm" target="_self">首页</a>
+                        <span class='possplit'>&nbsp;&nbsp;</span><a href="list.htm" tppabs="http://www.ahu.edu.cn/42/list.htm" target="_self">学校概况</a>
+                        <span class='possplit'>&nbsp;&nbsp;</span><a href="list-1.htm" tppabs="http://www.ahu.edu.cn/148/list.htm" target="_self">学校简介</a>
+                    </li>
+                </ul>
+          </div>
+          <div class="col_news_con" frag="面板16">
+            <div class="col_news_list" frag="窗口16" portletmode="simpleList">
+                <div id="wp_news_w16"> 
+                    <ul class="wp_article_list"> 
+                          
+                         <!--<li class="list_item i1"> 
+                             <div class="fields pr_fields"> 
+                                 <span class='Article_Index'>1</span> 
+                                 <span class='Article_Title'><a href="page-32.htm" tppabs="http://www.ahu.edu.cn/ea/27/c181a59943/page.htm" target='_blank' title='“凯泰资本”安徽大学第四届“校友杯”商业创新大赛公告'>“凯泰资本”安徽大学第四届“校友杯”商业创新大赛公告</a></span> 
+                             </div> 
+                             <div class="fields ex_fields"> 
+                                  
+                                 <span class='Article_PublishDate'>2017-04-26</span> 
+                                  
+                             </div> 
+                         </li> 
+                          
+                         <li class="list_item i2"> 
+                             <div class="fields pr_fields"> 
+                                 <span class='Article_Index'>2</span> 
+                                 <span class='Article_Title'><a href="page-33.htm" tppabs="http://www.ahu.edu.cn/e9/e7/c181a59879/page.htm" target='_blank' title='2关于磬苑校区停水的紧急通知'>关于磬苑校区停水的紧急通知</a></span> 
+                             </div> 
+                             <div class="fields ex_fields"> 
+                                  
+                                 <span class='Article_PublishDate'>2017-04-24</span> 
+                                  
+                             </div> 
+                         </li> 
+                          
+                         <li class="list_item i3"> 
+                             <div class="fields pr_fields"> 
+                                 <span class='Article_Index'>3</span> 
+                                 <span class='Article_Title'><a href="page-34.htm" tppabs="http://www.ahu.edu.cn/e9/e3/c181a59875/page.htm" target='_blank' title='3关于各校区学生宿舍供电时间安排调整的通知'>关于各校区学生宿舍供电时间安排调整的通知</a></span> 
+                             </div> 
+                             <div class="fields ex_fields"> 
+                                  
+                                 <span class='Article_PublishDate'>2017-04-24</span> 
+                                  
+                             </div> 
+                         </li> 
+                          -->
+                    </ul> 
+                </div> 
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+{template "content","footer_category"}
+</body>
+</html>

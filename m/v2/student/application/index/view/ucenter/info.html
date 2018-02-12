@@ -1,0 +1,88 @@
+{include file="index/header"}
+
+<div class="page" id="ucenter-info">
+  {if condition="$device eq '1'"}
+  	<header class="bar bar-nav">
+  		<a class="button button-link button-nav pull-left back" href="{:url('/ucenter', ['token'=>$token, 'device'=>$device])}">
+	      <span class="icon icon-left"></span>
+	   	   返回 
+	    </a>
+    	<h1 class="title">{$title}</h1>
+  	</header>
+  	{/if}
+  
+  <div class="content" style="margin:0 0 2.5rem 0;">
+	<div class="list-block media-list" style="margin: 0px;">
+    	<ul style="height: 90px;">
+	      <li style="height: 90px;">
+	        <a href="{:url('/test')}" class="item-link item-content">
+	          <div class="item-inner" style="height: 90px; line-height: 70px;">
+	            <div class="item-title-row">
+	              <div class="item-title">头像</div>
+	              <div class="item-after"><img src="__PUBLIC__/static/images/ucenter-index-default-photo.png" style="width: 65px; height: 65px;" alt="" /></div>
+	            </div>
+	          </div>
+	        </a>
+	      </li>
+	    </ul>
+      
+  	</div>
+  	<div class="list-block" id="ucenter-info" style="margin-top: 10px;">
+    	<ul>
+	      <li class="item-content item-link info-cell">
+	        <div class="item-inner">
+	          <div class="item-title">昵称</div>
+	          <div class="item-after">嘻哈学员</div>
+	          <input type="hidden" value="嘻哈学员" id="nickname"/>
+	        </div>
+	      </li>
+	      <li class="item-content">
+	        <div class="item-inner">
+	          <div class="item-title">手机号</div>
+	          <div class="item-after">1234567890</div>
+	          <input type="hidden" value="1234567890" id="phone"/>
+	        </div>
+	      </li>
+	      <li class="item-content item-link info-qrcode">
+	        <div class="item-inner">
+	          <div class="item-title">二维码</div>
+	          <div class="item-after"><i class="iconfont" style="font-size: 1rem; color: #666;">&#xe667;</i></div>
+	        </div>
+	      </li>
+	      <li class="item-content item-link info-cell">
+	        <div class="item-inner">
+	          <div class="item-title">性别</div>
+	          <div class="item-after">女</div>
+	        </div>
+	      </li>
+	      <li class="item-content item-link info-cell">
+	        <div class="item-inner">
+	          <div class="item-title">年龄</div>
+	          <div class="item-after">18</div>
+	        </div>
+	      </li>
+	      <li class="item-content item-link info-cell">
+	        <div class="item-inner">
+	          <div class="item-title">考证类型</div>
+	          <div class="item-after">小型车C1</div>
+	        </div>
+	      </li>
+	      <li class="item-content item-link info-cell">
+	        <div class="item-inner">
+	          <div class="item-title">身份证</div>
+	          <div class="item-after">34255643565735567754</div>
+	        </div>
+	      </li>
+	      <li class="item-content item-link info-cell">
+	        <div class="item-inner">
+	          <div class="item-title">地址</div>
+	          <div class="item-after">安徽省合肥市蜀山区</div>
+	        </div>
+	      </li>
+	      
+	    </ul>
+  	</div>
+  	
+  </div>
+</div>
+{include file="index/footer"}

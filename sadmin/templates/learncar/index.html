@@ -1,0 +1,363 @@
+<!--{include file="library/header.lbi"}-->
+      <div class="navsecondebar">
+        <div class="navleftbar" style="">
+            <p class="slide" id="" style="background:#ddd; border-bottom:1px solid #fff; text-align:center; height:41px;">
+               <a href="javascript:;" id="strHref" class="btn-slide" style="line-height:40px;">
+                   <!-- <span id="span-icon" class="icon-angle-double-left" style="color:#fff;"></span> -->
+                   <span style="font-size:14px; color:#555;">学车订单</span>
+                </a>
+            </p>
+            <ul>
+              <li>
+                <a href="javascript:;" onclick="javascript:showshiftsorder(1, this)" <!--{if $order_id == 1}-->style="background: #888; color:#fff;"<!--{/if}-->>已付款</a>
+              </li>
+
+              <li>
+                <a href="javascript:;" onclick="javascript:showshiftsorder(2, this)" <!--{if $order_id == 2}-->style="background: #888; color:#fff;"<!--{/if}-->>已完成</a>
+              </li>
+
+              <li>
+                <a href="javascript:;" onclick="javascript:showshiftsorder(3, this)" <!--{if $order_id == 3}-->style="background: #888; color:#fff;"<!--{/if}-->>已取消</a>
+              </li>
+
+              <li>
+                <a href="javascript:;" onclick="javascript:showshiftsorder(1003, this)" <!--{if $order_id == 1003}-->style="background: #888; color:#fff;"<!--{/if}-->>未付款</a>
+              </li>
+            </ul>
+          <div class="hidebar"><img src="templates/assests/images/iconfont-iconfontquanbu.png" width="15px" alt=""></div>
+          <div class="showbar" style="display:none;"><img src="templates/assests/images/iconfont-iconfontquanbu.png" width="15px" alt=""></div>
+        </div>
+      </div>  
+
+  <form action="index.php?action=learncar&op=search&order_id=<!--{$order_id}-->" method="post" onSubmit="return searchcheck();">
+    <div class="shiftsorderbody" style="margin-left:100px;">
+        <div class="panel admin-panel">
+            <div class="container" style="width:100%; overflow-x: auto; overflow-y:none; padding:0px;">
+            <div class="tab"> 
+                
+                <div class="tab-body" style="border-top:none"> 
+                    <!-- 订单 -->
+                    <div class="tab-panel form-x active" id="tab-time-shifts">
+                        <div class="padding border-bottom search-position">
+
+                            <input type="button" class="button button-small checkall" name="checkall" checkfor="orderids[]" value="全选" />
+                            <a href="index.php?action=learncar&op=add&order_id=<!--{$order_id}-->" class="button button-small border-green">添加订单</a>
+                            <select class="input input-auto" name="paytype" id="pay-search-condition">
+                                <option value="1">支付宝</option>
+                                <option value="2">线下支付</option>
+                                <option value="3">微信支付</option>
+                                <option value="4">银联支付</option>
+                            </select>
+
+                            <select class="input input-auto" name="conditiontype" id="search_condition">
+                                <option value="1" >学员姓名</option>
+                                <option value="2" >学员号码</option>
+                                <option value="3" >教练号码</option>
+                                <option value="4" >订单号</option>
+                                <option value="5" >唯一识别码</option>
+                            </select>
+                            <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="time-keywords" value = "" >
+                            <input type="hidden" value="<!--{$order_id}-->" name="order_id">
+                            <input type="submit" id="time-search" class="button button-small border-blue" value="搜索" />
+
+                            <!-- <input type="button" class="button button-small border-green" value="添加文章" /> -->
+                            <!-- <input type="button" class="button button-small border-yellow" onclick="delall()" value="批量删除" /> -->
+                            <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+                        </div>
+                        <table class="table table-hover table-position">
+                            <tr>
+                                <th width="45">选择</th>
+                                <th width="40">ID</th>
+                                <th width="110">订单号
+                                  <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标放在订单号上有意外惊喜哦"></span>
+                                </th>
+                                <!-- <th width="100">下单时间</th> -->
+                                <!-- <th width="100">科目</th> -->
+                                <!-- <th width="150">订单单价</th>
+                                <th width="150">订单详情</th>
+                                <th width="150">驾照类型</th> -->
+                                <th width="140">学车时间</th>
+                                <th width="100">学员姓名</th>
+                                <th width="100">学员手机号</th>
+                                <th width="100">教练姓名</th>
+                                <!-- <th width="140">教练手机号</th> -->
+                                <!-- <th width="150">训练场地</th> -->
+                                <!-- <th width="130">训练费用</th> -->
+                                <!-- <th width="100">预约时长</th> -->
+                                <th width="80">订单状态</th>
+                                <th width="80">支付形式</th>
+                                <th width="200">操作</th>
+
+                            </tr>
+                            <!-- 循环列表 -->
+                            <!--{if $orderlist}-->
+                            <!--{foreach $orderlist as $key => $value}-->
+                            <tr class="orderlist">
+                                <td><input type="checkbox" name="orderids[]" id="checkbox_<!--{$key}-->" value="<!--{$value['l_study_order_id']}-->" /></td>
+                                <td><!--{$value['l_study_order_id']}--></td>
+                                <td>
+                                  <a href="javascript:;" class="orderdetail" id="orderdetail<!--{$value['l_study_order_id']}-->" style="color:#09c">
+                                    <!--{$value['s_order_no']}--><!-- 
+                                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="检测手机号是否已注册，以便在手机客户端上可以登陆"></span> -->
+                                  </a>
+                                </td>
+                               <!--  <td>{$value['dt_order_time']}</td> 
+                               <td>{$value['s_lesson_name']}</td> -->
+                                <!-- <td>
+                                    {foreach $value['lesson_name'] as $k => $v}
+                                        {$v}
+                                    {/foreach}
+                                </td> -->
+                                <!-- <td>{$value['s_order_money']}</td>
+                                <td>{$value['s_order_time']} </td>
+                                <td>{$value['s_lisence_type']}</td> -->
+
+                                <td><!--{$value['dt_appoint_time']}--> <br>
+                                <!--{if $value['time_list']}-->
+                                <!--{foreach $value['time_list'] as $k => $v}-->
+                                  <span class="button button-little border-red"><!--{$v}--></span> <br>
+                                <!--{/foreach}-->
+                                <!--{else}-->
+                                  
+                                <!--{/if}-->
+                                </td>
+                                <td><!--{$value['s_user_name']}--></td>
+                                <td><!--{$value['s_user_phone']}--></td>
+
+                               <td><!--{$value['s_coach_name']}--></td>
+                                <!-- <td>{$value['s_coach_phone']}</td>
+                                <td>{$value['s_address']}</td>
+                                <td>{$value['dc_money']}</td>
+                                <td>{$value['i_service_time']}</td> -->
+                                
+                                <!--{if $value['i_status'] == 1}-->
+                                    <td class="orderlist-td"><span class="badge bg-blue icon-check-square-o">已付款</span></td>
+                                <!--{else if $value['i_status'] == 2}-->
+                                    <td class="orderlist-td"><span class="badge bg-green icon-check">已完成</span></td>
+                                <!--{else if $value['i_status'] == 3}-->
+                                    <td class="orderlist-td"><span class="badge bg-red icon-times">已取消</span></td>
+                                <!--{else if $value['i_status'] == 4}-->
+                                    <td class="orderlist-td"><span class="badge bg-main icon-check-square-o">已删除</span></td>
+                                <!--{else if $value['i_status'] == 1003}-->
+                                    <td class="orderlist-td"><span class="badge bg-yellow icon-bell-o">未付款</span></td>
+                                <!--{/if}-->
+
+                                <!--{if $value['deal_type'] == 1}-->
+                                    <td><span class="button button-little border-blue icon-arrow-up">支付宝</span></td>
+                                <!--{else if $value['deal_type'] == 2}-->
+                                    <td><span class="button button-little border-yellow icon-arrow-down">线下支付</span></td>
+                                <!--{else}-->
+                                    <td><span class="button button-little border-green icon-arrow-up">微信支付</span></td>
+
+                                <!--{/if}-->
+                                <td>
+                                    <div class="button-group border-blue">
+                                      <button type="button" class="button button-little text-blue dropdown-toggle">
+                                          设置 <span class="downward"></span>
+                                      </button>
+                                      <ul class="drop-menu" style="min-width:85px;">
+                                          <li>
+                                              <a href="javascript:;" onclick="javascript:operatelearncar(<!--{$value['l_study_order_id']}-->, 1, this);">已付款</a>
+                                          </li>
+                                          <li>
+                                              <a href="javascript:;" onclick="javascript:operatelearncar(<!--{$value['l_study_order_id']}-->, 2, this);">已完成</a>
+                                          </li>
+                                          <li>
+                                              <a href="javascript:;" onclick="javascript:operatelearncar(<!--{$value['l_study_order_id']}-->, 3, this);">已取消</a>
+                                          </li>
+                                          <li>
+                                              <a href="javascript:;" onclick="javascript:operatelearncar(<!--{$value['l_study_order_id']}-->, 1003, this);">未付款</a>
+                                          </li>
+                                          <li>
+                                              <a href="javascript:;" onclick="javascript:operatelearncar(<!--{$value['l_study_order_id']}-->, 101, this);">已删除</a>
+                                          </li>
+                                      </ul>
+                                    </div>
+                                    <!-- <a class="button border-blue button-little" href="index.php?action=learncar&op=edit&order_id=<!--{$order_id}-->&id=<!--{$value['l_study_order_id']}-->"><span class="icon-edit text-blue"></span> 编辑</a>  -->
+                                     
+                                     <!-- <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:dellearncarorder(<!--{$value['l_study_order_id']}-->, this);"> -->
+                                        <!-- <span class="icon-trash-o text-red"></span> 删除</a>  -->
+                                </td>
+
+                                <td class="orderinfo" style="display:none">
+                                  <table class="table table-bordered" style="color:#333;"> 
+                                    <tr width="100%" > 
+                                      <td class="blue text-center">教练姓名</td> 
+                                      <td><!--{$value['s_coach_name']}--></td> 
+                                      <td class="blue text-center">教练号码</td> 
+                                      <td><!--{$value['s_coach_phone']}--></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="blue text-center">预约科目</td> 
+                                      <td><!--{$value['s_lesson_name']}--></td>
+                                      <td class="blue text-center">预约牌照</td> 
+                                      <td><!--{$value['s_lisence_name']}--></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="blue text-center">训练费用</td>
+                                      <td><!--{$value['dc_money']}--></td>
+                                      <td class="blue text-center">预约时常</td>
+                                      <td><!--{$value['i_service_time']}-->小时</td>
+                                    </tr> 
+                                    <tr>
+                                      <td class="blue text-center">预约时间</td>
+                                      <td class="red text-red" colspan=3><!--{$value['appoint_time_list']}--></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="blue text-center">身份证号</td>
+                                      <td class="red text-red" colspan=3><!--{$value['identity_id']}--></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue text-center">支付唯一识别码</td>
+                                        <td class="red text-red" colspan=3><!--{$value.s_zhifu_dm}--></td>
+                                      </tr>
+                                  </table>
+                                </td>
+
+                            </tr>
+
+                            <!--{/foreach}-->
+                            <!--{else}-->
+                              <tr>
+                                <td colspan=5>暂无订单列表</td>
+                              </tr>
+                            <!--{/if}-->
+                        </table>
+                        <div class="panel-foot text-center">
+                            <!--{$pagehtml}-->
+                        </div>
+                    </div>
+
+                </div> 
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </form>
+  <script>
+    // 跳转页面
+    $('#skipping').click(function() {
+      $(this).html('跳转中...');
+      var selectpage = $('#selectpage').find('option:selected').val();
+      location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&order_id=<!--{$order_id}-->&page="+selectpage;
+    })
+    // 鼠标订单事件
+    $('.orderdetail').on({
+        'mouseenter':function() {
+          var id = $(this).attr('id');
+          var orderinfo = $(this).parents('tr.orderlist').find('td.orderinfo').html();
+          layer.tips(orderinfo, '#'+id, {
+              tips: [1, '#fff'],
+              time:0,
+              area: ['420px', '240px']
+          });
+        },
+
+        'mouseleave':function() {
+          var index = layer.tips();
+          layer.close(index);  
+        },
+
+        'click':function() {
+          var orderinfo = $(this).parents('tr.orderlist').find('td.orderinfo').html();
+          layer.open({
+              type: 1,
+              title:'订单详情',
+              area: ['450px', '330px'],
+              shade:false,
+              moveType:1,
+              shift:0,
+              content: orderinfo
+          });
+        }
+    })
+
+    // 搜索检测
+    function searchcheck() {
+      var keywords = $('#time-keywords').val();
+      var type = $('#search_condition').find('option:selected').val();
+      if(keywords.trim() == '' || type.trim() == '') {
+        layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});
+        return false;
+      }
+    }
+
+    // 二级菜单伸缩
+    $('.hidebar').click(function() {
+      $(this).parents('.navleftbar').css('left', '-100px');
+      $('.shiftsorderbody').css({'margin-left':'0px'});
+      $('.showbar').css('display', 'block');
+    })
+    $('.showbar').click(function() {
+      $('.hidebar').parents('.navleftbar').css('left', '0px');
+      $('.shiftsorderbody').css({'margin-left':'100px'});
+      $(this).css('display', 'none');
+    })
+
+    // 操作学车订单
+    function operatelearncar(id, status, obj) {
+      $.ajax({
+        type:"POST",
+        url:"index.php?action=learncar&op=setorderstatus",
+        data:{"id":id, 'status':status},
+        dataType:"JSON",
+        success:function(data) {
+          var html;
+          if(data.code == 200) {
+            if(data.data == 1) {
+              // 已付款
+              html = '<span class="badge bg-blue icon-check-square-o">已付款</span>';
+            } else if(data.data == 2) {
+              // 已完成
+              html = '<span class="badge bg-green icon-check">已完成</span>';
+            } else if(data.data == 3) {
+              // 已取消
+              html = '<span class="badge bg-red icon-times">已取消</span>';
+            }else if(data.data == 1003) {
+              // 未付款
+              html = '<span class="badge bg-yellow icon-bell-o">未付款</span>';
+            }  else if(data.data == 101) {
+              // 已删除
+              html = '<span class="badge bg-gray icon-times">已删除</span>';
+            } 
+            $(obj).parents('.orderlist').find('.orderlist-td').html(html);
+          }
+        },
+        error:function() {
+          alert('网络错误，请检查网络');
+        }
+      })
+    }     
+
+    // 删除班制订单
+    function dellearncarorder(id, obj) {
+      if(window.confirm('你确定要删除吗?')) {
+        $.ajax({
+          type:"POST",
+          url:"index.php?action=learncar&op=dellearncar",
+          data:{'id':id},
+          success:function(data) {
+            if(data == 1) {
+              $(obj).parents('.orderlist').remove();
+            } else {
+              alert('删除失败');
+              return false;
+            }
+          },
+          error:function() {
+            alert('网络错误, 请检查网络');
+          }
+        })
+      } else {
+        return false;
+      } 
+    }
+
+    // 选择班制跳转
+    function showshiftsorder(id, obj) {
+      $(obj).html('加载中');    
+      location.href = 'index.php?action=learncar&op=index&order_id='+id;
+    }
+  </script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,548 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>驾校列表</title>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 驾校管理 <span class="c-gray en">&gt;</span> 驾校列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+            title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div class="pd-20">
+        <form method="post" action="{: U('School/searchSchool')}" name="search">
+            <div class="pd-5">
+                <label for="is_show">上架状态 </label>
+                <select class="" name="is_show" id="is_show" style="width:120px;height:30px">                  
+                    <option value="" >--不限状态--</option>
+                    <option value="1" <if condition="$is_show eq 1">selected</if>>上架</option>
+                    <option value="2" <if condition="$is_show eq 2">selected</if>>下架</option>
+                </select>
+                <label for="is_hot">按热门状态 </label>
+                <select class="" name="is_hot" id="is_hot" style="width:120px;height:30px">                  
+                    <option value="" >--不限状态--</option>
+                    <option value="1" <if condition="$is_hot eq 1">selected</if>>是</option>
+                    <option value="2" <if condition="$is_hot eq 2">selected</if>>否</option>
+                </select>
+                <label for="support_coupon">按券支持状态 </label>
+                <select class="" name="support_coupon" id="support_coupon" style="width:120px;height:30px">                  
+                    <option value="" >--不限状态--</option>
+                    <option value="1" <if condition="$support_coupon eq 1">selected</if>>支持</option>
+                    <option value="2" <if condition="$support_coupon eq 2">selected</if>>不支持</option>
+                </select>
+
+                <label for="dwxz">按驾校性质 </label>
+                <select class="" name="dwxz" id="dwxz" style="width:120px;height:30px">                  
+                    <option value="" >--不限性质--</option>
+                    <option value="1" <if condition="$dwxz eq 1">selected</if>>一类驾校</option>
+                    <option value="2" <if condition="$dwxz eq 2">selected</if>>二类驾校</option>
+                    <option value="3" <if condition="$dwxz eq 3">selected</if>>三类驾校</option>
+                </select>
+
+                <label for="dwxz">按驾校地址 </label>
+                <select class="select" name="province" id="province" style="height:30px; width:128px;">
+                    <option value="">请选择省份</option>
+                    <foreach name="province_list" item="pro">
+                        <option value="{$pro.provinceid}" <if condition="$pro.provinceid eq $province"> selected</if> >{$pro.province}</option>
+                    </foreach>
+                </select>
+                <select class="select" name="city" id="city" style="height:30px; width:128px;">
+                    <if condition="$city_name eq ''">
+                        <option value="">请选择城市</option>  
+                        <else/>
+                        <option value="{$city}">{$city_name}</option>  
+                    </if>         
+                </select>
+                <select class="select" name="area" id="area" style="height:30px; width:128px;">
+                    <if condition="$area_name eq ''">
+                        <option value="">请选择区域</option>
+                        <else/>
+                        <option value="{$area}">{$area_name}</option>  
+                    </if> 
+                </select>
+                <div style="margin-top:10px;">
+                    <label for="search_info">按驾校信息 </label>
+                    <select class="" name="search_info" id="search_info" style="width:150px;height:30px">				   
+                        <option value="" > --不限关键词--</option>
+                        <option value="l_school_id" <if condition="$search_info eq l_school_id">selected</if>> 驾校ID</option>
+                        <option value="s_school_name" <if condition="$search_info eq s_school_name">selected</if>> 驾校名称</option>
+                        <option value="s_address" <if condition="$search_info eq s_address">selected</if>> 驾校地址</option>
+                        <option value="s_frdb" <if condition="$search_info eq s_frdb">selected</if>>驾校法人</option>
+                        <option value="s_frdb_mobile" <if condition="$search_info eq s_frdb_mobile">selected</if>>法人手机号</option>
+				    </select>
+                    <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" value="{$s_keyword}" placeholder="ID|名称|法人|手机号|驾校地址" style="width:200px;" />
+                    <input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+                </div>
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+                <a href="javascript:;" onclick="addSchool('添加驾校','{: U('School/addSchool')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加驾校</a></span> <span class="r">共有驾校：<strong>{$count}</strong> 个</span>
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="40">ID</th>
+                            <th width="50">
+                                排序
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标双击排序表格有意外惊喜哦"></span>
+                            </th>
+                            <th width="70">
+                                驾校名称
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多驾校信息"></span>
+                            </th>
+                            <th width="70">品牌标识</th>
+                            <th width="70">法人代表</th>
+                            <th width="70">法人手机</th>
+                            <th width="90">组织结构码</th>
+                            <th width="70">驾校性质</th>
+                            <th width="100">详细地址</th>
+                            <th width="70">上架否</th>
+                            <th width="70">热门否</th>
+                            <th width="70">支持券否</th>
+                            <th width="50">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="school_info" item="obj">
+                            <tr class="text-c signup_list" module-data="{$obj.l_school_id}">
+                                <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                                <td class="va-m">{$obj.l_school_id}</td>
+                                <td class="va-m changeable" data-field="order">
+                                    <span>{$obj.s_order}</span>
+                                    <input class="input-text " value="{$obj.s_order}" style="display:none" name="order" type="text" style="text-align:center;border-radius:5px;">
+                                </td>
+                                <td class="va-m">
+                                    <!-- <u style="cursor:pointer" class="text-primary" onclick="member_show('{$obj.s_school_name}','__URL__/../Agentsinfo/show/id/{$obj.l_school_id}','{$obj.l_school_id}','900','500')">{$obj.s_school_name}</u> -->
+                                    <a href="javascript:;" class="schooldetail" id="signuphover{$obj.l_school_id}" style="color:#09c">
+										{$obj.s_school_name|mb_substr=0,8}
+                                    </a>
+                                </td>
+                                <td class="va-m">
+                                    <switch name="obj.brand">
+                                        <case value="1"><span class="btn btn-danger-outline radius">普通驾校</span></case>
+                                        <case value="2"><span class="btn btn-success-outline radius">品牌驾校</span></case>
+                                        <default /><span class="btn btn-default-outline radius">其它驾校</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m">{$obj.s_frdb}</td>
+                                <td class="va-m">{$obj.s_frdb_mobile}</td>
+                                <td class="va-m">{$obj.s_zzjgdm}</td>
+                                <td class="va-m">
+                                    <switch name="obj.i_dwxz">
+                                        <case value="1"><span class="btn btn-secondary-outline radius">一类驾校</span></case>
+                                        <case value="2"><span class="btn btn-success-outline radius">二类驾校</span></case>
+                                        <case value="3"><span class="btn btn-danger-outline radius">三类驾校</span></case>
+                                        <default /><span class="btn btn-default-outline radius">其它驾校</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m text-l">{$obj.s_address}</td>
+                                <td class="va-m setstatus">
+                                    <switch name="obj.is_show">
+                                        <case value="1"><span data-id="{$obj.l_school_id}" title="1" class="btn btn-success size-S radius">上架</span></case>
+                                        <case value="2"><span data-id="{$obj.l_school_id}" title="2" class="btn btn-default size-S radius">下架</span></case>
+                                        <default /><span data-id="{$data.id}" class="btn btn-danger size-S radius">下架</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setHotStatus">
+                                    <switch name="obj.is_hot">
+                                        <case value="1"><span data-id="{$obj.l_school_id}" data-title="1" class="btn btn-success size-S radius">是</span></case>
+                                        <case value="2"><span data-id="{$obj.l_school_id}" data-title="2" class="btn btn-default size-S radius">否</span></case>
+                                        <default /><span data-id="{$data.id}" class="btn btn-danger size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setCouponStatus">
+                                    <switch name="obj.support_coupon">
+                                        <case value="1"><span data-id="{$obj.l_school_id}" data-title="1" class="btn btn-success size-S radius">是</span></case>
+                                        <case value="2"><span data-id="{$obj.l_school_id}" data-title="2" class="btn btn-default size-S radius">否</span></case>
+                                        <default /><span data-id="{$data.id}" class="btn btn-danger size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m td-manage">
+                                    <a title="删除" href="javascript:;" onclick="member_del(this,{$obj.l_school_id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑驾校信息','{: U('School/editSchool')}','{$obj.l_school_id}','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                                <td class="schoolInfo" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;">
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">驾校名称</td>
+                                            <td class="red text-red" colspan=3>{$obj.s_school_name}</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">驾校固话</td>
+                                            <td class="va-m">{$obj.s_frdb_tel}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">组织机构码</td>
+                                            <td class="va-m">{$obj.s_zzjgdm}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">详细地址</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.s_address}</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">收费标准</td>
+                                            <td class="va-m">￥{$obj.dc_base_je} 元</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">最高比例</td>
+                                            <td class="va-m">{$obj.dc_bili}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">银行账户</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.s_yh_huming}</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">银行名称</td>
+                                            <td class="va-m">{$obj.s_yh_name}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">银行账号</td>
+                                            <td class="va-m">{$obj.s_yh_zhanghao}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">添加时间</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.addtime}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        // 城市联动
+        $('#province').blur(function() {
+            var province_id = $(this).val();
+            $('#city').load("__URL__/getCity/province_id/" + province_id);
+        });
+        $('#city').blur(function() {
+            var city_id = $(this).val();
+            $('#area').load("__URL__/getArea/city_id/" + city_id);
+            var city_html = $(this).find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            $('#address').val(province_html + city_html);
+        });
+        $('#area').blur(function() {
+            var city_html = $('#city').find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            var area_html = $(this).find('option:selected').html();
+            $('#address').val(province_html + city_html + area_html);
+        });
+
+        // 支持券否
+        $('.setCouponStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('School/setCouponStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        // 设置驾校的热门状态
+        $('.setHotStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('School/setHotStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 鼠标双击排序表格事件
+        $('td.changeable').dblclick(function() {
+            var s = $(this).find('span');
+            var i = $(this).find('input');
+            s.css('display', 'none');
+            i.css('display', 'inline-block').css('text-align', 'center').css('border-radius', '5px');
+            i.focus();
+        });
+        $('td.changeable input').blur(function() {
+            var s = $(this).parent().find('span');
+            var i = $(this).parent().find('input');
+            var mid = $(this).parent().parent().attr('module-data');
+            var field = $(this).parent().attr('data-field');
+            var order = $(this).val();
+            s_params = '{"id":' + '"' + mid + '"' + ',"' + field + '":"' + order + '"' + '}';
+            j_params = JSON.parse(s_params);
+            $.ajax({
+                type: "post",
+                url: "__URL__/setSchoolOrder",
+                data: j_params,
+                dataType: 'JSON',
+                success: function(data) {
+                    if (data.code == 200) {
+                        layer.tips(data.msg, s, {
+                            time: 1000,
+                            tips: [2, '#00CD66']
+                        });
+                        s.html(order);
+                        // location.reload();
+                    } else if (data.code == 105) {
+                        i.val(s.html());
+                        layer.tips('未做任何修改', s, {
+                            time: 1000
+                        });
+                    } else if (data.code == 102) {
+                        i.val(s.html());
+                        layer.tips('参数类型错误', s, {
+                            time: 1000
+                        });
+                    } else {
+                        i.val(s.html());
+                        layer.tips(data.msg, s, {
+                            time: 1000
+                        });
+                    }
+
+                },
+                error: function() {
+                    i.val(s.html());
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            });
+
+            i.css('display', 'none');
+            s.css('display', 'inline');
+        });
+
+        // 驾校详情
+        $('.schooldetail').on({
+            'mouseenter': function() {
+                var id = $(this).attr('id');
+                var schoolInfo = $(this).parents('tr.signup_list').find('td.schoolInfo').html();
+                layer.tips(schoolInfo, '#' + id, {
+                    tips: [1, '#fff'],
+                    time: 0,
+                    area: '500px'
+                });
+            },
+
+            'mouseleave': function() {
+                var index = layer.tips();
+                layer.close(index);
+            },
+
+            'click': function() {
+                var schoolInfo = $(this).parents('tr.signup_list').find('td.schoolInfo').html();
+                layer.open({
+                    type: 1,
+                    title: '驾校详情',
+                    area: '500px',
+                    shade: [0.3, '#333'],
+                    shadeClose: true,
+                    moveType: 1,
+                    shift: 0,
+                    content: schoolInfo
+                });
+            }
+        })
+
+        /**
+         * 修改驾校的展示状态
+         *
+         * @return void
+         * @author wl
+         * @date   August 04, 2016
+         **/
+        $('.setstatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('School/setstatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        /*用户-添加*/
+        function addSchool(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-查看*/
+        function member_show(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url + '?sid=' + id
+            });
+            layer.full(index);
+
+        }
+        /**
+         * 改变驾校的使用状态
+         *
+         * @return  void
+         * @author  wl
+         * @date    july 29, 2016
+         **/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/changeShow",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('删除成功!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

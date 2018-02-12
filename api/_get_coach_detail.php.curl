@@ -1,0 +1,83 @@
+<?php
+    /**
+    * _get_coach_detail.php [curl版]
+    * @param    type            $var    comment
+    * @return   json
+    * @package  /api
+    * @author   gdc
+    * @date     Aug 12, 2016
+    **/
+
+    require 'Slim/Slim.php';
+    require 'include/common.php';
+    require 'include/crypt.php';
+    require 'include/functions.php';
+
+    \Slim\Slim::registerAutoloader();
+    $app = new \Slim\Slim();
+    $crypt = new Xcrypt('xhxueche', 'cbc', 'off');
+    $app->any('/', '_get_coach_detail');
+    $app->run();
+
+    function _get_coach_detail() {
+        global $app, $crypt;
+
+        //验证请求方式 POST
+        $req = $app->request();
+        $res = $app->response();
+
+        //参数
+        $p = $req->params();
+        //远程请求地址-阿里云接口地址
+        $req_url = 'http://api2.xihaxueche.com:8001/api/_get_coach_detail.php';
+
+        try {
+            $data = request_post($req_url, $p);
+            ajaxReturn($data);
+
+        } catch ( PDOException $e ) {
+            slimLog($req, $res, $e, 'PDO数据库异常');
+            $data['code'] = 1;
+            $data['data'] = '网络异常';
+            $db = null;
+            ajaxReturn($data);
+        } catch ( ErrorException $e ) {
+            slimLog($req, $res, $e, 'slim应用错误');
+            $data['code'] = 1;
+            $data['data'] = '网络错误';
+            $db = null;
+            ajaxReturn($data);
+        }
+    } // main func
+
+	/**
+	 * 模拟post进行url请求
+	 * @param string $url
+	 * @param array $post_data
+	 */
+	function request_post($url = '', $post_data = array()) {
+	    if (empty($url) || empty($post_data)) {
+	        return false;
+	    }
+	    
+	    $o = "";
+	    foreach ( $post_data as $k => $v ) 
+	    { 
+	        $o.= "$k=" . urlencode( $v ). "&" ;
+	    }
+	    $post_data = substr($o,0,-1);
+
+	    $postUrl = $url;
+	    $curlPost = $post_data;
+	    $ch = curl_init();//初始化curl
+	    curl_setopt($ch, CURLOPT_URL,$postUrl);//抓取指定网页
+	    curl_setopt($ch, CURLOPT_HEADER, 0);//设置header
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//要求结果为字符串且输出到屏幕上
+	    curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+	    $data = curl_exec($ch);//运行curl
+	    curl_close($ch);
+	    
+	    return $data;
+	}
+?>

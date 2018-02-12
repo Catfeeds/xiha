@@ -1,0 +1,111 @@
+#miwifi-pop-ball {
+  display: block !important;
+  position: fixed !important;
+  z-index: 9999999999;
+  top: 100px !important;
+  left: 0px !important;
+  height: 60px !important;
+  padding-left: 55px !important;
+  padding-right: 156px;
+  transition: opacity 2s;
+  -moz-transition: opacity 2s;
+  -webkit-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  line-height: 60px !important;
+  white-space: nowrap !important;
+  background-color: #606060 !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  border-top-right-radius: 100px !important;
+  border-bottom-right-radius: 100px !important; }
+  #miwifi-pop-ball a {
+    text-decoration: none !important;
+    cursor: pointer !important; }
+  #miwifi-pop-ball .icon {
+    height: 37px !important;
+    width: auto !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 10px !important;
+    margin-top: -19px !important; }
+  #miwifi-pop-ball .desc {
+    color: white !important;
+    font-size: 15px !important;
+    float: left !important;
+    margin-right: 10px !important;
+    display: block !important;
+    height: 60px !important;
+    line-height: 60px !important; }
+    #miwifi-pop-ball .desc span {
+      color: #48a0fb !important; }
+  #miwifi-pop-ball .button {
+    display: block;
+    position: absolute !important;
+    right: 70px !important;
+    top: 50% !important;
+    width: auto !important;
+    background-color: transparent !important;
+    height: 26px !important;
+    margin-top: -13px !important;
+    line-height: 26px !important;
+    text-align: center !important;
+    top: 50% !important;
+    border: 1px solid white !important;
+    font-size: 15px !important;
+    color: white !important;
+    border-radius: 100px !important;
+    padding: 0px 10px !important;
+    text-align: center !important; }
+  #miwifi-pop-ball .close-wrap {
+    position: absolute !important;
+    width: 60px !important;
+    height: 60px !important;
+    right: 0px !important;
+    top: 0px !important;
+    border-top-right-radius: 100px !important;
+    border-bottom-right-radius: 100px !important;
+    border-left: 1px solid #b0b0b0 !important;
+    text-align: center !important; }
+    #miwifi-pop-ball .close-wrap img {
+      width: 21px !important;
+      height: 21px !important;
+      position: absolute !important;
+      top: 50% !important;
+      right: 20px !important;
+      margin-top: -10px !important; }
+  #miwifi-pop-ball.red-mw .button {
+    color: #FB5658 !important;
+    border-color: #FB5658 !important; }
+  #miwifi-pop-ball.red-mw .desc span {
+    color: #FB5658 !important; }
+  #miwifi-pop-ball.green-mw .button {
+    color: #69be85 !important;
+    border-color: #69be85 !important; }
+  #miwifi-pop-ball.green-mw .desc span {
+    color: #69be85 !important; }
+  #miwifi-pop-ball.purple-mw .button {
+    color: #C27CFF !important;
+    border-color: #C27CFF !important; }
+  #miwifi-pop-ball.purple-mw .desc span {
+    color: #C27CFF !important; }
+  #miwifi-pop-ball.blue-mw .button {
+    color: #48a0fb !important;
+    border-color: #48a0fb !important; }
+  #miwifi-pop-ball.blue-mw .desc span {
+    color: #48a0fb !important; }
+  #miwifi-pop-ball.orange-mw .button {
+    color: #fc940c !important;
+    border-color: #fc940c !important; }
+  #miwifi-pop-ball.orange-mw .desc span {
+    color: #fc940c !important; }
+  #miwifi-pop-ball.none {
+    display: none !important; }
+  #miwifi-pop-ball.hide {
+    z-index: -10 !important;
+    opacity: 0 !important; }
+  #miwifi-pop-ball.hide2 {
+    z-index: -10 !important;
+    opacity: 0 !important; }
+  #miwifi-pop-ball.hideO {
+    opacity: 0 !important; }
+  #miwifi-pop-ball.hideZ {
+    z-index: -100 !important; }

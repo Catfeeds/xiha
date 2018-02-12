@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title class="xiha_title">{$title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<META HTTP-EQUIV="Pragma" CONTENT="no-cache">    
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">    
+	<META HTTP-EQUIV="Expires" CONTENT="0">-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="嘻哈学车是一款免费的学车手机APP，以“促公平、节时间、省金钱、易学车”为出发点和落脚点；“网上学车，让学车更轻松、更便捷”理念吸引大量用户。APP可实现在线报名、在线支付等功能。学员能就近找到最近、最合适的教练。学员可以随时随地练车。使用“嘻哈学车”APP的学员，可一人一车享受专车接送，实行计时收费。" />
+    <meta name="keywords" content="嘻哈学车APP|安徽嘻哈网络技术有限公司|驾驶人学车APP|驾驶人自学自考学车APP|学员自主预约报名学员APP|学车APP|学车软件|考驾照软件 IOS版 安卓版 " /> {js href="__PUBLIC__/static/js/jquery.min.js"}
+    <script src="__PUBLIC__/static/js/index/index.js?s={$r}"></script>
+    {css href="__PUBLIC__/static/css/light7.min.css" /}
+    <link rel="stylesheet" href="__PUBLIC__/static/css/app.css?s={$r}"> {css href="__PUBLIC__/static/font/iconfont/iconfont.css" /} {css href="__PUBLIC__/static/css/swiper.min.css" /}
+    <!--<script src="__PUBLIC__/static/js/index/school.js?s={$r}"></script>-->
+    <script>
+        var _public = "__PUBLIC__";
+        var api_url = "{$Think.API_URL}";
+        // var site_url = "{$Think.SITE_URL}";
+        var device = "{$device}";
+        var token = "{$token}";
+    </script>
+    <style>
+        .page {
+            z-index: -1000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="schooldetail">
+        <div class="content ">
+            <div class="list-block media-list" style="margin: 0px;">
+                <ul style="border-bottom-color: #F5F5F5;">
+                    <li class="item-content">
+                        <div class="item-media" style="width: 60px; height: 60px;">
+                            <img src="{$school_detail.thumb_imgurl}" style='width: 100%; height: 100%'>
+                        </div>
+                        <div class="item-inner" style="margin-left: 0.5rem;">
+                            <div class="item-title-row">
+                                <div class="item-title" style="font-size: 0.8rem;">
+                                    {$school_detail.school_name}
+                                </div>
+                            </div>
+                            <div class="item-subtitle" style="font-size: 0.5rem;">
+                                {if condition="$comment_info.average_star eq '1'"}
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i> {elseif condition="$comment_info.average_star eq '2'" /}
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i> {elseif condition="$comment_info.average_star eq '3'" /}
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i> {elseif condition="$comment_info.average_star eq '4'" /}
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#ccc">&#xe611;</i> {elseif condition="$comment_info.average_star eq '5'" /}
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                <i class="iconfont" style="color:#FEAE4D">&#xe611;</i> {/if}
+                            </div>
+                            <div class="item-title" style="font-size: 0.6rem;">
+                                <span style=""><span style="color: #FEAE4D">{$school_detail.signup_num}人</span>已报名</span> |
+                                <span style="color:#FEAE4D;"><span style="color: #FEAE4D">{$comment_info.comment_count}人</span>已评价</span>起
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list-block" style="margin: 0px;">
+                <div class="index-logo-list" style="margin: 0px; padding: 10px 10px;">
+                    <div class="row" style="">
+                        {if condition="$school_imgurl neq ''"} {foreach name="school_imgurl" item="vo"}
+                        <div class="col-20">
+                            <img src="{$vo}" style="width: 60px;" alt="" />
+                        </div>
+                        {/foreach} {else/}
+                        <div class="col-20">
+                            <img src="__PUBLIC__/static/images/no-square-picture.png" style="width: 60px;" alt="" />
+                        </div>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-block" style="margin: 0px; border-top: 1px solid #eee;">
+                <div class="index-logo-list" style="margin: 0px; padding: 0px 10px;">
+                    <div class="item-inner" style="border-bottom: none;">
+                        <div class="item-title">显示最近报名点<span style="color:#FE911C;">[{$school_detail.min_distance}km]</span></div>
+                    </div>
+                </div>
+            </div>
+            {if condition="$shifts_count neq 0"}
+            <div class="list-block" style="margin-top: 10px; margin-bottom: 0px;">
+                <ul style="border-bottom: 0px;">
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">报名班制</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+                <ul style="border-bottom: none;">
+                    {foreach name="shifts_list" item="vo"}
+                    <li>
+                        <!--<a href="{:url('/signup/shifts', ['id'=>1, 'device'=>$device])}" class="item-content item-link">-->
+                        <div class="item-content item-link">
+                            <div class="item-inner shifts-list " style="position: relative;">
+                                <div class="item-title-row">
+                                    <div class="item-title">
+                                        {$vo.sh_title}
+                                        <span style="padding-left: 5px; font-size: 12px;">{$vo.sh_license_name}</span> {if condition="$vo.sh_tag_two neq ''"}
+                                        <span style="border: 1px solid #32CF86; border-radius: 3px; color: #32CF86; font-size: 0.6rem; padding: 2px 5px;">{$vo.sh_tag_two}</span> {/if}
+                                    </div>
+                                </div>
+                                <div class="item-subtitle">最快7天上车，4人/车，自行前往</div>
+                                <div class="item-text"><span style="font-weight: 500; font-size: 1rem; color: #FEAE4D; padding-right: 5px;">{$vo.sh_money}元</span><span style="color: #999;"><strike>市场价{$vo.sh_original_money}元</strike></span></div>
+                            </div>
+                        </div>
+                        <!--</a>-->
+                    </li>
+                    {/foreach} {if condition="$is_shifts_more eq 2"}
+                    <li>
+                        <p style="text-align: center;height: 40px; line-height: 40px;">查看更多 <span class="icon icon-right"></span></p>
+                    </li>
+                    {/if}
+                </ul>
+            </div>
+            {/if} {if condition="$comment_info.comment_count neq 0"}
+            <div class="list-block" style="margin:0px;">
+                <ul style="">
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">学员评价</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block media-list article-list" style=" margin: 0px; border: 0px;">
+                <ul style="border: 0px;">
+                    {foreach name="$comment_info.comment_list" item="vo"}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media" style="overflow: hidden; position: absolute; top:0px;">
+                                <img src="__PUBLIC__/static/images/default/{$vo.photo_id}.png" style='width: 1.6rem; border-radius: 50%;'>
+                            </div>
+                            <div class="item-inner" style="margin-left: 2rem; padding-bottom: 20px; border-bottom: 1px solid #eaeaea;">
+                                <div class="item-title-row">
+                                    <div class="item-title">{$vo.user_name}</div>
+                                    <div class="item-after" style="font-size: 0.6rem; color: #999;">{$vo.addtime}</div>
+                                </div>
+                                {if condition="$vo.school_star eq 1"}
+                                <div class="item-subtitle" style="color: #999; font-size: 0.8rem;">
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                </div>
+                                {elseif condition="$vo.school_star eq 2" /}
+                                <div class="item-subtitle" style="color: #999; font-size: 0.8rem;">
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                </div>
+                                {elseif condition="$vo.school_star eq 3" /}
+                                <div class="item-subtitle" style="color: #999; font-size: 0.8rem;">
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                </div>
+                                {elseif condition="$vo.school_star eq 4" /}
+                                <div class="item-subtitle" style="color: #999; font-size: 0.8rem;">
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#ccc">&#xe611;</i>
+                                </div>
+                                {elseif condition="$vo.school_star eq 5" /}
+                                <div class="item-subtitle" style="color: #999; font-size: 0.8rem;">
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                    <i class="iconfont" style="color:#FEAE4D">&#xe611;</i>
+                                </div>
+                                {/if}
+                                <div class="item-subtitle" style="color: #666; white-space: initial">
+                                    {$vo.school_content}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {/foreach} {if condition="$comment_info.is_comment_more eq 2"}
+                    <li>
+                        <p style="text-align: center;height: 40px; line-height: 40px;">查看更多 <span class="icon icon-right"></a></p>
+                </li>
+                {/if}
+            </ul>
+        </div>
+        {/if}
+
+    </div>
+
+</div>
+<script type="text/javascript" id="-moblink-js" src="//f.moblink.mob.com/moblink.js?appkey=1e08c1a13193c"></script>
+<script type="text/javascript">
+    MobLink.init({
+        path: "/activity/class" //对应客户端路径
+    });
+</script>
+{include file="index/footer"/}

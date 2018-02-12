@@ -1,0 +1,46 @@
+<!--分页-->
+<div class="btn-toolbar" style="display: inline-flex; position: relative; width: 1100px; margin-bottom: 40px;">
+  	<div class="btn-group xiha-page" style="">
+  		{if condition="$page neq 1"}
+	    	<a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>1]); {/php}" class="btn" style="">首页</a>
+	    {else}
+	    	<a href="javascript:;" class="btn" style="color:#999;">首页</a>
+	    {/if}
+	    
+    	{if condition="($page+5 elt $article_page.pagetotal)"}
+		    {for start="$page" end="$page+5" comparison="elt" step="1" name="i"}
+		    	{if condition="$i eq $page"}
+				    <a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$i]); {/php}" class="btn btn-raised" style="">{$i}</a>
+			    {else}
+		    		<a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$i]); {/php}" class="btn" style="">{$i}</a>
+			    {/if}
+		    {/for}
+	    {elseif condition="$article_page.pagetotal gt 6"}
+	    	{for start="$article_page.pagetotal-5" end="$article_page.pagetotal" comparison="elt" step="1" name="i"}
+		    	{if condition="$i eq $page"}
+				    <a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$i]); {/php}" class="btn btn-raised" style="">{$i}</a>
+			    {else}
+		    		<a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$i]); {/php}" class="btn" style="">{$i}</a>
+			    {/if}
+		    {/for}
+	    {else}
+	    	{for start="1" end="$article_page.pagetotal" comparison="elt" step="1" name="i"}
+		    	{if condition="$i eq $page"}
+				    <a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$i]); {/php}" class="btn btn-raised" style="">{$i}</a>
+			    {else}
+		    		<a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$i]); {/php}" class="btn" style="">{$i}</a>
+			    {/if}
+		    {/for}
+	    {/if}
+
+	  	<div class="btn-group" style="">
+	  		{if condition="$page lt $article_page.pagetotal"}
+		    	<a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$page+1]); {/php}" class="btn" style="">下一页</a>
+		    {else}
+		    	<a href="javascript:;" class="btn" style="color:#999;">下一页</a>
+		    {/if}
+		    <a href="{php}echo url('/'.\think\Request::instance()->action(), ['page'=>$article_page['pagetotal']]); {/php}" class="btn" style="">尾页</a>
+		    <a class="btn">共{$article_page.pagetotal}页{$article_page.num}条</a>
+		</div>
+  	</div>
+</div>

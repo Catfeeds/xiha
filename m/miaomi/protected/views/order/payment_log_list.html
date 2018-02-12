@@ -1,0 +1,50 @@
+{echo:JS::import('dialog?skin=brief');}
+{echo:JS::import('dialogtools');}
+<form action="" method="post">
+<div class="tools_bar clearfix">
+   <!--  <a class="icon-checkbox-checked icon-checkbox-unchecked" href="javascript:;" onclick="tools_select('log_id[]',this)" title="全选" data="true"> 全选 </a>
+    <a  class="icon-remove-2" href="javascript:;" onclick="tools_submit({action:'{url:/order/payment_log_del}',msg:'删除后无法恢复，你真的删除吗？'})" title="删除"> 删除</a> -->
+    <span class="fr"><a href='javascript:;' id="refresh" class="icon-chrome" style="" > 刷新</a></span>
+    <span class="fr"><a href='javascript:;' id="condition" class="icon-search" style="" > 筛选条件</a><input id="condition_input" type="hidden" name="condition" value="{$condition}"></span>
+</div>
+<table class="default" >
+    <tr>
+        <th style="width:14.2%;">日志编号</th>
+        <th style="width:14.2%;">订单编号</th>
+        <th style="width:14.2%;">订单金额</th>
+        <th style="width:14.2%;">支付方式</th>
+        <th style="width:14.2%;">商户交易号</th>
+        <th style="width:14.2%;">支付宝交易号</th>
+        <th style="width:14.2%;">创建时间</th>
+        <!-- <th style="width:14.2%;">付款时间</th> -->
+    </tr>
+    {query:name=payment_log where=$where id=$obj page=1 desc }
+        <tr>
+            <td style="width:14.2%;"><input type="checkbox" name="log_id[]" value="{$item['log_id']}">{$item['log_id']}</td>
+            <td style="width:14.2%;">{$item['order_id']}</td>
+            <td style="width:14.2%;">&yen;&nbsp;{$item['amount']}&nbsp;元</td>
+            <td style="width:14.2%;">{if:$item['payment']=='alipay'}支付宝{/if}{if:$item['payment']=='wxpay'}微信{/if}</td>
+            <td style="width:14.2%;">{$item['trade_no']}</td>
+            <td style="width:14.2%;">{$item['pay_trade_no']}</td>
+            <td style="width:14.2%;">{$item['create_time']}</td>
+            <!-- <td style="width:14.2%;">{$item['payedtime']}</td> -->
+       </tr>
+    {/query}
+</table>
+</form>
+<div class="page_nav">
+{echo:$obj->pageBar()}
+</div>
+
+<script type="text/javascript">
+$("#condition").on("click",function(){
+  $("body").Condition({input:"#condition_input",okVal:'高级搜索',callback:function(data){
+    tools_submit({action:'{url:/order/payment_log_list}',method:'get'});},
+    data:{
+        order_id:{name:'订单编号'},
+    }});
+})
+$('#refresh').on('click', function() {
+    window.location.href = "{url:/order/payment_log_list}";
+})
+</script>

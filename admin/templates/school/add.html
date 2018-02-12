@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>拼图后台管理-后台管理</title>
+    <link rel="stylesheet" href="templates/assests/css/pintuer.css">
+    <link rel="stylesheet" href="templates/assests/css/admin.css">
+    <script src="templates/assests/js/jquery.js"></script>
+    <script src="templates/assests/js/uploadPreview.min.js"></script>
+    <script src="templates/assests/js/pintuer.js"></script>
+    <script src="templates/assests/js/respond.js"></script>
+    <script src="templates/assests/js/admin.js"></script>
+    <link type="image/x-icon" href="http://www.pintuer.com/favicon.ico" rel="shortcut icon" />
+    <link href="http://www.pintuer.com/favicon.ico" rel="bookmark icon" />
+    <style>
+        html { overflow-x:hidden; }
+    </style>
+</head>
+
+<body>
+  <div class="tab-body">
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x float-left" style="width:50%" action="index.php?action=school&op=addoperation" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="label"><label for="school_name">驾校名称</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="school_name" name="school_name" size="50" value="" placeholder="请填写驾校的名称 最好不要超过10个字符" data-validate="required:请填写驾校的名称 最好不要超过10个字符" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="s_thumb">缩略图</label></div>
+                <div class="field">
+                    <div class="thumb_imgdiv">
+                        <img src="" id="s_thumb" width="128" height="128" class="img-border radius-small" />
+                    </div>
+
+                    <a class="button input-file bg-green" href="javascript:void(0);">+ 浏览文件
+                        <input size="100" type="file" name="s_thumb" value="" id="school_thumb" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" />
+                    </a>
+                    <p class="text-red text-big" style="margin-top:10px; color:#f60; cursor:pointer;"><i class="icon-exclamation-circle"></i> 最优图片格式160*140px</p>  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="school_location">设置坐标</label></div>
+                <div class="field" style="width:auto;">
+                    <input type="text" class="input" id="school_location_x" name="school_location_x" value="" size="50" placeholder="请填写经度" data-validate="required:请填写经度" />
+                    <input type="text" class="input" id="school_location_y" name="school_location_y" value="" size="50" placeholder="请填写纬度" data-validate="required:请填写纬度" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="legal_person">法人代表</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="legal_person" name="legal_person" size="50" value="" placeholder="法人代表" data-validate="required:请填写法人代表" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="legal_person_phone">法人手机号码</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="legal_person_phone" name="legal_person_phone" size="50" value="" placeholder="法人手机号码" data-validate="required:请填写法人手机号码" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="legal_person_tel">法人固定号码</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="legal_person_tel" name="legal_person_tel" value="" size="50" placeholder="法人固定号码" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="license_img">营业执照</label></div>
+                <div class="field">
+                    <div class="imgdiv">
+                        <img src="" id="imgShow" width="128" height="128" class="img-border radius-small" />
+                    </div>
+
+                    <a class="button input-file bg-green" href="javascript:void(0);">+ 浏览文件
+                        <input size="100" type="file" name="license_img" value="" id="license_img" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" />
+                        <input type="hidden" name="oldimg" value="upload/school/default_photo.jpg">
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_zzjgdm">组织结构代码</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="s_zzjgdm" name="s_zzjgdm" value="" size="50" placeholder="组织结构代码" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="school_character">驾校性质</label></div>
+                <select class="input input-auto" style="width:30%" name="school_character"> 
+                    <option value="1">一类驾校</option> 
+                    <option value="2">二类驾校</option> 
+                    <option value="3">三类驾校</option> 
+                </select>
+
+            </div>
+             <div class="form-group">
+                <div class="label"><label for="school_brand">驾校品牌</label></div>
+                <select class="input input-auto" style="width:30%" name="school_brand"> 
+                    <option value="1">普通驾校</option> 
+                    <option value="2">品牌驾校</option> 
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+                <div class="label"><label for="i_wdid">地址</label></div>
+                <div class="field">
+                   <select class="input input-auto" id="province" style="width:20%; float:left" name="province"> 
+                       <option value="">请选择省</option> 
+                       <!--{foreach $provincelist as $key => $value}-->
+                        <option value="<!--{$value.provinceid}-->"><!--{$value.province}--></option>
+                       <!--{/foreach}-->
+                   </select>
+                   <select class="input input-auto" id="city" style="width:20%; float:left" name="city"> 
+                       <option value="">请选择市</option>
+    
+                   </select>
+                   <select class="input input-auto" id="area" style="width:20%; float:left" name="area"> 
+                       <option value="">请选择区域</option> 
+                   </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_address">详细地址</label></div>
+                <div class="field">
+                    <!-- <input type="text" class="address_start" value=""> -->
+                    <input type="text" class="input input-auto" id="s_address" name="s_address" value="" size="50" placeholder="详细地址" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="dc_base_je">收费标准</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="dc_base_je" name="dc_base_je" value="" size="50" placeholder="收费标准" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="dc_bili">上浮最高比例</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="dc_bili" name="dc_bili" value="" size="50" placeholder="上浮最高比例" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_yh_name">收款银行名称</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="s_yh_name" name="s_yh_name" value="" size="50" placeholder="收款银行名称" data-validate="required:请填写你收款银行名称"/>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="label"><label for="s_yh_zhanghao">收款银行账号</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="s_yh_zhanghao" name="s_yh_zhanghao" value="" size="50" placeholder="收款银行账号" data-validate="required:请填写你收款银行账号"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_yh_huming">银行账户户名</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="s_yh_huming" name="s_yh_huming" value="" size="50" placeholder="银行账户户名" data-validate="required:请填写你银行账户户名" />
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="label"><label for="s_shuoming">驾校说明</label></div>
+                <div class="field">
+                    <textarea class="input input-auto" rows="5" cols="50" name="s_shuoming" placeholder="请填写驾校说明" ></textarea>
+                </div>
+            </div>
+            
+            <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+        </form>
+
+        <div class="float-left" style=" margin-left:20px; width:45%; height:100%">
+            <iframe src="http://api.map.baidu.com/lbsapi/getpoint/index.html" frameborder="0" width="100%" height="600px" ></iframe>
+            <p class="text-red text-big" style="margin-top:10px;"><i class="icon-exclamation-circle"></i> 搜索驾校位置，可获取坐标</p>
+        </div>
+    </div>
+    <script>
+    // 上传图片预览
+        window.onload = function () { 
+            new uploadPreview({ UpBtn: "license_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+            new uploadPreview({ UpBtn: "school_thumb", DivShow: "thumb_imgdiv", ImgShow: "s_thumb" });
+
+        }
+
+        // 城市联动
+        $('#province').change(function() {
+            var province_id = $(this).val();
+            $("#city").load("index.php?action=school&op=getcity&province_id="+province_id);
+        });
+
+        $('#city').change(function() {
+            var city_id = $(this).val();
+            $('#area').load('index.php?action=school&op=getarea&city_id='+city_id);
+            var city_html = $(this).find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            $('#s_address').val(province_html+city_html);
+        })
+
+        $('#area').change(function() {
+            var city_html = $('#city').find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            var area_html = $(this).find('option:selected').html();
+            $('#s_address').val(province_html+city_html+area_html);
+        })
+    </script>
+</body>
+</html>

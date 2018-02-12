@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue - v-on say something</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <button v-on:click="say('Linux')">Say linux</button>
+            <button v-on:click="say('Debian')">Say Debian</button>
+        </div>
+        <script>
+var app = new Vue({
+    el: '#app',
+    methods: {
+        say: function (message) {
+            //alert(message)
+            console.log(message)
+        }
+    }
+});
+        </script>
+    </body>
+</html>

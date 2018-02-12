@@ -1,0 +1,16 @@
+data/database/*
+data/uploads/head/*
+data/uploads/virtual/*
+data/uploads/2014/**/*__*_*.*
+data/uploads/2014/**/*_w_h.*
+data/uploads/201[56789]/*
+themes-sass/
+
+*.map
+.tags
+.tags_sorted_by_file
+install.lock
+update.txt
+*.zip
+*.tar
+*.DS_Store

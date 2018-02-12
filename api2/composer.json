@@ -1,0 +1,56 @@
+{
+    "name": "laravel/lumen",
+    "description": "The Laravel Lumen Framework.",
+    "keywords": ["framework", "laravel", "lumen"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/lumen-framework": "5.3.*",
+        "vlucas/phpdotenv": "~2.2",
+        "lcobucci/jwt": "^3.2",
+        "barryvdh/laravel-debugbar": "^2.3",
+        "omnipay/omnipay": "~2.0",
+        "lokielse/omnipay-alipay": "^2.0",
+        "lokielse/omnipay-wechatpay": "dev-master",
+        "lokielse/omnipay-unionpay": "^0.3",
+        "jpush/jpush":"v3.5.*",
+        "simplesoftwareio/simple-qrcode": "~1"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpstan/phpstan": "^0.8.5",
+        "phpunit/phpunit": "^6.4",
+        "danielstjules/pho": "^1.2",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xiha\\": "src/xiha/",
+            "App\\": "app/"
+        },
+        "psr-0": {
+            "": "src/"
+        },
+        "classmap": [
+            "database/",
+            "libs/Api/smsapi.class.php",
+            "libs/Api/E.class.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/",
+            "libs/Api/smsapi.class.php",
+            "libs/Api/E.class.php"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

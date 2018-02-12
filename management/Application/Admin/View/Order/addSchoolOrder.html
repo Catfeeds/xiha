@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+    <!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>添加报名驾校订单</title>
+</head>
+
+<body>
+    <div class="pd-20">
+        <form action="{: U('Order/addSchoolOrder')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addSchoolOrders">
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>真实姓名：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" value="{$user_info.s_real_name}" id="" datatype="*1-32" nullmsg="真实姓名不能为空" name="so_username" placeholder="请填写真实姓名">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>手机号码：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="{$user_info.s_phone}" datatype="*1-32" nullmsg="手机号码不能为空" id="so_phone" name="so_phone" placeholder="请填写手机号码">
+                    <span id="phone-tips" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>身份证号：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" value="{$user_info.identity_id}" id="so_user_identity_id" name="so_user_identity_id" datatype="*1-64" nullmsg="身份证号不能为空" placeholder="请填写身份证">
+                </div>
+            </div>
+            <if condition="$school_id eq 0">
+                <div class="row cl">
+                    <label class="form-label col-2"><span style="color:red">*</span>所属驾校：</label>
+                    <div class="formControls col-2">
+                        <select select2 ng-model="b" id="school_id" datatype="*1-64" nullmsg="所属驾校不能为空" class="form-control" name="school_id" placeholder="请选择驾校">
+                            <foreach name="school_list"  item="value">
+                                <option value="{$value.l_school_id}">{$value.s_school_name}</option> 
+                            </foreach>
+                        </select>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+            </if>
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>班制类型：</label>
+                <div class="formControls col-3 btn-group">
+                    <select class="form-control" name="so_shifts_id" id="so_shifts" datatype="*1-64" nullmsg="班制类型不能为空" style="border-radius:0px;height:30px;width:220px;border-color:#ccc;">
+                        <option value="" >请选择班制</option>
+                         <foreach name="school_shifts" item="obj" key="k">
+                            <option value="{$obj.sh_id}" >{$obj.sh_title}</option>
+                        </foreach> 
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-2">支付方式：</label>
+                <div class="formControls col-5 btn-group">
+                    <!-- <label class="btn radius btn-success radio so_pay_type"><input name="so_pay_type" value="1" type="radio" style="display:none;">支付宝支付</label> -->
+                    <label class="btn radius btn-success radio so_pay_type"><input name="so_pay_type" value="2" checked type="radio" style="display:none;">线下支付</label>
+                    <!-- <label class="btn radius btn-secondary-outline radio so_pay_type"><input name="so_pay_type" value="3" type="radio" style="display:none;">微信支付</label> -->
+                    <!-- <label class="btn radius btn-secondary-outline radio so_pay_type"><input name="so_pay_type" value="4" type="radio" style="display:none;">银行卡支付</label> -->
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">优惠预约计时：</label>
+                <div class="formControls col-10">
+                    <input type="button" value="-" onclick="subFree(this)" class="btn btn-secondary" style="border-radius:3px;">
+
+                    <input type="input-text" value="-1" name="free_study_hour" style="width:135px;height:26px;text-align:center;border-radius:3px;">
+
+                    <input type="button" value="+" onclick="addFree(this)" class="btn btn-secondary" style="border-radius:3px;"> 小时 (
+                    <span style="color:#666">tips:若值为10代表前10个学时免费预约，第11个学时起正常收费；默认值-1代表不限制优惠学时数</span>)
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">原始价格：</label>
+                <div class="formControls col-3">
+                    <input type="button" value="-" onclick="sub(this)" class="btn btn-secondary" style="border-radius:3px;">
+
+                    <input type="input-text" value="3000" name="so_original_price" style="width:135px;height:26px;text-align:center;border-radius:3px;">
+
+                    <input type="button" value="+" onclick="add(this)" class="btn btn-secondary" style="border-radius:3px;"> 元
+                    <!-- <input type="text" class="input-text" value="" placeholder="请填写原始价格" id="" name="so_original_price"> -->
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">最终价格：</label>
+                <div class="formControls col-3">
+                    <input type="button" value="-" onclick="sub(this)" class="btn btn-secondary" style="border-radius:3px;">
+
+                    <input type="input-text" value="3000" name="so_final_price" style="width:135px;height:26px;text-align:center;border-radius:3px;">
+
+                    <input type="button" value="+" onclick="add(this)" class="btn btn-secondary" style="border-radius:3px;"> 元
+                    <!-- <input type="text" class="input-text" value="" placeholder="请填写最终价格" id="" name="so_final_price"> -->
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">实付价格：</label>
+                <div class="formControls col-3">
+                    <input type="button" value="-" onclick="sub(this)" class="btn btn-secondary" style="border-radius:3px;">
+
+                    <input type="input-text" value="3000" name="so_total_price" style="width:135px;height:26px;text-align:center;border-radius:3px;">
+
+                    <input type="button" value="+" onclick="add(this)" class="btn btn-secondary" style="border-radius:3px;"> 元
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">订单状态：</label>
+                <div class="formControls col-6 btn-group">
+                    <label class="btn radius btn-success radio order_status"><input name="so_order_status" value="1" checked type="radio" style="display:none;">报名成功已付款</label>
+                    <label class="btn radius btn-warning-outline radio order_status"><input name="so_order_status" value="2" type="radio" style="display:none;">退款处理中</label>
+                    <label class="btn radius btn-warning-outline radio order_status"><input name="so_order_status" value="3" type="radio" style="display:none;">报名取消</label>
+                    <label class="btn radius btn-warning-outline radio order_status"><input name="so_order_status" value="4" type="radio" style="display:none;">报名成功未付款</label>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>订单号：</label>
+                <div class="formControls col-3">
+                    <input type="text" class="input-text" value="" placeholder="" datatype="*1-128" nullmsg="订单号不能为空" id="order_no" name="so_order_no">
+                </div>
+                <button class="btn btn-primary radius" type="button" id="ordernocreate"><i class="Hui-iconfont">&#xe647;</i> 自动生成</button>
+                <span id="order-tips" style="color:green;"></span>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">驾照类型：</label>
+                <div class="formControls col-9 btn-group">
+                    <label class="btn radius btn-success radio licence"><input name="so_licence" value="C1" type="radio" checked style="display:none;">C1</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="C2" type="radio" style="display:none;">C2</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="C5" type="radio" style="display:none;">C5</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="A1" type="radio" style="display:none;">A1</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="A2" type="radio" style="display:none;">A2</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="A3" type="radio" style="display:none;">A3</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="B1" type="radio" style="display:none;">B1</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="B2" type="radio" style="display:none;">B2</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="D" type="radio" style="display:none;">D</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="E" type="radio" style="display:none;">E</label>
+                    <label class="btn radius btn-primary-outline radio licence"><input name="so_licence" value="F" type="radio" style="display:none;">F</label>
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-10 col-offset-2">
+                    <button class="btn btn-primary radius" id="submitOne" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/jquery.provincesCity.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/provincesData.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+    <script type="text/javascript">
+        // 通过驾校id获取驾对应的班制信息
+        $(function() {
+            $('#school_id').click(function() {
+                var school_id = $('#school_id').val();
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('Order/getSchoolShiftsBySchoolId')}",
+                    data: {
+                        'school_id': school_id
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+                        if (data.code == 200) {
+                            if (data.data) {
+                                var i = 0;
+                                var max = data.data.length;
+                                html = '';
+                                if (max > 0) {
+                                    html += '<option value="" >请选择班制</option>';
+                                    for (; i < max; i++) {
+                                        var license_name = data.data[i]['sh_license_name'];
+                                        if (license_name != '') {
+                                            html += '<option value="' + data.data[i]['sh_id'] + '" >' + data.data[i]['sh_title'] + ' ' + ' （' + data.data[i]['sh_license_name'] + '/' + data.data[i]['sh_type_name'] + '） ' + '</option>';
+                                        } else {
+                                            html += '<option value="' + data.data[i]['sh_id'] + '" >' + data.data[i]['sh_title'] + ' ' + ' （' + data.data[i]['sh_type_name'] + '） ' + '</option>';
+                                        }
+                                    }
+                                } else {
+                                    html += '<option value="" >暂无班制</option>';
+                                }
+                                var shiftslist = document.getElementById('so_shifts');
+                                shiftslist.innerHTML = html;
+
+                            }
+
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                })
+
+            })
+
+        })
+
+        // 数目增加100
+        function sub(obj) {
+            var temp = parseInt(obj.nextElementSibling.value);
+            if (temp > 0) {
+                temp -= 500;
+                obj.nextElementSibling.value = temp;
+            }
+        }
+
+        function add(obj) {
+            var temp = parseInt(obj.previousElementSibling.value);
+            temp += 500;
+            obj.previousElementSibling.value = temp;
+        }
+
+        // 数目增加1
+        function subFree(obj) {
+            var temp = parseInt(obj.nextElementSibling.value);
+            if (temp > 0) {
+                temp -= 1;
+                obj.nextElementSibling.value = temp;
+            }
+        }
+
+        function addFree(obj) {
+            var temp = parseInt(obj.previousElementSibling.value);
+            temp += 1;
+            obj.previousElementSibling.value = temp;
+        }
+
+        // 表单验证
+        $(function() {
+            $('#addSchoolOrders').Validform({
+                tiptype: 2,
+                callback: function(form) {
+                    form[0].submit();
+                }
+            });
+        })
+        $('.btn-group .licence input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-primary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-primary-outline");
+        });
+
+        /*
+         * 班制
+         * 点击切换效果
+         */
+        $('.btn-group .shift input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-primary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-primary-outline");
+        });
+
+        /*
+         * 订单状态
+         * 点击切换效果
+         */
+        $('.btn-group .order_status input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-warning-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-warning-outline");
+        });
+
+        /*
+         * 支付类型
+         * 点击切换效果
+         */
+        $('.btn-group .so_pay_type input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-secondary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-secondary-outline");
+        });
+
+        // 生成订单号
+        $('#ordernocreate').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "__URL__/createno",
+                dataType: "JSON",
+                success: function(data) {
+                    $('#order_no').val(data.data);
+                }
+            })
+        });
+
+        /*检测学员手机号*/
+        $('#so_phone').blur(function() {
+            var so_phone = $('#so_phone').val();
+            if (so_phone.trim() == '') {
+                layer.msg('请填写手机号!', {
+                    icon: 7,
+                    time: 2000
+                });
+                return false;
+            }
+
+            if (!parseInt(so_phone)) {
+                // layer.msg('请填写正确格式!',{offset: 0,time:3000,shift: 2});
+                layer.msg('请填写正确格式!', {
+                    icon: 7,
+                    time: 2000
+                });
+                return false;
+
+            } else if (!phonevalidate(so_phone)) {
+                // layer.msg('请填写正确格式!',{offset: 0,time:3000,shift: 2});
+                layer.msg('请填写正确格式!', {
+                    icon: 7,
+                    time: 2000
+                });
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "__URL__/checkPhone",
+                data: {
+                    'so_phone': so_phone
+                },
+                dataType: "JSON",
+                beforeSend: function() {
+                    $('#phone-tips').text('☛ 检测中... ...');
+                },
+                success: function(data) {
+                    $('#phone-tips').html(data.msg);
+                }
+            })
+        });
+
+        // 手机号验证
+        function phonevalidate(phone) {
+            var reg = /^0?1[3|4|5|8|7|9][0-9]\d{8}$/;
+            if (!reg.test(phone)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        // 检测身份证
+        $('#so_user_identity_id').blur(function() {
+            var so_user_identity_id = $('#so_user_identity_id').val();
+            if (so_user_identity_id.trim() == '') {
+                layer.msg('请填写身份证号！', {
+                    icon: 7,
+                    time: 2000
+                });
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "__URL__/checkIdentity",
+                data: {
+                    'so_user_identity_id': so_user_identity_id
+                },
+                beforeSend: function() {
+                    $('#identity_tips').html('☛ 检测中... ...');
+                },
+                success: function(data) {
+                    // console.log(data);
+                    $('#identity_tips').html(data.msg);
+                    // setInterval(function() {
+                    //     $('#phone-tips').html('');
+                    // }, 2000);
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

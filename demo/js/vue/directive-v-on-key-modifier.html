@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue - v-on event with key modifier</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <button @click = 'counterAdd'>Click</button>
+            <button @keyup.enter = 'counterAdd'>Press Enter</button>
+            <p>press keyboard, see if it will be added 1.</p>
+            <h1>below result:</h1>
+            <p>counter: {{ counter }}.</p>
+        </div>
+        <script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        counter: 0
+    },
+    methods: {
+        counterAdd: function () {
+            console.log(this.counter)
+            return this.counter += 1
+        }
+    }
+})
+        </script>
+    </body>
+</html>

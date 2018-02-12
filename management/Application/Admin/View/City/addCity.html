@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" /> -->
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" /> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>新增城市</title>
+</head>
+<body>
+    <div class="pd-20">
+      	<form action="{: U('City/addCity')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addCity">
+		    <div class="row cl">
+      			<label class="form-label col-2"><span style ="color:red">*</span>省份名称：</label>
+      			<div class="formControls col-2">
+      				  <input type="text" class="input-text" value="" datatype="*1-32" nullmsg="省份名称不能为空" id="province" name="province" placeholder="如：北京市">
+      			</div>
+    		</div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>省份区号：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="" id="provinceid" datatype="*1-10" nullmsg="省份区号不能为空" name="provinceid" placeholder="如：110000">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>城市名称：</label>
+                <div class="formControls col-2">
+                      <input type="text" class="input-text" value="" datatype="*1-32" nullmsg="城市名称不能为空" id="city" name="city" placeholder="如：北京市">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>城市区号：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="" id="cityid" datatype="*1-10" nullmsg="城市区号不能为空" name="cityid" placeholder="如：110100">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>地区名称：</label>
+                <div class="formControls col-2">
+                      <input type="text" class="input-text" value="" datatype="*1-16" nullmsg="地区名称不能为空" id="area" name="area" placeholder="如：东城区">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>地区区号：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="" id="areaid" datatype="*1-10" nullmsg="地区区号不能为空" name="areaid" placeholder="如：110101">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">热门？：</label>
+                <div class="formControls col-2 btn-group">
+                    <label class="btn radius btn-primary-outline radio is_hot"><input name="is_hot" value="1" type="radio" style="display:none;">是</label>
+                    <label class="btn radius btn-success radio is_hot"><input name="is_hot" value="2" type="radio" checked style="display:none;">否</label>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>城市首字母：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="" id="leter" datatype="*1-5" nullmsg="拼音首字母不能为空" name="leter" placeholder="如：B">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>城市全拼：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="" id="spelling" datatype="*1-32" nullmsg="城市全拼不能为空" name="spelling" placeholder="如：Beijing">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>城市首字母缩写：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="" id="acronym" datatype="*1-32" nullmsg="城市首字母缩写不能为空" name="acronym" placeholder="如：bj">
+                </div>
+            </div>
+          	<div class="row cl">
+                <div class="col-11 col-offset-2" style="">
+                    <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+          	</div>
+        </form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>  -->
+<script type="text/javascript">
+    // 表单验证
+    $( function () {
+        $('#addCity').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    })
+
+    /*
+    * 城市热门设置
+    * 点击切换效果
+    */
+    $('.btn-group .is_hot input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-primary-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-primary-outline");
+    });
+
+    /*
+    * 系统类型
+    * 点击切换效果
+    */
+    $('.btn-group .os_type input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-primary-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-primary-outline");
+    });
+
+    /*
+    * 客户端类型
+    * 点击切换效果
+    */
+    $('.btn-group .app_client input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-primary-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-primary-outline");
+    });
+</script>
+</body>
+</html>

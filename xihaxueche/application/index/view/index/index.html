@@ -1,0 +1,338 @@
+{include file="index/header"/} {css href="__PUBLIC__/static/css/swiper.min.css"}
+<div class="container-fluid main" style="padding:0px;">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background:#76E2FE; text-align:center;">
+                <img src="__PUBLIC__/static/images/banner12.jpg" alt="" style="min-height:530px; ">
+            </div>
+            <!--<div class="swiper-slide" style="background:#76E2FE; text-align:center;">
+            	<img src="__PUBLIC__/static/images/banner11.jpg" alt="" style="min-height:530px; ">
+            </div>
+            <div class="swiper-slide" style="background:#76E2FE; text-align:center;">
+            	<img src="__PUBLIC__/static/images/banner10.jpg" alt="" style="min-height:530px; ">
+            </div>-->
+            <div class="swiper-slide" style="background:#76E2FE; text-align:center;">
+                <img src="__PUBLIC__/static/images/banner8.png" alt="" style="min-height:530px; ">
+            </div>
+            <div class="swiper-slide" style="background:#F6E011; text-align:center;">
+                <img src="__PUBLIC__/static/images/banner9.png" alt="" style="min-height:530px; ">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- 自主学车 专属教练 -->
+    <div class="zhizhuxueche" style="height: 280px;">
+        <p style="text-align:center; font-size:40px; padding-top:80px; color:#666;">自助学车&nbsp;专属教练&nbsp;自此开始</p>
+        <p style="text-align:center; font-size:40px; color:#00BD9C;">轻 · 松 · 驾 · 考</p>
+    </div>
+
+    <!-- 嘻哈教练端 -->
+    <div class="xiha_coach_all">
+        <div class="xiha_coach" style="">
+            <div class="xiha_coach_left">
+                <p style="font-size:40px; color:#555;">嘻哈学车教练版新增<br>学员管理系统</p>
+                <p style="font-size:20px; color:#999;">一键导入科目考试学员信息、联系方式，<br>教练员根据学员状态，轻松编辑标签，方便整体管理</p>
+                <div>
+                    <a href="javascript:void(0)" class="btn btn-default" style="background: none; width:100px; margin:0px; margin-left: -5px; border: 0px; color: #555; border-radius: 0px; border-right:1px solid #ddd;">
+                        <span class="iconfont" style="font-size:5rem;">&#xe604;</span><br />
+                        <span>一键导入</span>
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-default" style="background: none; width:100px; margin:0px; margin-left: -5px;  border: 0px; color: #555; border-radius: 0px; border-right:1px solid #ddd;">
+                        <span class="iconfont" style="font-size:5rem;">&#xe602;</span><br />
+                        <span>信息编辑</span>
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-default" style="background: none; width:100px; margin:0px; margin-left: -5px; border: 0px; color: #555; border-radius: 0px;">
+                        <span class="iconfont" style="font-size:5rem;">&#xe600;</span><br />
+                        <span>学员状态</span>
+                    </a>
+                </div>
+            </div>
+            <div class="xiha_coach_right" style="">
+                <img src="__PUBLIC__/static/images/xiha_coach_01.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!--驾考达人-->
+    <div class="xiha_jiakaodaren_all">
+        <div style="background: #265539; opacity: 0.8; position: absolute; width: 100%; height: 400px;"></div>
+        <img src="__PUBLIC__/static/images/jiakaodaren.jpg" style="width: 100%; height: 400px;" alt="" />
+        <div class="xiha_jiakaodaren_div">
+            <p style="font-size:40px; color: #eee; text-align: center; margin-top: 70px;">我们是驾考达人、教练、梦想家<br />也是您的线上学车体验专家</p>
+            <p style="margin-top:35px; color: #eee; line-height: 25px;">嘻哈学车是一款免费的学车手机APP，以“促公平、节时间、省金钱、易学车”为出发点和落脚点；“网上学车，让学车更轻松、更便捷”理念吸引大量用户。APP可实现在线报名、在线支付等功能。学员能就近找到最近、最合适的教练。学员可以随时随地练车。使用“嘻哈学车”APP的学员，可一人一车享受专车接送，实行计时收费。</p>
+            <a href="http://www.sobot.com/chat/pc/index.html?sysNum=6fa9153617464a568a60fffef4da678a" target="_blank" class="btn btn-default" style="display: block; margin: 10px auto; background: none; color: #fff; border-radius: 30px; line-height: 43px; font-size:18px; width: 250px; height: 60px;">立即咨询</a>
+        </div>
+    </div>
+
+    <!--优秀教练-->
+    <!-- 	<div class="youxiujiaolian_all">
+	<div class="youxiujiaolian_div">
+		<img src="__PUBLIC__/static/images/youxiujiaolian_01.png" alt="" />
+		<p style="color: #666; padding-left: 10px; padding-top: 20px; margin-bottom: 45px;">海量优质教练资源，众多学车用户，助您学车和招生更加便捷</p>
+		教练列表
+		{volist name="coach_list" id="data"}
+		<div class="coach_list" style="">
+			<img src="{$data.s_coach_original_imgurl}" alt="{$data.s_coach_name}" style="width: 205px; height: 200px;"/>
+			
+			<div class="coach_info" style="">
+				<div style="border: 2px solid #00b78c; margin: 15px; height: 170px;">
+					<p style="color: #fff; font-size: 20px; font-weight: bold; padding-top: 20px;">{$data.s_coach_name}</p>
+					<p style="color: #fff;">教龄{$data.s_teach_age}年，
+						{notempty name="data.s_coach_lesson_name"}
+						擅长
+						{volist name="data.s_coach_lesson_name" id="value"}
+							{$value}
+						{/volist}
+						{/notempty}
+					</p>
+					<a href="http://www.sobot.com/chat/pc/index.html?sysNum=6fa9153617464a568a60fffef4da678a" class="btn btn-default" style="width: 150px; background: none; color: #eee; border-radius: 0px; font-weight: bold; border:2px solid #eee;">查看更多</a>
+				</div>
+			</div>
+		</div>
+		{/volist}
+	
+	</div>
+</div> -->
+
+    <!--按时收费-->
+    <div class="anshishoufei_all">
+        <div class="anshishoufei_div">
+            <div class="anshishoufei_left">
+                <img src="__PUBLIC__/static/images/clock.png" alt="" />
+            </div>
+            <div class="anshishoufei_content">
+                <p style="font-size: 40px; color:#555;">快速预约，按时计费</p>
+                <div style="margin-top: 30px;">
+                    <a href="javascript:void(0)" class="btn btn-default btn-xiha-default" style="padding-top: 0px; padding-bottom: 0px; border-left:1px solid #ddd; font-size: 32px; border-right:1px solid #ddd; color: #848484">
+                		快速<br />直约
+	                </a>
+                    <a href="javascript:void(0)" class="btn btn-default btn-xiha-default" style="padding-top: 0px; padding-bottom: 0px; border-left:1px solid #ddd; font-size: 32px; border-right:1px solid #ddd; color: #848484">
+                		预约<br />教练
+	                </a>
+                    <a href="javascript:void(0)" class="btn btn-default btn-xiha-default" style="padding-top: 0px; padding-bottom: 0px; border-left:1px solid #ddd; font-size: 32px; border-right:1px solid #ddd; color: #848484">
+                		按时<br />收费
+	                </a>
+                </div>
+                <p style="margin-top: 30px; color: #999;">通过嘻哈学车，颠覆了以往的驾培模式，广大学车人无需到驾校报名，上班 请假去练车，点击一下手机，预约离你最近的驾培单位，简洁清爽的操作界面，操作功能一目了然，学车信息发布推送一气呵成，像QQ一样简单容易</p>
+            </div>
+            <div class="anshishoufei_right">
+                <img src="__PUBLIC__/static/images/anshishoufei.png" alt="" />
+            </div>
+
+        </div>
+    </div>
+
+    <!--美好学车体验-->
+    <div class="meihaoxueche_all">
+        <div class="meihaoxueche_div">
+            <p style="font-size: 40px; padding-top: 100px;">美好学车体验</p>
+            <p style="font-size: 32px; color: #848484;">嘻哈学车为您开启一站式学车服务，助您轻松拿证</p>
+            <div class="xuechetiyan_list_all">
+                <div class="xuechetiyan_list xuechetiyan_list_hover" style="background: url(__PUBLIC__/static/images/xuechetiyan_01.png);">
+                    <p style="font-size: 28px; height: 70px;">
+                        <span class="iconfont" style="font-size: 55px; color: #c6cacd; position: absolute; left: 20px;">&#xe608;</span>
+                        <span style="line-height: 20px; position: absolute; right: 20px; top:45px; ">在线报名</span>
+                    </p>
+                    <hr />
+                    <ul style="float: left; text-align: left; padding: 0px;">
+                        <li><a href="javascript:void(0);" style="text-align: left;">下载APP</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">定位周边</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">挑选驾校</a></li>
+                    </ul>
+                    <ul style="float: right;">
+                        <li><a href="javascript:void(0);" style="">提供信息</a></li>
+                        <li><a href="javascript:void(0);" style="">在线报名</a></li>
+                    </ul>
+
+                    <div class="xiha_more" style="display:block;">
+                        <a href="javascript:void(0);" class="btn btn-default" style="background: #5cb85c; border-radius: 0px; border: 0px; color: #fff; width: 100%;">查看更多>></a>
+                    </div>
+                </div>
+
+                <div class="xuechetiyan_list">
+                    <p style="font-size: 28px; height: 70px;">
+                        <span class="iconfont" style="font-size: 50px; color: #c6cacd; position: absolute; left: 20px;">&#xe605;</span>
+                        <span style="line-height: 20px; position: absolute; right: 20px; top:45px;">学车准备</span>
+                    </p>
+                    <hr />
+                    <ul style="float: left; text-align: left; padding: 0px;">
+                        <li><a href="javascript:void(0);" style="text-align: left;">选择教练</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">付学车款</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">身体检查</a></li>
+                    </ul>
+                    <ul style="float: right;">
+                        <li><a href="javascript:void(0);" style="">签订协议</a></li>
+                        <li><a href="javascript:void(0);" style="">签订合同</a></li>
+                        <li><a href="javascript:void(0);" style="">完成报名</a></li>
+                    </ul>
+                    <div class="xiha_more" style="display:none;">
+                        <a href="javascript:void(0);" class="btn btn-default" style="background: #5cb85c; border-radius: 0px; border: 0px; color: #fff; width: 100%;">查看更多>></a>
+                    </div>
+                </div>
+
+                <div class="xuechetiyan_list">
+                    <p style="font-size: 28px; height: 70px;">
+                        <span class="iconfont" style="font-size: 55px; color: #c6cacd; position: absolute; left: 20px;">&#xe606;</span>
+                        <span style="line-height: 20px; position: absolute; right: 20px; top:45px;">预约练车</span>
+                    </p>
+                    <hr />
+                    <ul style="float: left; text-align: left; padding: 0px;">
+                        <li><a href="javascript:void(0);" style="text-align: left;">线上预约</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">线下学车</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">跟进考试进度</a></li>
+                    </ul>
+                    <ul style="float: right;">
+                        <li><a href="javascript:void(0);" style="">模拟考试</a></li>
+                        <li><a href="javascript:void(0);" style="">安排考试</a></li>
+                    </ul>
+                    <div class="xiha_more" style="display:none;">
+                        <a href="javascript:void(0);" class="btn btn-default" style="background: #5cb85c; border-radius: 0px; border: 0px; color: #fff; width: 100%;">查看更多>></a>
+                    </div>
+                </div>
+
+                <div class="xuechetiyan_list">
+                    <p style="font-size: 28px; height: 70px;">
+                        <span class="iconfont" style="font-size: 48px; color: #c6cacd; position: absolute; left: 20px;">&#xe607;</span>
+                        <span style="line-height: 20px; position: absolute; right: 20px; top:45px;">考试拿证</span>
+                    </p>
+                    <hr />
+                    <ul style="float: left; text-align: left; padding: 0px;">
+                        <li><a href="javascript:void(0);" style="text-align: left;">通过考试</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">驾照年审</a></li>
+                        <li><a href="javascript:void(0);" style="text-align: left;">驾驶员宣誓</a></li>
+                    </ul>
+                    <ul style="float: right;">
+                        <li><a href="javascript:void(0);" style="">实习标志</a></li>
+                        <li><a href="javascript:void(0);" style="">上路注意</a></li>
+                        <li><a href="javascript:void(0);" style="">顺利拿证</a></li>
+                    </ul>
+                    <div class="xiha_more" style="display:none;">
+                        <a href="javascript:void(0);" class="btn btn-default" style="background: #5cb85c; border-radius: 0px; border: 0px; color: #fff; width: 100%;">查看更多>></a>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{js href="__PUBLIC__/static/js/swiper.min.js"}
+<script>
+    window.onload = function() {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 30,
+            loop: true,
+        });
+        // var mySwiper = new Swiper ('.swiper-container', {
+        //    loop: true,
+        //    autoplay: 4000,
+        //    pagination: '.swiper-pagination',
+
+        //    // nextButton: '.swiper-button-next',
+        //    // prevButton: '.swiper-button-prev',
+        //  });
+
+        // 美好学车体验
+        $('.xuechetiyan_list').hover(function() {
+            $(this).addClass('xuechetiyan_list_hover').siblings().removeClass('xuechetiyan_list_hover');
+            $(this).css('background', 'url(__PUBLIC__/static/images/xuechetiyan_01.png)').siblings().css('background', 'none');
+            $(this).siblings().find('.xiha_more').css('display', 'none');
+        });
+        // 快乐学车
+        $(".coach_list").bind("mouseenter mouseleave", function(e) {
+            var w = $(this).width();
+            var h = $(this).height();
+            var offset = $(this).offset();
+            var x = (e.pageX - offset.left - (w / 2)) * (w > h ? (h / w) : 1);
+            var y = (e.pageY - offset.top - (h / 2)) * (h > w ? (w / h) : 1);
+            var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4; //direction的值为“0,1,2,3”分别对应着“上，右，下，左”
+            var eventType = e.type;
+            if (eventType == 'mouseenter') {
+                switch (direction) {
+                    case 0:
+                        $(this).find('.coach_info').css({
+                            'top': '-200px',
+                            'left': '0px'
+                        }).stop().animate({
+                            top: "0px",
+                        }, 200);
+                        break;
+                    case 1:
+                        $(this).find('.coach_info').css({
+                            'top': '0px',
+                            'left': '205px'
+                        }).stop().animate({
+                            left: "0px"
+                        }, 200);
+                        break;
+                    case 2:
+                        $(this).find('.coach_info').css({
+                            'top': '200px',
+                            'left': '0px'
+                        }).stop().animate({
+                            top: "0px"
+                        }, 200);
+                        break;
+                    case 3:
+                        $(this).find('.coach_info').css({
+                            'top': '0px',
+                            'left': '-205px'
+                        }).stop().animate({
+                            left: "0px"
+                        }, 200);
+                        break;
+                    default:
+
+                        break;
+                }
+            } else {
+                switch (direction) {
+                    case 0:
+                        $(this).find('.coach_info').css({
+                            'top': '0px',
+                            'left': '0px'
+                        }).stop().animate({
+                            top: "-200px"
+                        }, 200);
+                        break;
+                    case 1:
+                        $(this).find('.coach_info').css({
+                            'top': '0px',
+                            'left': '0px'
+                        }).stop().animate({
+                            left: "205px"
+                        }, 200);
+                        break;
+                    case 2:
+                        $(this).find('.coach_info').css({
+                            'top': '0px',
+                            'left': '0px'
+                        }).stop().animate({
+                            top: "200px"
+                        }, 200);
+                        break;
+                    case 3:
+                        $(this).find('.coach_info').css({
+                            'top': '0px',
+                            'left': '0px'
+                        }).stop().animate({
+                            left: "-205px"
+                        }, 200);
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+        });
+        //
+    };
+</script>
+{include file="index/footer"/}

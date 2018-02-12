@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0;
+	padding:0;
+}
+.home{
+	font-size: 12px;
+	color: #666666;
+	font-family:'微软雅黑';
+	margin:0 auto;
+	padding:0px;
+}
+.home *{ margin:0px; padding:0px;}
+.home img{ border:none;}
+.home ul li {
+	list-style:none;
+}
+.home a:link,.home a:visited{ color:#1d496d; text-decoration:none;}
+.home a:hover{ text-decoration:underline; }
+.home #box{ width:978px; background:url(../images/99imall/ahwang/tit_bg.gif) no-repeat top; border:1px #dce2e8 solid; border-top:none; margin:0 auto; height:310px; padding-bottom:10px;}
+.home #box h5{ font-size:22px; height:35px; line-height:35px; padding:5px 10px 5px 20px; font-weight:normal;}
+.home #box h5 a:link,.home #box h5 a:visited{ color:#187dc0; padding:0 5px; }
+.home #box h5 a:hover{ color:#ca0000;}
+.home #box h5 span{ float:right; font-size:12px; font-weight:normal;}
+.home #zxal{ width:310px; float:left; height:285px; border:1px #dce2e8 solid; border-bottom:none; border-left:none;}
+.home #zxal h6{ width:300px; height:35px; line-height:35px; border-bottom:1px #dce2e8 dashed; font-size:15px; font-weight:normal; display:block; margin:0 auto; color:#1d496d; }
+.home #zxal h6 span{ float:right; font-size:12px;  }
+.home #zxal h6 span a:{color:#1d496d;}
+.home #zxal ul{ width:300px; height:230px; margin:0 auto;}
+.home #zxal ul li{ width:137px; height:102px; float:left; display:inlne; position:relative; /*margin:10px 5px 0 5px ;*/ margin-top:10px;}
+.home #zxal .imgright{ float:right;}
+
+.home #zxal ul li a{ width:137px; height:102px; display:block; border:1px #ccc solid;}
+.home #zxal ul li a:hover{ border:1px #333 solid;}
+.home #zxal ul li img{ width:135px; height:100px; display:block; margin:1px;}
+.home #zxal ul li i{ width:135px; height:20px; background:#000; position:absolute; bottom:0;  display:block; left:2px;filter:alpha(opacity=60);  -moz-opacity:0.6;  -khtml-opacity: 0.6; opacity: 0.6; overflow:hidden;}
+.home #zxal ul li b a{ width:135px; height:20px; line-height:20px; border:0; text-align:center;  color:#fff; position:absolute; bottom:0; font-weight:normal;}
+.home #zxal ul li b a:hover{ text-decoration:underline; border:none;}
+.home #zxal p{ background:url(../images/99imall/ahwang/pic_ico.gif) no-repeat left center; padding-left:20px; clear:both; margin-left:18px; margin-top:7px;}
+.home #news{ width:385px; height:auto; float:left; margin-left:15px; }
+.home #news h4{ width:385px; height:25px; display:block; font-weight:bold; text-align:center; font-size:18px;}
+.home #news p{ width:385px; text-align:center; height:30px; display:block; line-height:20px; border-bottom:1px #ccc dotted; padding-top:5px;}
+.home #news p span{ font-size:12px; clear:both;}
+.home #news ul{ clear:both; padding-top:5px;}
+.home #news ul li{ line-height:25px; font-size:14px; background:url(../images/99imall/ahwang/li_ico.gif) no-repeat left center; padding-left:10px;}
+.home #zt{ width:240px; height:auto; float:right; margin-right:10px;}
+.home #zt #zt_tit{ width:240px; height:30px; border-bottom:1px #96c7e7 solid;}
+.home #zt #zt_tit li.selectTag{  border:1px #cbe3f3 solid; border-top:2px #187dc0 solid; border-bottom:#fff; background:#fff; color:#0063a5; }
+.home #zt #zt_tit li{float:left; width:80px; text-align:center;  height:29px; line-height:30px; color:#666; margin-left:5px; font-size:14px; font-weight:bold; cursor:pointer;}
+.home #zt #zt_tit li a:hover{  text-decoration:none;}
+.home #zt em{ width:240px; height:70px; padding:8px 0; display:block;}
+.home #zt .zt_bot{ width:240px; clear:both;}
+.home #zt .zt_bot li{ line-height:25px; background:url(../images/99imall/ahwang/li_ico.gif) no-repeat left center; padding-left:10px;}
+.home #zt #tagContent{ display:none;}
+.home #zt #tagContent DIV.selectTag {DISPLAY: block;}
+.home #zt .sp_bot{width:240px; clear:both;}
+.home #zt .sp_bot p{ width:240px; height:70px; padding:8px 0;}
+.home #zt .sp_bot p i{ width:90px; height:70px; float:left; display:block; position:relative;}
+.home #zt .sp_bot p i strong{ background:url(../images/99imall/ahwang/bofang.png) no-repeat; width:21px; height:21px; position:absolute; bottom:5px; right:5px;filter:alpha(opacity=80);  -moz-opacity:0.8;  -khtml-opacity: 0.8; opacity: 0.8; cursor:pointer}
+.home #zt .sp_bot p span{ width:140px; height:70px; display:block; float:right; line-height:18px;}
+.home #zt .sp_bot p span b a{ font-size:14px;  display:block; font-weight:bold; }
+.home #zt .sp_bot li{ line-height:25px; background:url(../images/99imall/ahwang/bf_ico.gif) no-repeat left center; padding-left:20px;}
+.home #banner{ width:640px; height:80px; float:left; margin-left:13px; margin-top:10px;}

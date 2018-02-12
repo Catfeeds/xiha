@@ -1,0 +1,439 @@
+{include file="index/header"/}
+<div class="page" id="signup">
+	{if condition="$device eq '1'"}
+  	<header class="bar bar-nav">
+    	<h1 class="title">{$title}</h1>
+  	</header>
+  	{/if}
+	<div class="index-logo-list signup-filter-all" style="margin: 0px; padding:10px 0px;">
+	    <div class="row">
+	      <!--<div class="col-25" style="border-right: 1px solid #ccc;">
+	      	全部教练 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      </div>
+	      <div class="col-25" style="border-right: 1px solid #ccc;">
+	      	服务特色 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      </div>
+	      <div class="col-25" style="border-right: 1px solid #ccc;">
+	      	附近 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      </div>
+	      <div class="col-25">
+	      	更多筛选 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      </div>-->
+	      <div class="col-33" style="border-right: 1px solid #ccc;">
+	      	<div class="filter-list">
+		      	全部教练 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      	</div>
+	      	<div class="signup-filter-list">
+	      		<div class="list-block" style="margin-top:10px;">
+				    <ul>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">全部教练</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">认证教练</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">报名学员数量（由多到少）</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">学车优惠券</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">计时培训</div>
+				        </div>
+				      </li>
+		   	   		</ul>
+		      	</div>
+	      	</div>
+	      </div>
+	      <div class="col-33" style="border-right: 1px solid #ccc;">
+	      	<div class="filter-list">
+	      		附近 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      	</div>
+	      	<div class="signup-filter-list">
+	      		<div class="list-block" style="margin-top:10px;">
+				    <ul>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">全部教练1</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">认证教练</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">报名学员数量（由多到少）</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">学车优惠券</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">计时培训</div>
+				        </div>
+				      </li>
+				      <li class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title">计时培训</div>
+				        </div>
+				      </li>
+		   	   		</ul>
+		      	</div>
+	      	</div>
+	      </div>
+	      <div class="col-33">
+	      	<div class="filter-list">
+	      		更多筛选 <span class="icon icon-down" style="font-size: 0.4rem;"></span>
+	      	</div>
+	      	<div class="signup-filter-list" style="overflow-y: scroll; height: 400px;">
+	      		<div class="list-block contacts-block city-list" style="margin-top: 0px;">
+				    <div class="list-group">
+				      <ul style="border-bottom: none;">
+				      	<li class="list-group-showname" style="text-align: left;">地区</li>
+			      		<li>
+				          <div class="citylist-hotcity-all">
+					  		<div class="row" style="text-align: center;">
+					  			<div class="col-33">
+					  				<a class="no-transition" href="{:url('/index', ['cityid'=>'340100', 'device'=>$device])}"><span data-id="340100" class="button button-light hot-city-cell">不限</span></a>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">南京市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">上海市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">北京市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">广州市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">深圳市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell city-active">合肥市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">厦门市</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">淮北市</span>
+					  			</div>
+					  		</div>
+						</div>
+						</li>
+						<li class="list-group-showname" style="text-align: left;">练车区域</li>
+			      		<li>
+				          <div class="citylist-hotcity-all">
+					  		<div class="row" style="text-align: center;">
+					  			<div class="col-33">
+					  				<a class="no-transition" href="{:url('/index', ['cityid'=>'340100', 'device'=>$device])}"><span data-id="340100" class="button button-light hot-city-cell">不限</span></a>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">包河区</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">瑶海区</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">庐阳区</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">蜀山区</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">长丰县</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell city-active">肥东县</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">肥西县</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">巢湖市</span>
+					  			</div>
+					  		</div>
+						</div>
+						</li>
+						<li class="list-group-showname" style="text-align: left;">驾照类型</li>
+			      		<li>
+				          <div class="citylist-hotcity-all">
+					  		<div class="row" style="text-align: center;">
+					  			<div class="col-33">
+					  				<a class="no-transition" href="{:url('/index', ['cityid'=>'340100', 'device'=>$device])}"><span data-id="340100" class="button button-light hot-city-cell">不限</span></a>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">C1手动挡</span>
+					  			</div>
+					  			<div class="col-33">
+					  				<span class="button button-light hot-city-cell">C1自动挡</span>
+					  			</div>
+					  		</div>
+						</div>
+						</li>
+						<li>
+							<div class="list-block" style="margin-top:10px;">
+							    <ul>
+							      <li class="item-content">
+							        <div class="item-inner">
+							          <div class="item-title"><a href="javascript:;" style="color: #3BD18A;">恢复初始</a></div>
+							          <div class="item-after"><button class="button button-fill button-warning" style="height: 40px; width: 60px;">完成</button></div>
+							        </div>
+							      </li>
+						      	</ul>
+					      	</div>
+						</li>
+					   </ul>
+			    	</div>
+			    </div>
+	      	</div>
+	      	
+	      </div>
+	    </div>
+  	</div>
+  	<div class="content" style="margin:2.1rem 0 2.5rem 0; ">
+		<!--报名列表-->	
+		<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="{:url('/signup/detail', ['id'=>1, 'device'=>$device])}" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title">
+		            	<span style="color:#777777;">计时培训</span> 
+		            	<span style="color:#FEAE4D; font-weight: bold;">130元/时</span>起
+		            </div>
+		          </div>
+		        </a>
+		      </li>
+			  <li style="height: 40px; line-height: 40px; padding-left:5.5rem; position: relative;">
+              	<i class="iconfont" style="font-size: 1rem; color: #eb4f38;">&#xe628;</i> 学车优惠券200元  	
+              	<span class="tickets" style="">
+            		查看
+            	</span>
+			  </li>
+		    </ul>
+	  	</div>
+	  	
+	  	<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title">
+		            	<span style="color:#777777;">计时培训</span> 
+		            	<span style="color:#FEAE4D; font-weight: bold;">130元/时</span>起
+		            </div>
+		          </div>
+		        </a>
+		      </li>
+			  <li style="height: 40px; line-height: 40px; padding-left:5.5rem; position: relative;">
+              	<i class="iconfont" style="font-size: 1rem; color: #eb4f38;">&#xe628;</i> 学车优惠券200元  	
+              	<span class="tickets" style="">
+            		查看
+            	</span>
+			  </li>
+		    </ul>
+	  	</div>
+	  	
+	  	<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title">
+		            	<span style="color:#777777;">计时培训</span> 
+		            	<span style="color:#FEAE4D; font-weight: bold;">130元/时</span>起
+		            </div>
+		          </div>
+		        </a>
+		      </li>
+			  <li style="height: 40px; line-height: 40px; padding-left:5.5rem; position: relative;">
+              	<i class="iconfont" style="font-size: 1rem; color: #eb4f38;">&#xe628;</i> 学车优惠券200元  	
+              	<span class="tickets" style="">
+            		查看
+            	</span>
+			  </li>
+		    </ul>
+	  	</div>
+	  	
+	  	<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title">
+		            	<span style="color:#777777;">计时培训</span> 
+		            	<span style="color:#FEAE4D; font-weight: bold;">130元/时</span>起
+		            </div>
+		          </div>
+		        </a>
+		      </li>
+			  <li style="height: 40px; line-height: 40px; padding-left:5.5rem; position: relative;">
+              	<i class="iconfont" style="font-size: 1rem; color: #eb4f38;">&#xe628;</i> 学车优惠券200元  	
+              	<span class="tickets" style="">
+            		查看
+            	</span>
+			  </li>
+		    </ul>
+	  	</div>
+	  	
+	  	<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title">
+		            	<span style="color:#777777;">计时培训</span> 
+		            	<span style="color:#FEAE4D; font-weight: bold;">130元/时</span>起
+		            </div>
+		          </div>
+		        </a>
+		      </li>
+		    </ul>
+	  	</div>
+	  	
+	  	<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title">
+		            	<span style="color:#777777;">计时培训</span> 
+		            	<span style="color:#FEAE4D; font-weight: bold;">130元/时</span>起
+		            </div>
+		          </div>
+		        </a>
+		      </li>
+			  <li style="height: 40px; line-height: 40px; padding-left:5.5rem; position: relative;">
+              	<i class="iconfont" style="font-size: 1rem; color: #eb4f38;">&#xe628;</i> 学车优惠券200元  	
+              	<span class="tickets" style="">
+            		查看
+            	</span>
+			  </li>
+		    </ul>
+	  	</div>
+  	</div>
+  	<!--navbar底部导航-->
+	{include file="index/navbar"/}
+</div>
+
+{include file="index/footer"/}

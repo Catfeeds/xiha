@@ -1,0 +1,39 @@
+<div class="article_artice_list" id="_article_article_list">
+<!--文章列表-->
+</div>
+<a href="javascript:;" data-page="1" id="page_more">
+	<div style="height: 40px; width: 100%; text-align: center; line-height: 40px;">
+			查看更多>>
+	</div>
+</a>
+<!--文章列表-->
+<script type="text/template" id="article_article_list_tpl">
+	{@if article_list.length > 0}
+		{@each article_list as item, index}
+			<a href="{:url('/article/detail', ['device'=>$device, 'type'=>$type, 'cid'=>$cate_id])}&id=${item.id}" class="" data-id="${item.id}">
+				<div class="article_article_list_cell">
+					<div class="article_artice_list_cell_left" {@if item.has_thumb == 2} style="width: 100%;"{@/if}>
+						<h3 class="article_title">
+							${item.title}
+						</h3>
+						<p>
+	  					{@if item.is_ads == 2}
+								<span style="color: #FF9000;"><i class="iconfont">&#xe64a;</i>广告</span> 
+							{@/if}
+							{@if item.is_recommend == 1}
+								<span style="border: 1px solid #1ECC7B; padding: 2px 5px; border-radius: 4px; color: #1ECC7B; font-size: 12px;">推荐</span>
+							{@/if}
+							${item.add_time_tag} ${item.views}次浏览 ${item.votes}次赞</p>
+					</div>
+					{@if item.has_thumb == 1}
+						<div class="article_artice_list_cell_right">
+				    	<img src="${item.article_thumb}" style="" alt="">
+						</div>
+					{@/if}
+				</div>
+			</a>
+		{@/each}
+	{@else}
+		<div style="text-align: center; margin-top: 20px;">暂无文章列表</div>
+	{@/if}
+</script>

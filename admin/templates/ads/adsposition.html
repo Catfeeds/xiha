@@ -1,0 +1,89 @@
+<!--{include file="library/header.lbi"}-->
+	<form method="post">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>广告位管理</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="ads_id[]" value="全选" />
+                <a href="index.php?action=ads&op=addposition" class="button button-small border-green">添加广告位</a>
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="100">选择</th>
+                    <th width="200">简短标题</th>
+                    <th width="200">详细描述</th>
+                    <th width="220">广告场景</th>
+                    <th width="400">添加时间</th>
+                    <th width="100">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                <!--{foreach $ads_positions as $key => $value}-->
+                <tr class="carlist">
+                    <td><input type="checkbox" name="ads_id[]" id="checkbox_<!--{$key}-->" class="ads_check" value="<!--{$value.id}-->" /></td>
+                    <td><!--{$value.title}--></td>
+                    <td><!--{$value.description}--></td>
+                    <td><!--{$value.scene}--></td>
+                    <td><!--{$value.addtime}--></td>
+                    <td>
+                        <a class="button border-blue button-little" href="index.php?action=ads&op=edit&id=<!--{$value.id}-->"><span class="icon-edit text-blue"></span> 修改</a> 
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delads(<!--{$value.id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+            </table>
+        </div>
+    </form>
+    <script>
+
+    // 删除广告
+    function delads(id, obj) {
+        if(window.confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=ads&op=del",
+                // dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.carlist').remove();
+                    }
+                }
+            })
+
+        } else {
+            return false;
+        }
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的教练信息！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,366 @@
+<!--{include file="library/header.lbi"}-->
+<script src="templates/assests/js/laydate/laydate.js"></script>
+<div class="navsecondebar">
+    <div class="navleftbar" style="">
+        <p class="slide" id="" style="background:#ddd; border-bottom:1px solid #fff; text-align:center; height:41px;">
+           <a href="javascript:;" id="strHref" class="btn-slide" style="line-height:40px;">
+               <!-- <span id="span-icon" class="icon-angle-double-left" style="color:#fff;"></span> -->
+               <span style="font-size:14px; color:#555;">学车订单</span>
+            </a>
+        </p>
+        <ul>
+          <li>
+            <a href="javascript:;" onclick="javascript:showshiftsorder(1, this)" <!--{if $order_id == 1}-->style="background: #F4F6F8; color:#333;"<!--{/if}-->>待完成</a>
+          </li>
+
+          <li>
+            <a href="javascript:;" onclick="javascript:showshiftsorder(2, this)" <!--{if $order_id == 2}-->style="background: #F4F6F8; color:#333;"<!--{/if}-->>已完成</a>
+          </li>
+
+          <li>
+            <a href="javascript:;" onclick="javascript:showshiftsorder(3, this)" <!--{if $order_id == 3}-->style="background: #F4F6F8; color:#333;"<!--{/if}-->>已取消</a>
+          </li>
+        </ul>
+      <div class="hidebar"><img src="templates/assests/images/iconfont-iconfontquanbu.png" width="15px" alt=""></div>
+      <div class="showbar" style="display:none;"><img src="templates/assests/images/iconfont-iconfontquanbu.png" width="15px" alt=""></div>
+    </div>
+</div>
+
+<div class="shiftsorderbody" style="position:absolute; left:100px; width:100%">
+    <div class="panel admin-panel" style="border:none">
+        <div class="panel-head">
+            <a href="index.php?action=learncar&op=index&order_id=<!--{$order_id}-->" class=""><strong>返回订单列表 >></strong></a>
+        </div>
+        <div class="container" style="margin-top:10px; width:100%;">
+            <div class="tab"> 
+                <div class="tab-body" style="border-top:none"> 
+                    <!-- 订单 -->
+                    <div class="tab-panel form-x active" id="tab-time-shifts">
+                        <form method="post" class="" style="width:100%" action="index.php?action=learncar&op=addoperate" enctype="multipart/form-data">
+                                 
+                            <div class="form-group">
+                                <div class="label"><label for="s_order_no">订单号</label></div>
+                                <div class="field">
+                                    <input type="text" class="input input-auto" id="s_order_no" name="s_order_no" value="" size="50" placeholder="请填写订单号" data-validate="required:请填写订单号" />
+                                    <button type="button" class="button border-green" id="ordernocreate">自动生成</button>
+                                    <button type="button" class="button border-yellow" id="ordernocheck">检测重复</button>
+                                    <span id="order-tips"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label"><label for="s_user_phone">学员手机号</label></div>
+                                <div class="field">
+                                    <input type="text" class="input input-auto" id="s_user_phone" name="s_user_phone" size="50" value="" placeholder="学员手机号" data-validate="required:请填写学员手机号" />
+                                    <button type="button" class="button border-green" id="userphonecheck">录入学员</button>
+                                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="检测手机号是否已注册，以便在手机客户端上可以登陆"></span>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label"><label for="s_real_name">学员姓名</label></div>
+                                <div class="field">
+                                    <input type="text" class="input input-auto" id="s_real_name" name="s_real_name" size="50" value="" placeholder="学员姓名" data-validate="required:请填写学员姓名" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label"><label for="s_coach_phone">教练手机号</label></div>
+                                <div class="field">
+                                    <!--{if $coachlist }-->
+                                    <select name="coach_phone" id="coach_phone" class="input input-auto">
+                                        <option title="" value="">请选择手机号</option>
+                                    <!--{foreach $coachlist as $key => $value}-->
+                                        <option title="<!--{$value.coach_id}-->" value="<!--{$value.coach_phone}-->"><!--{$value.coach_phone}--></option>
+                                    <!--{/foreach}-->
+                                    </select>
+                                    <!--{/if}-->
+                                    <input type="hidden" value="" name="coach_id" class="coach_id">
+                                    <button type="button" title="" class="button border-yellow" id="timeconfigcheck">查看当前教练时间配置</button>
+                                     
+                                    <!-- <input type="text" class="input input-auto" id="s_coach_phone" name="s_coach_phone" size="50" value="" placeholder="教练手机号" data-validate="required:请填写教练手机号" /> -->
+                                </div>
+                            </div>
+                              
+                            <div class="form-group">
+                                <div class="label"><label for="s_coach_name">教练姓名</label></div>
+                                <div class="field">
+                                    <input type="text" class="input input-auto" id="s_coach_name" name="s_coach_name" size="50" value="" placeholder="教练姓名" data-validate="required:请填写教练姓名" />
+                                </div>
+                            </div>
+
+                                  
+                            <div class="form-group">
+                                <div class="label"><label for="dt_order_time">预约日期</label></div>
+                                <div class="field">
+                                    <input type="text" name="appoint_date" class="input input-auto date_picker laydate-icon" size="20" id="start" style="height:34px;">
+                                    <!-- <input  style="width:226px;background: #fefefe;border: 1px solid #bbb;font-size: 14px;color: #333;padding: 7px;border-radius: 3px;" type="text" class="date_picker"> -->
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="label"><label for="dt_order_time">预约时间</label></div>
+                                <div class="field">
+                                    <div class="time_config">
+                                        开始时间：<select class="input input-auto start_time" name="time_config_id[]">
+                                            <!--{if $time_config_list}-->
+                                                <!--{foreach $time_config_list['time'] as $key => $value}-->
+                                                <option value="<!--{$value.id}-->"><!--{$value.start_time}-->:00</option>
+                                                <!--{/foreach}-->
+                                            <!--{/if}-->
+                                        </select> 结束时间：
+                                        <input type="text" name="end_time[]" class="input input-auto end_time" size="10" value="9:00">
+                                        <span style="cursor:pointer" class="icon-plus-circle text-large text-red plus-time-config"></span>
+                                    </div>
+                                    
+                                    <div class="time_config time_config_sec" style="display:none">
+                                        开始时间：<select class="input input-auto start_time" name="time_config_id[]" id="">
+                                            <!--{if $time_config_list}-->
+                                                <!--{foreach $time_config_list['time'] as $key => $value}-->
+                                                <option value="<!--{$value.id}-->"><!--{$value.start_time}-->:00</option>
+                                                <!--{/foreach}-->
+                                            <!--{/if}-->
+                                        </select> 结束时间：
+                                        <input type="text" name="end_time[]" class="input input-auto end_time" size="10" value="9:00">
+                                        <span style="cursor:pointer" class="icon-minus-circle text-large text-red minus-time-config"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label"><label for="coach_lesson">培训科目</label></div>
+                                <div class="field">
+                                    <div class="button-group border-main radio"> 
+                                        <!--{foreach $lesson_config as $key => $value}-->
+                                            <!--{if $key == 2}-->
+                                            <label class="button active">
+                                                <input name="lesson_id[]" value="<!--{$value}-->" type="radio" checked="checked"><!--{$value}--></label> 
+                                            <!--{else}-->
+                                                <label class="button"><input name="lesson_id[]" value="<!--{$value}-->" type="radio"><!--{$value}--></label>
+                                            <!--{/if}-->
+                                        <!--{/foreach}-->
+                                    </div>
+                                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="培训科目单选"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="label"><label for="coach_lesson">培训牌照</label></div>
+                                <div class="field">
+                                    <div class="button-group border-main radio"> 
+                                        <!--{foreach $lisence_config as $key => $value}-->
+                                            <!--{if $key == 1}-->
+                                            <label class="button active">
+                                                <input name="lisence_id[]" value="<!--{$value}-->" type="radio" checked="checked"><!--{$value}--></label> 
+                                            <!--{else}-->
+                                                <label class="button"><input name="lisence_id[]" value="<!--{$value}-->" type="radio"><!--{$value}--></label>
+                                            <!--{/if}-->
+                                        <!--{/foreach}-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="label"><label for="dc_money">总费用</label></div>
+                              <div class="field">
+                                  <input type="text" class="input input-auto" id="dc_money" name="dc_money" size="50" value="" placeholder="训练总费用" data-validate="required:请填写训练总费用 如：260" />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="label"><label for="i_service_time">预约时长</label></div>
+                              <div class="field">
+                                  <input type="text" class="input input-auto" id="i_service_time" name="i_service_time" size="50" value="" placeholder="预约时长" data-validate="required:请填写预约时长 如：2" />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="label"><label for="deal_type">支付形式</label></div>
+                              <div class="field">
+                                  <select class="input" id="deal_type" style="width:20%; float:left" name="deal_type"> 
+                                      <option value="">请选择支付形式</option> 
+                                       <option value="1">线上支付</option>
+                                       <option value="2">线下支付</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label"></div>
+                                <div class="field">
+                                    <input type="hidden" value="<!--{$order_id}-->" name="order_id">
+                                    <button class="button bg-main" type="submit">提交</button>
+                                </div>
+                            </div>
+
+                        </form>  
+                    </div>
+                </div> 
+            </div>   
+        </div>
+
+    </div>
+</div>
+<script>
+    laydate({
+        elem: '#start',
+        min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+        max: laydate.now(+6) //+1代表明天，+2代表后天，以此类推
+
+    });
+    laydate.skin('yalan');
+</script>
+<script>
+    
+    // 选择班制跳转
+    function showshiftsorder(id, obj) {
+      $(obj).html('加载中');    
+      location.href = 'index.php?action=learncar&op=index&order_id='+id;
+    }
+
+    // 选择预约时间开始时间
+    $('.start_time').on('change', function() {
+        var start_time = $(this).find('option:selected').html();
+        $(this).next('.end_time').val((parseInt(start_time)+1)+':00');
+    })
+    // 生成订单号
+    $('#ordernocreate').click(function() {
+        $.ajax({
+            type:"POST",
+            url:"index.php?action=member&op=createno",
+            dataType:"JSON",
+            success:function(data) {
+                if(data.code == 200) {
+                    $('#s_order_no').val(data.data);
+                }
+            }
+        })
+    });
+
+    // 检测订单号
+    $('#ordernocheck').click(function() {
+        var s_order_no = $('#s_order_no').val();
+        if(s_order_no.trim() == '') {
+            alert('请填写订单号');
+            return false;
+        }
+        $.ajax({
+            type:"POST",
+            url:"index.php?action=learncar&op=checkno",
+            data:{'no':s_order_no},
+            dataType:"JSON",
+            success:function(data) {
+                $('#order-tips').html(data.data);
+                setInterval(function() {
+                    $('#order-tips').html('');
+                }, 2000);
+            }
+        })
+    });
+
+    // 录入学员
+    $('#userphonecheck').click(function() {
+        layer.open({
+            type: 2,
+            title:'录入学员',
+            area: ['70%', '70%'],
+            fix: false, //不固定
+            maxmin: true,
+            shadeClose: true,
+            shade:false,
+            moveType:1,
+            shift:0,
+            content: 'index.php?action=member&op=add'
+        });
+    })
+    // 二级菜单伸缩
+      $('.hidebar').click(function() {
+        $(this).parents('.navleftbar').css('left', '-100px');
+        $('.shiftsorderbody').css({'left':'0px', 'min-width':'1000px'});
+        $('.showbar').css('display', 'block');
+      })
+      $('.showbar').click(function() {
+        $('.hidebar').parents('.navleftbar').css('left', '0px');
+        $('.shiftsorderbody').css({'left':'100px', 'min-width':'900px'});
+        $(this).css('display', 'none');
+      })
+
+      // 通过手机号获取学员信息
+      $('#s_real_name').on('focus',function() {
+        var s_user_phone = $('#s_user_phone').val();
+        if(s_user_phone.trim() != '') {
+            getusername(s_user_phone, 0, '当前号码没有注册，请先录入学员。', this);
+        }
+      });
+
+      // 选择教练手机号
+      $('#coach_phone').on('change', function() {
+        var coach_phone = $(this).val();
+        var coach_id = $(this).find('option:selected').attr('title');
+        // alert(coach_id);
+        if(coach_phone.trim() != '') {
+            getusername(coach_phone, 1, '网络异常,请检查网络', '#s_coach_name');
+        } else {
+            $('#s_coach_name').val('');
+        }
+        $('.coach_id').val(coach_id.trim());
+        $('#timeconfigcheck').attr('title', coach_id.trim()); // 赋值给查看教练时间配置按钮
+      });   
+
+      // 点击当前教练查看时间配置
+      $('#timeconfigcheck').click(function() {
+        var coach_id = $(this).attr('title');
+        var coach_name = $("#s_coach_name").val();
+        if(coach_id.trim() == '') {
+            layer.msg('请先选择教练手机号',{icon:0, offset:['0px','40%'], time:2500});        
+            return false;
+        }
+        layer.closeAll();
+        var index = layer.open({
+            type: 2,
+            title:'<span style="color:red;">['+coach_name+'教练]</span> 的时间配置',
+            content: 'index.php?action=coach&op=appointinfo&id='+coach_id,
+            area: ['700px', '100%'],
+            maxmin: true,
+            offset:'rb',      
+            shade: false,
+            moveType:1
+        });
+      })
+
+      function getusername(phone, type, msg, obj) {
+        $.ajax({
+            type:"POST",
+            url:"index.php?action=learncar&op=getusername",
+            data:{'phone':phone, 'type':type},
+            beforeSend:function() {
+                $(obj).val('正在获取中...');
+            },
+            dataType:"JSON",
+            success:function(data) {
+                if(data.code != 200) {
+                    layer.msg(msg,{icon:0, offset:['0px','40%'], time:2500});
+                    // $(obj).attr('disabled', true);
+                }
+                $(obj).val(data.data);
+            }, 
+            error:function() {
+                layer.msg('网络异常，请先检查网络',{icon:0, offset:['0px','40%'], time:2500});     
+            }
+        })
+      }
+
+      // 加减预约时间
+      $('.minus-time-config').click(function() {
+        $('.time_config_sec').css('display','none');
+        $('.plus-time-config').css('display', 'initial');
+      });
+
+      $('.plus-time-config').click(function() {
+        $(this).css('display', 'none');
+        $('.time_config_sec').css('display','block');
+      })
+</script>
+<!--{include file="library/footer.lbi"}-->
+

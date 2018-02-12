@@ -1,0 +1,94 @@
+<!--{include file="library/header.lbi"}-->
+    <form method="post">
+        <div class="panel admin-panel" >
+            <div class="panel-head"><strong>管理员列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="manager_id[]" value="全选" />
+                <a href="index.php?action=manager&op=add" class="button button-small border-green">添加管理员</a>
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+            </div>
+            <table class="table table-hover" style="">
+                <tr>
+                   <th width="45">选择</th>
+                   <th width="100">用户名</th>
+                   <th width="100">登录名</th>
+                   <th width="100">管理角色</th>
+                   <th width="100">操作</th>
+
+               </tr>
+               <!-- 循环列表 -->
+
+               <!--{foreach $manage_list as $key => $value}-->
+               <tr class="managerlist">
+                   <td><input type="checkbox" name="manager_id[]" id="checkbox_<!--{$key}-->" class="manages_check" value="<!--{$value.id}-->" /></td>
+                   <td><!--{$value['content']}--></td>
+                   <td><!--{$value['name']}--></td>
+                   <td><!--{$value['role_permission']}--></td>
+                   <td>
+                      <a class="button border-blue button-little" href="index.php?action=manager&op=edit&id=<!--{$value.id}-->"><span class="icon-edit text-blue"></span> 修改</a>
+                      <!--{if $value['name'] != 'admin'}-->
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delmanager(<!--{$value.id}-->, this);">
+                           <span class="icon-trash-o text-red"></span> 删除</a>
+                      <!--{/if}-->
+                   </td>
+               </tr>
+                <!--{/foreach}-->
+            </table>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+    // 删除驾校
+    function delmanager(id, obj) {
+        if(confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                dataType:"JSON",
+                url:"index.php?action=manager&op=del",
+                data:{"id":id},
+                success:function(data) {
+                    if(data.code == 1) {
+                        $(obj).parents('.managerlist').remove();
+                    }
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的管理员列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=manager&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<style type="text/css" >
+    .drop-menu a {
+        font-size:14px;
+    }
+    .drop-menu a:hover {
+        text-decoration:none;
+    }
+</style>
+<title>教练绑定列表</title>
+</head>
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>教练管理<span class="c-gray en">&gt;</span> 教练绑定列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <form method="post" action="{:U('Coach/searchCoachUserRelation')}" name="search">
+        <div class="pd-20">
+            <div class=""> 
+                <label for="search_bind">按绑定状态 </label>
+                <select class="" name="bind_status" id="bind_status" style="width:150px;height:30px">                  
+                    <option value="">--不限绑定状态--</option>   
+                    <option style="" value="1" <if condition="$bind_status eq 1">selected</if> >已绑定</option>
+                    <option style="" value="2" <if condition="$bind_status eq 2">selected</if> >解除绑定</option>
+                    <option style="" value="3" <if condition="$bind_status eq 3">selected</if> >学员申请绑定教练</option>
+                    <option style="" value="4" <if condition="$bind_status eq 4">selected</if> >教练申请绑定学员</option>
+                    <option style="" value="5" <if condition="$bind_status eq 5">selected</if> >学员申请解绑教练</option>
+                    <option style="" value="6" <if condition="$bind_status eq 6">selected</if> >教练申请解绑学员</option>
+                </select>
+                <label for="search_info">按关键词 </label>
+                <select class="" name="search_info" id="search_info" style="width:150px;height:30px">                  
+                    <option value="">--不限关键词--</option>   
+                    <option style="" value="s_coach_name" <if condition="$search_info eq s_coach_name">selected</if> >教练名称</option>
+                    <option style="" value="s_coach_phone" <if condition="$search_info eq s_coach_phone">selected</if> >教练手机</option>
+                    <option style="" value="s_real_name" <if condition="$search_info eq s_real_name">selected</if> >学员名称</option>
+                    <option style="" value="s_phone" <if condition="$search_info eq s_phone">selected</if> >学员手机</option>
+                    <option style="" value="lesson_name" <if condition="$search_info eq lesson_name">selected</if> >科目名称</option>
+                    <option style="" value="license_name" <if condition="$search_info eq license_name">selected</if> >牌照名称</option>
+                </select>
+                <input type="text" value="{$s_keyword}" name="s_keyword" placeholder="教练名称/手机号、学员名称/手机、科目名称、牌照名称" class="input-text default size-M"style="width:400px">
+                <input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+                <span class="r">共有数据：<strong>{$count}</strong>条</span> 
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead> 
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="35">ID</th>
+                            <th width="65">学员名称</th>
+                            <th width="65">学员手机号</th>
+                            <if condition="$school_id eq 0">
+                                <th width="60">所属驾校</th>
+                            </if>
+                            <th width="65">教练名称</th>
+                            <th width="65">教练手机号</th>
+                            <th width="65">科目名称</th>
+                            <th width="60">牌照名称</th>
+                            <th width="100">创建时间</th>
+                            <th width="100">更新时间</th>
+                            <th width="70">绑定状态</th>
+                            <th width="80">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="coachuserlist" item="obj">
+                            <tr class="text-c">
+                                <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                                <td class="va-m">{$obj.id}</td>
+                                <td class="va-m">{$obj.user_name}</td>
+                                <td class="va-m">{$obj.user_phone}</td>
+                                <if condition="$school_id eq 0">
+                                    <td class="va-m">{$obj.s_school_name}</td>
+                                </if>
+                                <td class="va-m">{$obj.coach_name}</td>
+                                <td class="va-m">{$obj.coach_phone}</td>
+                                <td class="va-m">{$obj.lesson_name}</td>
+                                <td class="va-m">{$obj.license_name}</td>
+                                <td class="va-m">{$obj.addtime}</td>
+                                <td class="va-m">{$obj.updatetime}</td>
+                                <td class="va-m setBindStatus">
+                                    <switch name="obj.bind_status">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success-outline radius">已绑定</span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger-outline radius">解除绑定</span></case>
+                                        <case value="3"><span data-id="{$obj.id}" title="3" class="btn btn-warning-outline radius">学员申请绑定教练</span></case>
+                                        <case value="4"><span data-id="{$obj.id}" title="4" class="btn btn-danger-outline radius">教练申请绑定学员</span></case>
+                                        <case value="5"><span data-id="{$obj.id}" title="5" class="btn btn-warning-outline radius">学员申请解绑教练</span></case>
+                                        <case value="6"><span data-id="{$obj.id}" title="6" class="btn btn-danger-outline radius">学员申请解绑学员</span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger-outline size-S radius">未知状态</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m td-manage">              
+                                    <!-- <a title="删除" href="javascript:;" onclick="javascript:member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a> -->
+                                    <div class="button-group border-blue">
+                                        <button type="button" class="button text-blue dropdown-toggle">
+                                            设置 <span class="downward"></span>
+                                        </button>
+                                        <ul class="drop-menu" style="min-width:85px;margin-left:-40px;">
+                                            <li><a href="javascript:;" onclick="javascript:setBindStatus({$obj.id}, 1, this);" style="">已绑定 </a></li>
+                                            <li><a href="javascript:;" onclick="javascript:setBindStatus({$obj.id}, 2, this);">解除绑定</a></li>
+                                            <li><a href="javascript:;" onclick="javascript:setBindStatus({$obj.id}, 3, this);">学员申请绑定教练</a></li>
+                                            <li><a href="javascript:;" onclick="javascript:setBindStatus({$obj.id}, 4, this);">教练申请绑定学员</a></li>
+                                            <li><a href="javascript:;" onclick="javascript:setBindStatus({$obj.id}, 5, this);">学员申请解绑教练</a></li>
+                                            <li><a href="javascript:;" onclick="javascript:setBindStatus({$obj.id}, 6, this);">教练申请解绑学员</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p style="text-align:center">{$page}</p>
+            </div>
+        </div>
+    </form>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>   -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>  -->
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script> 
+<script type="text/javascript">
+
+// 设置绑定状态
+    function setBindStatus(id, status, obj) {
+        if (id == '' || status == '') {
+            alert('参数错误');
+            return false; //参数错误
+        }
+        $.ajax({
+            type:"POST",
+            url:"{:U('Coach/setCoachBindStatus')}",
+            data: {'id':id, 'status':status},
+            dataType: "JSON",
+            success: function(data){
+                if(data.code == 200){
+                   location.reload();
+                } else {
+                    layer.msg('设置失败',{icon:2,time:1000});
+                }
+             },
+             error: function(){
+                layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+             }
+        })
+    }
+    /*用户-删除*/
+    // function member_del(obj,id){
+    //     layer.confirm('确认要删除吗？',function(index){
+    //         $.ajax({
+    //             type:"POST",
+    //             url:"__URL__/delCoachUserRelation",
+    //             data:{'id':id},
+    //             dataType:'JSON',
+    //             success:function(data) {
+    //                 if(data.code == 200) {
+    //                     $(obj).parents("tr").remove();
+    //                     layer.msg('已删除!',{icon:1,time:1000});
+    //                 } else {
+    //                     layer.msg('删除失败!',{icon:2,time:1000});
+    //                 }
+    //             },
+    //             error:function() {
+    //                 layer.msg('网络错误，请检查网络!',{icon:2,time:1000});    
+    //             }
+    //         });
+    //     });
+    // }
+</script> 
+</body>
+</html>

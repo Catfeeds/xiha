@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加新的广告等级</title>
+</head>
+<body>
+<div class="pd-20">
+  <form action="{:U('Ads/addAdsLevelDo')}" method="post" class="form form-horizontal" id="form-adslevel-add">
+
+    <!-- 广告等级数字输入 -->
+  	<div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>广告等级：</label>
+      <div class="formControls col-8">
+        <input class="input-text" type="text" name="level_id" placeholder="等级排名: 3" pattern="\d+" required />
+      </div>
+    </div>
+
+    <!-- 广告等级标题输入 -->
+  	<div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>等级标题：</label>
+      <div class="formControls col-8">
+        <input class="input-text" type="text" name="level_title" placeholder="等级标题: vip" pattern=".{1,}" required />
+      </div>
+    </div>
+
+    <!-- 广告时间输入 -->
+  	<div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>广告时间：</label>
+      <div class="formControls col-8">
+        <input class="input-text" type="text" name="loop_time" placeholder="广告时间: 秒" pattern="\d+" required />
+      </div>
+    </div>
+
+    <!-- 广告等级价格输入 -->
+  	<div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>广告价格：</label>
+      <div class="formControls col-8">
+        <input class="input-text" type="text" name="level_money" placeholder="起步价: 元" pattern="\d+" required />
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>等级描述：</label>
+      <div class="formControls col-8">
+        <textarea name="level_intro" cols="" rows="" class="textarea"  placeholder="详细介绍此广告等级" datatype="*10-100" dragonfly="true" nullmsg="等级介绍不能为空！" onKeyUp="textarealength(this,100)"></textarea>
+        <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+      </div>
+    </div>
+    <div class="row cl">
+        <div class="col-8 col-offset-3">
+            <button id="adsposition-submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+            <!--<button onClick="javascript:submitAddAdsLevel(); return false;" id="adsposition-submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>-->
+            <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+  </form>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery.form.min.js"></script>
+<script type="text/javascript">
+function submitAddAdsLevel() {
+    alert('ok');
+}
+
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-adsposition-add").Validform({
+		tiptype:2,
+		ajaxPost:true,
+		callback:function(data){
+			if(data.code == 200) {
+				setTimeout(function(){
+					$.Hidemsg(); //公用方法关闭信息提示框;显示方法是$.Showmsg("message goes here.");
+				},1000);
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.layer.msg(data.msg,{icon:1,time:5000});
+				parent.layer.close(index);
+			}
+		}
+	});
+
+});
+</script>
+</body>
+</html>

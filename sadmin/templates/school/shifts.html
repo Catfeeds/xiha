@@ -1,0 +1,136 @@
+<!--{include file="library/header.lbi"}-->
+	<form method="post">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>班制列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="car_id[]" value="全选" />
+                <a href="index.php?action=school&op=addshifts" class="button button-small border-green">添加班制</a>
+                <!-- <input type="button" class="button button-small border-green" value="添加文章" /> -->
+                <!-- <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" /> -->
+                <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="50">选择</th>
+                    <th width="50">ID</th>
+                    <th width="100">名称</th>
+                    <th width="100">类型</th>
+                    <th width="100">最终价格</th>
+                    <th width="100">原始价格</th>
+                    <th width="220">描述一</th>
+                    <th width="200">描述二</th>
+                    <th width="100">班制状态</th>
+                    <th width="130">添加时间</th>
+                    <th width="200">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+
+                <!--{foreach $shifts_list as $key => $value}-->
+                <tr class="carlist">
+                    <td><input type="checkbox" name="car_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.id}-->" /></td>
+                    <td><!--{$value.id}--></td>
+                    <td><!--{$value.sh_title}--></td>
+                    <!--{if $value.sh_type == 1}-->
+                        <td><span class="tag bg-green">计时班</span></td>
+                    <!--{else if $value.sh_type == 2}-->
+                        <td><span class="tag bg-blue">普通班</span></td>
+                    <!--{else if $value.sh_type == 3}-->
+                        <td><span class="tag bg-yellow">VIP班</span></td>
+                    <!--{/if}-->
+                    <td><!--{$value.sh_money}--></td>
+                    <td><!--{$value.sh_original_money}--></td>
+                    <td><!--{$value.sh_description_1}--></td>
+                    <td><!--{$value.sh_description_2}--></td>
+                    <td>
+                        <!--{if $value.deleted == 1}-->
+                        <span class="tag bg-green">正常</span>
+                        <!--{else if $value.deleted == 2}-->
+                        <span class="tag bg-red">回收站</span>
+                        <!--{/if}-->
+                    </td>
+                    <td><!--{$value.addtime}--></td>
+                    <td>
+
+                        <a href="javascript:void(0)"  class="button border-blue button-little" onclick="javascript:edit('<!--{$value.id}-->', 'editshifts', '修改班制信息')"><span class="icon-edit text-blue"></span> 修改</a> 
+
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delshifts(<!--{$value.id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+            </table>
+
+            <!-- 分页 -->
+<!--             <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div> -->
+        </div>
+    </form>
+    <script>
+    // 编辑信息
+    function edit(id, op, title) {
+        //iframe层-父子操作
+        layer.open({
+            type: 2,
+            title:title,
+            area: ['100%', '100%'],
+            shade:false,
+            moveType:1,
+            shift:0,
+            content: 'index.php?action=school&op='+op+'&id='+id
+        });
+    }
+
+    // 删除驾校
+    function delshifts(id, obj) {
+        if(window.confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delshifts",
+                // dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.carlist').remove();
+                    } else {
+                        alert('删除失败');
+                    }
+                }
+            })
+
+        } else {
+            return false;
+        }
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的车辆列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

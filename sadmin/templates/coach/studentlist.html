@@ -1,0 +1,94 @@
+<!--{include file="library/header.lbi"}-->
+<div class="tab-body" style="">
+	<div class="panel-head">
+	    <a href="index.php?action=coach&op=index" class=""><strong>返回教练列表 >></strong></a>
+	</div>
+	<br />
+<div class="tab"> 
+	<div class="tab-head border-main"> 
+		<ul class="tab-nav"> 
+			<li>
+				<a href="index.php?action=coach&op=coachinfo&id=<!--{$coach_id}-->">基本信息</a>
+			</li> 
+			<li>
+				<a href="index.php?action=coach&op=appointinfo&id=<!--{$coach_id}-->">预约详情</a>
+			</li> 
+			<li class="active">
+				<a href="index.php?action=coach&op=studentlist&id=<!--{$coach_id}-->">学员列表</a>
+			</li> 
+		</ul> 
+	</div> 
+	<div class="tab-body" style="padding-top:10px;"> 
+
+		<!-- 学员列表 -->
+		<div class="tab-panel form-x active">
+		    <form method="post" action="index.php?action=coach&op=searchstudent" method="post" onSubmit="return searchcheck();">
+		        <div class="panel admin-panel">
+		            <!-- <div class="panel-head search-position"><strong>返回教练列表>></strong></div>		             -->
+		            <table class="table table-hover" style="margin-top:10px;">		               	
+		            	<div class="studentlist_select" style="padding-top:10px; margin-left:20px;">	
+		            	<select class="input input-auto" name="conditiontype" id="search_condition">                  
+		                    <option value=""  <!--{if $conditiontype == ''}-->selected<!--{/if}-->>查询条件</option>
+		                    <option value="1" <!--{if $conditiontype == 1}-->selected<!--{/if}-->>科目一学习中</option>
+		                    <option value="2" <!--{if $conditiontype == 2}-->selected<!--{/if}-->>科目二学习中</option>
+		                    <option value="3" <!--{if $conditiontype == 3}-->selected<!--{/if}-->>科目三学习中</option>
+		                    <option value="4" <!--{if $conditiontype == 4}-->selected<!--{/if}-->>科目四学习中</option>
+		                    <option value="5" <!--{if $conditiontype == 5}-->selected<!--{/if}-->>已领证</option>                     
+		                </select>
+		                <input type="hidden" value="<!--{$coach_id}-->" name="id">
+		                <input type="submit" id="searchstudent" class="button border-blue" value="搜索" />
+                	</div> 
+		                <tr>
+		                    <th width="100">ID</th>
+		                    <th width="100">姓名</th>
+		                    <th width="100">手机号码</th>	                    
+		                    <th width="50">年龄</th>
+		                    <th width="50">性别</th>
+		                    <th width="100">身份证</th>
+		                    <th width="50">牌照</th>
+		                    <th width="100">学车状态</th>
+		                    <th width="200">地址</th>	               
+		                    <th width="100">所属驾校</th>
+		                </tr>
+		                <!-- 循环列表 -->
+		                <!--{if $student_list}-->
+		                <!--{foreach $student_list as $key => $value}-->
+		                <tr class="memberlist">
+		                    <td><!--{$value.l_user_id}--></td>
+		                    <td><!--{$value.s_real_name}--></td>
+		                    <td><!--{$value.s_user_phone}--></td>	                  		                 
+		                    <td><!--{$value.age}--></td>
+		                    <td><!--{if $value.sex == 1}--><span class="badge bg-green icon-male">男</span><!--{else}--><span class="badge bg-red icon-female">女</span><!--{/if}--></td>		                    
+		                    <td><!--{$value.identity_id}--></td>
+		                    <td><!--{$value.s_lisence_name}--></td>
+		                    <td><!--{$value.learncar_status}--></td>
+		                    <td><!--{$value.address}--></td>
+		                    <td><!--{$value.school_name}--></td>
+		                </tr>
+		                <!--{/foreach}-->
+		                <!--{else}-->
+		                    <tr><td colspan=5>暂无学员列表</td></tr>
+		                <!--{/if}-->
+		            </table>
+		            <!-- 分页 -->
+		            <div class="panel-foot text-center">
+		                <!--{$pagehtml}-->
+		            </div>
+		        </div>
+		    </form>          
+		</div>	
+
+	</div> 
+</div>
+</div>
+<script>
+     // 搜索检测
+    function searchcheck() {
+      var type = $('#search_condition').find('option:selected').val();
+      if (type.trim() == '') {
+        layer.msg('请选择搜索条件',{icon:0, offset:['0px','40%'], time:1500});        
+        return false;
+      }
+    }
+</script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+<!-- <link href="__PUBLIC__/Admin/assets/js/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加用户</title>
+</head>
+<body>
+<div class="pd-20">
+  <form method="post" action="{:U('Manager/editMember')}" class="form form-horizontal" enctype="multipart/form-data" id="add_member_form">
+    <!-- <input type="hidden" name="sid"　value="{$member_list['id']}" id=""> -->
+      <input type="hidden" class="input-text" style="height:30px;width:300px;border-radius:5px;" value="{$member_list.id}"   placeholder="请填写姓名" id="name" name="id"  />
+    
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="user_name">用户姓名: </label>
+      <div class="formControls col-2">
+        <input id="user_name" type="text" style="border-radius:5px;width:245px;" class="input-text" name="user_name" placeholder="请输入姓名" value="{$member_list.user_name}"  datatype="*2-16" nullmsg="用户姓名不能为空"/>
+      </div>
+    </div>
+
+     <div class="row cl">
+        <label class="form-label col-1 text-r" for="user_password">密码: </label>
+        <div class="formControls col-2 ">
+          <input id="user_password" type="password" class="input-text" style="border-radius:5px;width:245px;" name="user_password" placeholder="请输入要修改的密码" value="" />
+        </div>
+    </div>   
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="user_account">用户账号: </label>
+      <div class="formControls col-2">
+        <input id="user_account" type="text" class="input-text" style="border-radius:5px;border:none;width:245px;" readonly name="user_account" placeholder="请输入登录账号" value="{$member_list.user_account}" datatype="*2-16" nullmsg="用户账号不能为空"/>
+      </div>
+    </div>
+    <div class="row cl">
+        <label class="form-label col-1 text-r" for="user_phone">手机号: </label>
+        <div class="formControls col-2 ">
+          <input id="user_phone" type="text" class="input-text" style="border-radius:5px;width:245px;" name="user_phone" placeholder="请输入手机号码" value="{$member_list.user_phone}" datatype="*2-16" nullmsg="手机号码不能为空"/>
+        </div>
+    </div>  
+
+        
+     
+      <div class="row cl">
+          <label class="form-label col-1 text-r" for="role_description">用户角色: </label>
+          <div class="formControls col-2 ">
+            <!-- <select name="group_id" select2 ng-model="b" style="border-radius:5px;width:245px;" id="group_id" class="form-control" placeholder="请选择用户角色"> -->
+            <select name="group_id"  style="border-radius:5px;width:245px;height:30px;border-color:#ccc;" id="group_id" class="form-control" placeholder="请选择用户角色">
+            <!-- <if condition = "($group_id eq 1 AND $user_id eq 1)" >
+              <option value="1">超级管理员</option>
+            </if> -->
+            <foreach name="group_list" item="value">
+                  <option value="{$value.id}" selected>{$value.group_name}</option>
+            </foreach>
+            </select>
+        </div>
+      </div>
+    <!-- <div class="row cl">
+      <label class="form-label col-1 text-r" for="is_close">是否开放 : </label>
+      <div class="formControls col-3" style="margin-top:5px;">
+        <input type="radio" value="1" name="is_close" id="roles-2" checked>开放
+        <input type="radio" value="2" name="is_close" id="roles-2">禁止
+      </div>
+    </div> -->
+
+    <div class="row cl">
+      <div class="formControls col-5 col-offset-1">
+        <button type="submit" class="btn radius btn-primary">
+          <i class="Hui-iconfont">&#xe632;</i>
+          保存并提交
+        </button>
+        <button onClick="layer_close()" type="button" class="btn btn-default radius">
+          &nbsp;&nbsp;取消&nbsp;&nbsp;
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/icheck/jquery.icheck.min.js"></script>  -->
+<script type="text/javascript">
+	$(function(){
+		$('#add_member_form').Validform({
+		    tiptype:2,
+		    callback:function(form){
+	      		form[0].submit();
+		    }
+	  	});
+
+		$('.btn-upload').click(function() {
+			layer.open({
+			  type: 2,
+			  area: ['700px', '530px'],
+			  fix: false, //不固定
+			  maxmin: true,
+			  shade:false,
+			  content: '{:U("Manager/schoolList")}'
+			});
+		})
+	});
+</script> 
+</body>
+</html>

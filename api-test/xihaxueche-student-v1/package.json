@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "chakram": "^1.5.0",
+    "envs": "^0.1.6"
+  },
+  "scripts": {
+    "test": "env-cmd gdc-dev mocha -R spec --recursive -w -c"
+  }
+}

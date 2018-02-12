@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>嘻哈学车后台管理-后台管理</title>
+    <link rel="stylesheet" href="templates/assests/css/pintuer.css">
+    <link rel="stylesheet" href="templates/assests/css/admin.css">
+    <script src="templates/assests/js/jquery.js"></script>
+    <script src="templates/assests/js/pintuer.js"></script>
+    <script src="templates/assests/js/respond.js"></script>
+    <script src="templates/assests/js/admin.js"></script>
+    <link type="image/x-icon" href="http://www.pintuer.com/favicon.ico" rel="shortcut icon" />
+    <link href="http://www.pintuer.com/favicon.ico" rel="bookmark icon" />
+</head>
+
+<body>
+<div class="lefter">
+    <div class="logo"><a href="http://www.pintuer.com" target="_blank"><img src="templates/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+<div class="righter nav-navicon" id="admin-nav">
+    <div class="mainer">
+        <div class="admin-navbar">
+            <span class="float-right">
+                <span>您好，<!--{$name}-->，欢迎您的光临。</span>
+            	<!-- <a class="button button-little bg-main" href="http://www.pintuer.com" target="_blank">前台首页</a> -->
+                <a class="button button-little bg-yellow" href="index.php?action=admin&op=logout">注销登录</a>
+            </span>
+            <ul class="nav nav-inline admin-nav">
+                <li class="active">
+                    <a href="javascript:redirecturl('config','info')" class="icon-home"> 开始</a>
+                    <ul>
+                        <li class="active"><a href="javascript:redirecturl('config', 'info')">系统设置</a></li>
+                        <li><a href="javascript:redirecturl('school','index')">驾校列表</a></li>
+                        <li><a href="javascript:redirecturl('coach','index')">教练列表</a></li>
+                        <li><a href="javascript:redirecturl('order','index')">订单列表</a></li>
+                        <li><a href="javascript:redirecturl('car','index')">车辆列表</a></li>
+                    </ul>
+                </li>
+                <li  <!--{if $action == 'school'}-->class="active"<!--{/if}-->>
+                    <a href="javascript:redirecturl('school','index')" class="icon-cog"> 驾校</a>
+            		<ul>
+                        <li><a href="#">全局设置</a></li>
+                        <li class="active"><a href="#">系统设置</a></li>
+                        <li><a href="#">会员设置</a></li>
+                        <li><a href="#">积分设置</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:redirecturl('content.html')" class="icon-file-text"> 教练</a>
+					<ul>
+                        <li><a href="#">添加内容</a></li>
+                        <li class="active"><a href="#">内容管理</a></li>
+                        <li><a href="#">分类设置</a></li>
+                        <li><a href="#">链接管理</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="icon-shopping-cart"> 订单</a></li>
+                <li><a href="#" class="icon-user"> 车辆</a></li>
+        <!--         <li><a href="#" class="icon-file"> 文件</a></li>
+                <li><a href="#" class="icon-th-list"> 栏目</a></li> -->
+            </ul>
+        </div>
+        <div class="admin-bread">
+            <ul class="bread">
+                <li><a href="index.html" class="icon-home"> 开始</a></li>
+                <li>后台首页</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- <iframe name="right" id="leftMain" src="left.html" frameborder="false" scrolling="no" style="border:none; margin-bottom:0px;" width="100%" height="100%" allowtransparency="true"></iframe> -->
+<!-- <div class="righter left_bar">
+    <ul>
+        <li class="active"><a href="javascript:redirecturl('info.html')">系统设置</a></li>
+        <li><a href="javascript:redirecturl('list.html')">内容管理</a></li>
+        <li><a href="#">订单管理</a></li>
+        <li class=""><a href="#">会员管理</a></li>
+        <li><a href="#">文件管理</a></li>
+        <li><a href="#">栏目管理</a></li>
+    </ul>
+</div> -->
+
+
+<!-- 右侧显示区域start -->
+<div class="admin">
+    <iframe name="right" id="rightMain" src="index.php?action=config&op=index" frameborder="false" scrolling="no" style="border:none; margin-bottom:0px;" width="100%" height="100%" allowtransparency="true"></iframe>
+</div>
+<!-- 右侧显示区域end -->
+
+</body>
+</html>

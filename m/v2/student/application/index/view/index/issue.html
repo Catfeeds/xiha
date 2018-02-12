@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> 
+    <title class="xiha_title">{$title}</title>    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<META HTTP-EQUIV="Pragma" CONTENT="no-cache">    
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">    
+  <META HTTP-EQUIV="Expires" CONTENT="0">-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="嘻哈学车是一款免费的学车手机APP，以“促公平、节时间、省金钱、易学车”为出发点和落脚点；“网上学车，让学车更轻松、更便捷”理念吸引大量用户。APP可实现在线报名、在线支付等功能。学员能就近找到最近、最合适的教练。学员可以随时随地练车。使用“嘻哈学车”APP的学员，可一人一车享受专车接送，实行计时收费。"/>
+    <meta name="keywords" content="嘻哈学车APP|安徽嘻哈网络技术有限公司|驾驶人学车APP|驾驶人自学自考学车APP|学员自主预约报名学员APP|学车APP|学车软件|考驾照软件 IOS版 安卓版 "/>
+
+    {css href="__PUBLIC__/static/css/mui.min.css" /}
+    {css href="__PUBLIC__/static/css/light7.min.css" /}
+    {css href="__PUBLIC__/static/css/app.css" /}
+    {css href="__PUBLIC__/static/fonts/iconfont/iconfont.css" /}
+    {css href="__PUBLIC__/static/font/iconfont/iconfont.css" /}
+    {css href="__PUBLIC__/static/css/swiper.min.css" /}
+    {js href="__PUBLIC__/static/js/mui.min.js"}
+    {js href="__PUBLIC__/static/js/jquery.min.js"}
+
+    <!--<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>-->
+    <!--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=d061a6fc0a3f2f63781eb0c4db17dc47"></script>-->
+    <script>
+    var _public = "__PUBLIC__";
+    var api_url = "{$Think.API_URL}";
+      var device = "{$device}";
+      var token = "{$token}";
+  </script>
+</head>
+<body>
+  
+<style type="text/css">
+    body {
+        background: #f5f5f5;
+      }
+    .issue-content {
+        font-family:STHeiti,Microsoft YaHei,Helvetica,Arial,sans-serif;
+        background-color:#f6f6f6;
+        width:100%;
+        padding:10px 10px;
+        text-indent:2em;
+        color:#666;
+        font-size:17px;
+        line-height: 200%;
+    }
+    .issue-title {
+        font-family:STHeiti,Microsoft YaHei,Helvetica,Arial,sans-serif;
+        font-size: 17px;
+        /*border-bottom:1px solid #ddd;*/
+        padding:10px 0px;
+        color:#333;
+        /*border:1px solid #ccc;*/
+        font-weight: bold;
+    }
+    .issue-title span {
+        display: block;
+        margin-right: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    ul li{
+        border-bottom:0px solid #ccc;
+        border-top:0px solid #ccc;
+    }
+</style>
+<body style="background: #f5f5f5;">
+  {if condition="$device eq '1'"}
+      <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+          <span class="icon icon-left"></span>
+            返回 
+        </a>
+        <h1 class='mui-title'>{$title}</h1>
+      </header>
+ {/if}
+<div class="content">
+    <div class="mui-content" style="background: #f6f6f6;">
+    <ul class="mui-table-view">
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" style=";border:none" href="#">
+<span>1. 嘻哈学车是做什么的？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                  嘻哈学车以“促公平、节时间、省金钱、易学车”为出发点和落脚点的APP；学员网上学车更轻松、更便捷。目前吸引大量用户，深受用户喜爱，赢得社会普遍赞誉。目前已推广至除港澳台地区外的全国各个省市。
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>2. 嘻哈学车和传统驾校报名有什么区别？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                嘻哈学车更便宜、学车质量更有保障、学车时间更自由，学车者可以轻松发单，随时随地学车。
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>3. 在线付款是否安全？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                平台支付网银、支付宝、微信等多种支付方式，您在线支付的资金都将支付到第三方托管账户，保证资金安全。等你报名成功且在车管所登记后，才将您在线支付的首款打给驾校。
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>4. 报名需要提供哪些材料？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                <h2>1、证件及复印件</h2>
+                <span>
+                  （1）本市户籍人员报名时须交身份证原件及复印件<br/>
+                  （2）非本市户籍人员，须持身份证及有效期为一年的暂住证和复印件报名<br/>
+                  （3）军人及武警人员学车须用驻京部队核发的军官证、士兵证、文职干部证或退休证报名，同时要出具团级以上政治部（处）证明
+                </span><br/>
+                <h2>2、照片</h2>
+                <span>
+                  （1）报名学员需准备同版照片7张，报名时交6张，科目三考试合格后由学员本人再交1张。<br/>
+                  （2）照片必须为半年以内近照，正面、正身、免冠、1寸（32MM×22MM）、白色背景彩色照片，人头约占照片长度的三分之二，光学照片、数码照片（分辨率为300dpi）均可<br/>
+                  （3）照片必须露双耳，头上不能佩戴任何发饰，不能穿露肩膀衣服。</br>
+                  （4）军人、公安或执法人员的照片须着便装。
+                </span>
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" style="display:block" href="#" >
+<span>5. 报名费是包含全费用吗，我还需要交其他费用吗？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                 嘻哈学车实行一费制。根据个人情况及选择班级的不同，可能会有体检费、考前模拟、补考等额外费用支出。
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>6. 我在你们平台上报名学车，什么时候可以上车？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                根据班级的不同，上车时间也不相同，每个班级都明确的标明了上车时间。（最快1天就能上车，最慢15-20天）
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>7. 报名成功后，多久才能拿证？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                正常情况下45天拿证，但是根据个人选择的班级不同，学习和考试的通过情况不同，拿证的时间也会有前后的差异
+            </div>
+        </div>
+      </li>
+
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>8. 如果取消费用怎么退还？</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                嘻哈的退款是7-15个工作日，（国家法定节假日，周末双休不计）、将会退到您原支付账户中。
+            </div>
+        </div>
+      </li>
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>9. 学车中遇到问题怎么办</span>
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                学车中遇到任何问题可以随时拨打我们的电话0551-67126633 ，您也可以关注我们的微信号xihaxueche2015
+            </div>
+        </div>
+      </li>
+      <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right issue-title" href="#">
+<span>10. 如果考试挂了怎么办？还能练车么？</span>      
+        </a>
+        <div class="mui-collapse-content">
+            <div class="rule-wrapper issue-content">
+                每个科目当场均有两次考试机会，第一次考试未通过则当场可重考一次，若两次考试均未通过，则需要交补考费（科目一 120 元、科目二200元、科目三240元） 10天后预约下一次考试；科目二 和科目三挂科后，可继续预约教练练车。
+            </div>
+        </div>
+      </li>
+
+    </ul>
+    </div>
+</div>
+  {js href="__PUBLIC__/static/js/juicer-min.js"}
+  {js href="__PUBLIC__/static/js/swiper.min.js"}
+  {js href="__PUBLIC__/static/js/juicer-min.js"}
+  {js href="__PUBLIC__/static/js/light7.min.js"}
+  {js href="__PUBLIC__/static/js/i18n/cn.min.js"} 
+  {js href="__PUBLIC__/static/js/jquery.lazyload.min.js"}
+    <script src="http://webapi.amap.com/maps?v=1.3&key=d061a6fc0a3f2f63781eb0c4db17dc47&plugin=AMap.CitySearch"></script>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+  <script src="__PUBLIC__/static/js/index/article.js?={$r}"></script>
+</body>
+</html>

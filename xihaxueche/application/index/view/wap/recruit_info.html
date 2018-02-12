@@ -1,0 +1,73 @@
+{include file="wap/header"/}
+{css href="__PUBLIC__/static/css/swiper.min.css"}
+<div class="container-fluid" style="padding: 0px; background: #fff;">
+	<div class="recruit-info-tips">
+		<i class="iconfont" style="font-size: 1.8rem;">&#xe610;</i>
+		请准确填写以下信息~
+	</div>
+ 	<div class="form-group" style="margin: 0px;">
+	  <label for="inputEmail" class="col-md-2 control-label">姓名</label>
+	  <div class="col-md-10">
+	    <input type="text" class="form-control" id="coach_name" placeholder="请填写真实姓名">
+	  </div>
+	</div>
+    <div class="form-group" style="margin: 0px;">
+	  <label for="inputEmail" class="col-md-2 control-label">城市</label>
+	  <div class="col-md-10">
+  	 	<select id="coach_city" class="form-control">
+          <option value="">请选择您所在城市</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+	  </div>
+	</div>
+	<div class="form-group" style="margin: 0px;">
+	  <label for="coach_identify_id" class="col-md-2 control-label">身份证</label>
+	  <div class="col-md-10">
+	    <input type="text" class="form-control" id="coach_identify_id" placeholder="请填写身份证号码">
+	  </div>
+	</div>
+	<div class="form-group" style="margin: 0px;">
+	  <label for="coach_identify_id" class="col-md-2 control-label">所属驾校</label>
+	  <div class="col-md-10">
+	  	<select id="coach_city" class="form-control">
+          <option value="">请选择您所属驾校</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+	  </div>
+	</div>
+	<div class="form-group" style="margin: 0px;">
+	  <label for="coach_identify_id" class="col-md-2 control-label">驾照类型</label>
+	  <div class="col-md-10">
+	  	<select id="coach_city" class="form-control">
+          <option value="">请选择驾照类型</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+	  </div>
+	</div>
+	<div class="form-group" style="margin: 0px;">
+	  <label for="coach_identify_id" class="col-md-2 control-label">科目类型</label>
+	  <div class="col-md-10">
+	  	<select id="coach_city" class="form-control">
+          <option value="">请选择科目类型</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+	  </div>
+	</div>
+	<div class="" style="margin: 20px;">
+		<a href="{:url('/m/recruit', ['token'=>121, 'type'=>'info'])}" class="btn btn-block btn-raised btn-success" style="background: #2ED085; border: none; box-shadow: none; padding: 15px;">我要成为嘻哈教练</a>
+	</div>
+	
+</div>
+{include file="wap/footer"/}

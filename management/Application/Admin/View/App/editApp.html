@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='Refresh' content='' URL={:U($jumpUrl)}>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <!--<meta http-equiv="Cache-Control" content="no-siteapp" />-->
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" /> -->
+    <!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>编辑App版本</title>
+</head>
+
+<body>
+    <div class="pd-20">
+        <form action="{: U('App/editApp')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="editApp">
+            <input type="hidden" class="input-text" value="{$applist.id}" id="app_id" name="id">
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>app名称：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" value="{$applist.app_name}" datatype="*2-16" nullmsg="app名称不能为空" id="app_name" name="app_name" placeholder="如：嘻哈学车学员端app">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>app版本：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="{$applist.version}" id="version" datatype="*1-5" nullmsg="app版本不能为空" name="version" placeholder="如：1.2">
+                    <span id="phone-tips" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>版本code：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="{$applist.version_code}" id="version_code" datatype="*1-5" nullmsg="app版本不能为空" name="version_code" placeholder="如：12">
+                    <span id="phone-tips" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">限制最低版本：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text " value="{$applist.force_least_updateversion}" id="least_updateversion" name="least_updateversion" placeholder="如：1.2">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">强制升级？：</label>
+                <div class="formControls col-3 btn-group">
+                    <if condition="$applist.is_force eq 0">
+                        <label class="btn radius btn-success radio is_force"><input name="is_force" value="0" type="radio" checked style="display:none;">否</label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio is_force"><input name="is_force" value="0" type="radio" style="display:none;">否</label>
+                    </if>
+                    <if condition="$applist.is_force eq 1">
+                        <label class="btn radius btn-success radio is_force"><input name="is_force" value="1" type="radio" checked style="display:none;">是</label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio is_force"><input name="is_force" value="1" type="radio" style="display:none;">是</label>
+                    </if>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>系统类型：</label>
+                <div class="formControls col-3 btn-group">
+                    <if condition="$applist.os_type eq 1">
+                        <label class="btn radius btn-success radio os_type"><input name="os_type" value="1" type="radio" checked style="display:none;">安卓</label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio os_type"><input name="os_type" value="1" type="radio" style="display:none;">安卓</label>
+                    </if>
+                    <if condition="$applist.os_type eq 2">
+                        <label class="btn radius btn-success radio os_type"><input name="os_type" value="2" type="radio" checked style="display:none;">苹果</label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio os_type"><input name="os_type" value="2" type="radio" style="display:none;">苹果</label>
+                    </if>
+                    <if condition="$applist.os_type eq 3">
+                        <label class="btn radius btn-success radio os_type"><input name="os_type" value="3" type="radio" checked style="display:none;">PC</label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio os_type"><input name="os_type" value="3" type="radio" style="display:none;">PC</label>
+                    </if>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style ="color:red">*</span>app客户端名称：</label>
+                <div class="formControls col-3 btn-group">
+                    <if condition="$applist.app_client eq 1">
+                        <label class="btn radius btn-success radio app_client"><input name="app_client" value="1" type="radio" checked style="display:none;">学员端</label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio app_client"><input name="app_client" value="1" type="radio"  style="display:none;">学员端</label>
+                    </if>
+                    <if condition="$applist.app_client eq 2">
+                        <label class="btn radius btn-success radio app_client"><input name="app_client" checked value="2" type="radio" style="display:none;"> 教练端 </label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio app_client"><input name="app_client" value="2" type="radio" style="display:none;"> 教练端 </label>
+                    </if>
+                    <if condition="$applist.app_client eq 3">
+                        <label class="btn radius btn-success radio app_client"><input name="app_client" checked value="3" type="radio" style="display:none;"> 校长端 </label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio app_client"><input name="app_client" value="3" type="radio" style="display:none;"> 校长端 </label>
+                    </if>
+                    <if condition="$applist.app_client eq 4">
+                        <label class="btn radius btn-success radio app_client"><input name="app_client" checked value="4" type="radio" style="display:none;"> 猫咪鼠标 </label>
+                        <else/>
+                        <label class="btn radius btn-primary-outline radio app_client"><input name="app_client" value="4" type="radio" style="display:none;"> 猫咪鼠标 </label>
+                    </if>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2 text-r" for="download_url">app下载地址：</label>
+                <div class="formControls col-6">
+                    <span class="btn-upload form-group">
+                        <input class="input-text upload-url col-2" type="text" name="download_url" id="download_url" value="{$applist.app_download_url}" readonly>
+                        <a href="javascript:void();" class="btn btn-primary"><i class="Hui-iconfont">&#xe646;</i>浏览</a>
+                        <input type="file" multiple name="download_url" class="input-file" value="{$applist.app_download_url}">
+                    </span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>app更新日志：</label>
+                <div class="formControls col-4">
+                    <textarea name="update_log" style="height:300px;width:450px;" id="update_log" cols="" rows="" class="textarea" placeholder="每条日志请用分号分割" datatype="*1-200" nullmsg="app更新日志不能为空" dragonfly="true" onKeyUp="textarealength(this,1000)">{$applist.app_update_log}</textarea>
+                    <!-- <span style ="color:red"><1/1000></span> -->
+                </div>
+                <!-- <div class="row cl"><label class="col-12 col-offset-2"><spna style ="color:red">最多200个字符</span></label></div> -->
+            </div>
+            <div class="row cl">
+                <div class="col-11 col-offset-2" style="">
+                    <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/My97DatePicker/WdatePicker.js"></script>  -->
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script>  -->
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.min.js"></script>  -->
+    <script type="text/javascript">
+        // 表单验证
+        $(function() {
+            $('#editApp').Validform({
+                tiptype: 2,
+                callback: function(form) {
+                    form[0].submit();
+                }
+            });
+        })
+
+        /*
+         * 系统升级强制
+         * 点击切换效果
+         */
+        $('.btn-group .is_force input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-primary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-primary-outline");
+        });
+
+        /*
+         * 系统类型
+         * 点击切换效果
+         */
+        $('.btn-group .os_type input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-primary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-primary-outline");
+        });
+
+        /*
+         * 客户端
+         * 点击切换效果
+         */
+        $('.btn-group .app_client input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-primary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-primary-outline");
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="api/upload_exam_record.php" method="post"  enctype="multipart/form-data">
+		<table bgcolor="#cccccc">
+			<tr>
+				<td colspan="2">Members log in here:</td>
+			</tr>
+			<tr>
+				<td>User Id:</td>
+				<td><input type="text" name="user_id" /></td>
+			</tr>
+            <!--
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="passwd"></td>
+			</tr>	
+            -->
+			<tr>
+				<td colspan="2"><input type="file" name="exam_record"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><input type="submit" value="Log in" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

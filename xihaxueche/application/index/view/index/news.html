@@ -1,0 +1,30 @@
+{include file="index/header"/}
+<img src="__PUBLIC__/static/images/news-banner.jpg" style="width: 100%;" alt="" />
+<div class="container-fluid main" style="padding:0px;width:1100px; margin-top:20px;">
+	{include file="index/news_navbar"/}
+	
+	<div class="news-list" style="float:right;width:930px;">
+		{volist name="article_list" id="vo"}
+		<div class="news-list-div" >
+			<div class="news-img" style="margin-left:10px;">
+				{if condition="$vo.article_thumb neq ''"}
+				<a href="{:url('/detail', ['id'=>$vo.id])}"><img src="{$vo.article_thumb}" alt="" /></a>
+				{else}
+				<a href="{:url('/detail', ['id'=>$vo.id])}"><img src="__PUBLIC__/static/images/no-picture.png" alt="" /></a>
+				{/if}
+			</div>
+			<span style="float:right;margin-right:4%; color: #999;">{$vo.add_format_time}</span>
+			<div class="news-content" style="margin-left:-20px;">
+				<a href="{:url('/detail', ['id'=>$vo.id])}"><h3>{$vo.title}</h3></a>
+				<div class="news-txt">
+					{$vo.message|mb_substr=0,100,'utf-8'}
+				</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		{/volist}
+		
+		{include file="index/page"/}
+	</div>
+</div>
+{include file="index/footer"/}

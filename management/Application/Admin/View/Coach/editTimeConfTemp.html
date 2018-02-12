@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/jquery-ui.css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="__PUBLIC__/Admin/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>编辑时间模板</title>
+</head>
+
+<body>
+    <div class="pd-20">
+        <form action="{:U('Coach/editTimeConfTemp')}" method="post" class="form form-horizontal" id="addTimeConfTemp">
+            <input class="input-text" type="hidden" value="{$timeconftemplist.id}" name="id" />
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>模板关联名称：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="hidden" name="temp_id" value="{$timeconftemplist.temp_id}" />
+                    <input class="input-text" type="text" name="temp_name" value="{$timeconftemplist.temp_name}" readonly />
+                </div>
+            </div>
+            <!--<div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>模板类型：</label>
+                <div class="formControls col-4">
+                    <select class="form-control" select2 ng-model="b" name="temp_id" id="temp_id" placeholder='
+					<if condition="$timeconftemplist.temp_owner_name neq ' ' ">{$timeconftemplist.temp_name}（{$timeconftemplist.temp_owner_name}）<else/>{$timeconftemplist.temp_name}</if>'style="border-radius:0px;height:30px;width:218px;border-color:#ccc;">
+						<if condition="$timeconftemplist.temp_id neq ''">
+							<if condition="$timeconftemplist.temp_owner_name neq ''">
+								<option value="{$timeconftemplist.temp_id}">{$timeconftemplist.temp_name}（{$timeconftemplist.temp_owner_name}）</option>
+							<else/>
+								<option value="{$timeconftemplist.temp_id.id}">{$timeconftemplist.temp_name}</option>
+							</if>
+						<else/>
+							<option value="">请选择模板类型</option>
+						</if>
+                        <foreach name="temprelationlist" item="value">
+                            <if condition="$value.temp_owner_name neq ''" >
+                                <option value="{$value.id}">{$value.temp_name}（{$value.temp_owner_name}）</option>
+                            <else/>
+                                <option value="{$value.id}">{$value.temp_name}</option>
+                            </if>
+                        </foreach>
+                    </select>
+                </div>
+            </div>-->
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>价格：</label>
+                <div class="formControls col-3">
+                    <input type="button" value="-" onclick="sub(this)" class="btn btn-secondary" style="border-radius:3px;">
+                    <input type="input-text" value="{$timeconftemplist.price}" name="price" datatype="*1-16" nullmsg="价格不能为空" style="width:155px;height:26px;text-align:center;border-radius:3px;">
+                    <input type="button" value="+" onclick="add(this)" class="btn btn-secondary" style="border-radius:3px;"> 元
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>科目名称：</label>
+                <div class="formControls col-2">
+                    <select class="form-control" name="lesson_id" id="lesson_id" placeholder="请选择模板关联名称" style="border-radius:0px;height:30px;width:250px;border-color:#ccc;">
+						<!-- <option value="1">科目一</option> -->
+						<option value="">请选择科目</option>
+						<option value="2" <if condition="$timeconftemplist.lesson_id eq 2">selected</if> >科目二</option>
+						<option value="3" <if condition="$timeconftemplist.lesson_id eq 3">selected</if> >科目三</option>
+						<!-- <option value="4">科目四</option> -->
+					</select>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>牌照名称：</label>
+                <div class="formControls col-4">
+                    <select class="form-control" name="license_id" id="license_id" placeholder="请选择牌照名称" style="border-radius:0px;height:30px;width:250px;border-color:#ccc;" datatype="*1-16" nullmsg="牌照名称不能为空！">
+                        <if condition="$timeconftemplist.license_name neq ''">
+                            <option value="{$timeconftemplist.license_id}">{$timeconftemplist.license_name}</option>
+                        </if>
+                        <option value="">请选择牌照</option>
+                        <foreach name="licenselist" item="license">
+                            <option value="{$license.license_id}">{$license.license_name}</option>
+                        </foreach>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>开始时间：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" name="start_hour" value="{$timeconftemplist.start_hour}" placeholder="请填写开始时间,如：8" datatype="*1-16" nullmsg="开始时间不能为空！" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>结束时间：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" value="{$timeconftemplist.end_hour}" name="end_hour" placeholder="请填写结束时间,如：9" datatype="*1-16" nullmsg="结束时间不能为空！" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>开始分钟：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" value="{$timeconftemplist.start_minute}" name="start_minute" placeholder="请填写开始分钟,如：30" datatype="*1-16" nullmsg="开始分钟不能为空！" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>结束分钟：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" name="end_minute" value="{$timeconftemplist.end_minute}" placeholder="请填写结束分钟,如：30" datatype="*1-16" nullmsg="结束分钟不能为空！" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>课程时间：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" name="lesson_time" value="{$timeconftemplist.lesson_time}" placeholder="请填写课时时间" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">是否在线：</label>
+                <div class="formControls col-6 btn-group">
+                    <if condition="$timeconftemplist.is_online eq 1">
+                        <label class="btn radius btn-success radio setstatus"><input name="is_online" value="1" checked type="radio" style="display:none;">是</label>
+                        <else/>
+                        <label class="btn radius btn-warning-outline radio setstatus"><input name="is_online" value="1" type="radio" style="display:none;">是</label>
+                    </if>
+                    <if condition="$timeconftemplist.is_online eq 2">
+                        <label class="btn radius btn-success radio setstatus"><input name="is_online" value="2" checked type="radio" style="display:none;">否</label>
+                        <else/>
+                        <label class="btn radius btn-warning-outline radio setstatus"><input name="is_online" value="2" type="radio" style="display:none;">否</label>
+                    </if>
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-2">最多预约人数：</label>
+                <div class="formControls col-3">
+                    <input type="button" value="-" onclick="subNum(this)" class="btn btn-warning" style="border-radius:0px;">
+                    <input type="text" name="max_user_num" class="input-text" style="width:140px;text-align:center" value="{$timeconftemplist.max_user_num}" placeholder="" />
+                    <input type="button" value="+" onclick="addNum(this)" class="btn btn-warning" style="border-radius:0px;">
+                </div>
+            </div>
+
+            <div class="row cl">
+                <div class="col-8 col-offset-2">
+                    <button id="submitOne" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery-ui-datepicker.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+    <script type="text/javascript">
+        // 数目增加100
+        function sub(obj) {
+            var temp = parseInt(obj.nextElementSibling.value);
+            if (temp > 0) {
+                temp -= 50;
+                obj.nextElementSibling.value = temp;
+            }
+        }
+
+        function add(obj) {
+            var temp = parseInt(obj.previousElementSibling.value);
+            temp += 50;
+            obj.previousElementSibling.value = temp;
+        }
+
+        // 添加与减少
+        function subNum(obj) {
+            var temp = parseInt(obj.nextElementSibling.value);
+            if (temp > 1) {
+                temp -= 4;
+                obj.nextElementSibling.value = temp;
+            }
+        }
+
+        function addNum(obj) {
+            var temp = parseInt(obj.previousElementSibling.value);
+            temp += 4;
+            obj.previousElementSibling.value = temp;
+        }
+        // 表单验证
+        $(function() {
+            // $('#submitOne').click(function() {
+            //   var cate = $('#cate_id').val();
+            //   if (!cate) {
+            //     alert('请选择商品分类名称');
+            //     return false;
+            //   }
+            // })
+            $('#addTimeConfTemp').Validform({
+                tiptype: 2,
+                callback: function(form) {
+                    form[0].submit();
+                }
+            });
+        })
+
+        /*
+         * 按钮的切换
+         * 点击切换效果
+         */
+        $('.btn-group .setstatus input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-warning-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-warning-outline");
+        });
+        $(function() {
+            $("#date_8").datepicker({
+                showOn: "button",
+                buttonImage: "__PUBLIC__/Admin/assets/images/calendar.gif",
+                buttonImageOnly: true
+            });
+            $("#date_9").datepicker({
+                showOn: "button",
+                buttonImage: "__PUBLIC__/Admin/assets/images/calendar.gif",
+                buttonImageOnly: true
+            });
+            // 解决用jQuery1.7.2版本以后的无法加载msie的问题
+            jQuery.browser = {};
+            (function() {
+                jQuery.browser.msie = false;
+                jQuery.browser.version = 0;
+                if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                    jQuery.browser.msie = true;
+                    jQuery.browser.version = RegExp.$1;
+                }
+            })();
+
+
+        })
+
+        $(function() {
+            $('.skin-minimal input').iCheck({
+                checkboxClass: 'icheckbox-blue',
+                radioClass: 'iradio-blue',
+                increaseArea: '20%'
+            });
+
+            $("#form-adsposition-add").Validform({
+                tiptype: 2,
+                ajaxPost: true,
+                callback: function(data) {
+                    if (data.code == 200) {
+                        setTimeout(function() {
+                            $.Hidemsg(); //公用方法关闭信息提示框;显示方法是$.Showmsg("message goes here.");
+                        }, 1000);
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.msg(data.msg, {
+                            icon: 1,
+                            time: 5000
+                        });
+                        parent.layer.close(index);
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

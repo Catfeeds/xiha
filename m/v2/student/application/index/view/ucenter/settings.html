@@ -1,0 +1,64 @@
+{include file="index/header"/}
+<div class="page" id="settings">
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/ucenter', ['token'=>$token, 'device'=>$device])}">
+      <span class="icon icon-left"></span>
+  		返回
+    </a>
+    <h1 class='title'>{$title}</h1>
+  </header>
+  <div class="content">
+		<div class="list-block" style="margin-top:10px;">
+		    <ul>
+		      <!--<li class="item-content item-link">
+		        <div class="item-inner">
+		          <div class="item-title">消息提醒</div>
+		          <div class="item-after"> 
+		          	<label class="label-switch">
+	                <input type="checkbox">
+	                <div class="checkbox"></div>
+              	</label>
+		          </div>
+		        </div>
+		      </li>-->
+		      <li>
+		        <a class="item-content item-link" href="{:url('/ucenter/changepass', ['token'=>$token, 'device'=>$device])}">
+			        <div class="item-inner">
+			          <div class="item-title">修改密码</div>
+			        </div>
+		        </a>
+		      </li>
+		      <li class="item-content item-link">
+		        <div class="item-inner">
+		          <div class="item-title">意见反馈</div>
+		        </div>
+		      </li>
+		      <li class="item-content item-link">
+		        <div class="item-inner">
+		          <div class="item-title">常见问题</div>
+		        </div>
+		      </li>
+		      <li class="item-content item-link">
+		        <div class="item-inner">
+		          <div class="item-title">清除缓存</div>
+		          <div class="item-after">108K</div>
+		        </div>
+		      </li>
+		      <li class="item-content item-link">
+		        <div class="item-inner">
+		          <div class="item-title">用户协议</div>
+		        </div>
+		      </li>
+		      <li class="item-content item-link">
+		        <div class="item-inner">
+		          <div class="item-title">版本介绍</div>
+		        </div>
+		      </li>
+		    </ul>
+		    
+		    <p style="margin: 10px;"><a href="{:url('/ucenter', ['device'=>$device])}" class="no-transition button button-big button-fill button-block button-danger">退出登录</a></p>
+  	</div>
+  </div>
+  
+</div>
+{include file="index/footer"/}

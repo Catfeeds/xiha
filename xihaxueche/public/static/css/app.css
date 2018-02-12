@@ -1,0 +1,1130 @@
+body {
+    padding-top: 0px
+}
+
+p {
+    font-family: "Microsoft Yahei"
+}
+
+a {
+    font-family: "Microsoft Yahei"
+}
+
+div {
+    font-family: "Microsoft Yahei"
+}
+
+
+/*p, a, div {font:12px/1.5 'Microsoft YaHei','Simsun',sans-serif; }*/
+
+#banner {
+    border-bottom: none
+}
+
+.page-header h1 {
+    font-size: 4em
+}
+
+.bs-docs-section {
+    margin-top: 8em
+}
+
+.bs-component {
+    position: relative
+}
+
+.bs-component .modal {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    z-index: 1;
+    display: block
+}
+
+.bs-component .modal-dialog {
+    width: 90%
+}
+
+.bs-component .popover {
+    position: relative;
+    display: inline-block;
+    width: 220px;
+    margin: 20px
+}
+
+#source-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+.progress {
+    margin-bottom: 10px
+}
+
+footer {
+    margin: 5em 0
+}
+
+footer li {
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 1.5em
+}
+
+footer p {
+    clear: left;
+    margin-bottom: 0
+}
+
+.splash {
+    padding: 4em 0 0;
+    background-color: #141d27;
+    color: #fff;
+    text-align: center
+}
+
+.splash h1 {
+    font-size: 4em
+}
+
+.splash #social {
+    margin: 2em 0
+}
+
+.splash .alert {
+    margin: 2em 0
+}
+
+.section-tout {
+    padding: 4em 0 3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #eaf1f1
+}
+
+.section-tout .fa {
+    margin-right: .5em
+}
+
+.section-tout p {
+    margin-bottom: 3em
+}
+
+.section-preview {
+    padding: 4em 0 4em
+}
+
+.section-preview .preview {
+    margin-bottom: 4em;
+    background-color: #eaf1f1
+}
+
+.section-preview .preview .image {
+    position: relative
+}
+
+.section-preview .preview .image:before {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    pointer-events: none
+}
+
+.section-preview .preview .options {
+    padding: 1em 2em 2em;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: none;
+    text-align: center
+}
+
+.section-preview .preview .options p {
+    margin-bottom: 2em
+}
+
+.section-preview .dropdown-menu {
+    text-align: left
+}
+
+.section-preview .lead {
+    margin-bottom: 2em
+}
+
+@media (max-width: 767px) {
+    .section-preview .image img {
+        width: 100%
+    }
+}
+
+.sponsor {
+    text-align: center
+}
+
+.sponsor a:hover {
+    text-decoration: none
+}
+
+@media (max-width: 767px) {
+    #banner {
+        margin-bottom: 2em;
+        text-align: center
+    }
+}
+
+.infobox .btn-sup {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.infobox .btn-sup img {
+    opacity: 0.5;
+    height: 30px;
+}
+
+.infobox .btn-sup span {
+    padding-left: 10px;
+    position: relative;
+    top: 2px;
+}
+
+.icons-material .row {
+    margin-bottom: 20px;
+}
+
+.icons-material .col-xs-2 {
+    text-align: center;
+}
+
+.icons-material i {
+    font-size: 34pt;
+}
+
+.icon-preview {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    background: #D5D5D5;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.icon-preview span {
+    display: none;
+    position: absolute;
+    background: black;
+    color: #EEE;
+    padding: 5px 8px;
+    font-size: 15px;
+    border-radius: 2px;
+    z-index: 10;
+}
+
+.icon-preview:hover i {
+    color: #4285f4;
+}
+
+.icon-preview:hover span {
+    display: block;
+    cursor: text;
+}
+
+.active {
+    /*border-top: 3px solid #00BD9C;*/
+    /*border-left: 1px solid #eee;
+  border-right: 1px solid #eee;*/
+}
+
+.active a {
+    color: #00BD9C !important;
+    background-color: #fff !important;
+}
+
+a:hover,
+a:link {
+    text-decoration: none;
+}
+
+.swiper-container {
+    width: 100%;
+    /*min-height: 630px;*/
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+
+/*.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {height: 64px;}*/
+
+.xiha_coach_all {
+    background: #f0f2f4;
+    height: 830px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.xiha_coach {
+    width: 1100px;
+    height: 830px;
+    position: relative;
+    overflow: hidden;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.xiha_coach_left {
+    float: left;
+    width: 470px;
+    top: 310px;
+    position: absolute;
+    left: 20px;
+}
+
+.xiha_coach_right {
+    float: left;
+    padding-top: 120px;
+    position: absolute;
+    right: 0px;
+}
+
+.xiha_jiakaodaren_all {
+    height: 400px;
+    width: 100%;
+    position: relative;
+}
+
+.xiha_jiakaodaren_div {
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    z-index: 9;
+    top: 0px;
+}
+
+.xiha_jiakaodaren_div p {
+    margin: 0px auto;
+    width: 1000px;
+}
+
+.youxiujiaolian_all {
+    width: 100%;
+    height: 750px;
+    background: #fff;
+    margin: 0px auto;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.youxiujiaolian_div {
+    width: 1100px;
+    position: relative;
+    margin: 0px auto;
+    padding-top: 70px;
+}
+
+.coach_list {
+    margin-left: 10px;
+    margin-top: 10px;
+    position: relative;
+    height: 200px;
+    width: 205px;
+    float: left;
+    overflow: hidden;
+}
+
+.coach_info {
+    background: #000;
+    opacity: 0.8;
+    width: 205px;
+    position: absolute;
+    top: 200px;
+    height: 100%;
+    text-align: center;
+}
+
+.anshishoufei_all {
+    height: 830px;
+    width: 100%;
+    background: #f0f2f4;
+    overflow: hidden;
+}
+
+.anshishoufei_div {
+    width: 1100px;
+    height: 100%;
+    position: relative;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+.anshishoufei_left {
+    position: absolute;
+    left: 0px;
+    bottom: -67px;
+}
+
+.anshishoufei_right {
+    position: absolute;
+    right: -45px;
+    bottom: 0px;
+}
+
+.anshishoufei_content {
+    position: absolute;
+    left: 270px;
+    width: 475px;
+    text-align: center;
+    margin: 0px auto;
+    padding-top: 100px;
+}
+
+.btn-xiha-default {
+    background: none;
+    width: 100px;
+    margin: 0px;
+    margin-left: -5px;
+    border: 0px;
+    color: #555;
+    border-radius: 0px;
+}
+
+.meihaoxueche_all {
+    height: 620px;
+    width: 100%;
+    background: #fff;
+}
+
+.meihaoxueche_div {
+    position: relative;
+    width: 1100px;
+    height: 100%;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.xuechetiyan_list_all {
+    margin: 0px auto;
+    width: 1100px;
+    height: 200px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.xuechetiyan_list {
+    width: 230px;
+    position: relative;
+    border-bottom: 6px solid #5cb85c;
+    float: left;
+    margin: 15px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+.xuechetiyan_list ul {
+    list-style: none;
+}
+
+.xuechetiyan_list ul a {
+    color: #8c8c8c;
+}
+
+.xuechetiyan_list hr {
+    margin-bottom: 15px;
+}
+
+.xuechetiyan_list_shadow {
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}
+
+.xiha_more {
+    position: absolute;
+    bottom: -5px;
+    width: 100%;
+    left: -1px;
+}
+
+
+/*.xuechetiyan_list_hover p {color: #e5e5e5;}*/
+
+.xuechetiyan_list_hover p span {
+    color: #e5e5e5 !important;
+}
+
+.xuechetiyan_list_hover ul a {
+    color: #e5e5e5;
+}
+
+.xuechetiyan_list_hover hr {
+    color: #e5e5e5;
+}
+
+.xuechetiyan_list_hover .xiha_more {
+    display: block !important;
+}
+
+.footer {
+    height: 300px;
+    width: 100%;
+    background: #222326;
+}
+
+.footer_div {
+    width: 1000px;
+    margin: 0px auto;
+    position: relative;
+    padding-top: 70px;
+}
+
+.footer_left {
+    width: 170px;
+    border-right: 1px solid #353538;
+    float: left;
+}
+
+.footer_left p {
+    color: #aaa;
+    font-size: 20px;
+}
+
+.footer_left ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.footer_left ul li {
+    margin-bottom: 5px;
+}
+
+.footer_left ul a {
+    color: #666;
+}
+
+.footer_mid {
+    width: 465px;
+    border-right: 1px solid #353538;
+    float: left;
+    padding-left: 100px;
+}
+
+.footer_mid p {
+    color: #aaa;
+    font-size: 20px;
+}
+
+.footer_mid ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.footer_mid ul li {
+    margin-bottom: 5px;
+    color: #666;
+    font-family: "Microsoft Yahei";
+}
+
+.footer_mid ul a {
+    color: #666;
+}
+
+.footer_right {
+    float: left;
+    padding-left: 100px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.xiha-coach-banner {
+    top: 0px;
+    left: 0px;
+    min-height: 540px;
+    position: absolute;
+    width: 100%;
+}
+
+.xiha_coach_download_all {
+    position: relative;
+    min-height: 540px;
+    width: 1120px;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.xiha_coach_download {
+    position: absolute;
+    margin: 0px auto;
+    right: 0px;
+    bottom: 0px;
+}
+
+.xiha_coach_download_left_btn {
+    float: left;
+}
+
+.xiha_coach_download_right_btn {
+    float: left;
+    margin-left: 20px;
+}
+
+.xiha-student-download-btn {
+    display: block;
+    border: none;
+    background: #034D7E;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    color: #fff !important;
+    line-height: 68px;
+    padding: 0px;
+    border-radius: 4px;
+    font-size: 18px;
+    width: 250px;
+    height: 70px;
+}
+
+.xiha-coach-download-btn {
+    display: block;
+    border: none;
+    background: #84a965;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    color: #fff !important;
+    line-height: 68px;
+    padding: 0px;
+    border-radius: 4px;
+    font-size: 18px;
+    width: 250px;
+    height: 70px;
+}
+
+.xiha-coach-download-iconfont {
+    font-size: 4rem;
+    color: #fff;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    background: #525550;
+    height: 70px;
+    display: block;
+    width: 70px;
+}
+
+.xiha-student-download-iconfont {
+    font-size: 4rem;
+    color: #fff;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    background: #032439;
+    height: 70px;
+    display: block;
+    width: 70px;
+}
+
+.xiha-coach-intro {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    border-bottom: 3px solid #e4e4e4;
+}
+
+.xiha-coach-intro-div {
+    width: 1100px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.xiha-coach-intro-list {
+    width: 300px;
+    margin: 10px 20px;
+}
+
+.xiha-coach-point {
+    background: #fff;
+    width: 100%;
+    position: relative;
+}
+
+.xiha-coach-point-div {
+    width: 1100px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.xiha-coach-point-list {
+    height: auto;
+    width: 100%;
+    border-bottom: 1px solid #E4E4E4;
+    margin-top: 40px;
+    padding-bottom: 100px;
+}
+
+.xiha-student-point {
+    background: #fff;
+    width: 100%;
+    position: relative;
+}
+
+.xiha-student-point-div {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.xiha-student-point-list {
+    background: #EEF1F2;
+    height: auto;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.xuecheliucheng {
+    width: 100%;
+    position: relative;
+    height: 500px;
+    background: #EEF1F2;
+}
+
+.xuecheliucheng-div {
+    width: 1450px;
+    margin: 0px auto;
+    text-align: center;
+    position: relative;
+    padding-top: 50px;
+}
+
+.xuecheliucheng-div>img {
+    margin: 0px -2px;
+}
+
+.xuecheliucheng-car {
+    position: absolute;
+    top: 291px;
+    left: 110px;
+}
+
+.xiha-aboutus-01 {
+    width: 100%;
+    position: relative;
+}
+
+.xiha-aboutus-div {
+    width: 1100px;
+    margin: 0px auto;
+    margin-bottom: 70px;
+}
+
+.xiha-aboutus-02 {
+    width: 100%;
+    height: 420px;
+    position: relative;
+}
+
+.xiha-aboutus-list-all {
+    width: 1100px;
+    height: auto;
+    margin: 0px auto;
+    position: relative;
+}
+
+.xiha-aboutus-list {
+    width: 33%;
+    float: left;
+    text-align: center;
+    margin-top: 60px;
+    position: relative;
+}
+
+.xiha-aboutus-list-div {
+    position: relative;
+    height: 133px;
+    width: 133px;
+    margin: 0px auto;
+}
+
+.xiha-aboutus-hover {
+    position: absolute;
+    top: -11px;
+    left: -11px;
+}
+
+.xiha-aboutus-fengcai-div {
+    position: relative;
+    width: 1100px;
+    height: 600px;
+}
+
+.xiha-aboutus-fengcai-div img {
+    position: absolute;
+}
+
+.hide {
+    display: none;
+}
+
+.xiha-help {
+    width: 100%;
+    position: relative;
+    padding-top: 60px;
+}
+
+.xiha-help-div {
+    width: 1100px;
+    margin: 0px auto;
+}
+
+.nav-tabs .active {
+    border-top: 3px solid #00BD9C;
+    border-left: 1px solid #00BD9C;
+    border-right: 1px solid #00BD9C;
+}
+
+.navbar-nav li {
+    cursor: pointer;
+}
+
+.navbar-nav .active {
+    border-top: 3px solid #00BD9C;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.navbar-nav .current {
+    border-bottom: 3px solid #00BD9C;
+}
+
+.nav-tabs>li>a {
+    margin: 0px;
+    border-radius: 0;
+}
+
+.xiha-help-student {
+    border-left: 3px solid #ddd;
+    width: 100%;
+    margin-left: 35px;
+    position: relative;
+}
+
+.xiha-help-student-q-list {
+    height: 160px;
+    left: -40px;
+    width: 100%;
+    line-height: 35px;
+    position: relative;
+}
+
+.xiha-help-no {
+    color: #666;
+    font-size: 20px;
+}
+
+.xiha-help-point {
+    display: inline-block;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    background: #00BD9C;
+    border: 2px solid #fff;
+}
+
+.xiha-help-student-q-content {
+    position: absolute;
+    height: 40px;
+    width: 95%;
+    top: 0px;
+    left: 60px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+}
+
+.xiha-help-title {
+    background: #00BD9C;
+    width: auto;
+    text-align: left;
+    height: 40px;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.panel.panel-info>.panel-heading {
+    background: #00BD9C;
+}
+
+.panel-title {
+    font-family: "微软雅黑";
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.panel-body {
+    color: #666;
+    font-family: "微软雅黑";
+    text-align: left;
+}
+
+.panel-info {
+    border-color: #00BD9C;
+}
+
+.xiha-news {
+    width: 100%;
+    position: relative;
+    margin-top: 50px;
+}
+
+.xiha-news-div {
+    width: 1100px;
+    margin: 0px auto;
+    position: relative;
+}
+
+.xiha-news-div .xiha-news-div-div {
+    width: 150px;
+    height: 250px;
+    float: left;
+}
+
+.xiha-news-div .xiha-news-div-div h3 {
+    text-align: center;
+    margin: 0px;
+    padding: 15px 0px;
+    color: #2bb2e9;
+    border-top: 3px solid #2bb2e9;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.xiha-news-div .xiha-news-div-div ul {
+    padding: 0px;
+    list-style: none;
+    border: 1px solid #ddd;
+}
+
+.xiha-news-div .xiha-news-div-div ul li {
+    padding: 20px;
+    margin: 0px 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.xiha-news-div .xiha-news-div-div ul li a {
+    font-size: 16px;
+}
+
+.news-list {
+    margin: 0px auto;
+    width: 1100px;
+    height: auto;
+    border: 1px solid #eee;
+    margin-bottom: 40px;
+}
+
+.news-list-div {
+    margin: 20px;
+    height: auto;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+.news-list-div .news-img {
+    width: 150px;
+    height: 100px;
+    float: left;
+    overflow: hidden;
+}
+
+.news-list-div .news-img img {
+    width: 150px;
+    height: 100px;
+}
+
+.news-list .news-content {
+    width: 620px;
+    float: left;
+    padding-left: 30px;
+}
+
+.news-list .news-content h3 {
+    padding: 0px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+.news-list .news-content h3 span {
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100px;
+    float: right;
+}
+
+.news-list .news-content .news-txt {
+    color: #999;
+    line-height: 25px;
+}
+
+.xiha-page {
+    margin: 10px auto !important;
+}
+
+.xiha-page .btn {
+    padding: 8px 20px;
+    color: #337ab7;
+    font-weight: bold;
+}
+
+.xiha-page .btn-raised {
+    padding: 8px 20px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: none !important;
+    background: #337ab7;
+}
+
+.article_content {
+    margin: 0px auto;
+}
+
+.article_content h3 {
+    text-align: center;
+    color: #555;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+    line-height: 35px;
+    font-size: 22px;
+}
+
+.article_content p.time {
+    text-align: center;
+    color: #999;
+}
+
+.article_content div.content {
+    text-align: left;
+    color: #666;
+    font-size: 1.6rem;
+    line-height: 30px;
+    padding: 40px 60px;
+}
+
+.xh-article-detail-next {
+    position: relative;
+    font-size: 2rem;
+    height: 100px;
+    margin-left: 50px;
+}
+
+.xh-article-detail-next .prev {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.xh-article-detail-next img {
+    width: 10px;
+    margin: 5px;
+}
+
+.xh-mouse {
+    width: 900px;
+    height: 300px;
+    border-bottom: 1px solid green;
+    margin: 0 auto
+}
+
+.xh-mouse-left {
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+    text-align: center;
+    border: 0px solid blue;
+    float: left
+}
+
+.xh-mouse-download {
+    width: 590px;
+    height: 300px;
+    border: 0px solid blue;
+    float: right;
+}
+
+.xh-mouse-download-one {
+    width: 500px;
+    height: 300px;
+    border: 0px solid red;
+    margin: 0 auto
+}
+
+.xh-mouse-download-sencond {
+    width: 500px;
+    height: 100px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    margin-top: 60px
+}
+
+.xh-mouse-download-detail {
+    margin: 10px 20px
+}
+
+.xh-mouse-download-done {
+    width: 500px;
+    height: 100px;
+}
+
+.xh-mouse-download-span {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 20px 0;
+    background: #FF8C00;
+    color: #fff;
+    font-size: 18px;
+}
+
+.xh-mouse-download-p {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin: 20px 20px;
+    color: #FF8C00;
+    font-size: 12px
+}
+
+.xh-mouse-desc {
+    width: 900px;
+    height: 200px;
+    border-top: 1px solid green;
+    margin: 0 auto
+}
+
+.xh-mouse-detail {
+    width: 800px;
+    height: 150px;
+    margin: 20px auto;
+    color: #bbb
+}

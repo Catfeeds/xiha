@@ -1,0 +1,484 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>广告订单管理</title>
+</head>
+<body>
+	<nav class="breadcrumb">
+		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>订单管理<span class="c-gray en">&gt;</span> 广告订单管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	</nav>
+  	<form method="post" action="{: U('Ads/searchAdsOrders')}" name="search">
+		<div class="pd-20">
+			<div class=""> 
+				<label for="ads_id">按广告 </label>
+				<select class="" name="ads_id" id="ads_id" style="width:125px;height:30px">                
+				    <option style="" value="" >--不限广告--</option>
+				    <foreach name="adsInfo" item="ads">
+				    	<option style="" value="{$ads.id}" <if condition = "$ads.id eq $ads_id">selected</if>>{$ads.title}</option>
+				    </foreach>
+				</select> 
+				<label for="search_name">按设备类型 </label>
+			 	<select class="" name="device" id="device" style="width:125px;height:30px">                
+				    <option style="" value="" >--不限类型--</option>
+				    <option style="" value="1" <if condition = "$device eq '1'">selected</if>>苹果</option>
+				    <option style="" value="2" <if condition = "$device eq '2'">selected</if>>安卓</option>
+				    <option style="" value="1,2" <if condition = "$device eq '1,2'">selected</if>>苹果|安卓</option>
+				</select> 
+				<label for="search_name">按支付方式 </label>
+				<select class="" name="pay_type" id="pay_type" style="width:125px;height:30px">                
+				    <option style="" value="" >--不限方式--</option>
+				    <option style="" value="1" <if condition = "$pay_type eq 1">selected</if>>支付宝支付</option>
+				    <option style="" value="2" <if condition = "$pay_type eq 2">selected</if>>线下支付</option>
+				    <option style="" value="3" <if condition = "$pay_type eq 3">selected</if>>微信支付</option>
+				    <option style="" value="4" <if condition = "$pay_type eq 4">selected</if>>银联支付</option>
+				</select> 
+				<label for="search_name">按订单状态 </label>
+				<select class="" name="order_status" id="order_status" style="width:125px;height:30px">                
+				    <option style="" value="" >--不限状态--</option>
+				    <option style="" value="1002" <if condition = "$order_status eq 1002">selected</if>>已付款</option>
+				    <option style="" value="1003" <if condition = "$order_status eq 1003">selected</if>>未付款</option>
+				    <option style="" value="1005" <if condition = "$order_status eq 1005">selected</if>>已取消</option>
+				    <option style="" value="1006" <if condition = "$order_status eq 1006">selected</if>>退款中</option>
+				    <if condition="$school_id eq 0">
+				    	<option style="" value="1010" <if condition = "$order_status eq 1010">selected</if>>已删除</option>
+		    		</if>
+				</select> 
+				<!-- <label for="search_name">按折扣状态 </label>
+				<select class="" name="is_promote" id="is_promote" style="width:125px;height:30px">                
+				    <option style="" value="" >--不限状态--</option>
+				    <option style="color:#C71585" value="1" <if condition = "$is_promote eq 1">selected</if>>是</option>
+				    <option style="color:blue" value="0" <if condition = "$is_promote eq 0">selected</if>>否</option>
+				</select> -->
+				<label for="search_info">按关键词 </label>
+				<select class="" name="search_info" id="search_info" style="width:125px;height:30px">				   
+				    <option style="" value="" >--不限关键词--</option>
+				    <option style="" value="id" <if condition = "$search_info eq id">selected</if>>ID</option>
+				    <option style="" value="order_no" <if condition = "$search_info eq order_no">selected</if>>订单号</option>
+				    <option style="" value="unique_trade_no" <if condition = "$search_info eq unique_trade_no">selected</if>>交易号</option>
+				    <option style="" value="buyer_name" <if condition = "$search_info eq buyer_name">selected</if>>买家名称</option>
+				</select>    
+                <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" placeholder="ID，订单号，交易号，买家名称" style="width:220px;" value="{$s_keyword}"/>   
+				<input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+			</div>
+			<br/>
+			<div class="cl pd-5 bg-1 bk-gray"> 
+				<a href="javascript:;" onclick="addAdsOrders('添加广告订单','{: U('Ads/addAdsOrders')}')" class="btn btn-primary radius">
+				<i class="Hui-iconfont">&#xe600;</i> 添加订单</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> 
+			</div>
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-hover table-bg table-sort">
+					<thead>	
+						<tr class="text-c">
+							<th width="25"><input type="checkbox" name="" value=""></th>
+							<th width="30">ID</th>
+							<th width="70">广告</th>
+							<!-- <th width="70">广告标题</th> -->
+							<th width="70">买家名称</th>
+							<th width="60">
+								订单号
+								<span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多订单信息"></span>
+							</th>
+							<th width="70">
+	                            交易号
+								<span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="交易号是在线支付平台上面生成的，微信，支付宝，银联等。"></span>
+	                        </th>
+							<th width="60">资源类型</th>
+							<th width="60">资源url</th>
+							<th width="60">设备类型</th>
+							<th width="60">支付价格</th>
+							<th width="60">支付方式</th>
+							<th width="60">打折？</th>
+							<th width="80">过期时间</th>
+							<th width="60">订单状态</th>
+							<th width="60">设置</th>
+							<!-- <th width="80">添加时间</th> -->
+							<th width="50">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					 	<foreach name="adsorders" item="obj">
+							<tr class="text-c signup_list" module-data="{$obj.id}">
+								<td class="va-m"><input type="checkbox" value="1" name="" ></td>
+								<td class="va-m">{$obj.id}</td>
+								<td class="va-m">{$obj.title}</td>
+								<!-- <td class="va-m">{$obj.ads_title}</td> -->
+								<td class="va-m">{$obj.buyer_name}</td>
+								<td class="va-m">
+									<a href="javascript:;" class="orderdetail" id="signuphover{$obj.id}" style="color:#09c">
+										{$obj.order_no}
+									</a>
+								</td>
+								<td class="va-m">{$obj.unique_trade_no|substr=-6,6}</td>
+								<td class="va-m">
+									<switch name="obj.resource_type">
+										<case value="1"><span class="btn btn-secondary-outline radius" style="display:inline">图片</span></case>
+										<case value="2"><span class="btn btn-warning-outline radius" style="display:inline">视频</span></case>
+		                                <default /><case value=""><span class="btn btn-default-outline disabled radius" style="display:inline">其它</span></case>
+									</switch>
+								</td>
+								<if condition="$obj.resource_url neq ''">
+									<td class="va-m module" >
+										<a href="javascript:;" class="resourceUrl" id="signuphover{$obj.id}" style="color:#09c">
+											<span class="va-m" style="color:yellowgreen;">
+												预览
+											</span>
+										</a>
+										<!-- <a title="预览" href="javascript:;" module-id="$obj.id" module-url="{$obj.resource_url}"  onclick="show('预览','{: U('Ads/show')}?id={$obj.id}&ads_id={$obj.ads_id}&resource_url={$obj.resource_url}&resource_type={$obj.resource_type}','4','','510')" class="ml-5 text-l" style="text-decoration:none">
+											<span class="va-m" style="color:yellowgreen;">
+												预览
+											</span>
+										</a>  -->
+									</td>
+								<else/>
+									<td class="va-m">暂无</td>
+								</if>
+								<td class="va-m">
+									<switch name="obj.device">
+										<case value="1"><span class="btn btn-secondary-outline radius" style="display:inline">苹果</span></case>
+										<case value="2"><span class="btn btn-warning-outline radius" style="display:inline">安卓</span></case>
+										<case value="1,2"><span class="btn btn-danger-outline radius" style="display:inline">苹果|安卓</span></case>
+		                                <default /><case value=""><span class="btn btn-default-outline disabled radius" style="display:inline">其它设备</span></case>
+									</switch>
+								</td>
+								<td class="va-m">￥{$obj.final_price}元</td>
+								<td class="va-m">
+									<switch name="obj.pay_type">
+										<case value="1"><span class="btn btn-secondary-outline radius" style="display:inline">支付宝支付</span></case>
+										<case value="2"><span class="btn btn-warning-outline radius" style="display:inline">线下支付</span></case>
+										<case value="3"><span class="btn btn-success-outline radius" style="display:inline">微信支付</span></case>
+										<case value="4"><span class="btn btn-primary-outline radius" style="display:inline">银联支付</span></case>
+		                                <default /><case value="4"><span class="btn btn-default-outline disabled radius" style="display:inline">其它方式</span></case>
+									</switch>
+								</td>
+								<td class="va-m setPromoteStatus">
+									<switch name="obj.is_promote">
+									    <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius"> 是 </span></case>
+									    <case value="0"><span data-id="{$obj.id}" title="0" class="btn btn-danger size-S radius"> 否 </span></case>
+									    <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">否</span>
+									</switch>
+		                        </td>
+								<td class="va-m">{$obj.over_time}</td>
+								<td class="va-m">
+									<switch name="obj.order_status">
+										<case value="1002"><span class="btn btn-success" style="display:inline">已付款</span></case>
+										<case value="1003"><span class="btn btn-default" style="display:inline">未付款</span></case>
+										<case value="1005"><span class="btn btn-danger" style="display:inline">已取消</span></case>
+										<case value="1006"><span class="btn btn-warning" style="display:inline">退款中</span></case>
+										<!-- <case value="1010"><span class="btn btn-danger" style="display:inline">已删除</span></case> -->
+										<default /><span class="btn btn-default" style="display:inline">其它状态</span>
+									</switch>
+								</td>
+								<!-- <td class="va-m">{$obj.addtime}</td> -->
+								<td class="va-m td-manage">
+									<div class="button-group border-blue">
+										<button type="button" class="button button-little text-blue dropdown-toggle" >
+											设置 <span class="downward"></span>
+										</button>
+										<ul class="drop-menu" style="min-width:85px;margin-left:-20px">
+											<li><a href="javascript:;" onclick="javascript:setAdsOrdersStatus({$obj.id}, 1002, {$obj.order_status}, this)">已付款</a></li>
+											<li><a href="javascript:;" onclick="javascript:setAdsOrdersStatus({$obj.id}, 1003, {$obj.order_status}, this)">未付款</a></li>
+											<li><a href="javascript:;" onclick="javascript:setAdsOrdersStatus({$obj.id}, 1005, {$obj.order_status}, this)">已取消</a></li>
+											<li><a href="javascript:;" onclick="javascript:setAdsOrdersStatus({$obj.id}, 1006, {$obj.order_status}, this)">退款中</a></li>
+										</ul>
+									</div>
+
+								</td>
+								<td class="va-m td-manage">				
+									<a title="删除" href="javascript:;" onclick="member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+									<a title="编辑" href="javascript:;" onclick="member_edit('编辑广告订单','{: U('Ads/editAdsOrders')}?id={$obj.id}&ads_id={$obj.ads_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+								</td>
+								<td class="orderinfo" style="display:none">
+									<table class="table table-border table-bordered table-hover" style="color:#333;"> 
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">订单号</td>
+											<td class="red text-red" colspan=3>{$obj.order_no}</td>
+										</tr>
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">广告类型</td> 
+											<td>{$obj.intro}</td> 
+											<td class="blue text-center" style="font-weight:bold">广告标题</td> 
+											<td>{$obj.ads_title}</td>
+										</tr>
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">交易号</td>
+											<td class="red text-red" colspan=3>{$obj.unique_trade_no}</td>
+										</tr>
+										<tr width="100%" > 
+											<td class="blue text-center" style="font-weight:bold">买家名称</td> 
+											<td>{$obj.buyer_name}</td> 
+											<td class="blue text-center" style="font-weight:bold">买家号码</td> 
+											<td>{$obj.buyer_phone}</td>
+										</tr>
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">轮播时间</td>
+											<td class="red text-red" colspan=3>{$obj.loop_time}秒</td>
+										</tr>	
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">原始价格</td> 
+											<td>￥{$obj.original_price}元</td>
+											<td class="blue text-center" style="font-weight:bold">最终价格</td> 
+											<td>￥{$obj.final_price}元</td>
+										</tr>
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">广告的介绍</td>
+											<if condition="$obj.intro neq ''">
+												<td colspan=3 class="red text-red">{$obj.intro}</td>
+											<else/>
+												<td colspan=3 class="red text-red">--</td>
+											</if>
+										</tr> 
+										<tr>
+											<td class="blue text-center" style="font-weight:bold">添加时间</td>
+											<td>{$obj.addtime}</td>
+											<td class="blue text-center" style="font-weight:bold">过期时间</td>
+											<td >{$obj.over_time}</td>
+										</tr>
+									</table>
+				                </td>
+				                <td class="imgView va-m" style="display:none">
+									<div style="text-align:center;margin: 20px 20px">
+										<img src="{$obj.img_url}"  style="width:300px;">
+									<div>
+				                </td>
+							</tr>
+						</foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="page pagination" style="display:inline;">
+				<empty name="count">
+					<br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+				</empty>
+				<p>{$page}</p>
+			</div>
+		</div>
+	</form>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script> 
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/layerv2/layer.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>  -->
+<script type="text/javascript">
+	// 设置订单的状态
+	function setAdsOrdersStatus (id, status, original_status, obj) {
+		if (id == '' || status == '' || original_status == '') {
+			layer.msg('参数错误', {icon: 2});
+			return false;
+		}
+		$.ajax({
+			type : 'POST',
+			url : '{:U("ads/setAdsOrdersStatus")}',
+			data : {'id' : id, 'status' : status, 'original_status' : original_status},
+			dataType : "JSON",
+			success : function (data) {
+				if (data.code == 200) {
+					location.reload();
+				} else {
+					layer.msg(data.msg, {icon : 2, time : 1000});
+				}
+			},
+			error : function () {
+				layer.msg('网络错误，请检查网络！', {icon : 2, time : 1000});
+			}
+
+		})
+
+	}
+
+	// 鼠标悬浮图片显出事件
+    $('.resourceUrl').on({
+		'mouseenter':function() {
+			var id = $(this).attr('id');
+			var imgView = $(this).parents('tr.signup_list').find('td.imgView').html();
+			layer.tips(imgView, '#'+id, {
+			    tips: [1, '#f6f6f6'],
+			    time:0,
+			    area: '400px'
+			});
+		},
+
+		'mouseleave':function() {
+			var index = layer.tips();
+			layer.close(index);  
+		},
+
+		'click':function() {
+			var imgView = $(this).parents('tr.signup_list').find('td.imgView').html();
+			layer.open({
+			    type: 1,
+			    title:'轮播图展示',
+			    area: '500px',
+			    shade: [0.3, '#333'],
+			    shadeClose: true,
+			    moveType:1,
+			    shift:0,
+			    content: imgView
+			});
+		}
+  	})
+	/*删除-广告资源*/
+	function del_resource_url(obj, id){
+		var resourceurl = $('.module').find('a').attr('module-url');
+		var resourceurlall = $('.module').find('a').attr('module-url-all');
+		layer.confirm('确认要删除吗？',function(index){
+			$.ajax({
+				type:"POST",
+				url:"__URL__/delResourceUrl",
+				data:{'id':id, 'resource_url':resourceurl, 'resource_url_all':resourceurlall},
+				dataType:'JSON',
+				success:function(data) {
+					if(data.code == 200) {
+						$(obj).parents("tr").remove();
+						layer.msg('删除成功!',{icon:1,time:1000});
+						location.reload();
+					} else if (data.code == 400) {
+						layer.msg('删除失败',{icon:2,time:1000});
+	                } else {
+						layer.msg('操作故障!',{icon:2,time:1000});
+	                }
+				},
+				error:function() {
+					layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+				}
+			});
+		});
+	}
+
+	// 设置打折的状态
+	$('.setPromoteStatus span').click(function() {
+		    var sid = $(this).attr('data-id');
+		    var status = $(this).attr('title');
+		    switch(status){
+	          case '1': status = 0; break;
+	          case '0': status = 1; break;
+		    }
+	     $.ajax({
+	        type:"POST",
+	        url:"{:U('Ads/setPromoteStatus')}",
+	        data: {'id':sid, 'status':status},
+	        dataType: "JSON",
+	        success: function(data){
+	        	if(data.code == 200){
+	               location.reload();
+	           	} else {
+	               	layer.msg(data.msg,{icon:2,time:1000});
+	           	}
+	         },
+	         error: function(){
+	         	layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+	         }
+	     })
+	});
+	// 鼠标订单事件
+    $('.orderdetail').on({
+		'mouseenter':function() {
+			var id = $(this).attr('id');
+			var orderinfo = $(this).parents('tr.signup_list').find('td.orderinfo').html();
+			layer.tips(orderinfo, '#'+id, {
+			    tips: [1, '#fff'],
+			    time:0,
+			    area: '500px'
+			});
+		},
+
+		'mouseleave':function() {
+			var index = layer.tips();
+			layer.close(index);  
+		},
+
+		'click':function() {
+			var orderinfo = $(this).parents('tr.signup_list').find('td.orderinfo').html();
+			layer.open({
+			    type: 1,
+			    title:'订单详情',
+			    area: '500px',
+			    shade: [0.3, '#333'],
+			    shadeClose: true,
+			    moveType:1,
+			    shift:0,
+			    content: orderinfo
+			});
+		}
+  	})
+/*用户-添加*/
+function addAdsOrders(title,url){
+	// layer_show(title,url);
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+/*图片预览*/
+function show(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+
+}
+
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type:"POST",
+			url:"__URL__/delAdsOrders",
+			data:{'id':id},
+			dataType:'JSON',
+			success:function(data) {
+				if(data.code == 200) {
+					$(obj).parents("tr").remove();
+					layer.msg('删除成功!',{icon:1,time:1000});
+				} else if (data.code == 400) {
+					layer.msg('删除失败',{icon:2,time:1000});
+                } else {
+					layer.msg('操作故障!',{icon:2,time:1000});
+                }
+			},
+			error:function() {
+				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+			}
+		});
+	});
+}
+
+</script> 
+</body>
+</html>

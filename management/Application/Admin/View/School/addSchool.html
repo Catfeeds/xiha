@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/umeditor/themes/default/css/umeditor.css">
+
+    <!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>添加驾校</title>
+</head>
+
+<body>
+    <div class="pd-20">
+        <div class="float-left" style="width:100%">
+            <form action="{: U('School/addSchool')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addSchool_form">
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>驾校名称</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="如：八一驾校" id="school_name" name="school_name" datatype="*1-16" nullmsg="驾校名称不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>法人代表</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写姓名" id="corporate_id" name="corporate" datatype="*1-16" nullmsg="法人代表不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>法人手机</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写手机号码" id="user_phone" name="corporate_mobile" datatype="*1-16" nullmsg="法人手机号不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">驾校固话</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写驾校的固定号码" id="corporate_tel" name="corporate_tel" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">组织机构代码</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写组织机构" id="institution" name="institution" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span style="color:red">*</span>收费标准</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="如：4000.00" id="charge" name="base_charge" datatype="*1-16" nullmsg="收费标准不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">上浮最高比例</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写上浮的最高比例" id="proportion" name="proportion" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">收款银行名称</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="如：中国银行" id="bankname" name="bankname" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">收款银行账号</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写银行账户" id="bankcard" name="bankcard" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">银行账户</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="请填写银行账户" id="bankaccount" name="bank_account" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1">展示状态</label>
+                    <div class="formControls col-3 btn-group">
+                        <label class="btn radius btn-primary-outline radio show"><input name="show" value="1" type="radio"  style="display:none;">展示</label>
+                        <label class="btn radius btn-success radio show"><input name="show" value="2" type="radio" checked style="display:none;">不展示</label>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>驾校性质</label>
+                    <div class="formControls col-2">
+                        <select class="select" style="width:100%;height:30px;" datatype="*1-32" nullmsg="驾校性质不能为空" name="nature" id="nature"> 
+                            <option value="">请选择驾校性质</option> 
+                            <option value="1">一类驾校</option> 
+                            <option value="2">二类驾校</option> 
+                            <option value="3">三类驾校</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>品牌标识</label>
+                    <div class="formControls col-2">
+                        <select class="select" style="width:100%;height:30px;" datatype="*1-32" nullmsg="品牌标识不能为空" name="brand"> 
+                            <option value="">请选择品牌标识</option> 
+                            <option value="1">普通驾校</option> 
+                            <option value="2">品牌驾校</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>设置经度</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="如：116.357413" id="location_x" name="location_x" datatype="*1-20" nullmsg="驾校位置经度不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>设置纬度</label>
+                    <div class="formControls col-2">
+                        <input type="text" class="input-text" value="" placeholder="如：40.007402" id="location_y" name="location_y" datatype="*1-20" nullmsg="驾校位置纬度不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1" for="address"><span class="c-red">*</span>地址</label>
+                    <div class="formControls col-1">
+                        <select class="select" name="province" id="province" style="height:30px; width:128px;">
+                            <option value="">请选择省份</option>
+                            <foreach name="province_list" item="pro">
+                                <option value="{$pro.provinceid}">{$pro.province}</option>
+                            </foreach>
+                        </select>
+                    </div>
+                    <div class="formControls col-1">
+                        <select class="select" name="city" id="city" style="height:30px; width:128px;">
+                            <option value="">请选择城市</option>           
+                        </select>
+                    </div>
+                    <div class="formControls col-1 ">
+                        <select class="select" name="area" id="area" style="height:30px; width:128px;">
+                            <option value="">请选择区域</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>详细地址</label>
+                    <div class="formControls col-3">
+                        <input type="text" class="input-text" value="" placeholder="请填写详细地址" id="address" name="address" datatype="*2-30" nullmsg="详细地址不能为空" />
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1 text-r" for="license_img">营业执照</label>
+                    <div class="formControls col-10">
+                        <span class="btn-upload form-group">
+                            <input class="input-text upload-url col-3" type="text" name="license_img" id="license_img" readonly>
+                            <a href="javascript:void();" class="btn btn-primary"><i class="Hui-iconfont">&#xe646;</i> 浏览图片</a>
+                            <input type="file" multiple name="license_img" class="input-file" >
+                        </span>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1 text-r" for="s_thumb">驾校头像</label>
+                    <div class="formControls col-10">
+                        <span class="btn-upload form-group">
+                            <input class="input-text upload-url col-3" type="text" name="s_thumb" id="s_thumb" readonly>
+                            <a href="javascript:void();" class="btn btn-primary"><i class="Hui-iconfont">&#xe646;</i> 浏览图片</a>
+                            <input type="file" multiple name="s_thumb" class="input-file" >
+                        </span>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-1"><span class="c-red">*</span>驾校简介</label>
+                    <div class="formControls col-4">
+                        <textarea name="school_intro" style="height:500px;width:450px;" id="school_intro" cols="" rows="" class="textarea" placeholder="说点什么...最少输入1个字符" datatype="*1-200" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,1000)"></textarea>
+                    </div>
+                    <div class="row cl"><label class="col-8 col-offset-4"><spna style ="color:red">最多200个字符</span></label></div>
+                </div>
+                <br/>
+                <div class="row cl">
+                    <label class="form-label col-1">班制说明</label>
+                    <div class="formControls col-4 ">
+                        <textarea name="shifts_intro" id="shifts_intro" style="height:500px;width:450px;" cols="" rows="" class="textarea" placeholder="说点什么...最少输入10个字符" dragonfly="true" onKeyUp="textarealength(this,1000)"></textarea>
+                        <!-- <p class="textarea-numberbar"><em class="textarea-length">0</em>1000</p> -->
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="col-10 col-offset-1">
+                        <button class="btn btn-primary radius" id="submitOne" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+                        <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+            <div class="float-left" style="width:800px; height:100%; position:fixed; top:0px; right:0px;">
+                <iframe src="http://api.map.baidu.com/lbsapi/getpoint/index.html" frameborder="0" width="100%" height="600px"></iframe>
+                <p class="text-red text-big" style="margin-top:10px;"><i class="icon-exclamation-circle"></i> 搜索驾校位置，可获取坐标</p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/jquery.provincesCity.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/assets/umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/assets/umeditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/umeditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script type="text/javascript">
+        // 检测手机
+        $('#user_phone').blur(function() {
+            var user_phone = $('#user_phone').val();
+            if (user_phone.trim() == '') {
+                layer.msg('请填写手机号!', {
+                    icon: 6
+                });
+                return false;
+            }
+            if (!parseInt(user_phone)) {
+                layer.msg('手机号格式错误!', {
+                    icon: 6
+                });
+                return false;
+            } else if (!phonevalidate(user_phone)) {
+                layer.msg('手机号格式错误!', {
+                    icon: 6
+                });
+                return false;
+            }
+        })
+
+        $('#submitOne').click(function() {
+            var user_phone = $('#user_phone').val();
+            if (user_phone.trim() == '') {
+                layer.msg('请填写手机号!', {
+                    icon: 6
+                });
+                return false;
+            }
+            if (!parseInt(user_phone)) {
+                layer.msg('手机号格式错误!', {
+                    icon: 6
+                });
+                return false;
+            } else if (!phonevalidate(user_phone)) {
+                layer.msg('手机号格式错误!', {
+                    icon: 6
+                });
+                return false;
+            }
+            var province = $('#province').val();
+            var city = $('#city').val();
+            if (province.trim() == '') {
+                layer.msg('请选择地址!', {
+                    icon: 6
+                });
+                return false;
+            }
+            if (city.trim() == '') {
+                layer.msg('请选择城市!', {
+                    icon: 6
+                });
+                return false;
+            }
+        })
+
+        // 手机号验证
+        function phonevalidate(phone) {
+            var phone_reg = /^0?1[3|4|5|8|7|9][0-9]\d{8}$/;
+            var tel_reg = new RegExp(/^\d{3}-\d{7,8}|\d{4}-\d{7,8}$/);
+            if (!phone_reg.test(phone) && !tel_reg.test(phone)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        // 加载编辑器
+        $(function() {
+            var um = UM.getEditor('school_intro');
+            var _um = UM.getEditor('shifts_intro');
+        });
+
+        // 表单验证
+        $(function() {
+                $('#addSchool_form').Validform({
+                    tiptype: 2,
+                    callback: function(form) {
+                        form[0].submit();
+                    }
+                });
+            })
+            /*
+             * 展示与不展示
+             * 点击切换效果
+             */
+        $('.btn-group .show input').click(function() {
+            var current = $(this).parent();
+            var siblings = $(this).parent().siblings();
+            current.removeClass("btn-primary-outline").addClass("btn-success");
+            siblings.removeClass("btn-success").addClass("btn-primary-outline");
+        });
+
+        //城市联动
+        $('#province').blur(function() {
+            var province_id = $(this).val();
+            $('#city').load("__URL__/getCity/province_id/" + province_id);
+        });
+        $('#city').blur(function() {
+            var city_id = $(this).val();
+            $('#area').load("__URL__/getArea/city_id/" + city_id);
+            var city_html = $(this).find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            $('#address').val(province_html + city_html);
+        });
+        $('#area').blur(function() {
+            var city_html = $('#city').find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            var area_html = $(this).find('option:selected').html();
+            $('#address').val(province_html + city_html + area_html);
+        });
+    </script>
+</body>
+
+</html>

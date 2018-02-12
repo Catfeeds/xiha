@@ -1,0 +1,146 @@
+<!--{include file="library/header.lbi"}-->
+<div class="panel-head"><strong>驾校时间配置</strong></div>
+        <form method="post" class="form-x" style="width:100%"  >
+            <!-- 驾校时间的配置 -->
+            <div class="form-group" style="margin-top:15px;">   
+                <div class="field" style="width:100%;">
+                    <div class="tab">                        
+                        <div class="clearfix"></div>
+                        <!-- 时间配置 -->
+                        <div class="tab-body time_config">  
+                            <div id="time_config_ids_arr"> 
+                                <table class="table" >                                   
+                                    <tr>                                        
+                                        <th width="50">
+                                            <input type="button" class="button button-small checkall" name="checkall" checkfor="time_config_id[]" value="全选" />
+                                        </th>                                    
+                                        <th width="100">开始时间</th>
+                                        <th width="100">结束时间</th>
+                                        <th width="100">牌照</th>
+                                        <th width="100">科目</th>
+                                        <th width="100">单价</th>                                                                                
+                                            <button class="button bg-main" onclick="javascript:gettimeconfig(this);" type="button">保存</button>
+                                        </th>
+                                    </tr> 
+                                    <!--{foreach $school_time_config as $k => $v}-->
+                                        <tr title="<!--{$v['id']}-->" <!--{if $v['is_set'] == 2}-->style="background:#FCFAE8"<!--{/if}--> >                                            
+                                           <td><input <!--{if $v['is_set'] == 2}-->checked<!--{/if}--> type="checkbox" name="time_config_id[]" id="checkbox_<!--{$k+1}-->" value="<!--{$v['id']}-->" />
+                                           </td>                                           
+                                            <td><span><!--{$v['start_time']}-->:00</span></td>
+                                            <td><span><!--{$v['end_time']}-->:00</span></td>
+                                            <td>
+                                                <select name="license_no[]" class="input license_check" id="license_name_<!--{$k+1}-->"> 
+                                                    <option value="C1">C1</option>
+                                                    <option value="C2">C2</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="subjects[]" class="input subject_check" id="lesson_name_<!--{$k+1}-->">
+                                                    <option value="科目二">科目二</option>
+                                                    <option value="科目三">科目三</option>                                                   
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="input single_price_<!--{$k+1}-->" id="single_price_<!--{$k+1}-->" style="text-align:center" size="1" value="<!--{$v['price']}-->" name="single_price[]">
+                                            </td> 
+                                            <input type="hidden" value="<!--{$v['start_time']}-->" id="start_time_<!--{$k+1}-->">
+                                            <input type="hidden" value="<!--{$v['end_time']}-->" id="end_time_<!--{$k+1}-->">                          
+                                        </tr>
+                                    <!--{/foreach}-->
+                                </table> 
+                             </div>
+
+                        </div> 
+                    </div>                   
+                </div>
+            </div>
+        </form>
+        
+        <script>
+            $(function() {
+                $('.input, .license_check').on('change', function() {
+                     // $(this).find('option').removeAttr();
+                    var selected = $(this).val();
+                    // alert(selected)
+                    $('.license_check').find('option').attr('selected', true);
+
+                });
+            });
+             $(function() {
+                $('.subject_check').on('change', function() {
+                     // $(this).find('option').removeAttr();
+                    var selected = $(this).val();
+                    // alert(selected)
+                    $('.subject_check').find('option').attr('selected', true);
+
+                });
+            });
+
+        </script>
+        <script>
+         // 选择时间配置
+            function gettimeconfig(obj) {
+                var time_config_ids_arr = $('#time_config_ids_arr').find('input[type="checkbox"]:checked').val();
+                // alert(time_config_ids_arr);
+                if(time_config_ids_arr == undefined) {
+                    alert('请选择时间段');
+                    return false;
+                }
+
+                if(window.confirm('你确定保存吗？')) {
+
+                    var price = new Array();
+                    var license_no = new Array();
+                    var subjects_config = new Array();
+                    var time_config_ids = new Array();
+                    var start_time = new Array();
+                    var end_time = new Array();
+
+                    $("#time_config_ids_arr input[type='checkbox']:checked").each(function(index, t) {
+                        if(t.value != undefined) {
+                            price[t.value] = $('#single_price_'+t.value).val();
+                            license_no[t.value] = $('#license_name_'+t.value).find('option:selected').val();
+                            subjects_config[t.value] = $('#lesson_name_'+t.value).find('option:selected').val();
+                            time_config_ids[index+1] = t.value;
+                            start_time[t.value] = $('#start_time_'+t.value).val();
+                            end_time[t.value] = $('#end_time_'+t.value).val();
+                        }
+                    });
+                    var btnhtml = $(obj).html();
+
+                    $.ajax({
+                        type:"POST",
+                        url:"index.php?action=school&op=timeconfig",
+                        dataType:'JSON',
+                        beforeSend:function() {
+                            $(obj).html('正在保存中...');
+                        },
+                        data:{
+                            "price":price,
+                            "license_no":license_no,
+                            "subjects":subjects_config,
+                            "id":time_config_ids,
+                            "start_time":start_time,
+                            "end_time":end_time
+                        },
+                        dataType:"JSON",
+                        success:function(data) {
+                            $(obj).html(btnhtml);
+                            if(data.code == 1) {
+                                 alert('保存成功！');                       
+                                 location.reload();
+                            } else if(data.code == 0) {
+                                alert('保存失败！');
+                            }
+                        },
+                        error:function() {
+                            alert('网络错误，保存失败');
+                        }
+                    })
+                } else {
+                    return false;
+                }
+            }
+        </script>
+        
+<!--{include file="library/footer.lbi"}-->

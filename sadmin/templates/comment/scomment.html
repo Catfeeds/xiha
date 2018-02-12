@@ -1,0 +1,150 @@
+<!--{include file="library/header.lbi"}-->
+    <form  action="index.php?action=comment&op=searchscom" method="post" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+        	<div class="panel-head" style="position:fixed; top:0px; width:100%; margin-bottom:40px;"><strong>评价驾校</strong></div>
+            <div class="padding form-x border-bottom search-position" style="top:40px;">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="check_id[]" value="全选" />
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+                <select class="input input-auto" name="conditiontype" id="search_condition">                  
+                    <option value="" >选择评价星级</option>
+                        
+                    <option style="color:red" value="1">★</option>
+                    <option style="color:red" value="2">★★</option>
+                    <option style="color:red" value="3">★★★</option>
+                    <option style="color:red" value="4">★★★★</option> 
+                    <option style="color:red" value="5">★★★★★</option> 
+                </select>             
+                <input type="submit" id="searchscom" class="button button-small border-blue" value="搜索" />
+            </div>
+             <table class="table table-hover" style="margin-top:95px;">
+            	<tr>
+                    <th width="50">选择</th>
+                    <th width="50">ID</th>
+                    <th width="100">学员昵称</th>
+                    <th width="100">评价驾校星级</th>                   
+                    <th width="400">驾校评价</th>
+                    <th width="150">评价时间</th>
+                    <th width="230">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                <!--{if $school_comment_list}-->
+                <!--{foreach $school_comment_list as $key => $value}-->
+                <tr class="commentlist">
+                    <td><input type="checkbox" name="check_id[]" id="checkbox_<!--{$key}-->" class="id_check" value="<!--{$value.id}-->" />
+                    </td>
+                    <td><!--{$value.id}--></td>
+                    <td><!--{if $value.s_username == ''}-->嘻哈学员<!--{else}--><!--{$value.s_username}--><!--{/if}--></td>
+                    <td>
+                        <!--{section name=loop loop=$value.school_star}-->
+                        <span class="icon-star text-small text-red"></span>
+                        <!--{/section}-->
+                    </td>
+                    <td><!--{$value.school_content}--></td>
+                    <td><!--{$value.addtime}--></td>
+                    <td>                        
+                        <a class="button border-yellow button-little" href="#" onclick="delscom(<!--{$value.id}-->,this)">删除</a>
+                    </td>
+                </tr>
+                <!-- 弹出框 -->
+                <!--{/foreach}-->
+                <!--{else}-->
+                    <tr>
+                        <td colspan=5>暂无评价</td>
+                    </tr>
+                <!--{/if}-->
+            </table>
+            <div id="showdialog">
+    
+            </div>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+ 
+    //删除驾校评价信息
+    function delscom(id,obj) {
+        if(window.confirm('你确定删除吗？')){
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=comment&op=delscom",
+                // dataType:'JSON',
+                    data:{'id':id},
+                    success:function(data) {
+                        if(data == 1) {
+                            $(obj).parents('tr').remove();
+                        }
+                    }
+            })
+        }else{
+            return false;
+        }
+    }
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            layer.msg('请选择需要删除的评价！',{icon:0, offset:['0px','40%'], time:1500});        
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                if($('#checkbox_'+index+':checked').val() != undefined) {
+                    check_id += $("#checkbox_"+index+':checked').val()+',';
+                }
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            // alert(check_id);
+            // return false;
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=comment&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    if(data == 1) {
+                         //$('.school_check:checked').parents('.memberlist').remove();
+                    }
+                    location.reload();
+                    // alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    
+    // 搜索检测
+    function searchcheck() {
+      var type = $('#search_condition').find('option:selected').val();
+      if (type.trim() == '') {
+        layer.msg('请选择搜索条件',{icon:0, offset:['0px','40%'], time:1500});        
+        return false;
+      }
+    }
+
+ // $('#search_condition').change(function() {
+ //       var type = $('#search_condition').find('option:selected').val();
+ //       if(type.trim() == 1) {
+ //        $('#keywords').find(placeholder).html(星级评价)
+ //       } else if(type.trim() == 2) {
+ //        $('#keywords').find(placeholder).html(学员姓名)
+ //       } else if(type.trim() == 3) {
+ //        $('#keywords').find(placeholder).html(学员昵称)
+ //       } else if(type.trim() == 4) {
+ //        $('#keywords').find(placeholder).html(学员号码)
+ //       } 
+    
+ //        })
+
+
+
+    </script>
+<!--{include file="library/footer.lbi"}-->

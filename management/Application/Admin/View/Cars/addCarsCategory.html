@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html> 
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" href="__PUBLIC__/Admin/assets/umeditor/themes/default/css/umeditor.css"> -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加车型</title>
+</head>
+<body>
+    <div class="pd-20">
+    	<form action="{: U('Cars/addCarsCategory')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addCarsCategory">
+            <!-- <if condition = "$school_id eq 0" >
+                <div class="row cl">
+                    <label  class="form-label col-2"><span style="color:red">*</span>所属驾校：</label>
+                    <div class="formControls col-2" > 
+                        <select select2 ng-model="b" datatype="*1-32" nullmsg="所属驾校不能为空" id="school_id" class="form-control" name="school_id"  placeholder="请选择驾校">
+                            <foreach name="school_list"  item="value">
+                              <option value="{$value.l_school_id}">{$value.s_school_name}</option> 
+                            </foreach>
+                        </select>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+            </if> -->
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>车辆品牌：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" value=""   placeholder="如:大众" id="brand" name="brand" datatype="*1-16" nullmsg="车辆品牌" />
+                </div>   
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>车辆型号：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" value=""   placeholder="如:A2" id="subtype" name="subtype" datatype="*1-16" nullmsg="车辆型号" />
+                </div>   
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2 text-r" for="point_texturl">打点文件：</label>
+                <div class="formControls col-8">
+                    <span class="btn-upload form-group">
+                        <input class="input-text upload-url col-2" type="text" name="point_texturl" id="point_texturl" value="" readonly>
+                        <a href="javascript:void();" class="btn btn-primary"><i class="Hui-iconfont">&#xe646;</i> 浏览打点文件</a>
+                        <input type="file" multiple name="point_texturl" class="input-file" value="">
+                    </span>
+                </div>
+            </div>
+    		<div class="row cl">
+    			<div class="col-10 col-offset-2">
+    				<button class="btn btn-primary radius " id="submit" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+    				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+    			</div>
+    		</div>
+    	</form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script> 
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/jquery.provincesCity.js"></script> -->
+<!-- <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/assets/umeditor/umeditor.config.js"></script> -->
+<!-- <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/assets/umeditor/umeditor.min.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/umeditor/lang/zh-cn/zh-cn.js"></script> -->
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<script type= "text/javascript">
+    // 表单验证
+    $( function () {
+        $('#addCarsCategory').Validform({
+                tiptype:2,
+                callback:function(form){
+                    form[0].submit();
+                }
+        });
+    }) 
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2017-04-01 06:10:10
+-- 服务器版本： 5.7.14
+-- PHP Version: 7.0.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `xihaxueche`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cs_rolepermission`
+--
+
+CREATE TABLE `cs_rolepermission` (
+  `l_rolepress_incode` int(11) NOT NULL,
+  `l_role_id` int(11) NOT NULL,
+  `module_id` varchar(3000) NOT NULL COMMENT '最小菜单功能单位的id'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='角色对应权限表';
+
+--
+-- 转存表中的数据 `cs_rolepermission`
+--
+
+INSERT INTO `cs_rolepermission` (`l_rolepress_incode`, `l_role_id`, `module_id`) VALUES
+(1, 1, '21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,118,119,120,121,122,124,125,126,127,128,129,130,131,132,133,134,135,136,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217'),
+(2, 2, '21,22,23,24,25,26,27,28,29,30,31,32,33,37,38,42,49,50,51,52,53,54,55,60,61,62,63,64,67,71,73,76,77,78,80,82,83,85,86,87,88,89,90,91,92,93,94,95,96,98,99,100'),
+(5, 5, '21,22,23,24,25,26,27,28,29,30,31,32,33,37,38,42,49,50,51,52,53,54,55,60,61,62,71,76,78,80,82,83,85,86,87,88,92,93');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cs_rolepermission`
+--
+ALTER TABLE `cs_rolepermission`
+  ADD PRIMARY KEY (`l_rolepress_incode`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `cs_rolepermission`
+--
+ALTER TABLE `cs_rolepermission`
+  MODIFY `l_rolepress_incode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/jquery-ui.css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]--> 
+<title>修改优惠券种类</title>
+</head>
+<body>
+    <div class="pd-20">
+        <form action="{:U('Coupon/editCouponCategory')}" method="post" class="form form-horizontal" id="editCouponCategory">
+            <input class="input-text" type="hidden" value="{$couponcatelist.id}" name="id" />
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>券种类的名称：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" value="{$couponcatelist.cate_name}" name="cate_name" placeholder="请填写券种类的名称" datatype="*1-500"  nullmsg="券种类的名称不能为空" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">券种类描述：</label>
+                <div class="formControls col-4">
+                    <textarea name="cate_desc" style="" id="cate_desc" cols="" rows="" class="textarea"  placeholder="请输入券的种类描述"  dragonfly="true"  onKeyUp="textarealength(this,1000)" >{$couponcatelist.cate_desc}</textarea>
+                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/1000</p>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">券的规则描述：</label>
+                <div class="formControls col-4">
+                    <textarea name="coupon_rule" style="" id="coupon_rule" cols="" rows="" class="textarea"  placeholder="请填写规则描述"  dragonfly="true"  onKeyUp="textarealength(this,1000)" >{$couponcatelist.coupon_rule}</textarea>
+                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/1000</p>
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-8 col-offset-2">
+                    <button id="submitOne" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery.form.min.js"></script>
+<script type="text/javascript">
+// 表单验证
+    $( function () {
+        $('#editCouponCategory').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    }) 
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* 
+    Document   : divwin
+    Created on : 2009年5月7日, 上午10:24
+    Author     : lcfeng
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.divwintitbg{
+  background-image:url(pop_titbg.gif)/*tpa=http://wzxyh.wtc.edu.cn/images/divwin/pop_titbg.gif*/;
+}
+.divwintitarrow{
+  background-image:url(pop_arrow.gif)/*tpa=http://wzxyh.wtc.edu.cn/images/divwin/pop_arrow.gif*/;
+  background-repeat:no-repeat;
+  background-position:center center;
+}
+.divwinclose{
+  cursor:pointer;
+  background-image:url(cha.gif)/*tpa=http://wzxyh.wtc.edu.cn/images/divwin/cha.gif*/;
+  background-repeat:no-repeat;
+  background-position:center center;
+}
+.divwinmaintable{
+  background-color:"#666699";
+}
+
+.divwintitle{
+  font-weight:bold;
+  cursor:move;
+}
+
+.divwinstatebar{
+  background-color:#E4E4E4;
+}
+.divwinls{
+  background-image:url(ls.gif.jpg)/*tpa=http://wzxyh.wtc.edu.cn/images/divwin/ls.gif*/;
+  cursor:nw-resize;
+}
+
+.button {	
+	border: 1px solid #999999;
+	padding: 1px 10px 0px;
+	font-size: 9pt;
+	cursor: hand;
+	background-repeat: repeat-x;
+	height: 20px;
+
+}
+/*多图交替8 图交替 dtjt8.html*/
+.dtjt8_div_img{position:relative;overflow:hidden;}
+.dtjt8_div_img img{display:block;}
+.dtjt8_div_img .number{position:absolute;right:5px;bottom:5px;}
+.dtjt8_div_img .number .nomal{width:16px;height:16px;line-height:16px;display:block;text-align:center;opacity: 0.7;background:#6C6D6E;float:left;color:#FFF;margin-right:5px;border:1px solid #FFF;font-size:12px;TEXT-DECORATION:none}
+.dtjt8_div_img .number .current{width:16px;height:16px;line-height:16px;display:block;text-align:center;opacity: 0.7;background:red;float:left;color:#FFF;margin-right:5px;border:1px solid #FFF;font-size:12px;TEXT-DECORATION:none}
+.tbl_ArticlePortlet_picTitleClass{
+	width:100%;
+}

@@ -1,0 +1,571 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <style type="text/css">
+        .drop-menu a {
+            font-size: 14px;
+        }
+        
+        .drop-menu a:hover {
+            text-decoration: none;
+        }
+    </style>
+    <title>报名驾校订单</title>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>订单管理<span class="c-gray en">&gt;</span> 报名驾校订单
+        <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.reload();" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+
+    <form method="post" action="{: U('Order/searchSchoolOrders')}" name="search">
+        <div class="pd-20">
+            <div class="">
+                <label for="search_name">按支付方式 </label>
+                <select class="" name="pay_type" id="pay_type" style="width:150px;height:30px">                
+				    <option style="" value="" >--不限支付方式--</option>
+				    <option style="" value="1" <if condition = "$pay_type eq 1">selected</if>>支付宝支付</option>
+				    <option style="" value="2" <if condition = "$pay_type eq 2">selected</if>>线下支付</option>
+				    <option style="" value="3" <if condition = "$pay_type eq 3">selected</if>>微信支付</option>
+				    <option style="" value="4" <if condition = "$pay_type eq 4">selected</if>>银联支付</option>
+				</select>
+                <!-- <label for="order_status">按订单状态</label>
+				<select class="" name="order_status" id="order_status" style="width:150px;height:30px;" >	
+				    <option style="" value="" >--不限状态--</option>
+				    <option style="" value="1" <if condition = "$order_status eq 1">selected</if>>已付款</option>
+				    <option style="" value="2" <if condition = "$order_status eq 2">selected</if>>退款中</option>
+				    <option style="" value="3" <if condition = "$order_status eq 3">selected</if>>已取消</option>
+				    <option style="" value="4" <if condition = "$order_status eq 4">selected</if>>未付款</option>
+				    <if condition="$role_id eq 1">
+				    	<option style="" value="101" <if condition = "$order_status eq 101">selected</if>>已删除</option>
+				    </if>
+				</select>  -->
+                <label for="search_type">按关键词搜索</label>
+                <select class="" name="search_type" id="search_type" style="width:150px;height:30px">				   
+				    <option style="" value="" >--不限关键词--</option>
+				    <option style="" value="id" <if condition = "$search_type eq id">selected</if>>ID</option>
+				    <option style="" value="so_username" <if condition = "$search_type eq so_username">selected</if>>学员姓名</option>
+				    <option style="" value="so_phone" <if condition = "$search_type eq so_phone">selected</if>>学员手机</option>
+				    <option style="" value="so_order_no" <if condition = "$search_type eq so_order_no">selected</if>>订单号</option>
+				    <option style="" value="s_zhifu_dm" <if condition = "$search_type eq s_zhifu_dm">selected</if>>交易号</option>
+				    <if condition="$school_id eq 0">
+				    	<option style="" value="s_school_name" <if condition = "$search_type eq s_school_name">selected</if>>驾校名称</option>
+				    </if>
+				</select>
+                <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" placeholder="ID，姓名，手机，订单号，交易号<if condition='$school_id eq 0'>，驾校名称</if>" style="width:300px;" value="{$s_keyword}" />
+                <input type="submit" id="search_school_orders" class="btn btn-primary size-M default" name="elment" style="width:100px" value="搜索" />
+                <div class="" style="margin-top:10px;">
+                    <label for="search_type">范围(<strong>1~9000</strong>) |</label>
+                    <!-- <input type="button" value="-" onclick="subNum(this)" class="btn btn-primary" style="border-radius:3px;" > -->
+                    <!-- <input type="input-text"  value="100" name="num"  style="width:100px;height:30px;text-align:center;border-radius:3px;" > -->
+                    开始数：<input type="input-text" value="1" name="begin_num" style="width:80px;height:30px;text-align:center;border-radius:3px;"> 结束数：
+
+                    <input type="input-text" value="100" name="end_num" style="width:80px;height:30px;text-align:center;border-radius:3px;">
+                    <!-- <input type="button" value="+" onclick="addNum(this)" class="btn btn-primary" style="border-radius:3px;" > -->
+                    <input type="submit" id="search_school_orders" class="btn btn-warning size-M radius" name="elment" style="width:100px" value="Excel下载" />
+                    <!-- <i class="Hui-iconfont" style="margin-left:-7%;color:#fff">&#xe640;</i> -->
+                    <label style="margin-left: 10px;" for="pagecount">数据展示数设置(1~200)：</label>
+                    <input type="button" value="-" onclick="subNum(this)" class="btn btn-primary" style="border-radius:3px;">
+                    <if condition="$pagecount eq ''">
+                        <input type="text" class="input-text" id="pagecount" value="10" name="pagecount" style="width: 80px;text-align: center;" />
+                        <else/>
+                        <input type="text" class="input-text" id="pagecount" value="{$pagecount}" name="pagecount" style="width: 80px;text-align: center;" />
+                    </if>
+                    <input type="button" value="+" onclick="addNum(this)" class="btn btn-primary" style="border-radius:3px;">
+                    <input type="submit" id="pagecount" class="btn btn-warning size-M radius" name="elment" style="" value="设置" />
+                </div>
+            </div>
+            <br/>
+            <div class="cl pd-5 bg-1 bk-gray">
+                <a href="javascript:;" onclick="addSchoolOrder('添加报名驾校订单','{: U('Order/addSchoolOrder')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加订单</a></span>
+                <span class="ml-10">
+    				<a id="delete-all" href="javascript:;"  class="btn btn-warning radius">批量删除</a>
+    			</span>
+                <span class="r" style="margin-top: 5px;">共：<strong>{$count}</strong> 条订单</span>
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort" id="checkedid">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="30">ID</th>
+                            <if condition="$school_id eq 0">
+                                <th width="70">驾校名称</th>
+                            </if>
+                            <th width="60">学员姓名</th>
+                            <th width="70">学员手机</th>
+                            <th width="60">支付价格</th>
+                            <th width="90">
+                                订单号
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多订单信息"></span>
+                            </th>
+                            <th width="70">
+                                交易号
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="交易号是在线支付平台上面生成的，微信，支付宝，银联等。"></span>
+                            </th>
+                            <!-- <th width="60">最终价格</th> -->
+                            <th width="60">班制名称</th>
+                            <th width="60">班制类型</th>
+                            <th width="60">支付方式</th>
+                            <th width="60">添加时间</th>
+                            <th width="60">状态</th>
+                            <th width="60">设置</th>
+                            <th width="50">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="school_orders_list" key="key" item="obj">
+                            <tr class="text-c signup_list">
+                                <td class="va-m"><input type="checkbox" id="checkbox_{$key}" value="{$obj.id}" name="id"></td>
+                                <td class="va-m">{$obj.id}</td>
+                                <if condition="$school_id eq 0">
+                                    <td class="va-m">{$obj.s_school_name}</td>
+                                </if>
+                                <td class="va-m">{$obj.so_username|mb_substr=0,6}</td>
+                                <td class="va-m">{$obj.so_phone}</td>
+                                <td class="va-m">￥{$obj.so_total_price}元</td>
+                                <td class="va-m">
+                                    <a href="javascript:;" class="orderdetail" id="signuphover{$obj.id}" style="color:#09c">
+									{$obj.so_order_no}
+								</a>
+                                </td>
+                                <td class="va-m">{$obj.s_zhifu_dm|substr=-8,8}</td>
+                                <!-- <td class="va-m">￥{$obj.so_final_price}元</td> -->
+                                <td class="va-m">{$obj.sh_title}</td>
+                                <td class="va-m">
+                                    <if condition="$obj.sh_type eq 1">
+                                        <span class="btn btn-danger-outline radius">计时班</span>
+                                        <else/>
+                                        <span class="btn btn-success-outline radius">非计时班</span>
+                                    </if>
+                                </td>
+                                <td class="va-m">
+                                    <switch name="obj.so_pay_type">
+                                        <case value="1"><span class="btn btn-secondary-outline radius" style="display:inline">支付宝支付</span></case>
+                                        <case value="2"><span class="btn btn-warning-outline radius" style="display:inline">线下支付</span></case>
+                                        <case value="3"><span class="btn btn-success-outline radius" style="display:inline">微信支付</span></case>
+                                        <case value="4"><span class="btn btn-primary-outline radius" style="display:inline">银联支付</span></case>
+                                        <default />
+                                        <case value="4"><span class="btn btn-default-outline disabled radius" style="display:inline">其它方式</span></case>
+                                    </switch>
+                                </td>
+                                <td class="va-m">{$obj.addtime}</td>
+                                <td class="va-m">
+                                    <if condition="$obj.so_pay_type eq 1">
+                                        <switch name="obj.so_order_status">
+                                            <case value="1"><span class="btn btn-success" style="display:inline">已付款</span></case>
+                                            <case value="1007"><span class="btn btn-success" style="display:inline">已退款</span></case>
+                                            <case value="2"><span class="btn btn-warning" style="display:inline">退款中</span></case>
+                                            <case value="3"><span class="btn btn-danger" style="display:inline">已取消</span></case>
+                                            <case value="4"><span class="btn btn-default" style="display:inline">未付款</span></case>
+                                            <case value="101"><span class="btn btn-danger" style="display:inline">已删除</span></case>
+                                            <default /><span class="btn btn-default" style="display:inline">其它状态</span>
+                                        </switch>
+                                        <elseif condition="$obj.so_pay_type eq 2" />
+                                        <switch name="obj.so_order_status">
+                                            <case value="3"><span class="btn btn-success" style="display:inline">已付款</span></case>
+                                            <case value="1007"><span class="btn btn-success" style="display:inline">已退款</span></case>
+                                            <case value="4"><span class="btn btn-secondary" style="display:inline">退款中</span></case>
+                                            <case value="2"><span class="btn btn-danger" style="display:inline">已取消</span></case>
+                                            <case value="1"><span class="btn btn-default" style="display:inline">未付款</span></case>
+                                            <case value="101"><span class="btn btn-danger" style="display:inline">已删除</span></case>
+                                            <default /><span class="btn btn-default" style="display:inline">其它状态</span>
+                                        </switch>
+                                        <elseif condition="$obj.so_pay_type eq 3" />
+                                        <switch name="obj.so_order_status">
+                                            <case value="1"><span class="btn btn-success" style="display:inline">已付款</span></case>
+                                            <case value="1007"><span class="btn btn-success" style="display:inline">已退款</span></case>
+                                            <case value="2"><span class="btn btn-warning" style="display:inline">退款中</span></case>
+                                            <case value="3"><span class="btn btn-danger" style="display:inline">已取消</span></case>
+                                            <case value="4"><span class="btn btn-default" style="display:inline">未付款</span></case>
+                                            <case value="101"><span class="btn btn-danger" style="display:inline">已删除</span></case>
+                                            <default /><span class="btn btn-default" style="display:inline">其它状态</span>
+                                        </switch>
+                                        <elseif condition="$obj.so_pay_type eq 4" />
+                                        <switch name="obj.so_order_status">
+                                            <case value="1"><span class="btn btn-success" style="display:inline">已付款</span></case>
+                                            <case value="1007"><span class="btn btn-success" style="display:inline">已退款</span></case>
+                                            <case value="2"><span class="btn btn-warning" style="display:inline">退款中</span></case>
+                                            <case value="3"><span class="btn btn-danger" style="display:inline">已取消</span></case>
+                                            <case value="4"><span class="btn btn-default" style="display:inline">未付款</span></case>
+                                            <case value="101"><span class="btn btn-danger" style="display:inline">已删除</span></case>
+                                            <default /><span class="btn btn-default" style="display:inline">其它状态</span>
+                                        </switch>
+                                        <else />
+                                        <span class="label label-danger">报名取消</span>
+                                    </if>
+                                </td>
+                                <td class="va-m">
+                                    <div class="button-group border-blue">
+                                        <button type="button" class="button button-little text-blue dropdown-toggle">
+                                        设置 <span class="downward"></span>
+                                    </button>
+                                        <ul class="drop-menu " style="min-width:85px;margin-left:-20px;">
+                                            <if condition="$obj.so_pay_type eq 2">
+                                                <if condition="$obj.so_order_status eq 1">
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 1, {$obj.so_school_id}, this);" style="">未付款 </a></li> -->
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, 2, {$obj.so_school_id}, this);">已付款</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 4, 2, {$obj.so_school_id}, this);">退款中</a></li> -->
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, 2, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 2">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, 2, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 3">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 4, 2, {$obj.so_school_id}, this);">退款中</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, 2, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 4">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, 2, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, 2, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 101">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);" style="">未付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">已付款</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">退款中</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, 2, {$obj.so_school_id}, this);">已删除</a></li>
+                                                </if>
+                                                <else/>
+                                                <if condition="$obj.so_order_status eq 1">
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 1, {$obj.so_school_id}, this);" style="">已付款 </a></li> -->
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, {$obj.so_pay_type}, {$obj.so_school_id}, this);">退款中</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 4, {$obj.so_school_id}, this);">未付款</a></li> -->
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 2">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 3">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);" style="">已付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);">退款中</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);">未付款</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 4">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 1, {$obj.so_pay_type}, {$obj.so_school_id}, this);" style="">已付款 </a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 2, {$obj.so_pay_type}, this);">退款中</a></li> -->
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 3, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 4, {$obj.so_school_id}, this);">未付款</a></li> -->
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                                <if condition="$obj.so_order_status eq 101">
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);" style="">已付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">退款中</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已取消</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">未付款</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setSchoolOrderStatus({$obj.id}, 101, {$obj.so_pay_type}, {$obj.so_school_id}, this);">已删除</a></li> -->
+                                                </if>
+                                            </if>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="va-m td-manage">
+                                    <a title="删除" href="javascript:;" onclick="member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑报名驾校订单','{: U('Order/editSchoolOrder')}?id={$obj.id}&school_id={$obj.so_school_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                                <td class="orderinfo" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;">
+                                        <tr width="100%">
+                                            <td class="blue text-center" style="font-weight:bold">学员姓名</td>
+                                            <td>{$obj.so_username}</td>
+                                            <td class="blue text-center" style="font-weight:bold">学员号码</td>
+                                            <td>{$obj.so_phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">订单号</td>
+                                            <td class="red text-red" colspan=3>{$obj.so_order_no}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">交易号</td>
+                                            <td class="red text-red" colspan=3>{$obj.s_zhifu_dm}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">身份证号</td>
+                                            <td class="red text-red" colspan=3>{$obj.so_user_identity_id}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">优惠预约计时</td>
+                                            <if condition="$obj.free_study_hour neq -1">
+                                                <td class="red text-red" colspan=3>{$obj.free_study_hour}学时</td>
+                                                <else/>
+                                                <td class="red text-red" colspan=3>不限</td>
+                                            </if>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">班制名称</td>
+                                            <td>{$obj.sh_title}</td>
+                                            <td class="blue text-center" style="font-weight:bold">牌照名称</td>
+                                            <td>{$obj.so_licence}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">实付价格</td>
+                                            <td colspan=3 class="red text-red">￥{$obj.so_total_price}元</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">原始价格</td>
+                                            <td>￥{$obj.so_original_price}元</td>
+                                            <td class="blue text-center" style="font-weight:bold">最终价格</td>
+                                            <td>￥{$obj.so_final_price}元</td>
+                                        </tr>
+                                        <!-- <tr>
+										<td class="blue text-center" style="font-weight:bold">添加时间</td>
+										<td colspan=3 class="red text-red">{$obj.addtime}</td>
+									</tr> -->
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">取消者</td>
+                                            <td>{$obj.cancel_type}</td>
+                                            <td class="blue text-center" style="font-weight:bold">取消时间</td>
+                                            <td>{$obj.cancel_time}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">取消原因</td>
+                                            <td colspan=3 class="red text-red">{$obj.cancel_reason}</td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        // 批量删除
+        $('#delete-all').click(function() {
+            if ($('#checkedid').find('input:checked').val() == undefined) {
+                layer.msg('您还未选中需删除的订单', {
+                    icon: 2,
+                    time: 1000
+                });
+                return false;
+            }
+            layer.confirm('确认要删除吗？', function(index) {
+                var check_id = '';
+                $(".table-hover input:checkbox").each(function(index) {
+                    if ($("#checkbox_" + index + ':checked').val() != undefined) {
+                        check_id += $("#checkbox_" + index + ':checked').val() + ',';
+                    }
+                });
+                if (check_id.lastIndexOf(',') > 0) {
+                    check_id = check_id.substr(0, check_id.lastIndexOf(','));
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delSchoolOrders",
+                    data: {
+                        'check_id': check_id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,
+                                time: 1000
+                            });
+                            location.reload();
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        })
+
+        // 数目增加50
+        function subNum(obj) {
+            var temp = parseInt(obj.nextElementSibling.value);
+            if (temp > 0) {
+                temp -= 5;
+                obj.nextElementSibling.value = temp;
+            }
+        }
+
+        function addNum(obj) {
+            var temp = parseInt(obj.previousElementSibling.value);
+            if (temp < 1000) {
+                temp += 5;
+            }
+            obj.previousElementSibling.value = temp;
+        }
+
+        // 设置订单状态
+        function setSchoolOrderStatus(id, status, type, school_id, obj) {
+            if (id == '' || status == '') {
+                alert('参数错误');
+                return false; //参数错误
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Order/setSchoolOrderStatus')}",
+                data: {
+                    'id': id,
+                    'status': status,
+                    'order_type': type,
+                    'school_id': school_id
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg('设置失败', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        }
+
+        // 鼠标订单事件
+        $('.orderdetail').on({
+            'mouseenter': function() {
+                var id = $(this).attr('id');
+                var orderinfo = $(this).parents('tr.signup_list').find('td.orderinfo').html();
+                layer.tips(orderinfo, '#' + id, {
+                    tips: [1, '#fff'],
+                    time: 0,
+                    area: '500px'
+                });
+            },
+
+            'mouseleave': function() {
+                var index = layer.tips();
+                layer.close(index);
+            },
+
+            'click': function() {
+                var orderinfo = $(this).parents('tr.signup_list').find('td.orderinfo').html();
+                layer.open({
+                    type: 1,
+                    title: '报名驾校订单详情',
+                    area: '500px',
+                    shade: [0.3, '#333'],
+                    shadeClose: true,
+                    moveType: 1,
+                    shift: 0,
+                    content: orderinfo
+                });
+            }
+        })
+
+        /*用户-添加*/
+        function addSchoolOrder(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+
+        }
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delSchoolOrder",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('删除成功!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else if (data.code == 400) {
+                            layer.msg('删除失败', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('操作故障!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

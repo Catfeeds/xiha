@@ -1,0 +1,87 @@
+{include file="index/header"/}
+<div class="page" id="tickets">
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/ucenter', ['token'=>$token, 'device'=>$device])}">
+      <span class="icon icon-left"></span>
+  		返回
+    </a>
+    <h1 class='title'>{$title}</h1>
+  </header>
+  <div class="content">
+  	<div class="tickets-duihuan">
+  		 <div class="searchbar row">
+		    <div class="search-input col-75">
+		      <label class="icon icon-search" for="search"></label>
+		      <input type="search" id='tickets-duihuan' style="border: none; background: #e7e7e7;" placeholder='请输入学车兑换码 如：ABC123456'/>
+		    </div>
+		    <a class="button button-fill button-primary col-25" style="background: #1FCC7C;">兑换</a>
+		  </div>
+  	</div>
+  	<div class="content-block">
+			<div class="list-block tickets-list" style="margin-top:70px; margin-bottom: 0px;">
+	    	<ul style="">
+		      <li>
+		      	<div class="card" style="margin:0px; box-shadow: none;">
+					    <div class="card-content" style="height: 80px;">
+					      <div class="row" style="height: 80px; padding-top: 0.75rem; margin-left: 0px;">
+					      	<div class="col-25" style="border-right: 1px solid #ddd; ">
+					      		<span style="color:#FD8733; font-size: 1.5rem;">￥90</span>
+					      	</div>
+					      	<div class="col-75">
+					      		<p style="font-size: 1rem; font-weight: bold; color: #333;">嘻哈学车券</p>
+					      		<span style="font-size: 0.8rem; color: #999;">可用于任何驾校的报名学车</span>
+					      	</div>
+					      </div>
+					    </div>
+					    <div class="card-footer" style="height: 50px;">
+					      <a class="link" style="color: #FD8733;">有效期至 <span id="tickets-expiretime">2016-11-11</span></a>
+					      <a href="{:url('/test')}" class="item-content ">
+					      	<div class="item-inner" style="margin-right: -1rem;">
+					          <div class="item-title"></div>
+					          <div class="item-after" style="color: #999;">未使用</div>
+					        </div>
+					      </a>
+					    </div>
+					  </div>
+					  <div class="tickets-tips">
+					  	<img src="__PUBLIC__/static/images/ucenter-tickets-tips-01.png" alt="" />
+					  </div>
+		      </li>
+	      </ul>
+	     	
+	     	<ul style="margin-top: 10px;">
+		      <li>
+		      	<div class="card" style="margin:0px; box-shadow: none;">
+					    <div class="card-content" style="height: 80px;">
+					      <div class="row" style="height: 80px; padding-top: 0.75rem; margin-left: 0px;">
+					      	<div class="col-25" style="border-right: 1px solid #ddd; ">
+					      		<span style="color:#FD8733; font-size: 1.5rem;">￥90</span>
+					      	</div>
+					      	<div class="col-75">
+					      		<p style="font-size: 1rem; font-weight: bold; color: #333;">嘻哈学车券</p>
+					      		<span style="font-size: 0.8rem; color: #999;">可用于任何驾校的报名学车</span>
+					      	</div>
+					      </div>
+					    </div>
+					    <div class="card-footer" style="height: 50px;">
+					      <a class="link" style="color: #FD8733;">有效期至 <span id="tickets-expiretime">2016-11-11</span></a>
+					      <a href="{:url('/test')}" class="item-content ">
+					      	<div class="item-inner" style="margin-right: -1rem;">
+					          <div class="item-title"></div>
+					          <div class="item-after" style="color: #999;">未使用</div>
+					        </div>
+					      </a>
+					    </div>
+					  </div>
+					  <div class="tickets-tips">
+					  	<img src="__PUBLIC__/static/images/ucenter-tickets-tips-02.png" alt="" />
+					  </div>
+		      </li>
+	      </ul>
+	      
+			</div>
+  	</div>
+		
+  </div>
+</div>
+{include file="index/footer"/}

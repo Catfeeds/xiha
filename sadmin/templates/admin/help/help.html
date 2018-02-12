@@ -1,0 +1,67 @@
+<!--{include file="library/header.lbi"}-->
+<div class="top">
+	<div class="top-banner">
+		<ul>
+			<li>
+				<a class="a-hover" href="javascript:;">系统用途</a>
+				<div class="hover-div" style="display:none;">
+					<ul class="hover-ul">
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','system_main', this)">系统介绍</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','system_inv', this)">运行环境</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','system_instr', this)">系统说明</a></li>
+					</ul>
+					<div style="clear:both"></div>
+				</div>
+			</li>
+			<li>
+				<a class="a-hover" href="javascript:;">使用说明</a>
+				<div class="hover-div" style="display:none;">
+					<ul class="hover-ul">
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','instructions_ks', this)">开始管理</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','instructions_jl', this)">教练管理</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','instructions_cl', this)">车辆管理</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','instructions_xy', this)">学员管理</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','instructions_jx', this)">驾校管理</a></li>
+						<li><a href="javascript:;" onclick="javascript:redirecturl('help','instructions_pj', this)">评价管理</a></li>
+					</ul>
+					<div style="clear:both"></div>
+				</div>
+			</li>
+			<li>
+				<a href="javascript:;" onclick="javascript:redirecturl('help','safe', this)">安全建议</a>							
+			</li>
+			<li>
+				<a href="javascript:;" onclick="javascript:redirecturl('help','serve', this)">客户服务</a>							
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="help-middle">
+	<iframe name="right" class="help-content" id="rightMain" src="index.php?action=help&op=system_main" frameborder="false" scrolling="auto" style="border:none; margin-bottom:0px;" width="100%" height="98%" allowtransparency="true"></iframe>
+	<div class="clearfix"></div>
+</div>
+<div class="help-footer">
+    版权所有 嘻哈网络技术有限公司 ©2015 安徽嘻哈网络技术有限公司　 皖ICP备15016679号<br>
+    公司地址 ： 合肥市高新区望江西路800号国家创新产业园C3栋
+</div>
+	<script>
+		$('.a-hover').on({
+			'mouseenter':function() {
+				$(this).next('.hover-div').css('display', 'block');
+			},
+			'mouseleave':function() {
+				$(this).next('.hover-div').css('display', 'none');
+			}
+		})
+		$('.hover-div').on({
+			'mouseenter':function() {
+				$(this).css('display', 'block');
+			},
+			'mouseleave':function() {
+				$(this).css('display', 'none');
+			}
+		})
+	</script>
+<!--{include file="library/footer.lbi"}-->
+
+	

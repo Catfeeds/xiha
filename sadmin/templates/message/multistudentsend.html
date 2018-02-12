@@ -1,0 +1,87 @@
+<!--{include file="library/header.lbi"}-->
+<link rel="stylesheet" type="text/css" href="templates/assests/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="templates/assests/css/select2.css">
+<link rel="stylesheet" type="text/css" href="templates/assests/css/select2-bootstrap.css">
+
+<div class="tab-body" style="">
+	<div class="panel-head">
+	    <a href="index.php?action=message&op=index" class=""><strong>返回学员消息列表 >></strong></a>
+	</div>
+	<br />
+<div class="tab"> 
+	<div class="tab-head border-main"> 
+		<ul class="tab-nav" style="margin-bottom:0px;"> 
+			<li>
+				<a href="javascript:;" onclick="redirecturl('message','studentsend');">单发消息</a>
+			</li> 
+			<li class="active">
+				<a href="javascript:;" onclick="redirecturl('message','multistudentsend');">群发消息</a>
+			</li> 
+		</ul> 
+	</div> 
+	<div class="tab-body" style="padding-top:10px;"> 
+		<!-- 基本信息 -->
+		<div class="tab-panel form-x active">
+
+			<div class="media media-x">
+				<div class="media-body">
+					<div class="table-responsive"> 
+						<form method="post" class="form-x" style="width:100%" action="index.php?action=message&op=sendoperate"  enctype="multipart/form-data">
+
+				          	<div class="form-group">
+				              <div class="label"><label for="car_type" style="color:#555; font-size:14px;">发送对象</label></div>
+				              <div class="field">
+				                  <select class="input input-auto" id="car_type" style="width:20%; float:left" name="car_type"> 
+				                      <option value="">请选择类型</option> 
+				                      <option value="1">学员</option>
+				                      <option value="2">教练</option>
+				                      <option value="2">所有</option>
+				                  </select>
+				              </div>
+				          	</div>
+							
+							<div class="form-group">
+				              <div class="label"><label for="title" style="color:#555; font-size:14px;">标题</label></div>
+				              <div class="field">
+			                   	<input type="text" class="input input-auto" id="title" name="title" size="50" placeholder="请填写标题" data-validate="required:请填写标题" />
+				              </div>
+				          	</div>
+
+			  	          	<div class="form-group">
+			  	              <div class="label"><label for="content" style="color:#555; font-size:14px;">消息内容</label></div>
+			  	              <div class="field">
+			  	              	<textarea class="input input-auto" name="content" id="" cols="100" rows="10" placeholder="请填写内容" ></textarea>
+			  	              </div>
+			  	          	</div>
+
+				          	<div class="form-group">
+				              <div class="label"><label for="s_beizhu" style="color:#555; font-size:14px;">备注</label></div>
+				              <div class="field">
+			                   	<input type="text" class="input input-auto" id="s_beizhu" name="s_beizhu" size="50" placeholder="请填写备注" />
+				              </div>
+				          	</div>
+				          
+				          	<div class="form-group">
+				              <div class="label"></div>
+				              <button class="button bg-main" type="submit">提交</button>
+				          	</div>
+				      </form>
+
+					</div>
+				</div> 
+			</div> 
+		</div>
+
+	</div> 
+</div>
+</div>
+<script type="text/javascript" src="templates/assests/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/angular.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/select2.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/selectindex.js"></script>
+<script>
+	function redirecturl(a, o) {
+		location.href="index.php?action="+a+"&op="+o;
+	}
+</script>
+<!--{include file="library/footer.lbi"}-->

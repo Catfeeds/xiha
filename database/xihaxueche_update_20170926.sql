@@ -1,0 +1,1 @@
+alter table cs_study_orders  add so_comment_status tinyint(1) NOT NULL DEFAULT '0' COMMENT '评价状态 1：未评价 2：已评价';

@@ -1,0 +1,6 @@
+ALTER TABLE `cs_exam_history` ADD INDEX(`identity_no`);
+
+ALTER TABLE `cs_exam_history` ADD `year` INT UNSIGNED NOT NULL DEFAULT '2016' COMMENT '年' AFTER `text_url`, ADD `month` INT UNSIGNED NOT NULL DEFAULT '7' COMMENT '月' AFTER `year`, ADD `day` INT UNSIGNED NOT NULL DEFAULT '31' COMMENT '日' AFTER `month`;
+
+CREATE TABLE `xihaxueche`.`cs_site` ( `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键自增长id' , `site_name` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '场地名称' , `site_desc` VARCHAR(500) NOT NULL DEFAULT '' COMMENT '场地简介' , `school_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '驾校id' , `province_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '省id' , `city_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '市id' , `area_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '区id' , `address` VARCHAR(200) NOT NULL DEFAULT '' COMMENT '地址' , `point_text_url1` VARCHAR(200) NOT NULL DEFAULT '' COMMENT '场地打点图1' , `point_text_url2` VARCHAR(200) NOT NULL DEFAULT '' COMMENT '场地打点图1' , `imgurl` VARCHAR(500) NOT NULL DEFAULT '' COMMENT '场地风采图url' , `add_time` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '添加时间' , `site_status` INT(11) NOT NULL DEFAULT '1' COMMENT '场地状态 1 开放' , PRIMARY KEY (`id`), INDEX (`school_id`)) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '驾校下面的训练场地';
+

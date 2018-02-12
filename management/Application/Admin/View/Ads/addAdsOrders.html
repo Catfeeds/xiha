@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" /> -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加广告订单</title>
+</head>
+<body>
+    <div class="pd-20">
+      	<form action="{: U('Ads/addAdsOrders')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addAdsOrders">
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>广告内容标题：</label>
+                <div class="formControls col-2 " id ="ads_title">
+                    <input type="text" class="input-text " value=""  name="ads_title" datatype="*1-32" nullmsg="广告内容标题不能为空" placeholder="请填写广告内容标题" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label  class="form-label col-2"><span style="color:red">*</span>广告：</label>
+                <div class="formControls col-2" > 
+                    <select select2 ng-model="b" id="ads_id" class="form-control" name="ads_id" datatype="*1-32" nullmsg="广告不能为空" placeholder="请选择广告">
+                        <foreach name="adslist"  item="value">
+                            <option value="{$value.id}">{$value.title}</option> 
+                        </foreach>
+                    </select>
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label  class="form-label col-2">买家名称：</label>
+                <div class="formControls col-2" > 
+                    <select select2 ng-model="c" id="buyer_id" class="form-control" name="buyer_id" placeholder="请选择买家名称" >
+                        <foreach name="buyernamelist"  item="value">
+                            <option value="{$value.l_school_id}">{$value.s_school_name}</option> 
+                        </foreach>
+                    </select>
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">买家号码：</label>
+                <div class="formControls col-2 " id ="buyer_phone">
+                    <input type="text" class="input-text " value=""  name="buyer_phone" placeholder="请填写号码"  />
+                </div>
+            </div>
+            <div class="row cl">
+                <label  class="form-label col-2"><span style="color:red">*</span>资源类型：</label>
+                <div class="formControls col-2" > 
+                    <select  id="resource_type" style="width:215px;height:30px;" class="form-control" name="resource_type" datatype="*1-32" nullmsg="资源类型不能为空">
+                          <option value="">请选择资源类型</option> 
+                          <option value="1">图片</option> 
+                          <option value="2">视频</option> 
+                    </select>
+                </div>
+            </div>
+        		<div class="row cl">
+        			 <label class="form-label col-2">广告跳转的url：</label>
+          			<div class="formControls col-2">
+          				  <input type="text" class="input-text" value="http://www.xihaxueche.com" id="ads_url" name="ads_url" placeholder="请填写广告跳转的url">
+          			</div>
+        		</div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>添加时间：</label>
+                <div class="formControls col-2">
+                    <div class="demo" >
+                        <input type="text" id="addtime" name="addtime" style="height:30px;" datatype="*1-32" nullmsg="添加时间不能为空" class="input-text  date_picker laydate-icon" value="" placeholder="请选择添加时间" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>过期时间：</label>
+                <div class="formControls col-2">
+                    <div class="demo" >
+                        <input type="text" id="over_time" name="over_time" style="height:30px;" datatype="*1-32" nullmsg="过期时间不能为空" class="input-text date_picker laydate-icon" value=""  placeholder="请选择到期时间" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>轮播时间：</label>
+                <div class="formControls col-4">
+                    <input type="button" value="-" onclick="sub(this)" class="btn btn-warning" style="border-radius:0px;" >
+                    <input type="input-text"  value="1" name="loop_time" datatype="*1-32" nullmsg="轮播的时间不能为空" style="width:120px;height:26px;text-align:center" >
+                    <input type="button" value="+" onclick="add(this)" class="btn btn-warning" style="border-radius:0px;" > 秒
+                </div>
+            </div>
+        		<div class="row cl">
+          			<label class="form-label col-2">原始价格：</label>
+          			<div class="formControls col-4">
+                    <input type="button" value="-" onclick="subNum(this)" class="btn btn-warning" style="border-radius:0px;" >
+                    <input type="input-text"  value="100" name="original_price" datatype="*1-32" nullmsg="轮播的时间不能为空" style="width:120px;height:26px;text-align:center" >
+                      <input type="button" value="+" onclick="addNum(this)" class="btn btn-warning" style="border-radius:0px;" > 元
+          				<!-- <input type="text" class="input-text" value="" placeholder="请填写原始价格" id="" name="original_price"> -->
+          			</div>
+        		</div>
+            <div class="row cl">
+                <label class="form-label col-2">最终价格：</label>
+                <div class="formControls col-4">
+                    <input type="button" value="-" onclick="subNum(this)" class="btn btn-warning" style="border-radius:0px;" >
+                    <input type="input-text"  value="100" name="final_price" datatype="*1-32" nullmsg="轮播的时间不能为空" style="width:120px;height:26px;text-align:center" >
+                    <input type="button" value="+" onclick="addNum(this)" class="btn btn-warning" style="border-radius:0px;" > 元
+                    <!-- <input type="text" class="input-text" value="" placeholder="请填写最终价格" id="" name="final_price"> -->
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">是否打折：</label>
+                <div class="formControls col-6 btn-group">
+                    <label class="btn radius btn-success radio show"><input name="is_promote" value="1" checked type="radio" style="display:none;">是</label>
+                    <label class="btn radius btn-warning-outline radio show"><input name="is_promote" value="0" type="radio" style="display:none;">否</label>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">设备类型：</label>
+                <div class="formControls col-6 btn-group">
+                    <label class="btn radius btn-success radio show"><input name="device" value="1" checked type="radio" style="display:none;">苹果</label>
+                    <label class="btn radius btn-warning-outline radio show"><input name="device" value="2" type="radio" style="display:none;">安卓</label>
+                </div>
+            </div>
+            <!-- <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>设备类型：</label>
+                <div class="formControls col-2" > 
+                    <select  id="device" style="width:215px;height:30px;" class="form-control" name="device" datatype="*1-32" nullmsg="设备类型不能为空">
+                        <option value="">请选择设备类型</option> 
+                        <option value="1">苹果</option> 
+                        <option value="2">安卓</option> 
+                    </select>
+                </div>
+            </div> -->
+            <!-- <div class="row cl">
+                <label class="form-label col-2">是否打折：</label>
+                <div class="formControls col-2" > 
+                    <select  id="is_promote" style="width:215px;height:30px;" class="form-control" name="is_promote" >
+                        <option value="">请选择打折状态</option> 
+                        <option value="1">是</option> 
+                        <option value="0">否</option> 
+                    </select>
+                </div>
+            </div> -->
+            <div class="row cl">
+                <label class="form-label col-2">订单状态：</label>
+                <div class="formControls col-6 btn-group">
+                    <label class="btn radius btn-success radio order_status"><input name="order_status" value="1002" checked type="radio" style="display:none;">已付款</label>
+                    <label class="btn radius btn-warning-outline radio order_status"><input name="order_status" value="1003" type="radio" style="display:none;">未付款</label>
+                    <label class="btn radius btn-warning-outline radio order_status"><input name="order_status" value="1005" type="radio" style="display:none;">已取消</label>
+                    <label class="btn radius btn-warning-outline radio order_status"><input name="order_status" value="1006" type="radio" style="display:none;">退款中</label>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">支付方式：</label>
+                <div class="formControls col-5 btn-group">
+                    <label class="btn radius btn-success radio pay_type"><input name="pay_type" value="1" checked type="radio" style="display:none;">支付宝支付</label>
+                    <label class="btn radius btn-secondary-outline radio pay_type"><input name="pay_type" value="2"  type="radio" style="display:none;">线下支付</label>
+                    <label class="btn radius btn-secondary-outline radio pay_type"><input name="pay_type" value="3" type="radio" style="display:none;">微信支付</label>
+                    <label class="btn radius btn-secondary-outline radio pay_type"><input name="pay_type" value="4" type="radio" style="display:none;">银行卡支付</label>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">订单号：</label>
+                <div class="formControls col-3">
+                    <input type="text" class="input-text" value="" placeholder="" id="order_no" name="so_order_no">
+                </div>
+                <button class="btn btn-primary radius" type="button" id="ordernocreate"><i class="Hui-iconfont">&#xe647;</i> 自动生成</button>
+                <span id="order-tips" style="color:green;"></span>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">资源：</label>
+                <div class="formControls col-4">
+                    <div class="field url_field" style="float:left">
+                        <input type="file" value="" class="button" id="resource_url" name="resource_url">
+                    </div>
+                </div>
+            </div>
+    		<div class="row cl">
+      		  <div class="col-10 col-offset-2">
+          		  <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+      		  </div>
+    		</div>
+      	</form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/laydate.dev.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<script type="text/javascript">
+    // 日期选择器
+    $(function() {
+        laydate({
+            elem: '#addtime',
+            format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+            min: laydate.now(),
+            max: '2099-12-31 23:59:59', //最大日期
+            istime: true //是否开启时间选择
+        });
+        laydate({
+            elem: '#over_time',
+            format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+            min: laydate.now(),
+            max: '2099-12-31 23:59:59', //最大日期
+            istime: true //是否开启时间选择
+        });
+        laydate.skin('danlan');
+    })
+
+    // 生成订单号
+    $('#ordernocreate').click(function() {
+        $.ajax({
+            type:"POST",
+            url:"__URL__/createno",
+            dataType:"JSON",
+            success:function(data) {
+               $('#order_no').val(data.data); 
+            }
+        })
+    });
+
+    // 表单验证
+    $( function () {
+        $('#addAdsOrders').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    }) 
+
+    // 根据买家id获取买家的电话号码
+    $('#buyer_id').click(function() {
+        var $buyer_id = $('#buyer_id').val();
+        $.ajax({
+            type:"POST",
+            url:"__URL__/getPhoneByBuyId",
+            data:{'buyer_id':$buyer_id},
+            dataType:'JSON',
+            success:function(data) {
+                if(data.code == 200) {
+                    if (data.data) {
+                        html = '';
+                        html +='<input type="text" class="input-text" value="'+data.data['s_frdb_tel']+'" name="buyer_phone" />';
+                        $buyer_phone = document.getElementById('buyer_phone');
+                        $buyer_phone.innerHTML = html;
+                    }
+                } else {
+                    layer.msg(data.msg,{icon:2,time:1000});
+                }
+            },
+            error:function() {
+                layer.msg('网络错误，请检查网络!',{icon:2,time:1000});    
+            }
+        });
+    });
+
+    /*
+    * 按钮
+    * 点击切换效果
+    */
+    $('.btn-group .show input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-warning-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-warning-outline");
+    });
+
+    /*
+    * 订单状态
+    * 点击切换效果
+    */
+    $('.btn-group .order_status input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-warning-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-warning-outline");
+    });
+
+    /*
+    * 支付类型
+    * 点击切换效果
+    */
+    $('.btn-group .pay_type input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-secondary-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-secondary-outline");
+    });
+
+    // 生成订单号
+    $('#ordernocreate').click(function() {
+        $.ajax({
+            type:"POST",
+            url:"__URL__/createno",
+            dataType:"JSON",
+            success:function(data) {
+           		 $('#order_no').val(data.data); 
+            }
+        })
+    });
+
+    // 添加与减少
+    function subNum(obj){
+        var temp=parseInt(obj.nextElementSibling.value);
+        if(temp>1){
+            temp-=100;
+            obj.nextElementSibling.value=temp;
+        }
+    }
+    function addNum(obj){
+        var temp=parseInt(obj.previousElementSibling.value);
+        temp+=100;
+        obj.previousElementSibling.value=temp;
+    }
+
+    function sub(obj){
+        var temp=parseInt(obj.nextElementSibling.value);
+        if(temp>1){
+            temp--;
+            obj.nextElementSibling.value=temp;
+        }
+    }
+    function add(obj){
+        var temp=parseInt(obj.previousElementSibling.value);
+        temp++;
+        obj.previousElementSibling.value=temp;
+    }
+</script>
+</body>
+</html>

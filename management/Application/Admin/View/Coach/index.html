@@ -1,0 +1,809 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>教练列表</title>
+    <style type="text/css">
+        .drop-menu a {
+            font-size: 14px;
+        }
+        
+        .drop-menu a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>教练管理<span class="c-gray en">&gt;</span> 教练列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+            title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <form method="post" action="{:U('Coach/searchCoach')}" name="search">
+        <div class="pd-20">
+            <div class="">
+                <if condition="$school_id eq 0">
+                    <label for="status">按删除状态</label>
+                    <select class="" name="status" id="status" style="width:150px;height:30px">                  
+                        <!-- <option value="">--不限状态--</option>    -->
+                        <option style="" value="0" <if condition="$status eq 0">selected</if> >未删除</option>
+                        <option style="" value="2" <if condition="$status eq 2">selected</if> >已删除</option>
+                    </select>
+                </if>
+                <label for="search_star">按平均星级</label>
+                <select class="" name="search_star" id="search_star" style="width:150px;height:30px">                  
+                    <option value="">--不限星级--</option>   
+                    <option style="color:red" value="1" <if condition="$search_star eq 1">selected</if> >★</option>
+                    <option style="color:red" value="2" <if condition="$search_star eq 2">selected</if> >★★</option>
+                    <option style="color:red" value="3" <if condition="$search_star eq 3">selected</if> >★★★</option>
+                    <option style="color:red" value="4" <if condition="$search_star eq 4">selected</if> >★★★★</option> 
+                    <option style="color:red" value="5" <if condition="$search_star eq 5">selected</if> >★★★★★</option> 
+                </select>
+                <label for="search_bind">按认证状态 </label>
+                <select class="" name="certification_status" id="certification_status" style="width:150px;height:30px">                  
+                    <option value="">--不限状态--</option>   
+                    <option style="" value="1" <if condition="$certification_status eq 1">selected</if> >未认证</option>
+                    <option style="" value="2" <if condition="$certification_status eq 2">selected</if> >认证中</option>
+                    <option style="" value="3" <if condition="$certification_status eq 3">selected</if> >已认证</option>
+                    <option style="" value="4" <if condition="$certification_status eq 4">selected</if> >认证失败</option>
+                </select>
+                <label for="search_type">按关键词搜索 </label>
+                <select class="" name="search_type" id="search_type" style="width:150px;height:30px">                  
+                    <option value="">--不限关键词--</option>   
+                    <option style="" value="l_coach_id" <if condition="$search_type eq l_coach_id">selected</if>>ID</option>
+                    <option style="" value="s_coach_name" <if condition="$search_type eq s_coach_name">selected</if> >姓名</option>
+                    <option style="" value="s_coach_phone" <if condition="$search_type eq s_coach_phone">selected</if> >手机号</option>
+                    <if condition="$school_id eq 0">
+                        <option style="" value="s_school_name" <if condition="$search_type eq s_school_name">selected</if> >驾校名称</option>
+                    </if>
+                </select>
+                <input type="text" value="{$s_keyword}" name="s_keyword" placeholder="ID，姓名，手机号<if condition='$school_id eq 0'>，驾校名称</if>" class="input-text default size-M" style="width:300px">
+                <input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+            </div>
+
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+                <a href="javascript:;" onclick="addCoach('添加教练','{: U('Coach/addCoach')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加教练 </a>
+                <span class="r">共有教练：<strong>{$count}</strong>个</span>
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="30">ID</th>
+                            <th width="50">
+                                排序
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标双击排序表格有意外惊喜哦"></span>
+                            </th>
+                            <if condition="$school_id eq 0">
+                                <th width="70">驾校名称</th>
+                            </if>
+                            <th width="60">
+                                姓名
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多教练信息"></span>
+                            </th>
+                            <th width="60">
+                                手机号
+                            </th>
+                            <th width="60">课程</th>
+                            <th width="60">牌照</th>
+                            <!-- <th width="60">星级</th> -->
+                            <!-- <th width="60">类型</th> -->
+                            <!-- <th width="50">注册时间</th> -->
+                            <th width="60">认证状态</th>
+                            <th width="80">
+                                支持券 ?
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击按钮有意外惊喜哦"></span>
+                            </th>
+                            <th width="80">
+                                支持计时 ?
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击按钮可更改计时培训的支持状态"></span>
+                            </th>
+                            <th width="50">在线</th>
+                            <th width="50">热门？</th>
+                            <!--<if condition="$school_id eq 0">
+                                <th width="50">删除状态</th>
+                            </if>-->
+                            <!-- <th width="60">绑定状态</th> -->
+                            <th width="60">
+                                需绑定？
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="bottom" title="预约学车时，学员与教练是否必须绑定"></span>
+                            </th>
+                            <th width="90">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="coach_list" item="obj">
+                            <tr class="text-c signup_list" module-data="{$obj.l_coach_id}">
+                                <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                                <td class="va-m">{$obj.l_coach_id}</td>
+                                <td class="va-m changeable" data-field="i_order">
+                                    <span>{$obj.i_order}</span>
+                                    <input class="input-text " value="{$obj.i_order}" style="display:none" name="i_order" type="text" style="text-align:center;border-radius:5px;">
+                                </td>
+                                <if condition="$school_id eq 0">
+                                    <td class="va-m">{$obj.s_school_name}</td>
+                                </if>
+                                <td class="va-m">
+                                    <a href="javascript:;" class="coachdetail" id="signuphover{$obj.l_coach_id}" style="color:#09c">
+                                        {$obj.s_coach_name|mb_substr=0,7}
+                                    </a>
+                                </td>
+                                <td class="va-m">
+                                    {$obj.s_coach_phone}
+                                </td>
+                                <td class="va-m">{$obj.coach_lesson}</td>
+                                <td class="va-m"><span style="width:50px;display:inline-block">{$obj.coach_license}</span></td>
+                                <!-- <td style="color:red" class="va-m"> 
+                                    <switch name="obj.i_coach_star">
+                                    <case value="1">★</case>
+                                    <case value="2">★★</case>
+                                    <case value="3">★★★</case>
+                                    <case value="4">★★★★</case>
+                                    <case value="5">★★★★★</case>
+                                    <default />☆
+                                    </switch>
+                                </td> -->
+                                <!-- <td class="va-m">
+                                    <switch name="obj.i_type">
+                                        <case value="1"><span class="btn btn-success-outline radius">普通教练员</span></case>
+                                        <case value="0"><span class="btn btn-danger-outline radius">金牌教练员</span></case>
+                                        <case value="2"><span class="btn btn-secondary-outline radius">二级优秀教练员</span></case>
+                                        <case value="5"><span class="btn btn-warning-outline radius">二级优秀教练员 全国优秀教练荣誉</span></case>
+                                        <case value="3"><span class="btn btn-secondary-outline radius">三级优秀教练员</span></case>
+                                        <case value="6"><span class="btn btn-warning-outline radius">三级优秀教练员 全国优秀教练员荣誉</span></case>
+                                        <case value="4"><span class="btn btn-secondary-outline radius">四级优秀教练员</span></case>
+                                        <default /><span class="btn btn-success-outline radius">普通教练员</span>
+                                    </switch>
+                                </td> -->
+                                <!-- <td class="va-m">{$obj.addtime}</td> -->
+                                <td class="va-m">
+                                    <switch name="obj.certification_status">
+                                        <case value="1"><span data-id="{$obj.l_coach_id}" data-title="1" class="btn btn-secondary-outline radius">未认证</span></case>
+                                        <case value="2"><span data-id="{$obj.l_coach_id}" data-title="2" class="btn btn-warning-outline radius">认证中</span></case>
+                                        <case value="3"><span data-id="{$obj.l_coach_id}" data-title="3" class="btn btn-success-outline radius">已认证</span></case>
+                                        <case value="4"><span data-id="{$obj.l_coach_id}" data-title="4" class="btn btn-danger-outline radius">认证失败</span></case>
+                                    </switch>
+                                </td>
+                                <td class="va-m setSupportStatus">
+                                    <switch name="obj.coupon_supported">
+                                        <case value="1"><span data-id="{$obj.l_coach_id}" data-title="1" class="btn btn-success size-S radius">支持</span></case>
+                                        <case value="0"><span data-id="{$obj.l_coach_id}" data-title="0" class="btn btn-warning size-S radius">不支持</span></case>
+                                        <default /><span data-id="{$obj.l_coach_id}" class="btn btn-warning size-S radius">不支持</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setTrainingSupport">
+                                    <switch name="obj.timetraining_supported">
+                                        <case value="1"><span data-id="{$obj.l_coach_id}" data-title="1" class="btn btn-success size-S radius">支持</span></case>
+                                        <case value="0"><span data-id="{$obj.l_coach_id}" data-title="0" class="btn btn-warning size-S radius">不支持</span></case>
+                                        <default /><span data-id="{$obj.l_coach_id}" class="btn btn-warning size-S radius">不支持</span>
+                                    </switch>
+                                </td>
+
+                                <td class="va-m setstatus">
+                                    <switch name="obj.order_receive_status">
+                                        <case value="1"><span data-id="{$obj.l_coach_id}" data-title="1" class="btn btn-success size-S radius">在线</span></case>
+                                        <case value="0"><span data-id="{$obj.l_coach_id}" data-title="0" class="btn btn-danger size-S radius">不在线</span></case>
+                                        <default /><span data-id="{$obj.l_coach_id}" class="btn btn-danger size-S radius">不在线</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setHotStatus">
+                                    <switch name="obj.is_hot">
+                                        <case value="1"><span data-id="{$obj.l_coach_id}" data-title="1" class="btn btn-success size-S radius">否</span></case>
+                                        <case value="2"><span data-id="{$obj.l_coach_id}" data-title="2" class="btn btn-danger size-S radius">是</span></case>
+                                        <default /><span data-id="{$obj.l_coach_id}" data-id="{$obj.l_coach_id}" data-title="2" class="btn btn-danger size-S radius">其他</span>
+                                    </switch>
+                                </td>
+                                <!--<if condition="$school_id eq 0">
+                                    <td class="va-m setDelCoachStatus" data-phone="{$obj.s_coach_phone}">
+                                        <switch name="obj.i_status">
+                                            <case value="0"><span data-id="{$obj.l_coach_id}" data-title="0" class="btn btn-success size-S radius"> 未删除 </span></case>
+                                            <case value="2"><span data-id="{$obj.l_coach_id}" data-title="2" class="btn btn-danger size-S radius"> 已删除 </span></case>
+                                            <default /><span data-id="{$obj.l_coach_id}" class="btn btn-danger size-S radius">其他状态</span>
+                                        </switch>
+                                    </td>
+                                </if>-->
+                                <!-- <td class="va-m">
+                                    <switch name="obj.must_bind">
+                                        <case value="0"><span class="btn btn-secondary">未设置</span></case>
+                                        <case value="1"><span class="btn btn-success">需绑定</span></case>
+                                        <case value="2"><span class="btn btn-warning">不需绑</span></case>
+                                        <default /><span class="btn btn-secondary">未设置</span>
+                                    </switch>
+                                </td> -->
+                                <td class="va-m">
+                                    <div class="button-group border-blue">
+                                        <span class="dropdown-toggle">
+                                            <!-- 设置  -->
+                                            <if condition="$obj.must_bind eq 0">
+                                                <span class="btn btn-secondary-outline radius" >未设置<span class="downward"></span></span>
+                                        </if>
+                                        <if condition="$obj.must_bind eq 1">
+                                            <span class="btn btn-success-outline radius">需绑定<span class="downward"></span></span>
+                                        </if>
+                                        <if condition="$obj.must_bind eq 2">
+                                            <span class="btn btn-warning-outline radius">不需绑<span class="downward"></span></span>
+                                        </if>
+                                        <!-- <span class="downward"></span> -->
+                                        </span>
+                                        <ul class="drop-menu " style="min-width:85px;margin-left:-2px;">
+                                            <if condition="$obj.must_bind eq 0">
+                                                <!-- <li><a href="javascript:;" onclick="javascript:setCoachMustBind({$obj.l_coach_id}, 0, this);">未设置</a></li> -->
+                                                <li><a href="javascript:;" onclick="javascript:setCoachMustBind({$obj.l_coach_id}, 1, this);">需绑定</a></li>
+                                                <li><a href="javascript:;" onclick="javascript:setCoachMustBind({$obj.l_coach_id}, 2, this);">不需绑</a></li>
+                                            </if>
+                                            <if condition="$obj.must_bind eq 1">
+                                                <li><a href="javascript:;" onclick="javascript:setCoachMustBind({$obj.l_coach_id}, 2, this);">不需绑</a></li>
+                                            </if>
+                                            <if condition="$obj.must_bind eq 2">
+                                                <li><a href="javascript:;" onclick="javascript:setCoachMustBind({$obj.l_coach_id}, 1, this);">需绑定</a></li>
+                                            </if>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="va-m td-manage">
+                                    <a title="设置 {$obj.s_coach_name} 的时间配置" href="javascript:;" onclick="member_set('设置 {$obj.s_coach_name} 的时间配置','{: U('Coach/setCoachTimeConfig')}?id={$obj.l_coach_id}&school_id={$obj.s_school_name_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe61d;</i></a>
+                                    <a title="预览" href="javascript:;" onclick="member_show('预览教练信息','{: U('Coach/showCoach')}?id={$obj.l_coach_id}&school_id={$obj.s_school_name_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i></a>
+                                    <a title="删除" href="javascript:;" onclick="javascript:member_del(this,{$obj.l_coach_id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑教练信息','{: U('Coach/editCoach')}?id={$obj.l_coach_id}&school_id={$obj.s_school_name_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                                <td class="coachinfo" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;">
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 120px;">姓名</td>
+                                            <td class="va-m">{$obj.s_coach_name}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold;width: 120px;">手机号</td>
+                                            <td class="va-m">{$obj.s_coach_phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">类型</td>
+                                            <td class="va-m text-red">
+                                                <switch name="obj.i_type">
+                                                    <case value="1"><span class="">普通教练员</span></case>
+                                                    <case value="0"><span class="">金牌教练员</span></case>
+                                                    <case value="2"><span class="">二级优秀教练员</span></case>
+                                                    <case value="5"><span class="">二级优秀教练员 全国优秀教练荣誉</span></case>
+                                                    <case value="3"><span class="">三级优秀教练员</span></case>
+                                                    <case value="6"><span class="">三级优秀教练员 全国优秀教练员荣誉</span></case>
+                                                    <case value="4"><span class="">四级优秀教练员</span></case>
+                                                    <default /><span class="">普通教练员</span>
+                                                </switch>
+                                            </td>
+                                            <td class="blue text-center" style="font-weight:bold">所属车</td>
+                                            <td class=" text-red">{$obj.name}</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">课程</td>
+                                            <td class="va-m">{$obj.coach_lesson}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">牌照</td>
+                                            <td class="va-m">{$obj.coach_license}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">平均拿证时间</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.average_license_time} 天</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">科目二通过率</td>
+                                            <if condition="$obj.lesson2_pass_rate neq '--'">
+                                                <td class="va-m">{$obj.lesson2_pass_rate}%</td>
+                                                <else/>
+                                                <td class="va-m">{$obj.lesson2_pass_rate}</td>
+                                            </if>
+                                            <td class="blue text-center va-m" style="font-weight:bold">科目三通过率</td>
+                                            <if condition="$obj.lesson3_pass_rate neq '--'">
+                                                <td class="va-m">{$obj.lesson3_pass_rate}%</td>
+                                                <else/>
+                                                <td class="va-m">{$obj.lesson3_pass_rate}</td>
+                                            </if>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">自我介绍</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.s_coach_content}</td>
+                                        </tr>
+                                        <tr width="">
+                                            <td class="blue text-center va-m" style="font-weight:bold">教龄</td>
+                                            <td class="va-m">{$obj.s_teach_age}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">性别</td>
+                                            <td class="va-m">{$obj.coach_sex}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">认证状态</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.certification_status_value}</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">计时培训支持状态</td>
+                                            <td class="va-m">{$obj.timetraining_supported_value}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">计时培训最少价格</td>
+                                            <td class="va-m">￥{$obj.timetraining_min_price} 元</td>
+                                        </tr>
+
+                                        <if condition="$school_id eq 0">
+                                            <tr width="100%">
+                                                <td class="blue text-center va-m" style="font-weight:bold">所属驾校</td>
+                                                <td class="red text-red va-m" colspan=3>{$obj.s_school_name}</td>
+                                            </tr>
+                                        </if>
+                                        <tr width="100%">
+                                            <td class="blue text-center va-m" style="font-weight:bold">服务次数</td>
+                                            <td class="va-m">{$obj.i_service_count}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">通过人数</td>
+                                            <td class="va-m">{$obj.i_success_count}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">地址</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.s_coach_address}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">注册时间</td>
+                                            <td class="va-m">{$obj.addtime}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">更新时间</td>
+                                            <td class="va-m">{$obj.updatetime}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">教练星级</td>
+                                            <td style="color:red" class="va-m" colspan=3>
+                                                <switch name="obj.i_coach_star">
+                                                    <case value="1">★</case>
+                                                    <case value="2">★★</case>
+                                                    <case value="3">★★★</case>
+                                                    <case value="4">★★★★</case>
+                                                    <case value="5">★★★★★</case>
+                                                    <default />☆
+                                                </switch>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script>
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>  -->
+    <!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>  -->
+    <script type="text/javascript">
+        // 设置计时培训支持状态
+        $('.setTrainingSupport span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '0':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 0;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setTrainingSupport')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 设置教练的绑定状态
+        function setCoachMustBind(id, status, obj) {
+            if (id == '' || status == '') {
+                alert('参数错误');
+                return false; //参数错误
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setCoachMustBind')}",
+                data: {
+                    'id': id,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg('设置失败', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        }
+
+        /**
+         * 设置教练热门与不热门的状态
+         *
+         * @return  void
+         * @author  wl
+         * @date    Dec 21, 2016
+         **/
+        $('.setHotStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '2':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 2;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setCoachHotStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        // 鼠标双击排序表格事件
+        $('td.changeable').dblclick(function() {
+            var s = $(this).find('span');
+            var i = $(this).find('input');
+            s.css('display', 'none');
+            i.css('display', 'inline-block').css('text-align', 'center').css('border-radius', '5px');
+            i.focus();
+        });
+        $('td.changeable input').blur(function() {
+            var s = $(this).parent().find('span');
+            var i = $(this).parent().find('input');
+            var mid = $(this).parent().parent().attr('module-data');
+            var field = $(this).parent().attr('data-field');
+            var order = $(this).val();
+            alert
+            s_params = '{"id":' + '"' + mid + '"' + ',"' + field + '":"' + order + '"' + '}';
+            j_params = JSON.parse(s_params);
+            $.ajax({
+                type: "post",
+                url: "__URL__/setCoachOrder",
+                data: j_params,
+                dataType: 'JSON',
+                success: function(data) {
+                    if (data.code == 200) {
+                        layer.tips(data.msg, s, {
+                            time: 1000,
+                            tips: [2, '#00CD66']
+                        });
+                        s.html(order);
+                        // location.reload();
+                    } else if (data.code == 105) {
+                        i.val(s.html());
+                        layer.tips('未做任何修改', s, {
+                            time: 1000
+                        });
+                    } else if (data.code == 102) {
+                        i.val(s.html());
+                        layer.tips('参数类型错误', s, {
+                            time: 1000
+                        });
+                    } else {
+                        i.val(s.html());
+                        layer.tips(data.msg, s, {
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    i.val(s.html());
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            });
+
+            i.css('display', 'none');
+            s.css('display', 'inline');
+        });
+
+        // 教练删除状态的设置 
+        $('.setDelCoachStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            var coach_phone = $(this).parent().attr('data-phone');
+            switch (status) {
+                case '0':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 0;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setDelCoachStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status,
+                    'coach_phone': coach_phone
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else if (data.code == 105) {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 教练详情
+        $('.coachdetail').on({
+                'mouseenter': function() {
+                    var id = $(this).attr('id');
+                    var coachinfo = $(this).parents('tr.signup_list').find('td.coachinfo').html();
+                    layer.tips(coachinfo, '#' + id, {
+                        tips: [1, '#fff'],
+                        time: 0,
+                        area: '800px'
+                    });
+                },
+
+                'mouseleave': function() {
+                    var index = layer.tips();
+                    layer.close(index);
+                },
+
+                'click': function() {
+                    var coachinfo = $(this).parents('tr.signup_list').find('td.coachinfo').html();
+                    layer.open({
+                        type: 1,
+                        title: '教练详情',
+                        area: '800px',
+                        shade: [0.3, '#333'],
+                        shadeClose: true,
+                        moveType: 1,
+                        shift: 0,
+                        content: coachinfo
+                    });
+                }
+            })
+            /**
+             * 设置教练是否在下的状态
+             *
+             * @return  void
+             * @author  wl
+             * @date    Nine 06, 2016
+             **/
+        $('.setstatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '0':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 0;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setCoachStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 设置优惠券的支持状态的相关信息
+        $('.setSupportStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '0':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 0;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setSupportStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        /*用户-添加*/
+        function addCoach(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        // 预览用户信息
+        function member_show(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*教练时间设置*/
+        function member_set(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delCoach",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        // alert(data);
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

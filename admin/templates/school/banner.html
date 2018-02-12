@@ -1,0 +1,201 @@
+<!--{include file="library/header.lbi"}-->
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="../admin/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="../admin/assets/css/select2-bootstrap.css">
+</head>
+<body>
+    <form method="post" id="form" action="index.php?action=school&op=addbanner" enctype="multipart/form-data">
+        <div class="panel admin-panel">
+            <div class="panel-head"><strong>轮播图列表</strong></div>
+            <div class="line-middle" style="margin-left:15px; margin-top:10px;"> 
+            <div class="form-group">
+
+              <div class="label"><label for="coach_school">所属驾校:</label></div>
+              <div class="field" style="width:auto;margin-left:75px;margin-top:-30px;width:250px;">
+                  <select select2 ng-model="b"  id="school_id" class="form-control"  name="school_id" placeholder="请选择驾校" > 
+                      <option value="" >请选择驾校</option> 
+                      <!--{if $school_list}-->
+                          <!--{foreach $school_list as $key => $value}-->
+                           <option value="<!--{$value.school_id}-->"><!--{$value.school_name}--></option>
+                          <!--{/foreach}-->
+                      <!--{else}-->
+                          <option value="">暂无驾校列表</option>
+                      <!--{/if}-->
+                  </select>
+                  <span class="clearfix"></span>
+              </div>
+
+              
+          </div>
+                <div class="form-group">
+                    <div class="field img_field">
+                        <input type="file" value="" class="button" id="school_banner" name="school_banner[]" data-validate="required:请选择文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件">
+                    </div>
+                    <div class="label"></div>
+                    <div class="field" style="margin-top:10px;">
+                        <span class="button icon-plus" style="cursor:pointer; margin-top:10px;" onclick="javascript:addimg();"> 添加图片</span>
+                    </div>
+                </div>
+                <div class="form-button">
+                  <button class="button bg-main" type="submit" id="qybtnF">提交</button>
+                  <button class="button bg-main" type="submit" id="qybtn">图片展示</button>
+                </div>
+                <p class="text-red text-big" style="margin-top:10px; color:#f60; cursor:pointer;">
+                    <i class="icon-exclamation-circle"></i>
+                    最多只能添加5张图,单张图片不要超过2M, 单张图片标准尺寸为 720*400px
+                </p>
+            </div>
+            <div class="line-middle" style="margin-left:10px; margin-top:10px;" id="bannerlist"> 
+            </div>
+        </div>
+    </form>
+
+<script type="text/javascript" src="../admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="../admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="../admin/assets/js/selectindex.js"></script>
+
+    <script>
+   $('#qybtnF').click(function() {
+   var school_id = document.getElementById('school_id').value;
+    if(!school_id){
+      alert('请选择驾校！');
+      return false;
+    }
+   });
+
+   $('#qybtn').click(function(){
+   var school_id = document.getElementById('school_id').value;
+    if(!school_id){
+      alert('请选择驾校！');
+      return false;
+    }
+    var param = {'school_id':school_id};
+        $.ajax({
+            type:'POST',
+            url : "index.php?action=school&op=showbanner",
+            data : param,
+            async : false,
+            dataType : "JSON",
+            success : function (data) {
+                if(data.code == 200){
+                    if (data.data) {
+                        var i = 0;
+                        var max = data.data.length;
+                        html = '';
+                        for (; i < max; i++) {
+                            html += '<div  class="xl12 xs6 xm4 xb3 banner_list" style="position:relative; overflow:hidden;" ><div class="media padding-bottom clearfix"><a href="javascript:;" class="img_banner"><img src="'+data.data[i]['s_all_imgurl']+'" class="radius img-responsive" style="width:470px !important; height:266px !important;" ></a></div>';
+                            html +='<div class="del_hover"  onclick="javascript:delbanner('+"'"+data.data[i]['s_imgurl']+"'"+', this)" style="background:#333; opacity:0.8; position:absolute; border-radius:4px; width: 98%; height: 96%; display:none; top:0px; text-align:center; line-height:350px;"><span class="close" style="color:#ccc; font-size:10rem;margin-top:100px"></span></div></div>';
+                        }
+                        var bannertemp = document.getElementById('bannerlist');
+                        bannertemp.innerHTML = html;
+                        $('.img-responsive,.del_hover').on({
+                            mouseenter:function() {
+                                $(this).parents('.xm4').find('.del_hover').css({'display':'block'});
+                            },
+                            mouseleave:function() {
+                                $(this).parents('.xm4').find('.del_hover').css({'display':'none'});
+                            }
+                        });
+                    }
+                } else {
+                    layer.msg(data.msg,{icon:2,time:1000});
+                }
+            },
+            error: function(){
+                layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+            }
+
+        })
+    });
+
+  
+
+    // 删除banner图
+    function delbanner(url, obj) {
+        var school_id = document.getElementById('school_id').value;
+        if(!school_id){
+          alert('请选择驾校！');
+          return false;
+        } 
+        if(window.confirm('你确定要删除吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delbanner",
+                // dataType:"JSON",
+                data:{'url':url,'school_id':school_id},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.banner_list').remove();
+                    } else {
+                        alert('删除失败！');
+                        return false;
+                    }
+                }
+            })   
+        }
+        
+    }
+
+    function addimg() {
+        var html = '<input type="file" value="" class="button" name="school_banner[]" data-validate="required:请选择文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件">'; 
+        $('.img_field').append(html); 
+    }
+    // // 删除驾校
+    // function deladdress(id, obj) {
+    //     if(window.confirm('你确定删除吗？')) {
+    //         $.ajax({
+    //             type:"POST",
+    //             url:"index.php?action=school&op=deladdress",
+    //             // dataType:"JSON",
+    //             data:{'id':id},
+    //             success:function(data) {
+    //                 if(data == 1) {
+    //                     $(obj).parents('.carlist').remove();
+    //                 }
+    //             }
+    //         })
+
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的车辆列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->
+</body>
+</html>

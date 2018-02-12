@@ -1,0 +1,114 @@
+{include file="index/header"/}
+
+<div class="page" id="learncarflow">
+	<style type="text/css">
+  .changeTab {
+    width:30%;
+    color:#5ac97c;
+    /*font-weight:bold;*/
+    background:#5ac97c;
+    color:#fff;
+    border-radius:50%;
+    padding-left:5px;
+    text-align:center;
+    font-size:0.8rem;
+  }
+  .changeText {
+    /*font-weight: bold;*/
+    margin-left: 10px;
+    width: 70%;
+    border: 0px solid red;
+    font-size: 0.8rem;
+  }
+  .contentStyle ul li {
+    font-size: 0.8rem;
+    line-height: 180%;
+  }
+</style>
+  {if condition="$device eq '1'"}
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+      <span class="icon icon-left"></span>
+  		 返回 
+    </a>
+    <h1 class='title'>{$title}</h1>
+    <div>
+    </div>
+  </header>
+  {/if}
+  <div class="content" style="border:0px solid red;background-color:#fff;margin-top:1px;">
+    <img src="__PUBLIC__/static/img/driverimg.png" style="width:100%;">
+    <div class="content-block" style="background-color:#fff;margin-top:10%;">
+        <!-- <img src="__PUBLIC__/static/img/drivernav.png" style="width:42%;">
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 1 </span> 
+            <span class="changeText"> 开始学车 </span>
+          </span>
+          <ul>
+            <li>学车按照考试顺序科目一、科目二、科目三、科目四依次进行，前一科目考试合格后可以参加下一科目的考试，若前一科目考试不合格，继续补考</li>
+          </ul>
+        </div>
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 2 </span> 
+            <span class="changeText"> 科目一理论考试 </span>
+          </span>
+          <ul>
+            <li>考试内容：主要考核道路交通安全法规、交通信号、同行规则等知识。</li>
+            <li>考试方式：电脑机考，45分钟，试卷由100道题目组成，题型为判断题，单项选择题。</li>
+            <li>合格标准：满分100分，90分合格，如若不过，最对可补考五次。</li>
+            <li>可通过“嘻哈学车”APP观看教学视频，助力科目一成功通过。</li>
+          </ul>
+        </div>
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 3 </span> 
+            <span class="changeText"> 科目二场内道路训练 </span>
+          </span>
+          <ul>
+            <li>考试内容：小型汽车训练和考试均为5项，倒车入库，定点爬坡、侧方位停车、曲线行驶和直角转弯。</li>
+            <li>考试方式：考场内的专用考试车，考试车可以感应是否考试过关。</li>
+            <li>合格标准：满分100分，90分及格；最多可考5次，如果5次仍然不及格，已考试其他项目成绩作废。</li>
+            <li>可通过“嘻哈学车”APP观看视频，助力科目二成功通过。</li>
+          </ul>
+        </div>
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 4 </span> 
+            <span class="changeText"> 科目三场内道路训练 </span>
+          </span>
+          <ul>
+            <li>考试内容：道路技能考试。基本项目16项，包括上车准备、起步、靠边停车、通过人行通道线、通过学校区域、通过公交车站、会车、超车、掉头、夜间行驶、加减档位操作、路口做转弯、道路右转弯。</li>
+            <li>考试方式：考场内的专用考试车，考试车可以感应是否考试过关。</li>
+            <li>合格标准：满分100分，90分及格；最多可考5次，如果5次仍然不及格，已考试其他项目成绩作废。</li>
+            <li>可通过“嘻哈学车”APP观看视频，助力科目三成功通过。</li>
+          </ul>
+        </div>
+       
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 5 </span> 
+            <span class="changeText"> 科目四安全文明驾驶 </span>
+          </span>
+          <ul>
+            <li>考试内容：安全文明驾驶，包括安全文明驾驶操作要求、恶劣气象和复杂道路条件下的安全行驶知识、爆胎等危机情况下的应急处理方法以及发生交通事故后的处置知识等内容。</li>
+            <li>考试方式：电脑机考，30分钟考卷由50道题目组成，题型为判断题，单选题和多项选择题。</li>
+            <li>合格标准：满分100分，90分及格，考试次数不限制。</li>
+            <li>可通过“嘻哈学车”APP观看视频，助力科目四成功通过。</li>
+          </ul>
+        </div>
+         <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 6 </span> 
+            <span class="changeText"> 宣誓获得驾照 </span>
+          </span>
+          <ul>
+            <li>恭喜您，在经过最后一次视频安全教育并宣誓后，你已经顺利取得驾照，成为一名准司机。</li>
+          </ul>
+        </div> -->
+        <img src="__PUBLIC__/static/images/xiha-learncarflow.png" style="width:100%;" alt="">
+    </div> 
+  </div>
+</div>
+{include file="index/footer"/}

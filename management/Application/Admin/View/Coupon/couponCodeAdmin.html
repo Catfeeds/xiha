@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>券兑换码列表</title>
+</head>
+<body>
+    <nav class="breadcrumb">
+	   <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>优惠券管理<span class="c-gray en">&gt;</span> 券兑换码列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+	<br>
+	<div class="pd-20">
+  		<form method="post" action="{:U('Coupon/searchCouponCode')}" >
+			<div class="" style="margin-top:-20px;"> 
+				<label for="search_info">按关键词 </label>
+				<select class="" name="search_info" id="search_info" style="width:150px;height:30px">				   
+					<option style="" value="" >--不限关键词--</option>
+                    <option style="" value="coupon_code" <if condition = "$search_info eq coupon_code">selected</if>>券兑换码</option>
+					<option style="" value="coupon_name" <if condition = "$search_info eq coupon_name">selected</if>>优惠券名</option>
+				</select>    
+				<input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" placeholder="券兑换码，优惠券名" style="width:220px;" value="{$s_keyword}"/>
+				<input type="submit" id="search_cars" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+			</div>
+		</form>
+		<br/>
+		<div class="cl pd-5 bg-1 bk-gray"> 
+            <!-- <a href="javascript:;" onclick="addCouponCode('添加优惠券','{: U('Coupon/addCouponCode')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加兑换码</a></span>  -->
+            <span class="r">共有兑换码：<strong>{$count}</strong> 条</span> 
+        </div>
+		<div class="mt-20">
+    		<table class="table table-border table-bordered table-hover table-bg table-sort">
+    			<thead>	
+    				<tr class="text-c">
+    					<th width="25"><input type="checkbox" name="" value=""></th>
+    					<th width="40">ID</th>
+                        <th width="80">优惠券名</th>
+                        <th width="80">券兑换码</th>
+                        <th width="80">券种类</th>
+                        <th width="60">券面值</th>
+                        <th width="60">使用状态</th>
+                        <th width="60">添加时间</th>
+    					<th width="60">兑换时间</th>
+    					<th width="50">操作</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+        			<foreach name="couponcodelist" item="obj">
+        				<tr class="text-c coupon_list" module-data="{$obj.id}">
+        					<td class="va-m"><input type="checkbox" value="{$obj.id}" name=""></td>
+        					<td class="va-m">{$obj.id}</td>
+        					<td class="va-m">
+        						<!-- <a href="javascript:;" class="coupondetail" id="signuphover{$obj.id}" style="color:#09c"> -->
+        							{$obj.coupon_name}
+        						<!-- </a> -->
+        					</td>
+                            <td class="va-m">{$obj.coupon_code}</td>
+                            <td class="va-m">{$obj.coupon_category_name}</td>
+                            <if condition="$obj.coupon_category eq 1">
+                                <td class="va-m">￥{$obj.coupon_value}元</td>
+                            <else/>
+                                <td class="va-m">{$obj.coupon_value}折</td>
+                            </if>
+                            <td class="va-m">
+                                <switch name="obj.is_used">
+                                    <case value="0"><span data-id="{$obj.id}" title="0" class="btn btn-warning-outline radius">未使用</span></case>
+                                    <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success-outline radius">已使用</span></case>
+                                    <default/><span  class="btn btn-default-outline radius">未知状态</span>
+                                </switch>
+                            </td>
+                            <td class="va-m">{$obj.addtime}</td>
+        					<td class="va-m">{$obj.updatetime}</td>
+        					<td class="va-m td-manage">
+        						<a title="删除" href="javascript:;" onclick="member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+        						<a title="编辑" href="javascript:;" onclick="member_edit('编辑券兑换码','{: U('Coupon/editCouponCode')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+        					</td>
+        					<!-- <td class="couponinfo" style="display:none">
+        						<table class="table table-border table-bordered table-hover" style="color:#333;"> 
+        							<tr>
+        								<td class="blue text-center" style="font-weight:bold">券的名称</td>
+        								<td class="red text-red" colspan=3>{$obj.coupon_name}</td>
+        							</tr>
+                                    <tr> 
+                                        <td class="blue text-center" style="font-weight:bold">券的种类</td> 
+                                        <td>{$obj.cate_name}</td> 
+                                        <td class="blue text-center" style="font-weight:bold">券的面值</td> 
+                                        <td>{$obj.coupon_value}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue text-center" style="font-weight:bold">劵的总量</td>
+                                        <td class="red text-red" colspan=3>{$obj.coupon_total_num}</td>
+                                    </tr>
+                                    <tr> 
+                                        <td class="blue text-center" style="font-weight:bold">被领取数量</td> 
+                                        <td>{$obj.coupon_get_num}</td> 
+                                        <td class="blue text-center" style="font-weight:bold">限定的数量</td> 
+                                        <td>{$obj.coupon_limit_num}</td>
+                                    </tr>
+        							<tr>
+        								<td class="blue text-center" style="font-weight:bold">使用地区</td>
+        								<td class="red text-red" colspan=3>{$obj.address}</td>
+        							</tr>	
+                                    <tr> 
+                                        <td class="blue text-center" style="font-weight:bold">添加时间</td> 
+                                        <td>{$obj.addtime}</td> 
+                                        <td class="blue text-center" style="font-weight:bold">过期时间</td> 
+                                        <td>{$obj.expiretime}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue text-center" style="font-weight:bold">更新时间</td>
+                                        <td class="red text-red" colspan=3>{$obj.updatetime}</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td class="blue text-center" style="font-weight:bold">券的描述</td>
+                                        <td class="red text-red" colspan=3>{$obj.coupon_desc}</td>
+                                    </tr>
+        						</table>
+        	                </td> -->
+        				</tr>
+        			</foreach>
+    			</tbody>
+    		</table>
+    	</div>
+    	<div class="page pagination" style="display:inline;">
+    		<empty name="count">
+                <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+    		</empty>
+    		<p style="text-align:center">{$page}</p>
+    	</div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>  -->
+<script type="text/javascript">
+    // 鼠标悬浮事件
+    $('.coupondetail').on({
+        'mouseenter':function() {
+            var id = $(this).attr('id');
+            var couponinfo = $(this).parents('tr.coupon_list').find('td.couponinfo').html();
+            layer.tips(couponinfo, '#'+id, {
+                tips: [1, '#fff'],
+                time:0,
+                area: '480px'
+            });
+        },
+
+        'mouseleave':function() {
+            var index = layer.tips();
+            layer.close(index);  
+        },
+
+        'click':function() {
+            var couponinfo = $(this).parents('tr.coupon_list').find('td.couponinfo').html();
+            layer.open({
+                type: 1,
+                title:'优惠券详情',
+                area: '480px',
+                shade: [0.3, '#333'],
+                shadeClose: true,
+                moveType:1,
+                shift:0,
+                content: couponinfo
+            });
+          }
+    })
+
+    /*用户-添加*/
+    function addCouponCode (title,url) {
+    	// layer_show(title,url);
+    	var index = layer.open({
+    		type: 2,
+    		title: title,
+    		content: url
+    	});
+    	layer.full(index);
+    }
+    /*用户-编辑*/
+    function member_edit(title,url,id,w,h){
+    	var index = layer.open({
+    		type: 2,
+    		title: title,
+    		content: url
+    	});
+    	layer.full(index);
+    }
+
+    /*用户-删除*/
+    function member_del(obj,id){
+    	layer.confirm('确认要删除吗？',function(index){
+    		$.ajax({
+    			type:"POST",
+    			url:"__URL__/delCouponCode",
+    			data:{'id':id},
+    			dataType:'JSON',
+    			success:function(data) {
+    				if(data.code == 200) {
+    					$(obj).parents("tr").remove();
+    					layer.msg('已删除!',{icon:1,time:1000});
+    				} else {
+    					layer.msg('删除失败!',{icon:2,time:1000});
+    				}
+    			},
+    			error:function() {
+    				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+    			}
+    		});
+    	});
+    }
+</script> 
+</body>
+</html>

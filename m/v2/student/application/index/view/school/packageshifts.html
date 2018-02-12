@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title class="xiha_title">{$title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<META HTTP-EQUIV="Pragma" CONTENT="no-cache">    
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">    
+	<META HTTP-EQUIV="Expires" CONTENT="0">-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="嘻哈学车是一款免费的学车手机APP，以“促公平、节时间、省金钱、易学车”为出发点和落脚点；“网上学车，让学车更轻松、更便捷”理念吸引大量用户。APP可实现在线报名、在线支付等功能。学员能就近找到最近、最合适的教练。学员可以随时随地练车。使用“嘻哈学车”APP的学员，可一人一车享受专车接送，实行计时收费。" />
+    <meta name="keywords" content="嘻哈学车APP|安徽嘻哈网络技术有限公司|驾驶人学车APP|驾驶人自学自考学车APP|学员自主预约报名学员APP|学车APP|学车软件|考驾照软件 IOS版 安卓版 " /> {js href="__PUBLIC__/static/js/jquery.min.js"}
+    <script src="__PUBLIC__/static/js/index/index.js?s={$r}"></script>
+    {css href="__PUBLIC__/static/css/light7.min.css" /}
+    <link rel="stylesheet" href="__PUBLIC__/static/css/app.css?s={$r}"> {css href="__PUBLIC__/static/font/iconfont/iconfont.css" /} {css href="__PUBLIC__/static/css/swiper.min.css" /}
+    <!--<script src="__PUBLIC__/static/js/index/packageshifts.js?s={$r}"></script>-->
+
+    <script>
+        var _public = "__PUBLIC__";
+        var api_url = "{$Think.API_URL}";
+        var site_url = "{$Think.SITE_URL}";
+        var device = "{$device}";
+        var token = "{$token}";
+    </script>
+    <style>
+        .page {
+            z-index: -1000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="packageshifts">
+        <div class="content" style="background: #fff;">
+            <div>
+                <img src="__PUBLIC__/static/images/school/banner.png" style="width: 100%">
+            </div>
+            <div class="list" style="padding: 10px 0px; border: 0px solid red">
+                <div class="row">
+                    {foreach name="shifts_list" item="vo"}
+                    <div class="col-50" style="text-align: center; border: 0px solid green;margin-top: 10px; ">
+                        <div style="border: 1px solid #ccc; height: 240px;width: 94%; margin: 0 auto; ">
+                            <div style="height: 100px">
+                                {if condition="$vo.sh_imgurl neq ''"}
+                                <img src="{$vo.sh_imgurl}" style="width: 100%; height: 100px"> {else/}
+                                <img src="__PUBLIC__/static/images/school/default.png" style="width: 100%; height: 100%"> {/if}
+                            </div>
+                            <div>
+                                <div style="height: 100px; margin: 0 auto; text_align: center; color: #bf3730">
+                                    <div style="margin: 5px 0;">
+                                        {if condition="$vo.sh_license_name neq ''"}
+                                        <p style="font-size: 1em; font-weight: bold;">{$vo.sh_title}({$vo.sh_license_name})
+                                            <p/> {else/}
+                                            <p style="font-size: 1em; font-weight: bold;">{$vo.sh_title}</p> {/if}
+                                            <span>{$vo.s_school_name}</span>
+                                    </div>
+                                    <div style="border-top: 1px solid #bf3730; border-bottom: 1px solid #bf3730; width: 80%; margin: 0 auto;padding: 3px 0; font-size: 0.8em;">
+                                        {$vo.sh_tag} {$vo.sh_description_1}
+                                    </div>
+                                    <div style="border: 0px solid red; color: #bf3730">
+                                        <div style="border: 0px solid red; ">
+                                            <p style="font-size: 1em; font-weight: bold;">￥{$vo.sh_money}元</p>
+                                            <p style="color:#999; font-size: 0.8em;"><strike>￥{$vo.sh_original_money}元</strike></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" id="-moblink-js" src="//f.moblink.mob.com/moblink.js?appkey=1e08c1a13193c"></script>
+    <script type="text/javascript">
+        //初始化
+        MobLink.init({
+            path: "/activity" //对应客户端路径
+        });
+    </script>
+    {include file="index/footer"/}

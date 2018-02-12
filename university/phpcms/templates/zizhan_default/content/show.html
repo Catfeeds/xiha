@@ -1,0 +1,72 @@
+{template "content","zizhan_header"}
+<div id="container_page">
+	{template "content","zizhan_navbar"}
+	<div id="content">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="5"></td>
+		  </tr>
+		</table>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td width="50" height="400" valign="top">&nbsp;</td>
+		    <td valign="top">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="30">当前位置：<span class="STYLE1">
+                <a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文
+		    </td>
+		  </tr>
+		</table>
+
+	    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td class="biaoti3" align="center">{$title}</td>
+		  </tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="5" background="line.gif" tppabs="http://wzxyh.wtc.edu.cn/page/main103/images/line.gif"></td>
+		  </tr>
+		</table>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="30" align="center">
+              <span>{$inputtime}&nbsp;&nbsp;&nbsp;来源：{$copyfrom}&nbsp;&nbsp;&nbsp;评论：<a href="#comment_iframe" id="comment">0</a> 点击：</span><span id="hits"></span>
+		    </td>
+		  </tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="13">&nbsp;</td>
+		  </tr>
+		</table>
+		<!-- content -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td valign="top" class="biaoti1">
+		    	{$content}	
+			</td>
+		  </tr>
+		</table>
+    </td>
+    <td width="50">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
+<div id="foot">
+  <table width="1166" border="0" cellspacing="0" cellpadding="0" height="80">
+  
+  <tr>
+   <td bgcolor="#004772">
+		{template "content", "footer_category"}
+   	</td>
+  </tr>
+  </table>
+</div>
+</div>
+</body>
+</html>

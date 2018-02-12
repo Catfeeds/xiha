@@ -1,0 +1,76 @@
+{include file="wap/header"/}
+{css href="__PUBLIC__/static/css/swiper.min.css"}
+<div class="container-fluid" style="padding: 0px; background: #ebebeb;">
+	<img src="__PUBLIC__/static/images/recruit-banner-01.png" style="width: 100%;" alt="" />
+
+	<div class="container" style="background: #fff; padding: 2.5rem;">
+		<div class="recruit-input">
+			<input type="text" name="coach_phone" id="coach_phone" value="" placeholder="请输入您的手机号码"/>
+			<button class="identify_code" id="identify_code">验证</button>
+		</div>
+		<div class="recruit-input">
+			<input type="text" name="phone_code" id="phone_code" value="" placeholder="请输入验证码"/>
+		</div>
+		<a href="{:url('/m/recruit', ['token'=>121, 'type'=>'info'])}" class="btn btn-block btn-raised btn-success" style="background: #2ED085; border: none; box-shadow: none; padding: 10px;">我要成为嘻哈教练</a>
+	</div>
+	 <div class="download">
+    	<img src="__PUBLIC__/static/images/xiha_coach_logo.png" style="" alt="" />
+    	<a class="app-name" style="">嘻哈学车教练端</a>
+    	<a class="btn download-btn" style="" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.zfang.xi_ha_xue_che.teacher.activity">下载APP</a>	
+    </div>
+</div>
+<script>
+	$(function() {
+		$('#identify_code').on('touchend', function(e) {
+			var phone = $('#coach_phone').val();
+			if(phone.trim() == '') {
+				alert('请填写手机号');
+				return false;
+			}
+			var params = {
+				'phone': phone
+			}
+			ajaxGetReturn('http://36.33.24.119:50001/php/api2/dist/public/v1/ucenter/smscode/student/reg?phone='+phone);
+		});
+	});
+	//post获取数据
+	function ajaxPostReturn(url, params, storageItem) {
+		var xhr = new XMLHttpRequest(); ; 
+		xhr.open('POST', url, true);
+		xhr.setRequestHeader("Content-type","application/json");
+		xhr.withCredentials = true;
+		xhr.send(JSON.stringify(params));
+		xhr.onload = function () {
+			var data = JSON.parse(xhr.response);
+			alert(data.msg)
+			if(data.code == 200) {
+				var _url = window.decodeURIComponent(redirect_url)+"?token="+data.data.token+"&device="+device;
+				location.href=_url;
+				if(storageItem != '') {
+					sessionStorage.setItem(storageItem, JSON.stringify(data.data));
+				}
+			}
+		};  
+		xhr.onerror = function () {
+			alert('网络错误，请检查网络');
+		};
+	}
+	//get获取数据
+	function ajaxGetReturn(url) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.onreadystatechange = function() {
+		  if (xhr.readyState == 4) {
+		    //显示请求结果
+			var data = JSON.parse(xhr.response);
+		    alert(data.msg);
+		  }
+		};
+		xhr.onerror = function () {
+			$.toast('网络错误，请检查网络');
+		};
+		xhr.send();
+	}
+</script>
+{include file="wap/footer"/}

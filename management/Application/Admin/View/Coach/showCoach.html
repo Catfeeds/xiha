@@ -1,0 +1,571 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<!-- <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" /> -->
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link href="__PUBLIC__/Admin/assets/css/pintuer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>预览教练信息</title>
+</head>
+<body>
+<form method="post" action="">
+<!-- <input type="hidden" name="coach_id" value="{$coachlist.l_coach_id}"> -->
+<!-- <input type="hidden" name="school_id" value="{$coachlist.l_school_id}"> -->
+<div class="container" style="margin-top:10px;">
+    <div class="tab"> 
+        <div class="coach_info">
+            <p><span class="coach_name">{$coachlist.s_coach_name}</span>  <span class="school_name">{$coachlist.s_school_name}</span></p>
+            <ul class="coach_info_ul">
+                <li class="active" data-id="coach_home"><a href="javascript:;"><span>主页</span></a></li>
+                <li data-id="coach_profile"><a href="javascript:;"><span>资料</span></a></li>
+                <li data-id="coach_appoint_info"><a href="javascript:;"><span>预约情况</span></a></li>
+                <li data-id="coach_signup_info"><a href="javascript:;"><span>报名情况</span></a></li>
+                <li data-id="coach_comment_info"><a href="javascript:;"><span>评价情况</span></a></li>
+            </ul>
+            <div class="clear"></div>
+            <div id="coach_home" class="coach_info_list">
+                <!--教练主页的内容-->
+            </div>
+
+            <div id="coach_profile" class="coach_info_list" style="display:none;">
+                <!--教练资料的内容-->
+            </div>
+            <div id="coach_appoint_info" class="coach_info_list" style="display:none; margin-top: 50px; ">
+                <!--教练预约信息-->
+                <!--<label for="dt_order_time">日期</label>-->
+                <div style="margin-bottom: 10px;">
+                    <input type="text" name="date" class="input-text date_picker laydate-icon radius" size="20" id="start" style="height:34px; padding-left:10px;" value="{$time}" >
+                    <input type="submit" id="submit" class="button border-blue" value="搜索">
+                </div>
+                <div class="clear"></div>
+                <ul class="time_list_ul appoint_info_ul" id="selected" style=" text-align:center; border-bottom: 1px solid #e7e7e7;">
+                    <foreach name="coach_date_time" key="key" item="value">
+                        <li data-date="{$value.fulldate}"  <if condition="$value eq $time">class="active"</if>  >
+                            <a href="javascript:;"><span>{$value.date}</span></a>
+                        </li>
+                    </foreach>
+                </ul>
+                
+                <div class="clear"></div>
+                <div id="coach_appoint" class="time_list_div" style="margin-top:10px;">
+                    <!--教练预约情况的内容-->
+
+                </div>
+            </div>
+            <div id="coach_signup_info" class="coach_info_list" style="display:none; margin-top: 50px; ">
+                <!--报名情况-->
+                <div class="more_info_content clear"> 
+                    <ul> 
+                        <li class="more_info_line"> <h5> <span>设置的班制</span> </h5> </li> 
+                    </ul>
+                </div>
+                
+            </div>
+            <div id="coach_comment_info" class="coach_info_list" style="display:none; margin-top: 50px; ">
+                <!--评价情况-->
+                <div id="signup_comment_info" style="border: 1px solid #ddd; height: 600px; width: 400px; float:left; margin: 10px;"></div>
+                <div id="appoint_comment_info" style="border: 1px solid #ddd; height: 600px; width: 400px; float:left; margin: 10px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<!--教练主页模板-->
+<script type="text/template" id="coach_home_tpl">
+    
+    <div class="coach_home_left">
+        {@if coach_base_info != ''}
+            <div class="coach_pic">
+                {@if coach_base_info.s_coach_imgurl != ''}
+                    <img src="${coach_base_info.s_coach_imgurl}" style="width: 100%;" alt="">
+                {@else}
+                    <img src="__PUBLIC__/Admin/assets/images/coach_default_photo.png" style="width: 100%;" alt="">
+                {@/if}
+            </div>
+            <div class="coach_tj">
+                <ul class="coach_tj_ul">
+                    <li class="col-xs-4 col-lg-4 col-md-4">
+                        <a href="javascript:;">
+                            <span class="num">${coach_base_info.s_teach_age}</span><br><span class="title">教龄</span>
+                        </a>
+                    </li>
+                    <li class="col-xs-4 col-lg-4 col-md-4">
+                        <a href="javascript:;">
+                            <span class="num">${coach_base_info.coach_sex}</span><br><span class="title">性别</span>
+                        </a>
+                    </li>
+                    <li class="col-xs-4 col-lg-4 col-md-4">
+                        <a href="javascript:;">
+                            <span class="num">${coach_base_info.i_coach_star}</span><br><span class="title">星级</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+
+            <div class="coach_base_info">
+                <ul class="coach_base_info_ul">
+                    <li><label for="">号码</label>　<span class="coach_phone">${coach_base_info.s_coach_phone}</span></li>
+                    <li><label for="">科目</label>　<span class="coach_lesson_name">${coach_base_info.coach_lesson}</span></li>
+                    <li><label for="">牌照</label>　<span class="coach_lisence_name">${coach_base_info.coach_license}</span></li>
+                </ul>    
+            </div> 
+        {@else}
+            当前教练信息为空
+        {@/if}
+    </div>
+    <div class="coach_home_right">
+        <p><span class="coach_name">预约动态</span> </p>
+        <div class="appoint_log" style="margin-bottom:20px;">
+            <ul>
+                {@if appoint_list.length > 0}
+                    {@each appoint_list as item, index}
+                        <li> ${item.user_name}在 ${item.dt_order_time} 预约了教练 ${item.coach_appoint_list} 的时间段</li>
+                    {@/each}
+                    
+                {@else}
+                    当前没有最新预约动态
+                {@/if}
+            </ul>
+        </div>
+        <p><span class="coach_name">报名动态</span> </p>
+        <div class="signup_log" style="margin-bottom:20px;">
+            <ul>
+                {@if signup_list.length > 0}
+                    {@each signup_list as item, index}
+                        <li>${item.user_name}在 ${item.addtime} 报名了教练设置的 ${item.sh_title}</li>
+                    {@/each}
+                {@else}
+                    当前没有最新报名动态
+                {@/if}
+            </ul>
+        </div>
+        <p><span class="coach_name">评价动态</span> </p>
+        <div class="comment_log" style="margin-bottom:20px;">
+            <ul>
+                {@if comment_list.length > 0}
+                    {@each comment_list as item, index}
+                        {@if item.coment_extra_info != ''}
+                            <li>${item.user_name}在 ${item.addtime} 评价了教练 ${item.coment_extra_info}</li>
+                        {@else}
+                            当前没有最新评价动态
+                        {@/if}
+                    {@/each}
+                {@else}
+                    当前没有最新评价动态
+                {@/if}
+            </ul>
+        </div>
+    </div>
+</script>
+<!--教练资料-->
+<script type="text/template" id="coach_profile_tpl">
+    <div id="colleague_detail_info" class="more_info_panel ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-9" role="tabpanel" aria-hidden="false" style="display: block;"> 
+        <div class="more_info_content clear"> 
+            <ul> 
+                <li class="more_info_line"> <h5> <span>基本信息</span> </h5> </li> 
+                <li> <span class="more_info_title">姓名：</span> <span> ${coach_profile.s_coach_name} </span> </li> 
+                <li> <span class="more_info_title">性别：</span> <span> ${coach_profile.coach_sex} </span> </li> 
+                <li> <span class="more_info_title">教龄：</span> <span> ${coach_profile.s_teach_age}年 </span> </li> 
+                <li> 
+                    <span class="more_info_title">星级：</span> 
+                    <div class="coach_star_list">
+                        {@if coach_profile.i_coach_star == 0}
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                        {@else if coach_profile.i_coach_star == 1}
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+
+                        {@else if coach_profile.i_coach_star == 2}
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                        {@else if coach_profile.i_coach_star == 3}
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                        {@else if coach_profile.i_coach_star == 4}
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#ccc"></span>
+                        {@else if coach_profile.i_coach_star == 5}
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                            <span class="Hui-iconfont Hui-iconfont-star" style="color:#dd514c"></span>
+                        {@/if}
+                    </div>
+                </li> 
+                <li><span class="more_info_title">级别：</span> <span> <span class="null">${coach_profile.type_name}</span></span></li> 
+                <li> <span class="more_info_title">地址：</span> <span> <span class="null">${coach_profile.province}${coach_profile.city}${coach_profile.area}</span> </span> </li> 
+                <li> <span class="more_info_title">所属驾校：</span> <span> <span class="null">${coach_profile.s_school_name}</span> </span> </li> 
+                <li> <span class="more_info_title">认证状态：</span> <span>  <span class="null">${coach_profile.certification_status_value}</span>  </span> </li> 
+                <li> <span class="more_info_title">教练等级：</span> <span> <span style="border:1px solid #5eb95e; color:#5eb95e; padding: 2px 5px; border-radius:3px;" class="null">${coach_profile.type_name}</span> </span> </li> 
+                <li> <span class="more_info_title">车辆牌照：</span> <span> <span class="null">${coach_profile.name}皖A123456</span> </span> </li> 
+                <li class="full_width"> <span class="more_info_title">自我介绍：</span> <span> <span class="null">${coach_profile.s_coach_content}</span> </span> </li> 
+                <li class="more_info_line"> <h5> <span>联系方式</span> </h5> </li> 
+                <li> <span class="more_info_title">手机号码：</span> <span> ${coach_profile.s_coach_phone} </span> </li> 
+                
+                <li> 
+                    <span class="more_info_title">二维码：</span> 
+                    <span class="Hui-iconfont Hui-iconfont-2code" id="coach_qrcode" style="font-size:1.5rem"> </span> 
+                    <div id="coach_qrcode_show" style="display:none;"><img src="${coach_profile.s_coach_qrcode}" style="width: 100px; height: 100px; " alt=""></div>
+                </li> 
+
+                <li class="more_info_line"> <h5> <span>培训相关</span> </h5> </li> 
+                <li class="full_width"> <span class="more_info_title">培训科目：</span> <span> <span class="null">${coach_profile.coach_lesson}</span> </span> </li> 
+                <li class="full_width"> <span class="more_info_title">培训牌照：</span> <span> <span class="null">${coach_profile.coach_license}</span> </span> </li> 
+                <li class="full_width"> <span class="more_info_title">计时培训支持：</span> <span> <span class="null">${coach_profile.timetraining_supported_value} </span> </span> </li> 
+                <li class="full_width"> <span class="more_info_title">计时培训最少价格：</span> <span> <span class="null">${coach_profile.timetraining_min_price} 元/小时</span> </span> </li> 
+                <li class="more_info_line"> <h5> <span>银行账号相关</span> </h5> </li> 
+                <li> <span class="more_info_title">银行卡号：</span> <span> ${coach_profile.s_yh_zhanghao} </span> </li> 
+                <li> <span class="more_info_title">所属银行：</span> <span> ${coach_profile.s_yh_name} </span> </li> 
+            </ul> 
+        </div> 
+    </div>
+    
+</script>
+
+<!--教练-报名模板-->
+<script type="text/template" id="coach_signup_tpl">
+    <div class="signup_list">
+        {@if coach_signup.length > 0}
+            {@each coach_signup as item, index}
+                <div class="signup_list_cell">
+                    <span style="font-size: 16px; color: #dd514c;">${item.sh_title}</span><br>
+                    {@if item.sh_description_1 != ''}
+                        <span>${item.sh_description_1}</span><br>
+                    {@else}
+                        <span>${item.sh_description_2}</span><br>
+                    {@/if}
+                    <span style="color: #FF9000; font-weight: bold;">${item.sh_original_money} <em style="font-size: 12px">元</em></span>
+                </div>
+            {@/each}
+        {@else}
+            <div style="margin-left:5%;">
+                暂无任何班制信息
+            </div>
+        {@/if}
+    </div>
+    <div class="more_info_content clear"> 
+        <ul> 
+            <li class="more_info_line"> <h5> <span>班制预约情况</span> </h5> </li> 
+            {@if coach_signup_list.length > 0}
+                {@each coach_signup_list as item, index}
+                    <li> <span class="more_info_title">${item.shifts_title}：</span> <span> <span class="null">${item.count} 人报名</span> </span> </li> 
+                {@/each}
+            {@else}
+                <div style="margin-left:3%">
+                    暂无班制预约信息
+                </div>
+
+            {@/if}
+        </ul>
+    </div>
+</script>
+<!--教练-预约模板-->
+<script type="text/template" id="coach_appoint_tpl">
+    <ul class="time_list_ul" style=" text-align:center;">
+        <li><a href="javascript:;"><span>时间段ID</span></a></li>
+        <li><a href="javascript:;"><span>开始时间</span></a></li>
+        <li><a href="javascript:;"><span>结束时间</span></a></li>
+        <li><a href="javascript:;"><span>牌照</span></a></li>
+        <li><a href="javascript:;"><span>科目</span></a></li>
+        <li><a href="javascript:;"><span>单价</span></a></li>
+        <li><a href="javascript:;"><span>是否设置</span></a></li>
+        <li><a href="javascript:;"><span>是否被预约</span></a></li>
+    </ul>
+    {@each am_time_list as item, index}
+        <ul class="time_list_ul" style="border-bottom: 1px solid #e7e7e7; text-align:center; padding: 10px; ">
+            <li><a href="javascript:;"><span>${item.id}</span></a></li>
+            <li><a href="javascript:;"><span>${item.final_start_time}</span></a></li>
+            <li><a href="javascript:;"><span>${item.final_end_time}</span></a></li>
+            <li><a href="javascript:;"><span>${item.license_no}</span></a></li>
+            <li><a href="javascript:;"><span>${item.subjects}</span></a></li>
+            <li><a href="javascript:;"><span>${item.price}</span></a></li>
+            {@if item.is_set == 1}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #5eb95e;"></span></a></li>
+            {@else}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #999;"></span></a></li>
+            {@/if}
+            {@if item.is_appoint == 1}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #5eb95e;"></span></a></li>
+            {@else}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #999;"></span></a></li>
+            {@/if}
+        </ul>
+    {@/each}
+    {@each pm_time_list as item, index}
+        <ul class="time_list_ul" style="border-bottom: 1px solid #e7e7e7; text-align:center; padding: 10px; ">
+            <li><a href="javascript:;"><span>${item.id}</span></a></li>
+            <li><a href="javascript:;"><span>${item.final_start_time}</span></a></li>
+            <li><a href="javascript:;"><span>${item.final_end_time}</span></a></li>
+            <li><a href="javascript:;"><span>${item.license_no}</span></a></li>
+            <li><a href="javascript:;"><span>${item.subjects}</span></a></li>
+            <li><a href="javascript:;"><span>${item.price}</span></a></li>
+            {@if item.is_set == 1}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #5eb95e;"></span></a></li>
+            {@else}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #999;"></span></a></li>
+            {@/if}
+            {@if item.is_appoint == 1}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #5eb95e;"></span></a></li>
+            {@else}
+                <li><a href="javascript:;"><span class="Hui-iconfont Hui-iconfont-luyin" style="color: #999;"></span></a></li>
+            {@/if}
+        </ul>
+    {@/each}
+</script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/jquery.provincesCity.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/uploadPreview.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/respond.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/layerv2/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<script type="text/javascript"src="__PUBLIC__/Admin/assets/echarts-3.3.2/echarts.js"></script>
+<script type="text/javascript"src="__PUBLIC__/Admin/assets/laydate.js"></script>
+<script type="text/javascript"src="__PUBLIC__/Admin/assets/js/juicer-min.js"></script>
+
+<script>
+    laydate({
+        elem: '#start',
+        // min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+        // max: laydate.now(+6) //+1代表明天，+2代表后天，以此类推
+    });
+    laydate.skin('yalan');
+
+    var data_date = "{$time}";
+    var _school_id = "{$school_id}";
+    var _coach_id = "{$coach_id}";
+    var url = "{:U('coach/home')}";
+    var params = {
+        'coach_id': _coach_id,
+    };
+    ajaxReturn(url, params, 'coach_home_tpl', 'coach_home');
+
+    // 点击教练详情中的li
+    $('.coach_info_ul').find('li').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        var data_id = $(this).attr('data-id');
+        $('#'+data_id).css('display', 'block').siblings('.coach_info_list').css('display', 'none');
+        // console.log(data_id);
+        switch(data_id) {
+            case "coach_home":
+                var url = "{:U('Coach/home')}";
+                var params = {
+                    'coach_id': _coach_id,
+                };
+                ajaxReturn(url, params, 'coach_home_tpl', 'coach_home');
+                break;
+            case "coach_profile":
+                var url = "{:U('Coach/profile')}";
+                var params = {
+                    'coach_id': _coach_id,
+                };
+                ajaxReturn(url, params, 'coach_profile_tpl', 'coach_profile');
+                // 点击二维码
+                $('#coach_qrcode').on({
+                    'mouseover': function() {
+                        var coach_qrcode_show = $("#coach_qrcode_show").html();
+                        layer.tips(coach_qrcode_show, '#coach_qrcode', {tips:[2, '#e7e7e7']});
+                    },
+                    'mouseleave': function() {
+                        layer.closeAll();
+                    }
+                }
+                );
+                break;
+            case "coach_appoint_info":
+                var url = "{:U('Coach/appoint')}";
+                var params = {
+                    'coach_id': _coach_id,
+                    'school_id': _school_id,
+                    'date': data_date,
+                };
+                ajaxReturn(url, params, 'coach_appoint_tpl', 'coach_appoint');
+                break;
+            case "coach_signup_info":
+                var url = "{:U('Coach/signup')}";
+                var params = {
+                    'coach_id': _coach_id,
+                };
+                ajaxReturn(url, params, 'coach_signup_tpl', 'coach_signup_info');
+                break;
+            // case "coach_comment_info":
+            //     var url = "{:U('Coach/signup')}";
+            //     var params = {
+            //         'coach_id': _coach_id,
+            //     };
+            //     ajaxReturn(url, params, 'coach_comment_tpl', 'coach_comment_info');
+            //     break;
+        }
+    });
+
+    
+    // 点击日期出现预约详情
+    $('.appoint_info_ul').find('li').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        var data_date = $(this).attr('data-date');
+        $('#'+data_date).css('display', 'block').siblings('.coach_info_list').css('display', 'none');
+        // console.log(data_date);
+        var url = "{:U('Coach/appoint')}";
+        var params = {
+            'coach_id': _coach_id,
+            'school_id': _school_id,
+            'date': data_date,
+        };
+        ajaxReturn(url, params, 'coach_appoint_tpl', 'coach_appoint');
+
+    });
+
+    $('#submit').click(function() {
+        var date = $('#start').val();
+        var url = "{:U('Coach/appoint')}";
+        var params = {
+            'coach_id': _coach_id,
+            'school_id': _school_id,
+            'date': date,
+        };
+        ajaxReturn(url, params, 'coach_appoint_tpl', 'coach_appoint');
+    });
+    // ajax js模板引擎赋值
+    function ajaxReturn(_url, _params, tpl_id, dist_id) {
+        $.ajax({
+            type:"POST",
+            url:_url,
+            data:_params,
+            dataType:"JSON",
+            async:false,
+            success:function(data) {
+                if(data.code == 200) {
+                    // console.log(data.data.date);
+                    var tpl = $('#'+tpl_id).html();
+                    // console.log(tpl);
+                    var html = juicer(tpl, data.data);
+                    $('#'+dist_id).html(html);
+                }
+            }
+        })
+    }
+
+    
+    // var study_star = {$shifts_star.star_avg};
+    // 学员男女比例
+    var signup_comment_info = echarts.init(document.getElementById('signup_comment_info'));
+    signup_comment_info.setOption({
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        title: {
+            text: '报名班制评价情况',
+            subtext: '嘻哈学车统计',
+            sublink: 'http://www.xihaxueche.com',
+            left: 'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series : [
+            {
+                name: '评价来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:4, name:'好评'},
+                    {value:1, name:'差评'},
+                    {value:3, name:'中评'},
+                ].sort(function (a, b) { return a.value - b.value}),
+                
+            }
+        ]
+    });
+    var appoint_comment_info = echarts.init(document.getElementById('appoint_comment_info'));
+    appoint_comment_info.setOption({
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        title: {
+            text: '预约计时评价情况',
+            subtext: '嘻哈学车统计',
+            sublink: 'http://www.xihaxueche.com',
+            left: 'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series : [
+            {
+                name: '评价来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:400, name:'好评'},
+                    {value:335, name:'差评'},
+                    {value:335, name:'中评'},
+                ].sort(function (a, b) { return a.value - b.value}),
+                
+            }
+        ]
+    });
+</script>
+</body>
+</html>

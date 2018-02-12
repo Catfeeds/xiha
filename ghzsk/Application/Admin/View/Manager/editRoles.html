@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/js/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>编辑角色</title>
+</head>
+<body>
+<div class="pd-20">
+  <form method="post" action="{:U('Manager/editRoles')}" class="form form-horizontal" id="addroles_form">
+   <input type="hidden" value="{$roles_detail.l_role_id}" name="l_role_id">
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="role_name">角色名称: </label>
+      <div class="formControls col-3">
+        <input id="role_name" type="text" class="input-text" name="role_name" placeholder="请输入角色描述" value="{$roles_detail.s_rolename}" datatype="*2-16" nullmsg="角色不能为空"/>
+      </div>
+    </div>
+	
+	<div class="row cl">
+      <label class="form-label col-1 text-r" for="role_description">权限描述: </label>
+      <div class="formControls col-3">
+        <input id="role_description" type="text" class="input-text" name="role_description" placeholder="请用6到20字简短的描述权限" value="{$roles_detail.s_description}" datatype="*6-20" nullmsg="描述不能为空"/>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-1 text-r" for="sh_title">菜单权限: </label>
+      <div class="formControls col-10">
+		<table class="table table-border table-bordered table-hover roles_lists">
+ 			<foreach name="roles_detail.menu_list.list" item="data">
+				<if condition="$data.m_type eq 1">
+					<if condition="$data.level eq 0">
+						<tr class="success text-c model_name">
+							<td colspan=2 style="font-weight:bold;">
+								{$data.m_cname}
+								<input type="hidden" value="{$data.moduleid}" name="moduleid[]"> 
+						 		<button type="button" class="btn btn-success-outline size-MINI radius modelselectall">全选</button>
+							</td>
+						</tr>
+					</if>
+					<if condition="$data.level gt 0">
+						<tr class="roles_list" data-id="1">
+							<td class="">{$data.m_cname}</td>
+							<input type="hidden" value="{$data.moduleid}" name="moduleid[]"> 
+							<td>
+								<div class="skin-minimal">
+									<notempty name="data.controller">
+	 									<foreach name="data.controller" item="v">
+											<div class="check-box">
+												<input type="checkbox" name="moduleid[]" id="checkbox-{$v.moduleid}" value="{$v.moduleid}" <eq name="v.is_checked" value="1">checked</eq>>
+											   	<label for="checkbox-{$v.moduleid}">{$v.m_cname}</label>
+										 	</div>
+									 	</foreach>
+								 	<else />
+								 		<a href="{: U('Manager/addMenu')}" class="c-success">请增加可操作权限 </a>
+							 		</notempty>
+								 	<button type="button" class="btn btn-success size-S radius selectall">全选</button>
+								 	<button type="button" class="btn btn-secondary size-S radius selectinvert">反选</button>
+								 	<button type="button" class="btn btn-danger size-S radius selectcancel">取消</button>
+								 </div>
+							</td>
+						</tr>
+					</if>
+				</if>
+			</foreach>
+		</table>
+		<empty name="roles_detail.menu_list.list">
+			<a class="c-success" href="{:U('Manager/addMenu')}">请添加菜单权限</a>
+		</empty>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <div class="formControls col-5 col-offset-1">
+      	<input type="hidden" name="id" value="{$roles_detail.l_role_id}">
+        <button type="submit" class="btn radius btn-primary">
+          <i class="Hui-iconfont">&#xe632;</i>
+          保存并提交
+        </button>
+        <button onClick="layer_close()" type="button" class="btn btn-default radius">
+          &nbsp;&nbsp;取消&nbsp;&nbsp;
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/icheck/jquery.icheck.min.js"></script>  -->
+<script type="text/javascript">
+	$(function(){
+		// 全选
+		$('.selectall').click(function() {
+			// console.log($(this).parents('.skin-minimal').find('input'))
+			$(this).parents('.skin-minimal').find("input:checkbox").each(function () {  
+	            this.checked = true;
+         	});
+		});
+
+		// 反选
+		$('.selectinvert').click(function() {
+			$(this).parents('.skin-minimal').find("input:checkbox").each(function () {  
+	            this.checked = !this.checked;
+         	});
+		})
+		// 反选
+		$('.selectcancel').click(function() {
+			$(this).parents('.skin-minimal').find("input:checkbox").each(function () {  
+	            this.checked = false;
+         	});
+		})
+
+		// 按照模型全选
+		$('.modelselectall').click(function() {
+			$(this).parents('.roles_lists').find('.roles_list').find('input:checkbox').each(function () {  
+	            this.checked = true;
+         	});
+		})
+
+		$('#addroles_form').Validform({
+		    tiptype:2,
+		    callback:function(form){
+	      		form[0].submit();
+		    }
+	  	});
+
+	});
+</script> 
+</body>
+</html>

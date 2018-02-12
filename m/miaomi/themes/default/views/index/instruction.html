@@ -1,0 +1,142 @@
+<html>
+<link type="text/css" rel="stylesheet" href="{url:#css/product.css}" />
+<!-- <script type='text/javascript' src="{url:#js/jquery.enlarge.js}"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="{url:#css/jquery.fullPage.css}"> -->
+<link rel="stylesheet" type="text/css" href="{url:#css/style.css}">
+<link rel="stylesheet" type="text/css" href="{url:#css/swiper.min.css}">
+<link rel="stylesheet" type="text/css" href="{url:#css/videojs.css}">
+<link rel="icon" href="{url:#images/favicon.png}" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="keywords" content="{$seo_keywords}">
+    <meta name="description" content="{$seo_description}">
+    <title>喵咪鼠标官网</title>
+    <link rel="shortcut icon" href="{url:@favicon.ico}"/>
+    <link rel="bookmark" href="{url:@favicon.ico}" />
+    <link rel="stylesheet" type="text/css" href="{url:#css/common.css}">
+    <link rel="stylesheet" type="text/css" href="{url:#css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" href="{url:#js/artdialog/tiny-dialog.css}">
+    <style type="text/css">
+        .js-template{display:none !important;}
+        .swiper-container {
+            width:500px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        body .ml-nav{
+            background-color: #fdfcfd;
+        }
+    </style>
+    <script src="{url:#js/jquery.min.js}"></script>
+    <script src="{url:#js/common.js}"></script>
+    <script src="{url:#js/video.js}"></script>
+    <script src="{url:#js/swiper.min.js}"></script>
+    <script type="text/javascript">
+        var server_url = '{url:@}__con__/__act__';
+        var Tiny = {user:{name:'{$user['name']|''}',id:'{$user['id']|0}',online:{$user['id']|'true'|'false'}}};
+    </script>
+</head>
+<body style="background-image:url({url:#images/instructionbg.png});">
+
+<div class="ml-nav">
+    <div class="center-wrap clearfix">
+        <span class="ml-logo"><img src="{url:#images/logo.png}" width="40" height="40"></span>
+        <p class="ml-link">
+            <a href="{url:/index}">在线商城</a>
+            <a href="{url:/index/download}">软件下载</a>
+            <a href="{url:/index/instruction}" style="color: #31a5e7;">操作说明</a>
+        </p>
+        <a class="buy-now" href="{url:/index/products/id/20}">立即购买</a>
+    </div>
+</div>
+<div class="container" style="margin-top:100px;">
+	<div class="cell" style="text-align:center;height:800px;">
+        <!-- <div style="height:45%;border-radius:1.05rem;margin-bottom:20px;" class="p1">
+            <div class="swiper-container" style="width:100%;height:100%;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div>
+                         <video class="video-js" controls preload="auto" poster="{url:#images/videoposter.png}" data-setup='{}'>
+                          <source src="{url:#images/video1.mp4}" type="video/mp4"></source>
+                       </video>
+                       </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                         <video class="video-js" controls preload="auto" poster="{url:#images/videoposter.png}" data-setup='{}'>
+                              <source src="{url:#images/video2.mp4}" type="video/mp4"></source>
+                           </video></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                         <video class="video-js" controls preload="auto" poster="{url:#images/videoposter.png}" data-setup='{}'>
+                          <source src="{url:#images/video3.mp4}" type="video/mp4"></source>
+                       </video></div>
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+        <div style="height:55%;border-radius: 1.05rem;background-color:white;text-align:left;padding:50px 0 0px 50px;">
+            <div style="width:664px;height:403px;float:left;color:black;">
+                <h1 style="font-size: 18px;font-weight:600;">喵咪鼠标-答题解惑</h1>
+<!--                 <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:鼠标怎么使用</li>
+                    <li>答:鼠标的使用方法</li>
+                    <li style="font-size:13px;">1.鼠标插在电脑的USB接口或者PS/2接口上;</li>
+                    <li style="font-size:13px;">2.等待1~2分钟鼠标自动安装驱动，安装成功后，鼠标即可使用(PS/2接口的鼠标要重新启动电脑才能使用)。</li>
+                </ul> -->
+               <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:&nbsp;喵咪软件无法安装</li>
+                    <li>答:&nbsp;请确认操作系统是WindowsXP/Win7/Win8/Win10，并确认安装盘空间有100M以上。</li>
+                </ul>
+                <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:&nbsp;无法找到鼠标</li>
+                    <li>答:&nbsp;请将鼠标连接到计算机主机后面的USB接口，保障连接的可靠性，第一次使用，请耐心等待计算机自动安装鼠标驱动。</li>
+                </ul>
+                <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:&nbsp;喵咪软件安装后显示启动成功，但无法使用语音功能</li>
+                    <li>答:&nbsp;软件需联网使用，如网络连接断开，或是内网用户，切换到外网即可。</li>
+                </ul>
+                <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:&nbsp;无法实现文字输入</li>
+                    <li>答:&nbsp;请检查计算机是否联网，并保证网络稳定。确认计算机是在文字输入状态，例如：当前软件是WORD，并且是光标聚焦输入状态。</li>
+                </ul>
+                <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:&nbsp;在有些输入框不能使用语音输入功能</li>
+                    <li>答:&nbsp;切换进入打字模式即可，如需语音命令控制功能，请切回智能模式。</li>
+                </ul>
+                <ul style="margin-top:10px;">
+                    <li style="color:#3db1fa">问:&nbsp;很多命令无法识别</li>
+                    <li>答:&nbsp;请阅读常用命令词指导说明，尽量按照提示规则说命令词。</li>
+                </ul>
+            </div>
+            <div style="width:426px;height:403px;float:left;margin:10px 0 0 70px;">
+                <img src="{url:#images/ask.png}" width="403" height="403"/>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    var swiper = new Swiper('.swiper-container');
+</script>
+</body>
+</html>

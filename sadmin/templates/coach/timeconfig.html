@@ -1,0 +1,366 @@
+<!--{include file="library/header.lbi"}-->
+        <form method="post" class="form-x" style="width:100%" id="timeconfigform" action="index.php?action=coach&op=savetime" >
+            <!-- 预约时间的配置 -->
+            <div class="form-group" style="margin-top:15px;">   
+                <div class="field" style="width:100%;">
+                    <div class="tab"> 
+                        <div class="tab-head border-main float-left"> 
+                             <ul class="tab-nav date_config" style="x-overflow: scroll; width: 80%;"> 
+                                <!-- 时间7天日期显示 -->
+
+                                <!--{foreach $coach_time_config['datetime'] as $key => $value}-->
+                                <li class="date_time_<!--{$key}-->" title="<!--{$value['fulldate']}-->" <!--{if $key == 0}-->class="active"<!--{/if}-->><a href="javascript:void(0)" title="<!--{$value['fulldate']}-->"><!--{$value['fulldate']}--></a></li>
+                                <!--{/foreach}-->
+                            </ul>
+                        </div>
+                        <div class="float-left" style="position:absolute; right:0px">
+                            <button class="button border-main" style="" onclick="javascript:delpretime();" type="button">删除上一天时间</button>
+                            <button class="button border-yellow" onclick="javascript:delalltime();" type="button">删除全部时间</button>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- 每一天的时间配置 -->
+                        <div class="tab-body time_config">
+   
+                            <div id="time_config_ids_arr"> 
+                                <table class="table" >
+                                    <tr>
+                                        <th width="50">
+                                            <input type="button" class="button button-small checkall" name="checkall" checkfor="time_config_id[]" value="全选" /></th>
+                                        <th width="100">开始时间</th>
+                                        <th width="100">结束时间</th>
+                                        <th width="100">牌照</th>
+                                        <th width="100">科目</th>
+                                        <th width="100">单价 <a href="javascript:showpricesetting()" class="text-main" id="parentIframe"><span class="icon-cog"></span></a></th>
+                                        <th width="100">是否可预约</th>
+                                        <th width="100">预约状况</th>
+                                        <th width="150">
+                                            <button class="button bg-main" onclick="javascript:gettimeconfig(this);" type="button">保存</button>
+                                        </th>
+                                    </tr> 
+                                    <tr class="bg-yellow" style="color:#fff">
+                                        <td colspan=9>上午时间：</td>
+                                    </tr>
+                                    <!--{foreach $coach_time_config['am_time'] as $k => $v}-->
+                                        <tr title="<!--{$v['id']}-->">
+                                            <td class="checking"><input type="checkbox" name="time_config_id[]" checked id="checkbox_<!--{$k+1}-->" value="<!--{$v['id']}-->" /></td>
+                                            
+                                            <td><span><!--{$v['final_start_time']}--></span></td>
+                                            <td><!--{$v['final_end_time']}--></td>
+                                            <td>
+                                                <select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_<!--{$k+1}-->">
+                                                    <!--{if $lisence_name_arr}-->
+                                                        <!--{foreach $lisence_name_arr as $e => $t}-->
+                                                        <option value="<!--{$v['id']}-->|<!--{$t}-->"><!--{$t}--></option>
+                                                        <!--{/foreach}-->
+                                                    <!--{else}-->
+                                                        <option value="C1">C1</option>
+                                                        <option value="C2">C2</option>
+                                                    <!--{/if}-->
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="subjects[]" class="input input-auto" style="width:100px;" id="lesson_name_<!--{$k+1}-->">
+                                                    <!--{if $lisence_name_arr}-->
+                                                        <!--{foreach $lesson_name_arr as $e => $t}-->
+                                                        <option value="<!--{$v['id']}-->|<!--{$t}-->" <!--{if $v['subjects'] == $t}-->selected<!--{/if}-->><!--{$t}--></option>
+                                                        <!--{/foreach}-->
+                                                    <!--{else}-->
+                                                        <option value="科目二">科目二</option>
+                                                        <option value="科目三">科目三</option>
+                                                    <!--{/if}-->
+                                                </select>
+                                            </td>
+                                            <td class="price">
+                                                <input type="text" class="input input-auto single_price_<!--{$k+1}-->" id="single_price_<!--{$k+1}-->" style="text-align:center" size="10" value="<!--{$v['price']}-->" name="single_price[]">
+                                                <input type="hidden" value="<!--{$v['id']}-->" name="time_config_ids[]">
+                                            </td>
+                                            <td class="setting">
+                                                <span class="badge bg-gray">不可以</span>
+                                            </td>
+                                            <td class="appointing">
+                                                <span class="badge bg-gray">未被预约</span>
+                                            </td>
+                                            <td><input type="hidden" value=""></td>
+                                        </tr>
+                                    <!--{/foreach}-->
+
+                                    <tr class="bg-yellow" style="color:#fff">
+                                        <td colspan=9>下午时间：</td>
+                                    </tr>
+                                    <!--{foreach $coach_time_config['pm_time'] as $k => $v}-->
+                                        <tr title="<!--{$v['id']}-->">
+                                            <td class="checking"><input type="checkbox" name="time_config_id[]" checked id="checkbox_<!--{$k+1}-->" value="<!--{$v['id']}-->" /></td>
+                                            
+                                            <td><span><!--{$v['final_start_time']}--></span></td>
+                                            <td><!--{$v['final_end_time']}--></td>
+                                            <td>
+                                                <select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_<!--{$k+1}-->">
+                                                    <!--{if $lisence_name_arr}-->
+                                                        <!--{foreach $lisence_name_arr as $e => $t}-->
+                                                        <option value="<!--{$v['id']}-->|<!--{$t}-->"><!--{$t}--></option>
+                                                        <!--{/foreach}-->
+                                                    <!--{else}-->
+                                                        <option value="C1">C1</option>
+                                                        <option value="C2">C2</option>
+                                                    <!--{/if}-->
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="subjects[]" class="input input-auto" style="width:100px;" id="lesson_name_<!--{$k+1}-->">
+                                                    <!--{if $lisence_name_arr}-->
+                                                        <!--{foreach $lesson_name_arr as $e => $t}-->
+                                                        <option value="<!--{$v['id']}-->|<!--{$t}-->"><!--{$t}--></option>
+                                                        <!--{/foreach}-->
+                                                    <!--{else}-->
+                                                        <option value="科目二">科目二</option>
+                                                        <option value="科目三">科目三</option>
+                                                    <!--{/if}-->
+                                                </select>
+                                            </td>
+                                            <td class="price">
+                                                <input type="text" class="input input-auto single_price_<!--{$k+1}-->" id="single_price_<!--{$k+1}-->" style="text-align:center" size="10" value="<!--{$v['price']}-->" name="single_price[]">
+                                                <input type="hidden" value="<!--{$v['id']}-->" name="time_config_ids[]">
+                                            </td>
+                                            <td class="setting">
+                                                <span class="badge bg-gray">不可以</span>
+                                            </td>
+                                            <td class="appointing">
+                                                <span class="badge bg-gray">未被预约</span>
+                                            </td>
+                                            <td><input type="hidden" value=""></td>
+                                        </tr>
+                                    <!--{/foreach}-->
+
+                                </table> 
+                             </div>
+
+                        </div> 
+                    </div>
+                
+                </div>
+            </div>
+            <input type="hidden" value="" name="currentdate" id="currentdate">
+            <input type="hidden" value="<!--{$coachdetail.l_coach_id}-->" name="l_coach_id">
+        </form>
+        <script>
+            $(function() {
+                layer.tips('增加一天时间配置，便于提前修改可预约时间！', '.date_time_7', {
+                    tips: 2,
+                    time: 5000
+                });
+                var current_date = $('li.active').attr('title');
+                var id = <!--{$coachdetail.l_coach_id}-->;
+                $('#currentdate').val(current_date);
+                getajaxtimeconfig(current_date, id, 'li.active');
+            })
+
+            $('.date_config li').click(function() {
+                $('#currentdate').val($(this).attr('title'));
+            });
+
+            function gettimeconfig(obj) {
+                var time_config_ids_arr = $('#time_config_ids_arr').find('input[type="checkbox"]:checked').val();
+                if(time_config_ids_arr == undefined) {
+                    layer.msg('请选择时间段',{icon:0, offset:['0px','40%'], time:1500});
+                    return false;
+                }
+
+                if($('#currentdate').val().trim() != '') {
+                    $.ajax({
+                        type:"POST",
+                        url:'index.php?action=coach&op=savetime',
+                        data:$('#timeconfigform').serialize(),
+                        dataType:"JSON",
+                        beforeSend:function() {
+                            $(obj).html('正在保存中...');
+                        },
+                        success:function(data) {
+                            $(obj).html('保存');   
+
+                            if(data.code == 1) {
+                                layer.msg('保存成功',{icon:1, offset:['0px','40%'], time:1500});
+
+                            } else if(data.code == 2) {
+                                var html = '';
+                                $.each(data.data, function(e, t) {
+                                    html += '<span class="button border-red button-little">'+t+'</span>';
+                                }) 
+                                layer.alert(html+' <br />时间段已经被预约，不能取消时间段设置，保存请勾选该时间段或者删除该时间段的订单！', {
+                                    icon:2,
+                                    title:'保存失败'
+                                });
+
+                            } else {
+                                layer.msg('保存失败',{icon:1, offset:['0px','40%'], time:1500});
+
+                            }
+                        },
+                        error:function() {
+                            $(obj).html('保存');
+                            layer.msg('网络错误,请检查网络连接',{icon:1, offset:['0px','40%'], time:1500});    
+                        }
+                    });
+                } else {
+                    layer.msg('请选择日期',{icon:0, offset:['0px','40%'], time:1500});
+                    return false;
+                }
+                // $("#timeconfigform").submit();
+            }
+            
+            // 删除前一天的时间配置
+            function delpretime() {
+                if(window.confirm('你确定删除吗？')) {
+                    $.ajax({
+                        type:"POST",
+                        url:"index.php?action=coach&op=delpretime",
+                        dataType:"JSON",
+                        data:{'coach_id':<!--{$coachdetail.l_coach_id}-->},
+                        success:function(data) {
+                            if(data.code == 1) {
+                                alert('删除成功！');
+                                location.reload();
+                            } else {
+                                alert('删除失败！');
+                            }
+                        }
+                    });
+                } else {
+                    return false;
+                }   
+            }
+
+            // 删除所有时间数据
+            function delalltime() {
+                if(window.confirm('你确定删除吗？')) {
+                    $.ajax({
+                        type:"POST",
+                        url:"index.php?action=coach&op=delalltime",
+                        dataType:"JSON",
+                        data:{'coach_id':<!--{$coachdetail.l_coach_id}-->},
+                        success:function(data) {
+                            if(data.code == 1) {
+                                alert('删除成功！');
+                                location.reload();
+                            } else {
+                                alert('删除失败！');
+                            }
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            }
+
+            // 点击获取时间配置
+            $('.date_config').find('li').click(function() {
+                var date = $(this).attr('title');
+                var id = <!--{$coachdetail.l_coach_id}-->;
+                if(date) {
+                    // $(this).html('加载中...');
+                    getajaxtimeconfig(date, id, this);
+                }
+            })
+
+            // 时间配置
+            function getajaxtimeconfig(date, id, obj) {
+                var date_html = $(obj).attr('title');
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=coach&op=getcurrenttime",
+                    data:{'date':date, 'id':id},
+                    async:false,
+                    dataType:"JSON",
+                    beforeSend:function() {
+                        $(obj).find('a').html('正在加载中.');
+                    },
+                    success:function(data) {
+
+                        var setting_html = '<span class="badge bg-gray">不可以</span>';
+                        var appoint_html = '<span class="badge bg-gray">未被预约</span>';
+                        $('#time_config_ids_arr').find('tr').each(function(e,t) {
+                            $('#time_config_ids_arr').find('tr[title='+e+']').find('.setting').html(setting_html);
+                            $('#time_config_ids_arr').find('tr[title='+e+']').find('.appointing').html(appoint_html);
+                            $('#time_config_ids_arr').find('#checkbox_'+e).removeAttr("checked");
+                        })
+                        
+                        $('#time_config_ids_arr').find('tr').find('.setting').html(setting_html);  
+                        if(data.code == 200) {
+                            var _time = $('#time_config_ids_arr').find('tr');
+                            // if (length(data.data.price) > 0) {
+                            $.each(data.data.price, function(k, v) {
+                                var price_html = '<input type="text" class="input input-auto single_price_'+k+'" id="single_price_'+k+'" style="text-align:center" size="10" value="'+v+'" name="single_price[]"><input type="hidden" value="'+k+'" name="time_config_ids[]">';
+                                $('#time_config_ids_arr').find('tr[title='+k+']').find('.price').html(price_html);
+                                $('#time_config_ids_arr').find('#checkbox_'+k).attr('checked', true);
+                            });
+                            // } else {
+                            //     var price_html2 = '<input type="text" class="input input-auto single_price_<!--{$k+1}-->" id="single_price_<!--{$k+1}-->" style="text-align:center" size="10" value="<!--{$v['price']}-->" name="single_price[]"><input type="hidden" value="<!--{$v['id']}-->" name="time_config_ids[]">';
+                            //     $('#time_config_ids_arr').find('tr').find('.price').html(price_html2);
+                            //     $('#time_config_ids_arr').find('input[type="checkbox"]').attr('checked', true);
+                            // }
+
+                            if(data.data.setting.length > 0) {
+                                $.each(data.data.setting, function(k,v) {
+                                    var html = '<span class="badge bg-green">可以</span>';
+                                    $('#time_config_ids_arr').find('tr[title='+v+']').find('.setting').html(html);
+                                    $('#time_config_ids_arr').find('#checkbox_'+k).attr('checked', true);
+                                })
+                            } else {
+                                var html = '<span class="badge bg-green">可以</span>';
+                                $('#time_config_ids_arr').find('tr').find('.setting').html(html);
+                                $('#time_config_ids_arr').find('input[type="checkbox"]').attr('checked', true);
+                            }
+
+                            if(data.data.appointing.length > 0) {
+                                $.each(data.data.appointing, function(k,v) {
+                                    var html = '<span class="badge bg-yellow">已被预约</span>';
+                                    $('#time_config_ids_arr').find('tr[title='+v+']').find('.appointing').html(html);
+                                    $('#time_config_ids_arr').find('#checkbox_'+k).attr('checked', true);
+                                })
+                            } else {
+                                var html = '<span class="badge bg-gray">未被预约</span>';
+                                $('#time_config_ids_arr').find('tr').find('.appointing').html(html);
+                                $('#time_config_ids_arr').find('input[type="checkbox"]').attr('checked', true);
+                            }          
+                        }
+
+                        $(obj).find('a').html(date_html);
+                    },
+                    error:function() {
+                        layer.msg('网络错误,请检查网络连接',{icon:1, offset:['0px','40%'], time:1500});   
+                    }
+                })
+            }
+
+            // 设置价格统一
+            function showpricesetting() {
+                layer.prompt({
+                    title: '统一修改价格',
+                    formType: 0,//prompt风格，支持0-2
+                    shade: false,
+                    moveType:1,    
+
+                }, function(price){
+                    var re = /^[0-9]+.?[0-9]*$/;
+                    if(!re.test(price)) {
+                        layer.msg('不是数值型');
+                    }
+                    $('.price').each(function(e,t) {
+                        $(".price:eq("+e+")").find('input.input-auto').val(price);
+                    })
+                    layer.msg('修改成功');
+
+                });
+            }
+            // 求对象的长度
+            function length(obj){
+                var count = 0;
+                for(var i in obj) {
+                    if(obj.hasOwnProperty(i)){
+                        count++;
+                    };
+                };
+                return count;   
+            }
+    </script>
+<!--{include file="library/footer.lbi"}-->

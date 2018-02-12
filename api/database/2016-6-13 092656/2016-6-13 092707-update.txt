@@ -1,0 +1,2 @@
+﻿ALTER TABLE `cs_coach` ADD `s_coach_qrcode` VARCHAR(200) NULL DEFAULT ' ' COMMENT '教练二维码' AFTER `s_coach_original_imgurl`;
+ALTER TABLE `cs_coach` ADD `s_coach_share_url` VARCHAR(200) NULL DEFAULT ' ' COMMENT '教练分享出去的练车url' AFTER `s_coach_qrcode`;

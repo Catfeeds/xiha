@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+  <!--[if lt IE 7 ]> <html lang="zh-CN" class="ie6 ielt8"> <![endif]-->
+  <!--[if IE 7 ]>    <html lang="zh-CN" class="ie7 ielt8"> <![endif]-->
+  <!--[if IE 8 ]>    <html lang="zh-CN" class="ie8"> <![endif]-->
+  <!--[if (gte IE 9)|!(IE)]><!--> <html lang="zh-CN"><!--<![endif]-->
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+  <link href="{CSS_PATH}zizhan/css/article.css" rel="stylesheet" type="text/css">
+  <!--[if IE]><script src="{JS_PATH}html5.js"></script><![endif]-->
+  <script type="text/javascript" src="{JS_PATH}zizhan/js/jquery.js"></script>
+  <script type="text/javascript" src="{JS_PATH}zizhan/js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="{JS_PATH}zizhan/js/cmstop-common.js"></script>
+	<!--[if lt IE 9 ]>
+		<script type="text/javascript" src="{JS_PATH}helper/modernizr.js"></script>
+	<![endif]-->
+  <link type="text/css" href="{CSS_PATH}sudyNav.css" tppabs="http://www.ahu.edu.cn/_js/_portletPlugs/sudyNavi/css/sudyNav.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{CSS_PATH}style.css" tppabs="http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/style.css" type="text/css" media="all" />
+  <script type="text/javascript" src="{JS_PATH}jquery.sudyNav.js" tppabs="http://www.ahu.edu.cn/_js/_portletPlugs/sudyNavi/jquery.sudyNav.js"></script>
+  <script type="text/javascript" src="{JS_PATH}zizhan/js/nav/navlist.js"></script>
+
+</head>
+
+<body style="background: #fff;">
+  <header>
+    {template "content","head"}
+  </header>
+    <!--@end导航栏-->
+
+  <div id="main" style="margin-top: 130px;">
+  	<span class="navlist"><a href="{siteurl($siteid)}">大宿网list</a> »  {catpos($catid)} 文章列表</span>
+  </div>
+
+  <div id="main">
+    <div id="leftbox">
+    	<div class="newscontent whitebg">
+       	  <h1>大宿网</h1>
+       	  <div class="clear"></div>
+    			<div class="articlelist clearfix">
+			      <ul>
+           	  {pc:content action="lists" catid="$catid" num="51" order="id DESC" page="$page"}
+                {loop $data $r}
+                  <li><em><a target="_blank" href="{$r[url]}">{$r[title]}</a></em><span>{date('Y-m-d H:i:s',$r[inputtime])}</span></li>
+                {/loop}
+              {/pc}
+            </ul>
+    			</div>
+          <div class="page clearfix">
+            {$listpages}
+            <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+ 	    </div>
+    </div><!--leftbox-->
+    <div id="rightbox">
+      <div class="rightnews" style="border:none"></div>
+        <div class="rightnews m10">
+        	<h2>本地精选</h2>
+          <div class="todayhotnews clearfix">
+            <ul>
+      	      <li><a href="http://www.ahwang.cn/anhui/20131210/1336436.shtml" title="淮南等级地试水“虚拟旅游”足不出户游遍天下" target="_blank">淮南等级地试水“虚拟旅游”足不出户游遍天下</a></li>
+              <li><a href="http://www.ahwang.cn/hefei/20131210/1336421.shtml" title="寻刺激用针头夜袭独行女 已婚男称“控制不了自己”" target="_blank">寻刺激用针头夜袭独行女 已婚男称“控制不了自己”</a></li>
+              <li><a href="http://www.ahwang.cn/hefei/20131210/1336419.shtml" title="合肥拟试点设“婴儿安全岛” 仍在论证尚没明确时间表" target="_blank">合肥拟试点设“婴儿安全岛” 仍在论证尚没明确时间表</a></li>
+              <li><a href="http://www.ahwang.cn/anhui/20131210/1336405.shtml" title="蚌埠“杀妻”官员获百万赔偿 曾被诬捡精液伪造现场" target="_blank">蚌埠“杀妻”官员获百万赔偿 曾被诬捡精液伪造现场</a></li>
+              <li><a href="http://www.ahwang.cn/anhui/20131210/1336401.shtml" title="病人遗失救命钱 蚌埠东升派出所帮助找回" target="_blank">病人遗失救命钱 蚌埠东升派出所帮助找回</a></li>
+              <li><a href="http://www.ahwang.cn/anhui/20131210/1336395.shtml" title="淮北一收费站被曝11月份收费任务264万 完不成就处罚" target="_blank">淮北一收费站被曝11月份收费任务264万 完不成就处罚</a></li>
+              <li><a href="http://www.ahwang.cn/anhui/20131210/1336394.shtml" title="界首两公务员在肥出差喝酒产生纠纷 互殴致一人死" target="_blank">界首两公务员在肥出差喝酒产生纠纷 互殴致一人死</a></li>
+              <li><a href="http://www.ahwang.cn/anhui/20131210/1336351.shtml" title="安徽出台考核官员不称职硬指标 有10种表现可免职" target="_blank">安徽出台考核官员不称职硬指标 有10种表现可免职</a></li>
+            </ul>    	               
+          </div>
+        </div>
+		    <div class="rightnews m10"></div>
+        <div class="rightnews m10" id="pics">
+      		 <!--后加-->
+      		<ul class="tab2-holder">
+        		<li class="current">热图打榜</li>
+        		<li class="">社会聚焦</li>
+      		</ul>
+      		<div class="tab2-panel">
+        		<div style="display: block;">
+            		<!--后加end-->
+            		 <ul class="photolist clearfix">
+                		<li><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank" title="韩庚美国NASA封闭式训练 "><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386643858299.jpg" alt="韩庚美国NASA封闭式训练 "></a><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank"><p>韩庚美国NASA封闭式训练 </p></a></li>
+                    <li><a href="http://www.ahwang.cn/world/20131210/1336426.shtml" target="_blank" title="美女裸体“无肉”宣传"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386660385667.jpg" alt="美女裸体“无肉”宣传"></a><a href="http://www.ahwang.cn/world/20131210/1336426.shtml" target="_blank"><p>美女裸体“无肉”宣传</p></a></li>
+                    <li><a href="http://photo.ahwang.cn/wenyu/20131210/1336306.shtml" target="_blank" title="嫩模限制级私房照"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386637537457.jpg" alt="嫩模限制级私房照"></a><a href="http://photo.ahwang.cn/wenyu/20131210/1336306.shtml" target="_blank"><p>嫩模限制级私房照</p></a></li>
+                    <li><a href="http://photo.ahwang.cn/story/20131210/1336444.shtml" target="_blank" title="上帝视角拍摄的人物生活瞬间"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386665016535.jpg" alt="上帝视角拍摄的人物生活瞬间"></a><a href="http://photo.ahwang.cn/story/20131210/1336444.shtml" target="_blank"><p>上帝视角拍摄的人物生活瞬间</p></a></li>
+                    <li><a href="http://photo.ahwang.cn/wenyu/20131210/1336440.shtml" target="_blank" title="台主播萱萱大尺度露毛照疯传"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386664429128.jpg" alt="台主播萱萱大尺度露毛照疯传"></a><a href="http://photo.ahwang.cn/wenyu/20131210/1336440.shtml" target="_blank"><p>台主播萱萱大尺度露毛照疯传</p></a></li>
+                    <li><a href="http://photo.ahwang.cn/story/20131209/1336044.shtml" target="_blank" title="记录东京少女的神秘私生活"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386556957720.jpg" alt="记录东京少女的神秘私生活"></a><a href="http://photo.ahwang.cn/story/20131209/1336044.shtml" target="_blank"><p>记录东京少女的神秘私生活</p></a></li>
+                </ul> 
+      		  </div>
+		        <div class="hide" style="display: none;">
+          		  <ul class="photolist clearfix">
+            			<li><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank" title="韩庚美国NASA封闭式训练"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386644002968.jpg" alt="韩庚美国NASA封闭式训练"></a><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank"><p>韩庚美国NASA封闭式训练</p></a></li>
+                  <li><a href="http://www.ahwang.cn/china/20131210/1336291.shtml" target="_blank" title="广州近百人打砸医院"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386636583142.jpg" alt="广州近百人打砸医院"></a><a href="http://www.ahwang.cn/china/20131210/1336291.shtml" target="_blank"><p>广州近百人打砸医院</p></a></li>
+                  <li><a href="http://photo.ahwang.cn/wenyu/20131209/1336054.shtml" target="_blank" title="曝台湾“艳星”北京跳楼自杀"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386559803812.jpg" alt="曝台湾“艳星”北京跳楼自杀"></a><a href="http://photo.ahwang.cn/wenyu/20131209/1336054.shtml" target="_blank"><p>曝台湾“艳星”北京跳楼自杀</p></a></li>
+                  <li><a href="http://photo.ahwang.cn/xinwen/20131210/1336417.shtml" target="_blank" title="2013年最令人惊奇照片"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386658939518.jpg" alt="2013年最令人惊奇照片"></a><a href="http://photo.ahwang.cn/xinwen/20131210/1336417.shtml" target="_blank"><p>2013年最令人惊奇照片</p></a></li>
+                  <li><a href="http://www.ahwang.cn/china/20131209/1336137.shtml" target="_blank" title=" 男子嫌女友购物太贵跳楼身亡 "><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386576325248.jpg" alt=" 男子嫌女友购物太贵跳楼身亡 "></a><a href="http://www.ahwang.cn/china/20131209/1336137.shtml" target="_blank"><p> 男子嫌女友购物太贵跳楼身亡 </p></a></li>
+                  <li><a href="http://photo.ahwang.cn/wenyu/20131210/1336440.shtml" target="_blank" title="台主播萱萱大尺度露毛艳照"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386664429128.jpg" alt="台主播萱萱大尺度露毛艳照"></a><a href="http://photo.ahwang.cn/wenyu/20131210/1336440.shtml" target="_blank"><p>台主播萱萱大尺度露毛艳照</p></a></li>
+                </ul> 
+        		 </div>
+      		 </div>
+        </div>
+
+        <div class="rightnews m10" id="video">
+      		<ul class="tab2-holder">
+        		<li class="current">热点视频</li>
+        		<li class="">看安徽</li>
+      		</ul>
+      		<div class="tab2-panel">
+      		  <div style="display: block;">
+      		    <div class="video clearfix">              		                                     
+                <div class="ct_box">
+                  <a href="http://video.ahwang.cn/site/20131210/1336453.shtml" target="_blank">
+                  <img src="http://upload.ahwang.cn/2013/1210/1386667089894.jpg" alt="新安晚报记者探访“合肥3D魔幻艺术画展”">
+                  <s class="play_icon"></s><span class="ct_txt">新安晚报记者探访“合肥3D魔幻艺术画展”</span></a>
+                </div>
+                <div class="ct_box">
+                  <a href="http://video.ahwang.cn/site/20131210/1336452.shtml" target="_blank">
+                  <img src="http://upload.ahwang.cn/2013/1210/1386666872601.JPG" alt="四川卖淫女偷嫖客财物被发现 将对方反锁后逃跑">
+                  <s class="play_icon"></s><span class="ct_txt">四川卖淫女偷嫖客财物被发现 将对方反锁后逃跑</span></a>
+                </div>
+                <div class="clear"></div>
+                <ul class="medianr">
+                  <li>        
+                      <span><a href="http://video.ahwang.cn/site/20131210/1336450.shtml" title="8旬老妇与儿媳争执撕扯 不慎坠井被其砸死" target="_blank">8旬老妇与儿媳争执撕扯 不慎坠井被其砸死</a></span>       
+                        
+                      <span><a href="http://video.ahwang.cn/site/20131210/1336423.shtml" title="实拍内蒙古消防老兵暴打新兵" target="_blank">实拍内蒙古消防老兵暴打新兵</a></span>       
+                        
+                      <span><a href="http://video.ahwang.cn/site/20131210/1336413.shtml" title="女子用假钞被识破 慌忙吞下并使劲咀嚼" target="_blank">女子用假钞被识破 慌忙吞下并使劲咀嚼</a></span>       
+                        
+                      <span><a href="http://video.ahwang.cn/site/20131210/1336400.shtml" title="男子持刀抢银行 只因患前列腺炎无钱治" target="_blank">男子持刀抢银行 只因患前列腺炎无钱治</a></span>       
+                        
+                      <span><a href="http://video.ahwang.cn/site/20131210/1336297.shtml" title="射箭世青赛在无锡开幕" target="_blank">射箭世青赛在无锡开幕</a></span>       
+                        
+                      <span><a href="http://video.ahwang.cn/site/20131210/1336282.shtml" title="中国巴西资源一号03星发射失利" target="_blank">中国巴西资源一号03星发射失利</a></span>       
+                  </li>                                                             
+                </ul>                                                             
+              </div>
+		        </div>
+				    <div  class="hide" style="display: none;">
+          		 <div class="video clearfix">              		                                     
+                  <div class="ct_box">
+                    <a href="http://video.ahwang.cn/site/20130910/1313030.shtml" target="_blank">
+                    <img src="http://upload.ahwang.cn/2013/0910/1378826615968.png" alt="合肥两女子为追回借款欲跳楼">
+                    <s class="play_icon"></s><span class="ct_txt">合肥两女子为追回借款欲跳楼</span></a>
+                  </div>
+                  <div class="ct_box">
+                    <a href="http://video.ahwang.cn/site/20130910/1312695.shtml" target="_blank">
+                    <img src="http://upload.ahwang.cn/2013/0910/1378747730651.png" alt="合肥：小贩城管起冲突 妇女被城管拉拽倒地不起 ">
+                    <s class="play_icon"></s><span class="ct_txt">合肥：小贩城管起冲突 妇女被城管拉拽倒地不起 </span></a>
+                  </div>
+                  <div class="clear"></div>
+                  <ul class="medianr">
+                    <li>
+                      <span><a href="http://video.ahwang.cn/site/20130911/1313032.shtml" title="安徽省首支教师管乐队为学生献艺庆祝教师节" target="_blank">安徽省首支教师管乐队为学生献艺庆祝教师节</a></span>  
+                      <span><a href="http://video.ahwang.cn/site/20130902/1310358.shtml" title="九华山99米露天地藏菩萨圣像开光法会片段" target="_blank">九华山99米露天地藏菩萨圣像开光法会片段</a></span>  
+                      <span><a href="http://video.ahwang.cn/site/20130909/1312671.shtml" title="现代黄梅戏《凤栖巷》合肥展演" target="_blank">现代黄梅戏《凤栖巷》合肥展演</a></span>  
+                      <span><a href="http://video.ahwang.cn/site/20130831/1310075.shtml" title="企鹅进驻合肥野生动物园 每只身价10万元" target="_blank">企鹅进驻合肥野生动物园 每只身价10万元</a></span>  
+                      <span><a href="http://video.ahwang.cn/site/20130908/1312258.shtml" title="裸体男婴被弃路边 男婴肺部受到感染" target="_blank">裸体男婴被弃路边 男婴肺部受到感染</a></span>  
+                      <span><a href="http://video.ahwang.cn/information/20130902/1310438.shtml" title="国内首部密室杀人推理电影几宗罪即将上映" target="_blank">国内首部密室杀人推理电影几宗罪即将上映</a></span>  
+                    </li>                                                              
+                  </ul>                                                              
+                </div>
+		          </div>
+		        </div>
+        </div>
+         <div class="rightnews m10">
+            <h2>网友关注 </h2>                        
+            <div class="place-Article">
+		          <ol class="block">
+                <li>
+                <em class="hot" >1</em><a target="_blank" href="http://www.ahwang.cn/china/20131210/1336250.shtml">内蒙古乌海市新兵被打视频属实 5人被拳打脚踢扇耳光</a>
+                </li>
+                <li>
+                <em class="hot" >2</em><a target="_blank" href="http://www.ahwang.cn/anhui/20131210/1336219.shtml">英语一年多考或明年定方案 安徽明年高考延续以往模式</a>
+                </li>
+                <li>
+                <em class="hot" >3</em><a target="_blank" href="http://www.ahwang.cn/life/20131210/1336333.shtml">合肥车位价格进入“奔3”时代</a>
+                </li>
+                <li>
+                <em >4</em><a target="_blank" href="http://www.ahwang.cn/anhui/20131209/1336190.shtml">安徽文一篮球俱乐部昨成立 职业篮球再回安徽</a>
+                </li>
+                <li>
+                <em >5</em><a target="_blank" href="http://www.ahwang.cn/hefei/20131210/1336292.shtml">合肥版“李某某强奸案” 14岁少女酒后遭4男子性侵</a>
+                </li>
+                <li>
+                <em >6</em><a target="_blank" href="http://www.ahwang.cn/hefei/20131209/1336197.shtml">合肥新车上牌可“十选一” 后天启用共12万副号牌</a>
+                </li>
+                <li>
+                <em >7</em><a target="_blank" href="http://www.ahwang.cn/zbah/20131210/1336396.shtml">合肥天鹅湖发现一具女子浮尸 年龄在30岁左右</a>
+                </li>
+                <li>
+                <em >8</em><a target="_blank" href="http://www.ahwang.cn/anhui/20131210/1336405.shtml">蚌埠“杀妻”官员获百万赔偿 曾被诬捡精液伪造现场</a>
+                </li>
+                <li>
+                <em >9</em><a target="_blank" href="http://www.ahwang.cn/hefei/20131209/1336206.shtml">界首财政局工作人员来肥办事 酒后起争执致一人猝死</a>
+                </li>
+                <li>
+                <em >10</em><a target="_blank" href="http://www.ahwang.cn/world/20131210/1336256.shtml">中方回应金正恩姑父张成泽被捕：是朝鲜内部事务</a>
+                </li>
+        			</ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div class="footer">
+        {template "content","foot"}
+    </div>
+</body>
+</html>

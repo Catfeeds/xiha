@@ -1,0 +1,584 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>商品管理</title>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>金币商城管理<span class="c-gray en">&gt;</span> 商品管理
+        <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="Hui-iconfont">&#xe68f;</i>
+        </a>
+    </nav>
+    <br/>
+    <div class="pd-20">
+        <form method="post" action="{:U('Coin/searchCoinGoods')}">
+            <div class="" style="margin-top:-20px;">
+                <label for="is_deleted"> 按上架状态 </label>
+                <select class="" name="is_deleted" id="is_deleted" style="width:120px;height:30px">				   
+					<option value="" >--不限状态--</option>
+					<option value="1" <if condition = "$is_deleted eq 1">selected</if>>已上架</option>
+					<option value="2" <if condition = "$is_deleted eq 2">selected</if>>未上架</option>
+				</select>
+                <label for="is_hot"> 按热销状态 </label>
+                <select class="" name="is_hot" id="is_hot" style="width:120px;height:30px">				   
+					<option value="" >--不限状态--</option>
+					<option value="1" <if condition = "$is_hot eq 1">selected</if>>是</option>
+					<option value="2" <if condition = "$is_hot eq 2">selected</if>>否</option>
+				</select>
+                <label for="is_recommend"> 按推荐状态 </label>
+                <select class="" name="is_recommend" id="is_recommend" style="width:120px;height:30px">				   
+					<option value="" >--不限状态--</option>
+					<option value="1" <if condition = "$is_recommend eq 1">selected</if>>是</option>
+					<option value="2" <if condition = "$is_recommend eq 2">selected</if>>否</option>
+				</select>
+                <label for="is_promote"> 按促销状态 </label>
+                <select class="" name="is_promote" id="is_promote" style="width:120px;height:30px">				   
+					<option value="" >--不限状态--</option>
+					<option value="1" <if condition = "$is_promote eq 1">selected</if>>是</option>
+					<option value="2" <if condition = "$is_promote eq 2">selected</if>>否</option>
+				</select>
+                <label for="is_publish"> 按发布状态 </label>
+                <select class="" name="is_publish" id="is_publish" style="width:120px;height:30px">				   
+					<option value="" >--不限状态--</option>
+					<option value="1" <if condition = "$is_publish eq 1">selected</if>>是</option>
+					<option value="2" <if condition = "$is_publish eq 2">selected</if>>否</option>
+				</select>
+                <label for="search_info">按关键词 </label>
+                <select class="" name="search_info" id="search_info" style="width:150px;height:30px">				   
+					<option value="" >--不限关键词--</option>
+					<option value="goods_name" <if condition = "$search_info eq goods_name">selected</if>> 商品名称</option>
+					<option value="cate_name" <if condition = "$search_info eq cate_name">selected</if>> 商品类型</option>
+				</select>
+                <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" placeholder="名称，类型" style="width:200px;" value="{$s_keyword}" />
+
+                <input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+            </div>
+        </form>
+        <br/>
+        <div class="cl pd-5 bg-1 bk-gray"> <a href="javascript:;" onclick="addCoinGoods('添加商品','{: U('Coin/addCoinGoods')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加商品</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+        <div class="mt-20">
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="40">ID</th>
+                            <th width="50">
+                                排序
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标双击排序表格有意外惊喜哦"></span>
+                            </th>
+                            <th width="80">商品类型</th>
+                            <th width="80">
+                                商品名称
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多商品信息"></span>
+                            </th>
+                            <th width="100">商品总数</th>
+                            <!--<th width="100">商品图片</th>-->
+                            <!--<th width="130">最终金币价格</th>-->
+                            <th width="100">嘻哈币价格</th>
+                            <!--<th width="100">添加时间</th>-->
+                            <!--<th width="100">最近时间</th>-->
+                            <th width="80">是否热销</th>
+                            <th width="80">是否推荐</th>
+                            <th width="80">是否促销</th>
+                            <th width="80">是否发布</th>
+                            <th width="80">是否上架</th>
+                            <th width="80">到期时间</th>
+                            <th width="60">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="coingoodslist" item="obj">
+                            <tr class="text-c signup_list" module-data="{$obj.id}">
+                                <td class="va-m"><input type="checkbox" value="{$obj.id}" name=""></td>
+                                <td class="va-m">{$obj.id}</td>
+                                <td class="va-m changeable" data-field="order">
+                                    <span>{$obj.order}</span>
+                                    <input class="input-text " value="{$obj.order}" style="display:none" name="order" type="text" style="text-align:center;border-radius:5px;">
+                                </td>
+                                <td class="va-m">{$obj.cate_name}</td>
+                                <td class="va-m">
+                                    <a href="javascript:;" class="goodsdetail" id="signuphover{$obj.id}" style="color:#09c">
+										{$obj.goods_name}
+                                    </a>
+                                </td>
+                                <td class="va-m">{$obj.goods_total_num}</td>
+                                <!--<if condition="$obj.goods_images_url neq ''">
+                                    <td><a href="{$obj.goods_images_url}" style="color:yellowgreen">下载/浏览</td>
+								<else/>
+									<td>暂无</td>
+								</if>-->
+                                <!--<td class="va-m">￥{$obj.goods_final_price}元</td>-->
+                                <td class="va-m">{$obj.goods_final_price}</td>
+                                <!--<td>{$obj.addtime}</td>-->
+                                <!--<td>{$obj.updatetime}</td>-->
+                                <td class="va-m sethot">
+                                    <switch name="obj.is_hot">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius"> 是 </span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius"> 否 </span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setrecommend">
+                                    <switch name="obj.is_recommend">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius"> 是 </span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius"> 否 </span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setpromote">
+                                    <switch name="obj.is_promote">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius"> 是 </span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius"> 否 </span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setpublish">
+                                    <switch name="obj.is_publish">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius"> 是 </span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius"> 否 </span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setdeleted">
+                                    <switch name="obj.is_deleted">
+                                        <case value="1"><span data-id="{$obj.id}" data-title="1" class="btn btn-success size-S radius"> 上架 </span></case>
+                                        <case value="2"><span data-id="{$obj.id}" data-title="2" class="btn btn-danger size-S radius"> 下架 </span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">下架</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m">{$obj.goods_expiretime}</td>
+                                <td class="va-m td-manage">
+                                    <a title="删除" href="javascript:;" onclick="member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑商品信息','{: U('Coin/editCoinGoods')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                                <td class="goodsinfo" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;">
+                                        <tr width="">
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">商品名称</td>
+                                            <td class="va-m">{$obj.goods_name}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">商品类型</td>
+                                            <td class="va-m">{$obj.cate_name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">商品总数</td>
+                                            <td class="va-m">{$obj.goods_total_num}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">商品真实价格</td>
+                                            <td class="va-m">￥{$obj.goods_real_price}元</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">原嘻哈币价格</td>
+                                            <td class="va-m">{$obj.goods_original_price}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold; width: 100px;">嘻哈币价格</td>
+                                            <td class="va-m">{$obj.goods_final_price}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">添加时间</td>
+                                            <td class="va-m">{$obj.addtime}</td>
+                                            <td class="blue text-center va-m" style="font-weight:bold">最近时间</td>
+                                            <td class="va-m">{$obj.updatetime}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">商品描述</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.goods_desc}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center va-m" style="font-weight:bold">商品详情</td>
+                                            <td class="red text-red va-m" colspan=3>{$obj.goods_detail}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page pagination" style="display:inline;">
+            <empty name="count">
+                <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+            </empty>
+            <p style="text-align:center">{$page}</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        // 商品详情
+        $('.goodsdetail').on({
+            'mouseenter': function() {
+                var id = $(this).attr('id');
+                var goodsinfo = $(this).parents('tr.signup_list').find('td.goodsinfo').html();
+                layer.tips(goodsinfo, '#' + id, {
+                    tips: [1, '#fff'],
+                    time: 0,
+                    area: '600px'
+                });
+            },
+
+            'mouseleave': function() {
+                var index = layer.tips();
+                layer.close(index);
+            },
+
+            'click': function() {
+                var goodsinfo = $(this).parents('tr.signup_list').find('td.goodsinfo').html();
+                layer.open({
+                    type: 1,
+                    title: '商品详情',
+                    area: '600px',
+                    shade: [0.3, '#333'],
+                    shadeClose: true,
+                    moveType: 1,
+                    shift: 0,
+                    content: goodsinfo
+                });
+            }
+        })
+
+        // 鼠标双击排序表格事件
+        $('td.changeable').dblclick(function() {
+            var s = $(this).find('span');
+            var i = $(this).find('input');
+            s.css('display', 'none');
+            i.css('display', 'inline-block').css('text-align', 'center').css('border-radius', '5px');
+            i.focus();
+        });
+        $('td.changeable input').blur(function() {
+            var s = $(this).parent().find('span');
+            var i = $(this).parent().find('input');
+            var mid = $(this).parent().parent().attr('module-data');
+            var field = $(this).parent().attr('data-field');
+            var order = $(this).val();
+            s_params = '{"id":' + '"' + mid + '"' + ',"' + field + '":"' + order + '"' + '}';
+            j_params = JSON.parse(s_params);
+            $.ajax({
+                type: "post",
+                url: "__URL__/setCoinGoodsOrder",
+                data: j_params,
+                dataType: 'JSON',
+                success: function(data) {
+                    if (data.code == 200) {
+                        layer.tips(data.msg, s, {
+                            time: 1000,
+                            tips: [2, '#00CD66']
+                        });
+                        s.html(order);
+                        // location.reload();
+                    } else if (data.code == 105) {
+                        i.val(s.html());
+                        layer.tips('未做任何修改', s, {
+                            time: 1000
+                        });
+                    } else if (data.code == 102) {
+                        i.val(s.html());
+                        layer.tips('参数类型错误', s, {
+                            time: 1000
+                        });
+                    } else {
+                        i.val(s.html());
+                        layer.tips(data.msg, s, {
+                            time: 1000
+                        });
+                    }
+
+                },
+                error: function() {
+                    i.val(s.html());
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            });
+
+            i.css('display', 'none');
+            s.css('display', 'inline');
+        });
+
+
+        /*用户-添加*/
+        function addCoinGoods(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-查看*/
+        function member_show(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+
+        }
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delCoinGoods",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+        // 设置商品是否热销的状态
+        $('.sethot span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coin/setHotStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 设置商品的上下架状态
+        $('.setdeleted span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('data-title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coin/setDeletedStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        // 设置商品是否推荐的状态
+        $('.setrecommend span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coin/setRecommendStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 设置商品是否促销的状态
+        $('.setpromote span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coin/setPromoteStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        // 设置商品是否发布的状态
+        $('.setpublish span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '1':
+                    status = 2;
+                    break;
+                case '2':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coin/setPublishStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

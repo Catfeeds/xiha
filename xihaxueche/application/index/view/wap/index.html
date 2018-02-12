@@ -1,0 +1,30 @@
+{include file="wap/header"/}
+{css href="__PUBLIC__/static/css/swiper.min.css"}
+<div class="container-fluid" style="padding: 0px;">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background:#f0f2f4; text-align:center;">
+            	<img src="__PUBLIC__/static/images/index-banner.png" alt="" style="width: 100%;">
+            </div>
+         </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    
+    <!--产品列表-->
+    <div class="products">
+    	<a href="{:url('/m/student')}"><img src="__PUBLIC__/static/images/2015102263134845.png" style="width: 100%;" alt="" /></a>
+    	<a href="{:url('/m/coach')}"><img src="__PUBLIC__/static/images/2016033164741541.png" style="width: 100%;" alt="" /></a>
+    	<!--<a href=""><img src="__PUBLIC__/static/images/2015102263156653.jpg" style="width: 100%;" alt="" /></a>-->
+    </div>
+
+{js href="__PUBLIC__/static/js/swiper.min.js"}
+<script>
+	 window.onload = function () {
+//      var mySwiper = new Swiper ('.swiper-container', {
+//          loop: true,
+//          autoplay: 4000,
+//          pagination: '.swiper-pagination',
+//        });
+     };
+</script>
+{include file="wap/footer"/}

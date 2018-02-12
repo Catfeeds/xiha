@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <p v-show="love">我爱你</p>
+        </div>
+        <script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        love: true
+    }
+});
+        </script>
+    </body>
+</html>

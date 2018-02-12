@@ -1,0 +1,78 @@
+<!--{include file="library/header.lbi"}-->
+<div class="tab-body" style="">
+	<div class="panel-head">
+	    <a href="index.php?action=coach&op=index" class=""><strong>返回教练列表 >></strong></a>
+	</div>
+	<br />
+<div class="tab"> 
+	<div class="tab-head border-main"> 
+		<ul class="tab-nav"> 
+			<li class="active">
+				<a href="index.php?action=coach&op=coachinfo&id=<!--{$coach_id}-->">基本信息</a>
+			</li> 
+			<li>
+				<a href="index.php?action=coach&op=appointinfo&id=<!--{$coach_id}-->">预约详情</a>
+			</li> 
+			<li>
+				<a href="index.php?action=coach&op=studentlist&id=<!--{$coach_id}-->">学员列表</a>
+			</li> 
+		</ul> 
+	</div> 
+	<div class="tab-body" style="padding-top:10px;"> 
+		<!-- 基本信息 -->
+		<div class="tab-panel form-x active">
+
+			<div class="media media-x">
+			 	<a class="float-left text-center" href="#"> 
+					<img width="128" height="128" class="img-border radius-circle" id="imgShow" src="<!--{$coachdetail.s_coach_imgurl}-->" alt=""><br>
+				</a>
+
+				<div class="media-body">
+					<div class="table-responsive"> 
+						<table class="table table-bordered"> 
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">姓名</td>
+								<td width="45%"><input type="text" class="input input-auto" size="50" value="<!--{$coachdetail.s_coach_name}-->"  disabled="disabled"></td>
+								<!-- <td width="35%" colspan = 2><button class="button border-main">保存修改</button></td> -->
+							</tr>
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">电话</td>
+								<td><input type="text" class="input input-auto" size="50" value="<!--{$coachdetail.s_coach_phone}-->"  disabled="disabled"></td>
+								<!-- <td colspan=2><button class="button border-main">保存修改</button></td> -->
+							</tr>
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">培训牌照</td>
+								<td><input type="text" class="input input-auto" size="50" value="<!--{$lisence_name}-->" disabled="disabled"></td>
+								<!-- <td colspan=2></td> -->
+							</tr>
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">培训科目</td>
+								<td><input type="text" class="input input-auto" size="50" value="<!--{$lesson_name}-->" disabled="disabled"></td>
+								<!-- <td colspan=2></td> -->
+							</tr>
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">所属车辆</td>
+								<td><input type="text" class="input input-auto car_name" size="50" value="<!--{if $carinfo}--><!--{$carinfo.name}--><!--{else}-->暂无设置<!--{/if}-->" disabled="disabled"></td>
+							</tr>
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">车辆牌照</td>
+								<td><input type="text" class="input input-auto car_no" size="50" value="<!--{if $carinfo}--><!--{$carinfo.car_no}--><!--{else}-->暂无设置<!--{/if}-->" disabled="disabled"></td>
+								<!-- <td colspan=2> </td> -->
+							</tr>
+
+							<tr>
+								<td width="10%" class="blue text-center text-big height-big">教练地址</td>
+								<td class="text-left height-big">
+									<input type="text" class="input input-auto" id="s_address" name="s_address" disabled="disabled" value="<!--{$coachdetail.s_coach_address}-->" size="50" placeholder="详细地址" /></td>
+								<!-- <td colspan=2><button class="button border-main">保存修改</button></td> -->
+							</tr>
+						</table> 
+					</div>
+				</div> 
+			</div> 
+		</div>
+
+	</div> 
+</div>
+</div>
+<!--{include file="library/footer.lbi"}-->

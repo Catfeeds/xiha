@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>广告等级列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>广告管理<span class="c-gray en">&gt;</span> 广告等级列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<form method="" action="" name="search">
+<div class="pd-20">
+	<div class="cl pd-5 bg-1 bk-gray">
+      <a href="javascript:;" onclick="addAdsLevel('添加广告等级','{: U('Ads/addAdsLevel')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加广告等级</a> 
+      <span class="r">共有广告等级：<strong>{$count}</strong> 条</span> 
+    </div>
+
+    <div class="cl mt-15 pd-5 bg-1 bk-gray">
+      <span>Tips</span>: 双击单元格以编辑，离开单元格以保存。
+    </div>
+
+	<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort">
+		<thead>	
+			<tr class="text-c">
+				<th width="50">等级</th>
+				<th width="100">标题</th>
+				<th width="100">价格: 元</th>
+				<th width="200">介绍</th>
+				<th width="60">广告时间: 秒</th>
+				<th width="120">添加时间</th>
+				<th width="50">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		 <foreach name="list" item="obj">
+			<tr class="text-c" data-id="{$obj.id}" style="height: 34px;">
+
+				<td class="changable" data-field="level_id">
+                    <span>{$obj.level_id}</span>
+                    <input style="display: none;width: 50px;" class="input-text" type="text" name="level_id" value="{$obj.level_id}" pattern="\d+" />
+                </td>
+
+				<td class="changable" data-field="level_title">
+                    <span>{$obj.level_title}</span>
+                    <input style="display: none;width: 120px;" class="input-text" type="text" name="level_title" value="{$obj.level_title}" />
+                </td>
+
+                <td class="changable" data-field="level_money">
+                  <span>{$obj.level_money}</span>
+                  <input style="display: none; width: 100px;" class="input-text" type="text" name="level_money" value="{$obj.level_money}" />
+                </td>
+
+                <td class="changable" data-field="level_intro">
+                  <span>{$obj.level_intro}</span>
+                  <input type="text" name="level_intro" class="input-text" style="display: none;" value="{$obj.level_intro}" />
+                </td>
+
+                <td class="changable" data-field="loop_time">
+                  <span>{$obj.loop_time}</span>
+                  <input type="text" name="loop_time" class="input-text" style="display: none; width: 50px;" value="{$obj.loop_time}" />
+                </td>
+
+				<td>{$obj.adddate}</td>
+				<td class="td-manage">				
+					<a title="删除" href="javascript:;" onclick="javascript:adsLevel_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					<!-- <a title="编辑" href="javascript:;" onclick="ads_edit('编辑广告位','{: U('Ads/editAds')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> -->
+				</td>
+			</tr>
+		 </foreach>
+		</tbody>
+	</table>
+	</div>
+</div>
+
+<!-- 分页结果 -->
+<div class="page pagination" style="display:inline;">
+    <empty name="count">
+    <br /><strong style="display:block;">暂无广告等级列表</strong><br /><br /><br />
+    </empty>
+    <p style="text-align:center">{$page}</p>
+</div>
+</form>
+<!-- <footer class="footer">
+	 <p>Copyright &copy;2015 安徽嘻哈网路技术有限公司 All Rights Reserved.<br>
+    本后台系统由<a href="http://www.xihaxueche。com/" target="_blank" title="嘻哈学车">嘻哈网路技术有限公司</a>提供技术支持</p>
+</footer>  --> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+
+<script>
+/*
+ * 自定义的js
+ * @author gaodacheng
+ */
+
+/* 1. you can change value after double click the element */
+$('td.changable').dblclick(function() {
+    var s = $(this).find('span');
+    var i = $(this).find('input');
+    s.css('display', 'none');
+    i.css('display', 'inline-block');
+    i.focus();
+});
+
+/* save changes to server and show current value */
+$('td.changable input').blur(function() {
+    var s = $(this).parent().find('span');
+    var i = $(this).parent().find('input');
+    var record_id = $(this).parent().parent().attr('data-id');
+    var record_field = $(this).parent().attr('data-field');
+    var input_data = $(this).val();
+    //先组合参数的字符串，再转换成json对象
+    s_params = '{"id":' + '"' + record_id + '"' + ',"' + record_field + '":"' + input_data + '"}';
+    j_params = JSON.parse(s_params);
+    $.ajax({
+        type:"post",
+        url:"__URL__/updateLevel",
+        data: j_params,
+        dataType:'JSON',
+        success:function(data) {
+            if(data.code == 200) {
+                layer.tips(data.msg, s, {time: 1000, tips:[2, '#00CD66']});
+                s.html(input_data);
+            } else if ( data.code == 107 ) {
+                i.val(s.html());
+                layer.tips(data.msg, s, {time: 1000});
+            } else {
+                i.val(s.html());
+                layer.tips(data.msg, s, {time: 1000});
+            }
+        },
+        error:function() {
+            i.val(s.html());
+            layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+        }
+    });
+    i.css('display', 'none');
+    s.css('display', 'inline');
+});
+</script>
+
+<script type="text/javascript">
+
+/*广告-添加*/
+function addAdsLevel(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+        area: ['500px', '500px'],
+		content: url,
+        shade: 0,
+        moveType: 1
+	});
+    layer.full(index);
+}
+
+/*广告-编辑*/
+function ads_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+
+}
+
+/*广告等级-删除*/
+function adsLevel_del(obj, id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type:"POST",
+			url:"__URL__/delAdsLevel",
+			data:{'id':id},
+			dataType: 'JSON',
+			success: function(data) {
+				if(data.code == 200) {
+					$(obj).parents("tr").remove();
+					layer.msg('删除成功!',{icon:1,time:1000});
+				} else {
+					layer.msg('删除失败!',{icon:2,time:1000});
+				}
+			},
+			error:function() {
+				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+			}
+		});
+	});
+}
+</script> 
+</body>
+</html>

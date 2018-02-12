@@ -1,0 +1,122 @@
+<!--{include file="library/header.lbi"}-->
+<link rel="stylesheet" type="text/css" href="templates/assests/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="templates/assests/css/select2.css">
+<link rel="stylesheet" type="text/css" href="templates/assests/css/select2-bootstrap.css">
+
+<div class="tab-body" style="">
+	<div class="panel-head">
+	    <a href="javascript:history.back(-1);" class=""><strong>返回学员消息列表 >></strong></a>
+	</div>
+	<br />
+<div class="tab"> 
+	<div class="tab-head border-main"> 
+		<ul class="tab-nav" style="margin-bottom:0px;"> 
+			<li class="active">
+				<a href="javascript:;" onclick="redirecturl('message','studentsend');">单发消息</a>
+			</li> 
+			<li>
+				<a href="javascript:;" onclick="redirecturl('message','multistudentsend');">群发消息</a>
+			</li> 
+		</ul> 
+	</div> 
+	<div class="tab-body" style="padding-top:10px;"> 
+		<!-- 基本信息 -->
+		<div class="tab-panel form-x active">
+
+			<div class="media media-x">
+				<div class="media-body">
+					<div class="table-responsive"> 
+						<form method="post" class="form-x" style="width:100%" action="index.php?action=message&op=studentsendoperate"  enctype="multipart/form-data">
+
+							<div class="form-group" ng-controller="appCtrl">
+						    	<div class="label"><label for="user_phone" style="color:#555; font-size:14px;">号码</label></div>
+
+						    	<div class="field">
+	    							<div class="container-fluid" ng-controller="appCtrl" style="padding-left:0px;">
+	    						        <div class="row" style="">
+	    						            <div class="col-sm-3">
+	    						                <select select2 ng-model="b" class="form-control" name="user_phone" placeholder="请选择学员">
+	    						                	<!--{foreach $studentlist as $key => $value}-->
+	    						                	<option value="<!--{$value['s_phone']}-->|<!--{$value['l_user_id']}-->"><!--{$value['s_phone']}-->（<!--{if $value['s_username'] == ''}--><!--{$value['s_real_name']}--><!--{else}--><!--{$value['s_username']}--><!--{/if}-->）</option>
+	    						                	<!--{/foreach}-->
+	    						                </select>
+	    						                <span class="clearfix"></span>
+	    						            </div>
+	    						        </div>
+	    						    </div>
+						    	    <!-- <div class="field">
+						    			<div class="container-fluid" ng-controller="appCtrl" style="padding-left:0px;">
+						    		        <div class="row" style="">
+						    		            <div class="col-sm-4">
+						    						<input select2 ng-model="b" select2-model="cS2" config="config3" multiple placeholder="支持多选哦" class="form-control" type="text"/>
+						    		                <span class="clearfix"></span>
+						    		            </div>
+						    		        </div>
+						    		    </div>
+						    	    </div> -->
+
+						    	</div>
+							</div>
+
+				          	<div class="form-group">
+				              <div class="label"><label for="s_beizhu" style="color:#555; font-size:14px;">备注</label></div>
+				              <div class="field">
+				              	<!-- <textarea class="input" name="" id="" cols="21" rows="10" placeholder="请填写备注" ></textarea> -->
+			                   	<!-- <input type="text" class="input input-auto" id="s_beizhu" name="s_beizhu" size="40" placeholder="请填写备注 如：学员订单消息" data-validate="required:请填写备注" /> -->
+			                   	<select class="input input-auto" id="i_yw_type" name="i_yw_type"> 
+			                   	    <option value="">请选择备注</option> 
+			                   	    <option value="1">通知消息</option>
+			                   	    <option value="2">正常消息</option>
+			                   	  <!--   <option value="3">订单消息</option>
+			                   	    <option value="4">其他</option> -->
+			                   	</select>
+				              </div>
+				          	</div>
+							
+				          	<div class="form-group">
+				              <div class="label"><label for="title" style="color:#555; font-size:14px;">标题</label></div>
+				              <div class="field">
+			                   	<input type="text" class="input input-auto" id="title" name="title" size="50" placeholder="请填写标题" data-validate="required:请填写标题" />
+				              </div>
+				          	</div>
+
+			  	          	<div class="form-group">
+			  	              <div class="label"><label for="content" style="color:#555; font-size:14px;">消息内容</label></div>
+			  	              <div class="field">
+			  	              	<textarea class="input input-auto" name="content" id="" cols="100" rows="10" placeholder="请填写内容" ></textarea>
+			  	              </div>
+			  	          	</div>
+
+				          	<div class="form-group">
+				              <div class="label"><label for="s_beizhu" style="color:#555; font-size:14px;">备注</label></div>
+				              <div class="field">
+			                   	<input type="text" class="input input-auto" id="s_beizhu" name="s_beizhu" size="50" placeholder="请填写备注"/>
+				              </div>
+				          	</div>
+
+				          	<div class="form-group">
+				              	<div class="label"> </div>
+			  	              	<div class="field">
+				              		<button class="button bg-main" type="submit">提交</button>
+				          		</div>
+				          	</div>
+				      </form>
+
+					</div>
+				</div> 
+			</div> 
+		</div>
+
+	</div> 
+</div>
+</div>
+<script type="text/javascript" src="templates/assests/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/angular.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/select2.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/selectindex.js"></script>
+<script>
+	function redirecturl(a, o) {
+		location.href="index.php?action="+a+"&op="+o;
+	}
+</script>
+<!--{include file="library/footer.lbi"}-->

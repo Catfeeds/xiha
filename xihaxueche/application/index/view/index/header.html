@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$title}</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="嘻哈学车是一款免费的学车手机APP，以“促公平、节时间、省金钱、易学车”为出发点和落脚点；“网上学车，让学车更轻松、更便捷”理念吸引大量用户。APP可实现在线报名、在线支付等功能。学员能就近找到最近、最合适的教练。学员可以随时随地练车。使用“嘻哈学车”APP的学员，可一人一车享受专车接送，实行计时收费。" />
+    <meta name="keywords" content="嘻哈学车APP|安徽嘻哈网络技术有限公司|驾驶人学车APP|驾驶人自学自考学车APP|学员自主预约报名学员APP|学车APP|学车软件|考驾照软件 IOS版 安卓版 " /> {css href="__PUBLIC__/static/css/bootstrap-material-design.min.css" /} {css href="__PUBLIC__/static/css/bootstrap.min.css" /} {css href="__PUBLIC__/static/css/ripples.min.css" /} {css href="__PUBLIC__/static/css/iconfont/iconfont.css" /} {css href="__PUBLIC__/static/css/app.css"
+    /} {js href="__PUBLIC__/static/js/jquery-1.10.2.min.js"} {js href="__PUBLIC__/static/js/device.min.js"}
+    <script>
+        var action = "{$Request.action}";
+        if (device.mobile()) {
+            location.href = "{:url('/m/index')}";
+            //  		location.href="{:url('/m/"+action.toLowerCase()+"')}";
+        }
+    </script>
+</head>
+
+<body style="min-width: 1100px;">
+    <div class="navbar navbar-default" style="z-index: 999; background:#fff; border:0px; margin-bottom:0px; height:64px; ">
+        <div class="container-fluid" style="height:64px; position:fixed; background:#fff; top:0px; box-shadow: 0px 2px 3px rgba(0,0,0,0.15); z-index:999; width:100%; opacity: 0.95;">
+            <div style="position: relative; width: 1100px; margin: 0px auto;">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{:url('/index')}" style="padding-top:10px; !important;">
+                        <img src="__PUBLIC__/static/images/logo.png" style="height:45px;" alt="">
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <li {if condition="$Request.action eq 'index'" }class="active" {/if}><a href="{:url('/index')}">嘻哈首页</a></li>
+                        <li {if condition="($Request.action eq 'coach') OR ($Request.action eq 'student')" }class="dropdown active" {else}class="dropdown" {/if}>
+                            <a href="javascript:void(0);" data-target="#" class="dropdown-toggle" data-toggle="dropdown">嘻哈产品
+					<b class="caret"></b>
+				</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{:url('/student')}">学员端</a></li>
+                                <li><a href="{:url('/coach')}">教练端</a></li>
+                                <li><a href="{:url('/ecoach')}">电子教练</a></li>
+                                <li><a href="{:url('/mouse')}">喵咪鼠标</a></li>
+                            </ul>
+                        </li>
+                        <!--<li {if condition="$Request.action eq 'recruit'"}class="active"{/if}><a href="{:url('/recruit')}">教练招募</a></li>-->
+                        <li {if condition="$Request.action eq 'aboutus'" }class="active" {/if}><a href="{:url('/aboutus')}">关于我们</a></li>
+                        <li {if condition="$Request.action eq 'join'" }class="active" {/if}><a href="{:url('/join')}">加入我们</a></li>
+                        <li {if condition="$Request.action eq 'help'" }class="active" {/if}><a href="{:url('/help')}">常见问题</a></li>
+                        <li {if condition="($Request.action eq 'news') OR ($Request.action eq 'industry') OR ($Request.action eq 'detail')" }class="active" {/if}><a href="{:url('/news')}">新闻中心</a></li>
+                    </ul>
+                    <!-- 右边 -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" data-target="#" class="dropdown-toggle" data-toggle="dropdown">快捷入口
+					<b class="caret"></b>
+				</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://w.xihaxueche.com/service/management">驾校后台</a></li>
+                                <li><a href="http://news.xihaxueche.com">嘻哈号外</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

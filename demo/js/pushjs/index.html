@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>push js demo</title>
+        <script src="./push.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            Push.create('Hello 王玲', {
+                body: '这里可以有大段的文本内容。',
+                icon: './gdc.png',
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                },
+                onClose: function () {
+                    console.log('close notification');
+                }
+            });
+        </script>
+    </body>
+</html>

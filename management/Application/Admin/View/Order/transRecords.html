@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>交易记录列表</title>
+</head>
+<body>
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>订单管理<span class="c-gray en">&gt;</span> 交易记录列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+    <div id="tab_school" class="HuiTab">
+      <form method="post" action="{: U('Order/searchTransRecords')}" name="search">
+		<div class="pd-20">
+			<div class=""> 
+				 <label for="transaction_pay_type">支付方式 </label>
+				 <select class="" name="transaction_pay_type" id="transaction_pay_type" style="width:150px;height:30px">                
+				    <option style="" value="" >请选择支付方式</option>
+				    <option style="color:#C71585" value="1" <if condition="$transaction_pay_type eq 1">selected</if>>支付宝支付</option>
+				    <option style="color:blue" value="2" <if condition="$transaction_pay_type eq 2">selected</if>>线下支付</option>
+				    <option style="color:blue" value="3" <if condition = "$transaction_pay_type eq 3">selected</if>>微信支付</option>
+				    <option style="color:blue" value="4" <if condition = "$transaction_pay_type eq 4">selected</if>>银联支付</option>
+				 </select>   
+
+				 <label for="transaction_status">订单状态 </label>
+				 <select class="" name="transaction_status" id="transaction_status" style="width:150px;height:30px">                
+				    <option style="" value="" >请选择订单状态</option>
+				    <option style="color:#C71585" value="2" <if condition="$transaction_status eq 2">selected</if>>已完成</option>
+				    <option style="color:blue" value="1" <if condition="$transaction_status eq 1">selected</if>>待完成</option>
+				    <option style="color:blue" value="3" <if condition = "$transaction_status eq 3">selected</if>>已取消</option>
+				    <option style="color:blue" value="101" <if condition = "$transaction_status eq 101">selected</if>>已删除</option>
+				    <option style="color:blue" value="1003" <if condition = "$transaction_status eq 1003">selected</if>>未付款</option>
+				 </select>   
+
+				 <label for="search_info">交易信息 </label>
+				 <select class="" name="search_info" id="search_info" style="width:150px;height:30px">				   
+				    <option style="" value="" >请选择交易信息</option>
+				    <option style="color:#C71585" value="transaction_body" <if condition="$search_info eq transaction_body">selected</if>>商品名称</option>
+				    <option style="color:blue" value="transaction_no" <if condition="$search_info eq transaction_no">selected</if>>交易单号</option>
+				    <option style="color:green" value="transaction_mch_name" <if condition="$search_info eq transaction_mch_name">selected</if>>交易商户名</option>
+				    <option style="color:blue" value="transaction_receiver_no" <if condition="$search_info eq transaction_receiver_no">selected</if>>收款账户</option>
+				    <option style="color:#C71585" value="transaction_receiver_name" <if condition="$search_info eq transaction_receiver_name">selected</if>>收款人名称</option>
+				 </select>    
+
+                 <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" value="{$s_keyword}" placeholder="请输入交易信息" style="width:300px;" />  
+				 <input type="submit" id="search_stu_comment_tea" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20">
+				<!-- <span class="l">已完成总学时：<strong>{$total_time | default=0}</strong>小时</span>  -->
+				<span class="r">共有数据：<strong>{$count}</strong>条</span> 
+			</div>
+			<div class="mt-20">
+			<table class="table table-border table-bordered table-hover table-bg table-sort">
+				<thead>	
+					<tr class="text-c">
+						<th width="25"><input type="checkbox" name="" value=""></th>
+						<th width="50">ID</th>
+						<th width="90">商品名称</th>
+						<!-- <th width="70">商品详情</th> -->
+						<th width="90">交易商户名称</th>
+						<th width="100">
+                            交易单号
+							<span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="交易号是在线支付平台上面生成的，微信，支付宝，银联等。"></span>
+                        </th>
+						<th width="90">收款账户</th>
+						<th width="90">收款人</th>
+						<th width="70">交易金额</th>
+						<th width="90">交易开始时间</th>
+						<th width="90">交易结束时间</th>
+						<th width="90">添加时间</th>
+						<th width="60">支付方式</th>
+						<th width="60">交易状态</th>
+						<th width="50">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				 <foreach name="transrecordlist" item="obj">
+					<tr class="va-m text-c orderlist">
+						<td class="va-m"><input type="checkbox" value="1" name=""></td>
+						<td class="va-m">{$obj.id}</td>
+						<!-- <td class="va-m">{$obj.transaction_no}</td> -->
+						<td class="va-m">{$obj.transaction_body}</td>
+						<td class="va-m">{$obj.transaction_mch_name}</td>
+						<td class="va-m">
+							<a href="javascript:;" class="orderdetail" id="orderdetail{$obj.id}" style="color:#09c">
+							{$obj.transaction_no|substr=-6,6}
+                          	</a>
+						</td>
+						<td class="va-m">{$obj.transaction_receiver_no}</td>
+						<td class="va-m">{$obj.transaction_receiver_name}</td>
+						<!-- <td class="va-m">{$obj.transaction_detail}</td> -->
+						<td class="va-m">￥{$obj.transaction_money}元</td>
+						<td class="va-m">{$obj.transaction_starttime}</td>
+						<td class="va-m">{$obj.transaction_endtime}</td>
+						<td class="va-m">{$obj.addtime}</td>
+						<td class="va-m">
+							<switch name="obj.transaction_pay_type">
+								<case value="1"><span class="btn btn-warning radius" style="display:inline">支付宝支付</span></case>
+								<case value="2"><span class="btn btn-default radius" style="display:inline">线下支付</span></case>
+								<case value="3"><span class="btn btn-success radius" style="display:inline">微信支付</span></case>
+								<case value="4"><span class="btn btn-primary radius" style="display:inline">银联支付</span></case>
+                                <default /><case value="4"><span class="btn disabled radius" style="display:inline">其它方式</span></case>
+							</switch>
+						</td>
+						<td class="va-m">
+							<switch name="obj.transaction_status">
+								<case value="1"><span class="btn btn-default" style="display:inline">待完成</span></case>
+								<case value="2"><span class="btn btn-success" style="display:inline">已完成</span></case>
+								<case value="3"><span class="btn btn-default" style="display:inline">已取消</span></case>
+								<case value="1003"><span class="btn btn-primary" style="display:inline">未付款</span></case>
+								<case value="101"><span class="btn btn-danger" style="display:inline">已删除</span></case>
+								<case value="1003"><span class="btn btn-warning" style="display:inline">未付款</span></case>
+								<default /><span class="btn disabled" style="display:inline">其它状态</span>
+							</switch>
+						</td>
+						<td class="vm-a td-manage">				
+							<a title="删除" href="javascript:;" class="vm-a" onclick="member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" class="vm-a">&#xe6e2;</i></a>
+						</td>
+						<td class="orderinfo" style="display:none">
+							<table class="table table-border table-bordered table-hover" style="color:#333;"> 
+								<tr>
+								    <td class="blue text-center" style="font-weight:bold">交易单号</td>
+								    <td class="red text-red" colspan=3>{$obj.transaction_no}</td>
+								</tr>
+								<tr width="100%"> 
+									<td class="blue text-center" style="font-weight:bold">收款人</td> 
+									<td>{$obj.transaction_receiver_name}</td> 
+									<td class="blue text-center" style="font-weight:bold">收款金额</td> 
+									<td>￥{$obj.transaction_money}元</td>
+								</tr>
+								<tr>
+								  	<td class="blue text-center" style="font-weight:bold" >商品名称</td>
+								  	<td class="red text-red" colspan=3>{$obj.transaction_body}</td>
+								</tr>
+								<tr>
+								  	<td class="blue text-center" style="font-weight:bold" >交易商户名称</td>
+								  	<td class="red text-red" colspan=3>{$obj.transaction_mch_name}</td>
+								</tr>
+								<tr>
+									<td class="blue text-center" style="font-weight:bold">交易开始时间</td>
+									<td>{$obj.transaction_starttime}</td>
+								</tr>
+								<tr>
+									<td class="blue text-center" style="font-weight:bold">交易结束时间</td>
+									<td>{$obj.transaction_endtime}</td>
+								</tr>
+
+							</table>
+                        </td>
+					</tr>
+				 </foreach>
+
+				</tbody>
+			</table>
+			</div>
+		<div class="page pagination" style="display:inline;">
+			<empty name="count" >
+				<br /><strong style="display:block;">暂无交易记录列表</strong><br /><br /><br />
+			</empty>
+			<p>{$page}</p>
+		</div>
+	</div>
+	</form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+  	// 鼠标订单事件
+    $('.orderdetail').on({
+        'mouseenter':function() {
+          var id = $(this).attr('id');
+          var orderinfo = $(this).parents('tr.orderlist').find('td.orderinfo').html();
+          layer.tips(orderinfo, '#'+id, {
+              tips: [1, '#fff'],
+              time:0,
+              area: '500px'
+          });
+        },
+
+        'mouseleave':function() {
+          var index = layer.tips();
+          layer.close(index);  
+        },
+
+        'click':function() {
+          var orderinfo = $(this).parents('tr.orderlist').find('td.orderinfo').html();
+          layer.open({
+              type: 1,
+              title:'订单详情',
+              area: '500px',
+              moveType:1,
+              shift:0,
+              shade: [0.3, '#333'],
+              shadeClose: true,
+              content: orderinfo
+          });
+        }
+    })
+/*用户-添加*/
+function addstudy_order(title,url){
+	// layer_show(title,url);
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*用户-查看*/
+// function member_show(title,url,id,w,h){
+// 	layer_show(title,url,id,w,h);
+// }
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*用户-停用*/
+function member_stop(obj,id){
+	layer.confirm('确认要停用吗？',function(index){
+		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
+		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+		$(obj).remove();
+		layer.msg('已停用!',{icon: 5,time:1000});
+	});
+}
+
+/*用户-启用*/
+function member_start(obj,id){
+	layer.confirm('确认要启用吗？',function(index){
+		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
+		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+		$(obj).remove();
+		layer.msg('已启用!',{icon: 6,time:1000});
+	});
+}
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+
+}
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type:"POST",
+			url:"__URL__/delTransRecords",
+			data:{'id':id},
+			dataType:'JSON',
+			success:function(data) {
+				if(data.code == 200) {
+					$(obj).parents("tr").remove();
+					layer.msg('删除成功!',{icon:1,time:1000});
+				} else if (data.code == 400) {
+					layer.msg('删除失败!',{icon:2,time:1000});
+                } else {
+					layer.msg(data.msg,{icon:2,time:1000});
+                }
+					
+			},
+			error:function() {
+				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+			}
+		});
+	});
+}
+</script> 
+</body>
+</html>

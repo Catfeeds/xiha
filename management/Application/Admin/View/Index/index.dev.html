@@ -1,0 +1,182 @@
+<extend name="Public:common" />
+<block name="main">
+<aside class="Hui-aside">
+	<input runat="server" id="divScrollValue" type="hidden" value="" />
+	<div class="menu_dropdown bk_2">
+
+     <volist name="menu_list" id="menu">
+		<dl id="">
+            <dt> {$menu.menu_first.m_cname}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+			    <ul>
+                    <volist name="menu.menu_second_list" id="menu_second">
+                    <li><a _href="{$menu_second.m_menu_url}" data-title="{$menu_second.m_cname}" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d7;</i> {$menu_second.m_cname}</a></li>
+                    </volist>
+			    </ul>
+			</dd>
+		</dl>
+      </volist>
+
+      
+      
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe705;</i> 学员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Student/index')}" data-title="学员列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe611;</i> 学员列表</a></li>
+					<if condition = "($role_id neq 1 AND $user_id neq 1)">
+						<li><a _href="{: U('Student/examRecords')}" data-title="学员列表" href="javascript:;"><i class="Hui-iconfont">&#xe623;</i> 在线模拟</a></li>
+					</if>
+					<li><a _href="{: U('Student/showDelStudentList')}" data-title="学员列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe611;</i> 学员回收站</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-comment">
+			<dt><i class="Hui-iconfont">&#xe686;</i> 评价管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Comment/index')}" data-title="学员评价教练" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe622;</i> 学员评价教练</a></li>
+					<li><a _href="{: U('Comment/studentCommentSchool')}" data-title="学员评价驾校" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe622;</i> 学员评价驾校</a></li>
+					<li><a _href="{: U('Comment/coachCommentStudent')}" data-title="教练评价学员" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe622;</i> 教练评价学员</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe705;</i> 教练管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Coach/index')}" data-title="教练列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe611;</i> 教练列表</a></li>
+					<li><a _href="{: U('Coach/coachTempRelation')}" data-title="模板关联列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe611;</i> 模板关联列表</a></li>
+					<li><a _href="{: U('Coach/timeConfTemp')}" data-title="时间模板列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe611;</i> 时间模板列表</a></li>
+					<!-- <li><a _href="{: U('Coach/addCoach')}" data-title="教练列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe717;</i> 添加教练</a></li> -->
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-order">
+			<dt><i class="Hui-iconfont">&#xe687;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Order/index')}" data-title="报名驾校订单" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe6f3; 报名驾校订单</a></li>
+					<li><a _href="{: U('Order/appointlearner')}" data-title="预约学车订单" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe6f3; 预约学车订单</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-car">
+			<dt><i class="Hui-iconfont">&#xe6d9;</i> 车辆管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Cars/index')}" data-title="车辆列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe681; 车辆列表</a></li>
+					<li><a _href="{: U('Cars/addCar')}" data-title="添加车辆" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe717; 添加车辆</a></li>
+					<li><a _href="{: U('Cars/carsCategory')}" data-title="车辆列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe681; 车辆型号列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<if condition = "($role_id eq 1 AND $user_id eq 1)">
+			<dl id="menu-app">
+				<dt><i class="Hui-iconfont">&#xe705;</i> APP管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+				<dd>
+					<ul>
+						<li><a _href="{: U('App/index')}" data-title="版本管理" href="javascript:;"><i class="Hui-iconfont">&#xe681;</i> 版本管理</a></li>
+					</ul>
+				</dd>
+			</dl>
+		</if>
+		<dl id="menu-system">
+			<dt><i class="Hui-iconfont">&#xe63c;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('System/index')}" data-title="系统日志" href="javascript:void(0)"><i class="Hui-iconfont">&#xe623;</i> 系统日志</a></li>
+					<li><a _href="{: U('System/tagConfigAdmin')}" data-title="系统标签" href="javascript:void(0)"><i class="Hui-iconfont">&#xe623;</i> 系统标签</a></li>
+					<li><a _href="{: U('System/userTagAdmin')}" data-title="自定义标签列表" href="javascript:void(0)"><i class="Hui-iconfont">&#xe623;</i> 自定义标签列表</a></li>
+					<li><a _href="{: U('System/schoolConfigAdmin')}" data-title="驾校设置" href="javascript:void(0)"><i class="Hui-iconfont">&#xe62e;</i> 驾校设置</a></li>
+					<li><a _href="{: U('System/coachConfigAdmin')}" data-title="教练设置" href="javascript:void(0)"><i class="Hui-iconfont">&#xe60a;</i> 教练设置</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-system">
+			<dt><i class="Hui-iconfont">&#xe669;</i> 驾校管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<if condition = "($role_id eq 1 AND $user_id eq 1)">
+						<li><a _href="{: U('Agentschool/index')}" data-title="驾校列表" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe667; 驾校列表</a></li>
+					</if>
+					<if condition = "($role_id neq 1 AND $user_id neq 1)">
+						<li><a _href="{: U('Agentschool/editSchool')}" data-title="编辑驾校" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 编辑驾校</a></li>
+					</if>
+					<li><a _href="{: U('School/siteAdmin')}" data-title="场地管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 场地管理</a></li>
+					<li><a _href="{: U('School/shiftAdmin')}" data-title="班制管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 班制管理</a></li>
+					<li><a _href="{: U('School/trainLocationAdmin')}" data-title="报名点管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i>报名点管理</a></li>
+					<li><a _href="{: U('School/bannerAdmin')}" data-title="轮播图管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 轮播图管理</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-ads">
+			<dt><i class="Hui-iconfont">&#xe6b6;</i> 广告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Ads/adsManage')}" data-title="广告管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 广告管理</a></li>
+					<li><a _href="{: U('Ads/adsPosition')}" data-title="广告位管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 广告位管理</a></li>
+					<li><a _href="{: U('Ads/adsLevel')}" data-title="广告等级管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 广告等级管理</a></li>
+				</ul>
+			</dd>
+		</dl>
+
+		<dl id="menu-coupon">
+			<dt><i class="Hui-iconfont">&#xe6b6;</i> 优惠券管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Coupon/index')}" data-title="优惠券管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 优惠券列表</a></li>
+					<li><a _href="{: U('Coupon/userCoupon')}" data-title="优惠券管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 学车券列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-coin">
+			<dt><i class="Hui-iconfont">&#xe6b6;</i>金币商城管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Coin/index')}" data-title="商品管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 商品管理</a></li>
+					<li><a _href="{: U('Coin/goodsBannerAdmin')}" data-title="商品轮播图管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 商品轮播图管理</a></li>
+					<li><a _href="{: U('Coin/goodsCategory')}" data-title="商品分类管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 商品分类管理</a></li>
+					<li><a _href="{: U('Coin/coinRule')}" data-title="金币规则管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 金币规则管理</a></li>
+					<li><a _href="{: U('Coin/exchangeOrders')}" data-title="金币兑换记录管理" href="javascript:void(0)"><i class="Hui-iconfont">&#xe6d7;</i> 金币兑换记录管理</a></li>
+				</ul>
+			</dd>
+		</dl>
+
+		<dl id="menu-auth">
+			<dt><i class="Hui-iconfont">&#xe60c;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="{: U('Manager/index')}" data-title="管理列表" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i> 管理员列表</a></li>
+					<li><a _href="{: U('Manager/roleList')}" data-title="角色列表" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i> 角色列表</a></li>
+					<if condition = "($role_id eq 1 AND $user_id eq 1)">
+						<li><a _href="{: U('Manager/menuList')}" data-title="菜单列表" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i> 菜单列表</a></li>
+					</if>
+				</ul>
+			</dd>
+		</dl>
+      
+      
+
+</aside>
+<div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+	<div id="Hui-tabNav" class="Hui-tabNav">
+		<div class="Hui-tabNav-wp">
+			<ul id="min_title_list" class="acrossTab cl">
+				<li class="active"><span title="信息统计" data-href="welcome.html">信息统计</span><em></em></li>
+			</ul>
+		</div>
+		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+	</div>
+	<div id="iframe_box" class="Hui-article">
+		<div class="show_iframe">
+			<div style="display:none" class="loading"></div>
+			<!-- <iframe scrolling="yes" frameborder="0" src="{: U('Index/welcome')}"></iframe> -->
+			<iframe scrolling="yes" frameborder="0" src="__URL__/welcome"></iframe>
+			
+
+		</div>
+	</div>
+</section>
+</block>

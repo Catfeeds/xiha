@@ -1,0 +1,48 @@
+{include file="index/header"/}
+<img src="__PUBLIC__/static/images/news-banner.jpg" style="width: 100%;" alt="" />
+<div class="container-fluid main" style="padding:0px;width:1000px; margin-top:20px;">
+	{include file="index/news_navbar"/}
+	
+	<div class="news-list" style="float:right;width:830px;">
+		<div class="article_content">
+			{empty name="article_detail"}
+				<h3 style="padding-bottom: 80px;">文章内容不存在，请浏览其他文章</h3>
+			{else}
+
+				<h3>{$article_detail.title}</h3>
+				<p class="time">作者：<a target="_blank" href="http://news.xihaxueche.com:8001/?/people/{$article_detail.user_name}">{$article_detail.user_name}</a>&nbsp;&nbsp;&nbsp;发布时间：{$article_detail.add_format_time}&nbsp;&nbsp;&nbsp;浏览：{$article_detail.views}</p>
+				<div class="content" style="font-family:12px/1.14 'PingFang SC','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','Helvetica Neue',Arial,sans-serif; font-size:16px; line-height:35px; font-weight:500; color:#6f6f6f; letter-spacing: 1px;">
+					{$article_detail.message}
+				</div>
+				<div class="xh-article-detail-next">
+					{if condition="$article_detail.prev_id eq ''"}
+						<a class="prev" href="javascript:;" style="color:#999;">
+							<img src="__PUBLIC__/static/images/arrow-l.png" alt="" />上一篇
+							<span>{$article_detail.prev_title}</span>
+						</a>
+					{else}
+						<a class="prev" href="{:url('/detail', ['id'=>$article_detail.prev_id])}">
+							<img src="__PUBLIC__/static/images/arrow-l.png" alt="" />上一篇
+							<span>{$article_detail.prev_title}</span>
+						</a>
+					{/if}
+
+					{if condition="$article_detail.next_id eq ''"}
+						<a class="next" href="javascript:;" style="color:#999;">
+							<img src="__PUBLIC__/static/images/arrow-r.png" alt="" />
+							下一篇
+							<span>{$article_detail.next_title}</span>
+						</a>
+					{else}
+						<a class="next" href="{:url('/detail', ['id'=>$article_detail.next_id])}">
+							<img src="__PUBLIC__/static/images/arrow-r.png" alt="" />下一篇
+							<span>{$article_detail.next_title}</span>
+						</a>
+					{/if}
+				</div>
+			{/empty}
+		</div>
+		
+	</div>
+</div>
+{include file="index/footer"/}

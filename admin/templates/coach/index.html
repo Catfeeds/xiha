@@ -1,0 +1,223 @@
+<!--{include file="library/header.lbi"}-->
+
+	<form action="index.php?action=coach&op=searchcoach" method="post" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>教练列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+                <a href="index.php?action=coach&op=add" class="button button-small border-green">添加教练</a>
+                <input type="button" class="button button-small border-yellow" onclick="delallcoach()" value="批量删除" />
+                <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+                 <select class="input input-auto" name="conditiontype" id="search_condition">
+                    <option value="1">教练ID</option>
+                    <option value="2">教练姓名</option>
+                    <option value="3">教练号码</option>
+                </select>
+                <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="keywords">
+                <input type="submit" id="membersearch" class="button border-blue" value="搜索" />
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="50">选择</th>
+                    <th width="50">ID</th>
+                    <th width="50">名称</th>
+                    <th width="100">手机号码</th>
+                    <th width="100">所属驾校</th>
+                    <th width="150">培训课程</th>
+                    <th width="80">培训牌照</th>
+                    <th width="80">所属车</th>
+                    <th width="100">教练星级</th>
+                    <th width="80">好评数</th>
+                    <th width="100">服务次数</th>
+                    <th width="100">通过人数</th>
+                    <th width="150">地址</th>
+                    <th width="100">类型</th>
+                    <th width="80">在线</th>
+                    <th width="120">注册时间</th>
+                    <th width="150">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+
+                <!--{foreach $coach_list as $key => $value}-->
+                <tr>
+                    <td><input type="checkbox" id="checkbox_<!--{$key}-->" name="id" value="<!--{$value.coach_id}-->" /></td>
+                    <td><!--{$value.coach_id}--></td>
+                    <td><!--{$value.coach_name}--></td>
+                    <td><!--{$value.coach_phone}--></td>
+                    <td><!--{$value.school_name}--></td>
+                    <td><!--{$value.coach_lesson}--></td>
+                    <td><!--{$value.coach_lisence}--></td>
+                    <td><!--{$value.coach_car_name}--></td>
+                    <td>
+                        <!--{section name=loop loop=$value.coach_star}-->
+                        <span class="icon-star text-small text-red"></span>
+                        <!--{/section}-->
+                    </td>
+                    <td><!--{$value.good_coach_star}--></td>
+                    <td><!--{$value.service_count}--></td>
+                    <td><!--{$value.success_count}--></td>
+                    <td><!--{$value.coach_address}--></td>
+                    <td><!--{$value.type}--></td>
+                    <td>
+                        <a href="javascript:;" onclick="javascript:setonlinestatus(<!--{$value.coach_id}-->,this)">
+                            <!--{if $value.is_online == 1}-->
+                            <span class="badge bg-green"><!--{$value.online_status}--></span>
+                            <!--{else}-->
+                            <span class="badge bg-gray"><!--{$value.online_status}--></span></td>
+                            <!--{/if}-->
+                        </a>
+                    </td>
+                    <td><!--{$value.addtime}--></td>
+                    <td>
+                        <!-- <a data-toggle="click" onclick = "javascript:showcoach({$value.coach_id})" data-target="#mydialog-{$value.coach_id}" data-mask="1" data-width="50%" class="button border-blue button-little dialogs" href="javascript:;">查看</a>  -->
+                        <a onclick = "javascript:showcoach(<!--{$value.coach_id}-->)" class="button border-blue button-little" href="javascript:;">查看</a> 
+                        <a class="button border-blue button-little" href="index.php?action=coach&op=edit&id=<!--{$value.coach_id}-->">修改</a> 
+                        <a class="button border-yellow button-little" href="#" onclick="delcoach(<!--{$value.coach_id}-->,this)">删除</a>
+                    </td>
+                </tr>
+                <!-- 弹出框 -->
+                <!--{/foreach}-->
+            </table>
+            <div id="showdialog">
+    
+            </div>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+
+        // 跳转页面
+        $('#skipping').click(function() {
+            $(this).html('跳转中...');
+            var selectpage = $('#selectpage').find('option:selected').val();
+            location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&page="+selectpage;
+        })
+        // 设置在线不在线状态
+        function setonlinestatus(id, obj) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=coach&op=online",
+                dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data.code == 1) {
+                        if($(obj).find('span').hasClass('bg-green')) {
+                            $(obj).find('span').removeClass('bg-green');
+                            $(obj).find('span').addClass('bg-gray');
+                            $(obj).find('span').html('不在线');
+                        } else {
+                            $(obj).find('span').addClass('bg-green');
+                            $(obj).find('span').removeClass('bg-gray');
+                            $(obj).find('span').html('在线');
+                        }
+                            
+                    }
+                }
+            })
+        }
+
+        // 删除教练
+        function delcoach(id, obj) {
+            if(window.confirm('你确定删除吗？')) {
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=coach&op=delcoach",
+                    dataType:"JSON",
+                    data:{'id':id},
+                    success:function(data) {
+                        if(data.code == 1) {
+                            $(obj).parents('tr').remove();
+                        }
+                    }
+                })
+                
+            } else {
+                return false;
+            }
+        }
+
+        // 批量删除教练
+        // 批量删除
+        function delallcoach() {
+            if($('.table-hover').find('input:checked').val() == undefined) {
+                alert('请选择需要删除的教练信息！');
+                return false;
+            }
+            if(confirm('你确定删除吗？')) {
+                var check_id = '';
+                $(".table-hover input:checkbox").each(function(index) {
+                    if($("#checkbox_"+index+':checked').val() != undefined) {
+                        check_id += $("#checkbox_"+index+':checked').val()+',';
+                    }
+                        
+                    // alert($("#checkbox_"+index).val());
+                });
+                if(check_id.lastIndexOf(',') > 0) {
+                    check_id = check_id.substr(0, check_id.lastIndexOf(','));
+                }
+                // alert(check_id);
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=coach&op=delmore",
+                    data:{"check_id":check_id},
+                    dataType:"JSON",
+                    success:function(data) {
+                        if(data.code == 1) {
+                            location.href="index.php?action=coach&op=index";
+                        }
+                        // alert(data.code);
+                    }
+                })
+            } else {
+                return false;
+            }
+        }
+
+        function searchcheck() {
+            var keywords = $('#keywords').val();
+            var type = $('#search_condition').find('option:selected').val();
+            if(keywords.trim() == '' || type.trim() == '') {
+                layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});        
+                return false;
+            }
+        }
+
+        // 展示教练信息
+        function showcoach(id) {
+            //iframe层-父子操作
+            layer.open({
+                type: 2,
+                title:'教练详细信息',
+                area: ['70%', '70%'],
+                fix: false, //不固定
+                maxmin: true,
+                shadeClose: true,
+                content: 'index.php?action=coach&op=showiframe&id='+id
+            });
+
+            // $.ajax({
+            //     type:"POST",
+            //     url:"index.php?action=coach&op=show",
+            //     data:{id:id},
+            //     dataType:"JSON",
+            //     async:false,
+            //     success:function(data) {
+            //         // alert(data);
+
+            //         if(data.code == 1) {
+
+            //             var html = '<div id="mydialog-'+id+'"><div class="dialog"><div class="dialog-head"> <span class="close rotate-hover"></span> <strong>'+data.data.s_coach_name+' id:'+id+'</strong> </div> <div class="dialog-body"> <div class="collapse"> <div class="panel active"> <div class="panel-head"><h4>...</h4></div> <div class="panel-body">...</div> </div> <div class="panel"> <div class="panel-head"><h4>...</h4></div> <div class="panel-body">...</div> </div> <div class="panel"> <div class="panel-head"><h4>...</h4></div> <div class="panel-body">...</div> </div> </div> </div> <div class="dialog-foot"> <button class="button dialog-close">取消</button> <button class="button bg-green">确认</button></div></div></div>';
+            //             $('#showdialog').html(html);
+            //         }
+            //     },
+            //     error:function(data) {
+            //         alert(data)
+            //     }
+            // })
+        }
+    </script>
+<!--{include file="library/footer.lbi"}-->

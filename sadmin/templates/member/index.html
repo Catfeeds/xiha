@@ -1,0 +1,190 @@
+<!--{include file="library/header.lbi"}-->
+
+
+<!-- 跳转页面 -->
+<div class="">
+    <form action="index.php?action=member&op=search" method="post" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+            <div class="panel-head search-position"><strong>会员列表</strong></div>
+            <div class="padding form-x border-bottom search-position" style="top:40px;">
+
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="member_id[]" value="全选" />   
+                <a href="index.php?action=member&op=add" class="button button-small border-green">添加学员</a>
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量回收" />
+
+                <select class="input input-auto" name="onlinetype" id="online_search_condition">
+                    <option value="">请选择条件</option>
+                    <option value="1">线上</option>
+                    <option value="2">线下</option>
+                </select>
+
+                <select class="input input-auto" name="conditiontype" id="search_condition">
+                    <option value="1">学员ID</option>
+                    <option value="2">学员姓名</option>
+                    <option value="3">学员号码</option>
+                    <option value="4">身份证号</option>
+                </select>
+                <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="keywords">
+                <input type="submit" id="membersearch" class="button button-small border-blue" value="搜索" />
+
+            </div>
+
+            <table class="table table-hover table-position" style="margin-top:95px;">
+                <tr>
+                    <th width="80">选择</th>
+                    <th width="45">ID</th>
+                    <!-- <th width="100">用户头像</th> -->
+                    <th width="120">真实名</th>
+                    <th width="100">昵称</th>
+                    <th width="100">号码</th>
+                    <th width="100">性别</th>
+                    <th width="100">年龄</th>
+                    <th width="100">身份证</th>
+                    <th width="150">地址</th>
+                    <th width="150">来源</th>
+                    <th width="150">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                <!--{if $member_list}-->
+                <!--{foreach $member_list as $key => $value}-->
+                <tr class="memberlist">
+                    <td><input type="checkbox" name="member_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.l_user_id}-->" /></td>
+                    <td><!--{$value.l_user_id}--></td>
+               <!--      <td><img src="{$value.user_photo}" width="50px" height="50px" alt=""></td> -->
+                    <td><!--{$value.s_real_name}--></td>
+                    <td><!--{$value.s_username}--></td>
+                    <td><!--{$value.s_phone}--></td>
+                    <td><!--{if $value.sex == 1}--><span class="badge bg-green icon-male">男</span><!--{else}--><span class="badge bg-red icon-female">女</span><!--{/if}--></td>
+                    <td><!--{$value.age}--></td>
+                    <td><!--{$value.identity_id}--></td>
+                    <td><!--{$value.address}--></td>
+                    <td>
+                        <!--{if $value.i_from == 1}-->
+                            <span class="badge bg-main icon-android">安卓</span>
+                        <!--{else if $value.i_from == 2}-->
+                            <span class="badge bg-yellow icon-user"> 线下</span>
+                        <!--{else if $value.i_from == 0}-->
+                            <span class="badge icon-apple">苹果</span>
+                        <!--{/if}-->
+                    </td>
+                    <td>
+                        <a class="button border-blue button-little" href="javascript:void(0)" onclick="javascript:show('<!--{$value.l_user_id}-->', 'show', '查看')">查看</a>
+
+                        <a class="button border-blue button-little" href="javascript:void(0)" onclick="javascript:edit('<!--{$value.l_user_id}-->', 'edit', '编辑')">编辑</a>
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delmember(<!--{$value.l_user_id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 回收</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+                <!--{else}-->
+                    <tr><td colspan=5>暂无学员列表</td></tr>
+                <!--{/if}-->
+            </table>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+ // 查看学员基本信息
+    function show(id, op, title) {
+        //iframe层-父子操作
+        layer.open({
+            type: 2,
+            title:title,
+            area: ['100%', '100%'],
+            shade:false,
+            moveType:1,
+            shift:0,
+            content: 'index.php?action=member&op='+op+'&id='+id
+        });
+    }
+    // 编辑学员基本信息
+    function edit(id, op, title) {
+        //iframe层-父子操作
+        layer.open({
+            type: 2,
+            title:title,
+            area: ['100%', '100%'],
+            shade:false,
+            moveType:1,
+            shift:0,
+            content: 'index.php?action=member&op='+op+'&id='+id
+        });
+    }
+    // 回收驾校
+    function delmember(id, obj) {
+        if(confirm('你确定回收吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=del",
+                data:{"id":id},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.memberlist').remove();
+                    }
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    // 批量回收
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            layer.msg('请选择需要回收的学员！',{icon:0, offset:['0px','40%'], time:1500});        
+            return false;
+        }
+        if(confirm('你确定回收吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                if($('#checkbox_'+index+':checked').val() != undefined) {
+                    check_id += $("#checkbox_"+index+':checked').val()+',';
+                }
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            // alert(check_id);
+            // return false;
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    if(data == 1) {
+                        // $('.school_check:checked').parents('.memberlist').remove();
+                    }
+                    location.reload();
+                    // alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    // 搜索检测
+    function searchcheck() {
+      var keywords = $('#keywords').val();
+      var type = $('#search_condition').find('option:selected').val();
+      if(keywords.trim() == '' || type.trim() == '') {
+        layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});        
+        return false;
+      }
+    }
+
+    // 跳转页面
+    $('#skipping').click(function() {
+        $(this).html('跳转中...');
+        var selectpage = $('#selectpage').find('option:selected').val();
+        location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&page="+selectpage;
+    })
+</script>
+<!--{include file="library/footer.lbi"}-->

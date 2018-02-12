@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="">
+<meta http-equiv="X-UA-Compatible" content="">
+<meta name="viewport" content="" />
+<meta http-equiv="Cache-Control" content="" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>嘻哈学车</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<input type="hidden" id="TenantId" name="TenantId" value="" />
+<div class="loginWraper">
+  <a href="http://www.xihaxueche.com" target="_blank">
+    <img src="__PUBLIC__/Admin/assets/images/logo.jpg" alt="" style="width:160px; margin-top:-105px; margin-left:360px;">
+  </a>
+  <div class="content-layout">
+    <div id="loginform" class="loginBox">
+      <div class="header">嘻哈学车后台管理系统</div>
+      <form class="form form-horizontal" id="login-form" action="{: U('Public/login')}" method="post">
+        <div class="row cl">
+          <label class="form-label col-2"><i class="Hui-iconfont">&#xe60d;</i></label>
+          <div class="formControls col-9">
+            <input id="" name="username" type="text" placeholder="账户" class="input-text size-L" datatype="*2-50" nullmsg="账号不能为空">
+          </div>
+        </div>
+        <div class="row cl">
+          <label class="form-label col-2"><i class="Hui-iconfont">&#xe60e;</i></label>
+          <div class="formControls col-9">
+            <input id="" name="password" type="password" placeholder="密码" class="input-text size-L" datatype="*1-30" nullmsg="密码不能为空">
+          </div>
+        </div>
+        <div class="row cl">
+          <div class="formControls col-8 col-offset-2">
+            <input class="input-text size-L" id="captcha" name="captcha" type="text" placeholder="输入验证码" onblur="if(this.value==''){this.value=''}" onclick="if(this.value==''){this.value='';}" value="" style="width:125px;" datatype="*4-4" nullmsg="验证码不能为空">
+            <a href="javascript:changeImg();"><img src="__CONTROLLER__/verifyImg"  id="Image" ></a> 
+            <!-- <a href="javascript:changeImg();"><input class="btn btn-primary size-S radius" type="button" value="看不清，换一张"></a> </div> -->
+        </div>
+        <div class="row" style="margin-top:70px;">
+          <div class="formControls col-10 col-offset-2">
+            <input name="" type="submit" class="btn btn-success  size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input name="" type="reset" class="btn btn-default  size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="login-adlink">
+    <a href="http://www.xihaxueche.com" target="_blank"></a>
+  </div>
+
+</div>
+</div>
+<div class="footer">  
+  <p>&copy;2015 安徽嘻哈网络技术有限公司　 皖ICP备15016679号 　公司地址 ： 合肥市高新区望江西路800号国家创新产业园C3栋</p>
+  <p>客服热线：0551-65610256 0551-65610257 0551-65610258</p>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+
+<script>
+$(function(){
+  $("#login-form").Validform({
+    tiptype:2,
+    callback:function(form){
+      form[0].submit();
+    }
+  });
+});
+
+//表单提交
+      $(document)
+        .ajaxStart(function(){
+          $("button:submit").addClass("log-in").attr("disabled", true);
+        })
+        .ajaxStop(function(){
+          $("button:submit").removeClass("log-in").attr("disabled", false);
+        });
+
+      $("form").submit(function(){
+        var self = $(this);
+        $.post(self.attr("action"), self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+          if(data.status){
+            window.location.href = data.url;
+          } else {
+            self.find(".check-tips").text(data.info);
+            //刷新验证码
+            $(".reloadverify").click();
+          }
+        }
+      });
+
+  //刷新验证码
+  function changeImg(){
+      document.getElementById("Image").src="__CONTROLLER__/verifyImg?"+Math.random();
+  }
+</script>
+</body>
+</html>

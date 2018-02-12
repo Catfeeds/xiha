@@ -1,0 +1,181 @@
+{template "content", "header_category"}
+    <!--main-->
+    <div class="wrapper" style="position: absolute; left: 0px; top: 46px; z-index: -1; height: 360px;">
+             <div class="inner" style="height:360px; max-width:1100px; background:url({IMG_PATH}bg.jpg) no-repeat 0 0;">
+                <div frag="面板44">
+                   <div frag="窗口44" portletmode="simpleColumnAttri">
+                          <img border='0' src="{IMG_PATH}picture.jpg"  />
+                   </div>
+                </div>
+             </div>
+        </div>
+
+    </div>
+	
+	{if $catid == 17}
+		<div class="wrapper" id="container">
+		    <div class="inner">
+		        <div class="col_menu">
+		            <div class="col_menu_head" frag="面板13">
+		                <h2 class="col_name" frag="窗口13" portletmode="simpleColumnAnchor">
+		                    <span class="col_name_text">
+		                        <span class='Column_Anchor'>{catpos($catid)}</span>
+		                    </span>
+		                </h2>
+		            </div>
+		            <div class="col_menu_con" frag="面板14">
+		                <div class="col_list" frag="窗口14" portletmode="simpleColumnList">
+		                    <div id="wp_listcolumn_w14"> 
+		                        <ul class="wp_listcolumn"> 
+		                            {pc:content action="lists" catid="17" num="25" siteid="$siteid" order="id DESC"}
+		                                {loop $data $k $r}
+		                                 <li {if $r[id] == $id}class="wp_column column-1 selected"{else}class="wp_column column-1"{/if}> 
+		                                     <a href="{$r[url]}" title="{$r[title]}" {if $r[id]==$id} class="selected"{/if} target="_self">
+		                                     	<span class="column-name">{$r[title]}</span>
+		                                     </a> 
+		                                 </li>
+		                                {/loop}
+		                            {/pc}
+		                        </ul> 
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col_news">
+		            <div class="col_news_head" frag="面板15">
+		                <ul class="col_metas clearfix" frag="窗口15" portletmode="simpleColumnAttri">
+		                    <li class="col_path">
+		                        <a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文
+		                        
+		                    </li>
+		                </ul>
+		          </div>
+		          
+		          <!--comment-->
+		    </div>
+		    <div class="clear"></div>
+		  </div>
+		</div>
+		
+		<script type="text/javascript">
+		<!--
+		    function show_ajax(obj) {
+		        var keywords = $(obj).text();
+		        var offset = $(obj).offset();
+		        var jsonitem = '';
+		        $.getJSON("{APP_PATH}index.php?m=content&c=index&a=json_list&type=keyword&modelid={$modelid}&id={$id}&keywords="+encodeURIComponent(keywords),
+		                function(data){
+		                var j = 1;
+		                var string = "<div class='point key-float'><div style='position:relative'><div class='arro'></div>";
+		                string += "<a href='JavaScript:;' onclick='$(this).parent().parent().remove();' hidefocus='true' class='close'><span>关闭</span></a><div class='contents f12'>";
+		                if(data!=0) {
+		                  $.each(data, function(i,item){
+		                    j = i+1;
+		                    jsonitem += "<a href='"+item.url+"' target='_blank'>"+j+"、"+item.title+"</a><BR>";
+		                    
+		                  });
+		                    string += jsonitem;
+		                } else {
+		                    string += '没有找到相关的信息！';
+		                }
+		                    string += "</div><span class='o1'></span><span class='o2'></span><span class='o3'></span><span class='o4'></span></div></div>";     
+		                    $(obj).after(string);
+		                    $('.key-float').mouseover(
+		                        function (){
+		                            $(this).siblings().css({"z-index":0})
+		                            $(this).css({"z-index":1001});
+		                        }
+		                    )
+		                    $(obj).next().css({ "left": +offset.left-100, "top": +offset.top+$(obj).height()+12});
+		                });
+		    }
+		
+		    function add_favorite(title) {
+		        $.getJSON('{APP_PATH}api.php?op=add_favorite&title='+encodeURIComponent(title)+'&url='+encodeURIComponent(location.href)+'&'+Math.random()+'&callback=?', function(data){
+		            if(data.status==1)  {
+		                $("#favorite").html('收藏成功');
+		            } else {
+		                alert('请登录');
+		            }
+		        });
+		    }
+		
+		$(function(){
+		  $('#Article .content img').LoadImage(true, 660, 660,'{IMG_PATH}s_nopic.gif');    
+		})
+		//-->
+		</script>
+
+	{else}
+	    <div class="wrapper" id="container">
+	        <div class="inner">
+	            <div class="col_menu">
+	                <div class="col_menu_head" frag="面板13">
+	                    <h2 class="col_name" frag="窗口13" portletmode="simpleColumnAnchor">
+	                        <span class="col_name_text">
+	                            <span class='Column_Anchor'>{$CATEGORYS[$CAT[parentid]][catname]}</span>
+	                        </span>
+	                    </h2>
+	                </div>
+	                <div class="col_menu_con" frag="面板14">
+	                    <div class="col_list" frag="窗口14" portletmode="simpleColumnList">
+	                        <div id="wp_listcolumn_w14"> 
+	                            <ul class="wp_listcolumn"> 
+	                                {pc:content action="category" catid="$parentid" num="25" siteid="$siteid" order="listorder DESC"}
+	                                    {loop $data $k $r}
+	                                     <li {if $r[catid] == $catid}class="wp_column column-1 selected"{else}class="wp_column column-1"{/if}> 
+	                                         <a href="{$r[url]}" tppabs="http://www.ahu.edu.cn/148/list.htm" title="{$r[catname]}" {if $r[catid]==$catid} class="selected"{/if} target="_self"><span class="column-name">{$r[catname]}</span></a> 
+	                                     </li>
+	                                    {/loop}
+	                                {/pc}
+	                            </ul> 
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col_news">
+	                <div class="col_news_head" frag="面板15">
+	                    <ul class="col_metas clearfix" frag="窗口15" portletmode="simpleColumnAttri">
+	                        <li class="col_path">
+	                            <a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} 列表
+	
+	                        </li>
+	                    </ul>
+	              </div>
+	              <div class="col_news_con" frag="面板16">
+	                <div class="col_news_list" frag="窗口16" portletmode="simpleList">
+	                    <div id="wp_news_w16"> 
+	                        <ul class="wp_article_list"> 
+	                              {pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
+	                                {loop $data $k $r}
+	                      <!--               <li><span class="rt">{date('Y-m-d H:i:s',$r[inputtime])}</span>·<a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a></li> -->
+	                                     <li class="list_item i1"> 
+	                                         <div class="fields pr_fields"> 
+	                                             <span class='Article_Index'>{$k}</span> 
+	                                             <span class='Article_Title'><a href="{$r[url]}" target='_blank' title="{$r[title]}">{$r[title]}</a></span> 
+	                                         </div> 
+	                                         <div class="fields ex_fields"> 
+	                                              
+	                                             <span class='Article_PublishDate'>{date('Y-m-d H:i:s',$r[inputtime])}</span> 
+	                                              
+	                                         </div> 
+	                                     </li> 
+	                                    {if $n%5==0}<li class="bk20 hr"></li>{/if}
+	                                {/loop}
+	                            <div id="pages" class="text-c">{$pages}</div>
+	                            {/pc}
+	
+	                        </ul> 
+	                    </div>
+	
+	            </div>
+	          </div>
+	        </div>
+	        <div class="clear"></div>
+	      </div>
+	    </div>
+	
+	{/if}
+    {template "content", "footer_category"}
+</body>
+</html>

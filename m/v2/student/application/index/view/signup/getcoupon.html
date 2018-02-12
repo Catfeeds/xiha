@@ -1,0 +1,114 @@
+{include file="index/header"/}
+    <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=18753d27c9c65"></script>
+    <div class="page" id="getcoupon">
+    	{if condition="$device eq '1'"}
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+                    <span class="icon icon-left"></span>
+                    返回
+                </a>
+                <a class="button button-link button-nav pull-right -mob-share-open" style="margin-right: 0px;" href="javascript:;">
+                    <i class="iconfont" style="font-size: 1rem;">&#xe642;</i>
+                </a>
+                <h1 class='title'>{$title}</h1>
+            </header>
+        {/if}
+
+        <div class="content" style="background:#fcf4be; position:fixed;">
+            <input type="hidden" name="coach_id" value="{$coach_id}" id="coach_id">
+            <input type="hidden" name="coupon_id" value="{$coupon_id}" id="coupon_id">
+            <input type="hidden" name="province_id" value="{$province_id}" id="province_id">
+            <input type="hidden" name="city_id" value="{$city_id}" id="city_id">
+            <input type="hidden" name="area_id" value="{$area_id}" id="area_id">
+            <div>
+                <img src="__PUBLIC__/static/images/coupon-banner.png" style="width: 100%;" alt="" />
+            </div>
+            <div class="coupon-photo-img" style="">
+               <span>
+                <?php if ($coach_imgurl != '') {?>
+                    <img src="{$coach_imgurl}" style="" alt="">
+                <?php } else { ?>
+                    <img src="__PUBLIC__/static/images/no-picture.png" alt="">
+                <?php }?>
+               </span>     
+            </div>
+            <div class="coupon-body">
+                <ul>
+                    <li class="coupon-coach-name">
+                        <p>{$coach_name}的学车优惠券</p>
+                    </li>
+                    <li class="coupon-coach-shifts">
+                        <p>{$coupon_value_string}</p>
+                    </li>
+                    <!-- <li class="coupon-hongbao">
+                        <span style="">
+                            <img src="__PUBLIC__/static/images/coupon-hongbao.png" alt="" >
+                        </span>
+                    </li> -->
+                    <li class="coupon-desc">
+                        <p style="">领取教练优惠券，学车优惠更大！</p>
+                    </li>
+                    <li class="coupon-title-desc">
+                        <span>
+                            <img src="__PUBLIC__/static/images/coupon-title.png" alt="" >
+                        </span>
+                    </li>
+                    <li class="coupon-gain-name">
+                        <div> 
+                            <label>姓　名</label>
+                            <input type="text" class="name" value="" placeholder="请填写您的姓名">
+                        </div>
+                    </li>
+                    <li class="coupon-gain-phone">
+                        <div class="">
+                            <label>手机号</label>
+                            <input type="text" class="phone" value="" placeholder="请填写您的手机号">
+                        </div>
+                    </li>
+                    <li class="coupon-gain-code">
+                        <div class="coupon-code-character">
+                            <div>
+                                <label >验证码</label>
+                                <input type="search" class='code' value="" placeholder='请输入验证码'/>
+                            </div>
+                            <div id="getCode">
+                                <a class="button button-fill button-danger">获取</a>
+                            </div>
+                            <div id="resetCode">
+                                <a class="button button-fill button-danger"><span id="code_second">60<span>秒</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="coupon-submit">
+                        <div>
+                            <a href="javascript:;" id="coupon_btn" >
+                                <img src="__PUBLIC__/static/images/coupon-mianfeilingqu.png" alt="" >
+                            </a>
+                        </div>
+                    </li>
+                    <li class="coupon-intro-title">
+                        <p>优惠券使用说明：</p>
+                    </li>
+                    <li class="coupon-intro-content">
+                        <p>1.本次活动由【嘻哈学车】携手全国众多驾校教练举办，优惠券均由驾校教练制作发放。</p>
+                        <p>2.优惠券领使用前请与该教练联系确认。</p>
+                        <p>3.领取的优惠券，将通过短信发送到您的手机上，请注意查收。</p>
+                        <p>4.优惠券最终使用解释权由嘻哈学车官网所有。</p>
+                    </li>
+
+                </ul>
+            </div>
+            <!--分享-->
+            <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-bottom" style="display: none">
+                <ul class="-mob-share-list">
+                    <li class="-mob-share-weixin"><p>微信</p></li>
+                    <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                    <!--			        <li class="-mob-share-qq"><p>QQ好友</p></li>-->
+                    <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                </ul>
+                <div class="-mob-share-close">取消</div>
+            </div>
+            <div class="-mob-share-ui-bg"></div>
+        </div>
+    </div>
+{include file="index/footer"/}

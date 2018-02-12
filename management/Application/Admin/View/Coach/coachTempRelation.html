@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>模板关联列表</title>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>教练管理<span class="c-gray en">&gt;</span> 模板关联列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+            title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <form method="post" action="{:U('Coach/searchCoachTempRelation')}" name="search">
+        <div class="pd-20">
+            <div class="">
+                <label for="search_default">按默认状态</label>
+                <select class="" name="is_default" id="is_default" style="width:110px;height:30px">                  
+                    <option value="">--不限状态--</option>   
+                    <option  value="1" <if condition="$is_default eq 1">selected</if> >默认</option>
+                    <option  value="2" <if condition="$is_default eq 2">selected</if> >不默认</option>
+                </select>
+                <label for="search_online">按在线状态 </label>
+                <select class="" name="is_online" id="is_online" style="width:110px;height:30px">                  
+                    <option value="">--不限状态--</option>   
+                    <option  value="1" <if condition="$is_online eq 1">selected</if> >在线</option>
+                    <option  value="2" <if condition="$is_online eq 2">selected</if> >不在线</option>
+                </select>
+                <label for="search_date">按周期</label>
+                <select class="" name="weekday" id="weekday" style="width:110px;height:30px">                  
+                    <option value="">--不限周期--</option>   
+                    <option  value="1" <if condition="$weekday eq 1">selected</if> >星期一</option>
+                    <option  value="2" <if condition="$weekday eq 2">selected</if> >星期二</option>
+                    <option  value="3" <if condition="$weekday eq 3">selected</if> >星期三</option>
+                    <option  value="4" <if condition="$weekday eq 4">selected</if> >星期四</option>
+                    <option  value="5" <if condition="$weekday eq 5">selected</if> >星期五</option>
+                    <option  value="6" <if condition="$weekday eq 6">selected</if> >星期六</option>
+                    <option  value="7" <if condition="$weekday eq 7">selected</if> >星期日</option>
+                </select>
+                <label for="search_type">按用户类别 </label>
+                <select class="" name="temp_type" id="temp_type" style="width:110px;height:30px">                  
+                    <option value="">--不限类别--</option>   
+                    <option  value="1" <if condition="$temp_type eq 1">selected</if> >教练</option>
+                    <option  value="2" <if condition="$temp_type eq 2">selected</if> >驾校</option>
+                </select>
+                <label for="search_info">按关键词</label>
+                <select class="" name="search_info" id="search_info" style="width:110px;height:30px">                  
+                    <option value="">--不限关键词--</option> 
+                    <option value="temp_name" <if condition="$search_info eq temp_name">selected</if>>模板名称</option>
+                    <option value="temp_owner_name" <if condition="$search_info eq temp_owner_name">selected</if> >用户名称</option>  
+                </select>
+                <input type="text" value="{$s_keyword}" name="s_keyword" placeholder="模板名称，用户名称" class="input-text default size-M" style="width:200px">
+                <input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+                <a href="javascript:;" onclick="addCoachTempRelation('添加模板关联','{: U('Coach/addCoachTempRelation')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加模板关联 </a>
+                <span class="r">共有数据：<strong>{$count}</strong>条</span>
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="40">ID</th>
+                            <th width="100">模板名称</th>
+                            <th width="100">用户名称</th>
+                            <th width="80">用户类别</th>
+                            <th width="80">科目名称</th>
+                            <th width="80">牌照名称</th>
+                            <th width="80">价格</th>
+                            <th width="80">日期</th>
+                            <th width="85">添加时间</th>
+                            <th width="85">最近时间</th>
+                            <!--<th width="85">删除状态</th>-->
+                            <th width="60">在线？</th>
+                            <th width="60">默认？</th>
+                            <th width="50">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="temprelationlist" item="obj">
+                            <tr class="text-c">
+                                <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                                <td class="va-m">{$obj.id}</td>
+                                <td class="va-m">{$obj.temp_name}</td>
+                                <td class="va-m">{$obj.temp_owner_name}</td>
+                                <td class="va-m">
+                                    <switch name="obj.temp_type">
+                                        <case value="1"><span class="btn btn-success-outline radius">教练</span></case>
+                                        <case value="2"><span class="btn btn-warning-outline radius">驾校</span></case>
+                                        <default /><span class="btn btn-secondary-outline radius">嘻哈平台</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m">{$obj.lesson_name}</td>
+                                <td class="va-m">{$obj.license_name}</td>
+                                <td class="va-m">￥{$obj.price}元</td>
+                                <td class="va-m">星期{$obj.weekday_name}</td>
+                                <td class="va-m">{$obj.addtime}</td>
+                                <td class="va-m">{$obj.updatetime}</td>
+                                <!--<td class="va-m setDelStatus">
+                                    <switch name="obj.is_deleted">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius">未删除</span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius">已删除</span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-default size-S radius">已删除</span>
+                                    </switch>
+                                </td>-->
+                                <td class="va-m setonlinestatus">
+                                    <switch name="obj.is_online">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius">在线</span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius">不在线</span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-default size-S radius">不在线</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setdefaultstatus">
+                                    <switch name="obj.is_default">
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius">是</span></case>
+                                        <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius">否</span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-default size-S radius">否</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m td-manage">
+                                    <a title="删除" href="javascript:;" onclick="javascript:member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑模板关联信息','{: U('Coach/editCoachTempRelation')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="">
+                <empty name="count">
+                    <br /><strong>暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        /**
+         * 设置状态
+         *
+         * @return  void
+         * @author  wl
+         * @date    Oct 20, 2016
+         **/
+        $('.setdefaultstatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '2':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 2;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setCoachDefault')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        /**
+         * 设置状态
+         *
+         * @return  void
+         * @author  wl
+         * @date    Oct 20, 2016
+         **/
+        $('.setonlinestatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '2':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 2;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Coach/setCoachOnline')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+
+        /*用户-添加*/
+        function addCoachTempRelation(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+
+        }
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delCoachTempRelation",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        // alert(data);
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

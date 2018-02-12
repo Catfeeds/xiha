@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<link href="{CSS_PATH}article.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{CSS_PATH}cmstop-comment-mode.css" />
+<script type="text/javascript" src="{JS_PATH}zizhan/js/jquery.js"></script>
+<script type="text/javascript" src="{JS_PATH}zizhan/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="{JS_PATH}zizhan/js/cmstop-common.js"></script>
+<script type="text/javascript" src="{JS_PATH}zizhan/js/cmstop-imagezoom.js"></script>
+<script type="text/javascript" src="{JS_PATH}zizhan/js/fet.js"></script>
+<script type="text/javascript" src="{JS_PATH}zizhan/js/repos.js"></script>
+<script type="text/javascript">fet.setAlias({IMG_URL: "{siteurl($siteid)}/"})</script>
+<!--[if IE]><script src="{JS_PATH}html5.js"></script><![endif]-->
+<script type="text/javascript" src="{JS_PATH}zizhan/js/nav/navlist.js"></script>
+
+<link type="text/css" href="{CSS_PATH}sudyNav.css" tppabs="http://www.ahu.edu.cn/_js/_portletPlugs/sudyNavi/css/sudyNav.css" rel="stylesheet" />
+<link rel="stylesheet" href="{CSS_PATH}style.css" tppabs="http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/style.css" type="text/css" media="all" />
+<script type="text/javascript" src="{JS_PATH}jquery.sudyNav.js" tppabs="http://www.ahu.edu.cn/_js/_portletPlugs/sudyNavi/jquery.sudyNav.js"></script>
+
+</head>
+<body>
+
+<header>
+{template "content","head"}
+    <!--@end导航栏-->
+</div>
+<!--网站导航-->
+
+<!--广告-->
+
+
+<div id="main">
+	<span class="navlist"><a href="{siteurl($siteid)}">大宿网</a> »  {catpos($catid)} 正文</span>
+     <span class="mg-group">
+       	   <em class="ico-qq-weibo"></em><a href="http://e.t.qq.com/xinanwanba9272" target="_blank">腾讯微博</a> 
+           <em class="ico-sina-weibo"></em><a href="http://weibo.com/xinanwanbao" target="_blank">新浪微博</a>  
+           <em class="ico-99du"></em><a href="http://www.hijia.cn" target="_blank">宿迁论坛</a> 
+		   <em class="ico_tel"></em>24小时新闻热线：962000
+      </span>  
+	 <!--<span class="tel-group"></span>-->
+    
+</div>
+
+<div id="main">
+   <div id="leftbox">
+    	<div class="article-main clearfix">
+        		 <h1>{$title}</h1>
+                 
+           <div class="article-info clearfix">
+			    <span class="date">{$inputtime}</span>
+							    <span class="where">来源：{$copyfrom}</span>
+			    <span class="pl"><a href="#box" class="blue">我来说两句</a></span>
+                <span class="mobile blue"><a href="/" class="blue" target="_blank">手机看报</a></span>
+		                    
+		  </div>
+{if $description} <p class="cont-summary"><span><b>核心提示：</b>{$description}</span></p>{/if}
+                                                          		<!-- 文章内容 -->
+        <div class="cont-detail" id="ctrlfscont">
+			<div class="article-content">
+			 <p style="text-align:center"></p>
+			{if $allow_visitor==1}
+				{$content}
+				<!--内容关联投票-->
+				{if $voteid}<script language="javascript" src="{APP_PATH}index.php?m=vote&c=index&a=show&action=js&subjectid={$voteid}&type=2"></script>{/if}
+                
+			{else}
+				<CENTER><a href="{APP_PATH}index.php?m=content&c=readpoint&allow_visitor={$allow_visitor}"><font color="red">阅读此信息需要您支付 <B><I>{$readpoint} {if $paytype}元{else}点{/if}</I></B>，点击这里支付</font></a></CENTER>
+			{/if}
+            {if $titles}
+<fieldset>
+	<legend class="f14">本文导航</legend><ul class="list blue row-2">
+{loop $titles $r}
+	<li>{$n}、<a href="{$r[url]}">{$r[title]}</a></li>
+{/loop}
+</ul>
+</fieldset>
+{/if}
+            </div>
+		</div>
+        <!-- @end 文章内容 -->                                                                               			
+<div class="article-page">
+						<table id="pagination" cellspacing="0" cellpadding="0" class="pagination mar-tb-10">
+							<tr>{$pages}</tr>
+						</table>
+					</div>       
+             <p class="f-r art-tags">分享到
+						<a href="javascript:(function(){window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent('环境监测站联合科研人员解析合肥雾霾源 结果明年出炉'+'省市环境监测站正联合中科院、南开科研人员进行合肥雾霾源解析。课题将于明年底结题，合肥雾霾罪魁祸首届时将一目了然。')+'&amp;url='+encodeURIComponent(location.href)+'&amp;appkey=2829531880','_blank','width=450,height=400');})()"><img src="http://img.ahwang.cn/templates/default/images/sina.jpg" title="新浪微博"></a>
+                        
+						
+						<a href="javascript:(function(){window.open('http://v.t.qq.com/share/share.php?title='+encodeURIComponent('环境监测站联合科研人员解析合肥雾霾源 结果明年出炉'+'省市环境监测站正联合中科院、南开科研人员进行合肥雾霾源解析。课题将于明年底结题，合肥雾霾罪魁祸首届时将一目了然。')+'&amp;url='+encodeURIComponent(location.href)+'&amp;appkey=801227819&amp;pic=','转播到腾讯微博', 'width=700, height=580, top=320, left=180, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no'); })()"><img src="http://img.ahwang.cn/templates/default/images/qq.jpg" title="腾讯微博"></a>
+						
+			</p>
+            <div class="clear"></div>            
+            
+			
+
+
+
+           <div id="mood" class="cont-mood">
+<p class="mood-head">你看到此篇文章的感受是：</p>
+ {if module_exists('mood')}<script type="text/javascript" src="{APP_PATH}index.php?m=mood&c=index&a=init&id={id_encode($catid,$id,$siteid)}"></script>{/if}
+</div>
+
+            <!--相关报道-->
+			                    {pc:content action="relation" relation="$relation" id="$id" catid="$catid" num="5" keywords="$rs[keywords]"}
+              {if $data}
+        <div class="xgwz clearfix">
+                <span>相关报道</span>
+                <div class="xgwzcontent">
+                    <ul>
+                       {loop $data $r} <li><a href="{$r[url]}">{$r[title]}</a></li>
+        {/loop}
+						                     </ul>
+                </div>
+            </div>
+                       {/if}
+        {/pc}
+   
+			<!--1-->
+		
+<!--推荐开始框架-->
+<div class="pdtj clearfix">
+	<iframe src="http://www.ahwang.cn/section/611.html" width="605" height="420" scrolling="no" frameborder="0"></iframe>
+</div>
+<!--推荐结束-->
+            
+           {if $allow_comment && module_exists('comment')}
+      <iframe src="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={id_encode("content_$catid",$id,$siteid)}&iframe=1" width="100%" height="100%" id="comment_iframe" frameborder="0" scrolling="no"></iframe>
+      <div class="box" id="box">
+        		<h5>评论排行</h5>
+				 {pc:comment action="bang" siteid="$siteid" cache="3600"}
+            	<ul class="content list blue f14 row-2">
+				{loop $data $r}
+                	<li>·<a href="{$r[url]}" target="_blank">{str_cut($r[title], 40)}</a><span>({$r[total]})</span></li>
+					{/loop}
+                </ul>
+				{/pc}
+        </div>
+        {/if}
+        
+        <div class="copyright clearfix">
+            	<p><b>版权声明：</b></p>
+                <p>凡注明来源为“宿迁新闻网”、“大宿网”的所有文字、图片、音视频、美术设计和程序等作品，版权均属宿迁传媒有限公司或相关权利人专属所有或持有所有。未经本网书面授权，不得进行一切形式的下载、转载或建立镜像。否则以侵权论，依法追究相关法律责任。</p>
+ </div>
+
+                        
+          
+        </div>
+    
+    </div><!--leftbox-->
+    
+    <div id="rightbox">
+     <div class="rightnews" style="border:none">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("793156");</script>
+ </div>
+        <div class="rightnews m10">
+        	<h2>本地精选</h2>
+              <div class="todayhotnews clearfix">
+                <ul>
+            	{pc:content action="hits" catid="6" day=""  num="8" }
+{loop $data $n $r}
+<li><a href="{$r['url']}" title="{$r['title']}”" target="_blank">{$r['title']}</a></li>
+{/loop}
+{/pc}
+	            </ul>    	               
+               </div>
+        </div>
+        
+		<div class="rightnews m10">        
+            <script type="text/javascript">
+/*300*250，创建于2013-11-25*/
+var cpro_id = "u1419019";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>	        
+        </div>
+		
+		
+         <div class="rightnews m10"  id="pics">
+		 <!--后加-->
+		<ul class="tab2-holder">
+		<li class="current">热图打榜</li>
+		<li class="">社会聚焦</li>
+		</ul>
+		<div class="tab2-panel">
+		<div style="display: block;">
+		<!--后加end-->
+		 <ul class="photolist clearfix">
+		<li><a href="http://www.ahwang.cn/world/20131210/1336426.shtml" target="_blank" title="美女裸体“无肉”宣传"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386660385667.jpg" alt="美女裸体“无肉”宣传"></a><a href="http://www.ahwang.cn/world/20131210/1336426.shtml" target="_blank"><p>美女裸体“无肉”宣传</p></a></li>
+    <li><a href="http://photo.ahwang.cn/wenyu/20131210/1336306.shtml" target="_blank" title="嫩模限制级私房照"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386637537457.jpg" alt="嫩模限制级私房照"></a><a href="http://photo.ahwang.cn/wenyu/20131210/1336306.shtml" target="_blank"><p>嫩模限制级私房照</p></a></li>
+    <li><a href="http://photo.ahwang.cn/2013/1210/1336358.shtml" target="_blank" title="日本推出宠物狗口罩如鸭嘴罩"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386641809331.jpg" alt="日本推出宠物狗口罩如鸭嘴罩"></a><a href="http://photo.ahwang.cn/2013/1210/1336358.shtml" target="_blank"><p>日本推出宠物狗口罩如鸭嘴罩</p></a></li>
+    <li><a href="http://photo.ahwang.cn/shishang/20131209/1336050.shtml" target="_blank" title="日本情侣浴缸中拍甜蜜另类照"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386557693565.jpg" alt="日本情侣浴缸中拍甜蜜另类照"></a><a href="http://photo.ahwang.cn/shishang/20131209/1336050.shtml" target="_blank"><p>日本情侣浴缸中拍甜蜜另类照</p></a></li>
+    <li><a href="http://photo.ahwang.cn/story/20131209/1336036.shtml" target="_blank" title="让你笑掉大牙的极品雷图"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386556230179.jpg" alt="让你笑掉大牙的极品雷图"></a><a href="http://photo.ahwang.cn/story/20131209/1336036.shtml" target="_blank"><p>让你笑掉大牙的极品雷图</p></a></li>
+    <li><a href="http://photo.ahwang.cn/story/20131209/1336044.shtml" target="_blank" title="记录东京少女的神秘私生活"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386556957720.jpg" alt="记录东京少女的神秘私生活"></a><a href="http://photo.ahwang.cn/story/20131209/1336044.shtml" target="_blank"><p>记录东京少女的神秘私生活</p></a></li>
+    
+
+
+
+
+
+
+          </ul> 
+		 </div>
+		 <div class="hide" style="display: none;">
+		 <ul class="photolist clearfix">
+			<li><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank" title="韩庚美国NASA封闭式训练"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386644002968.jpg" alt="韩庚美国NASA封闭式训练"></a><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank"><p>韩庚美国NASA封闭式训练</p></a></li>
+    <li><a href="http://www.ahwang.cn/china/20131210/1336291.shtml" target="_blank" title="广州近百人打砸医院"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386636583142.jpg" alt="广州近百人打砸医院"></a><a href="http://www.ahwang.cn/china/20131210/1336291.shtml" target="_blank"><p>广州近百人打砸医院</p></a></li>
+    <li><a href="http://photo.ahwang.cn/wenyu/20131209/1336054.shtml" target="_blank" title="曝台湾“艳星”北京跳楼自杀"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386559803812.jpg" alt="曝台湾“艳星”北京跳楼自杀"></a><a href="http://photo.ahwang.cn/wenyu/20131209/1336054.shtml" target="_blank"><p>曝台湾“艳星”北京跳楼自杀</p></a></li>
+    <li><a href="http://photo.ahwang.cn/xinwen/20131210/1336417.shtml" target="_blank" title="2013年最令人惊奇照片"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386658939518.jpg" alt="2013年最令人惊奇照片"></a><a href="http://photo.ahwang.cn/xinwen/20131210/1336417.shtml" target="_blank"><p>2013年最令人惊奇照片</p></a></li>
+    <li><a href="http://www.ahwang.cn/china/20131209/1336137.shtml" target="_blank" title=" 男子嫌女友购物太贵跳楼身亡 "><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386576325248.jpg" alt=" 男子嫌女友购物太贵跳楼身亡 "></a><a href="http://www.ahwang.cn/china/20131209/1336137.shtml" target="_blank"><p> 男子嫌女友购物太贵跳楼身亡 </p></a></li>
+    <li><a href="http://www.ahwang.cn/sports/20131209/1336144.shtml" target="_blank" title="马琳迎娶第二任妻子"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386578876537.jpg" alt="马琳迎娶第二任妻子"></a><a href="http://www.ahwang.cn/sports/20131209/1336144.shtml" target="_blank"><p>马琳迎娶第二任妻子</p></a></li>
+    
+          </ul> 
+		 </div>
+		 </div>
+		         
+        </div>
+
+        <div class="rightnews m10" id="video">
+		<ul class="tab2-holder">
+		<li class="current">热点视频</li>
+		<li class="">看宿迁</li>
+		</ul>
+		<div class="tab2-panel">
+		<div style="display: block;">
+		 <div class="video clearfix">              		                                     
+                     {pc:content action="lists" catid="14" order="id DESC" thumb="1" moreinfo=""  num="2" }
+{loop $data $n $r} <div class="ct_box">
+            <a href="{$r['url']}" target="_blank">
+            <img src="{thumb($r[thumb],130,70)}" alt="{$r['title']}">
+            <s class="play_icon"></s><span class="ct_txt">{$r['title']}</span></a>
+    </div>{/loop}
+{/pc}
+<div class="clear"></div><ul class="medianr"><li>        
+     {pc:content action="lists" catid="14" order="id DESC" thumb="" moreinfo="1"  num="6" }
+{loop $data $n $r} <span><a href="{$r['url']}" title="{$r['title']}" target="_blank">{$r['title']}</a></span>    {/loop}
+{/pc}   
+</li>                                                              
+              </div>
+		</div>
+				<div  class="hide" style="display: none;">
+		 <div class="video clearfix">              		                                     
+                      {pc:content action="lists" catid="13" order="id DESC" thumb="1" moreinfo=""  num="2" }
+{loop $data $n $r} <div class="ct_box">
+            <a href="{$r['url']}" target="_blank">
+            <img src="{thumb($r[thumb],130,70)}" alt="{$r['title']}">
+            <s class="play_icon"></s><span class="ct_txt">{$r['title']}</span></a>
+    </div>{/loop}
+{/pc}
+<div class="clear"></div><ul class="medianr"><li>
+           
+       {pc:content action="lists" catid="13" order="id DESC" thumb="" moreinfo="1"  num="6" }
+{loop $data $n $r} <span><a href="{$r['url']}" title="{$r['title']}" target="_blank">{$r['title']}</a></span>    {/loop}
+{/pc}   
+     
+</li>                                                              
+              </div>
+		</div>
+		</div>
+			  
+        </div>
+        
+        
+         <div class="rightnews m10">
+        	<h2>网友关注 </h2>                        
+            <div class="place-Article">
+		    <ol class="block">
+			    
+<script type="text/javascript" src="http://www.hijia.cn/api.php?mod=js&bid=380"></script>
+
+			</ol>
+			</div>
+        </div>
+        
+        
+           
+    </div>
+    
+</div>
+	<script type="text/javascript" src="http://img.ahwang.cn/templates/default/js/apps/digg.js"></script>
+	<!--<script type="text/javascript" src="http://img.ahwang.cn/templates/default/js/article-show.js"></script>	-->
+	<script type="text/javascript" src="http://img.ahwang.cn/templates/default/js/mood-show.js"></script>
+
+	<script>
+	$(function() {
+		$('.article-content a').each(function(i,a){
+			var $a = $(a);
+			if(!$a.attr('target')) 
+			{
+				$a.attr('target','_blank');
+			}
+		});
+	});
+	</script>
+
+<script type="text/javascript" src="http://img.ahwang.cn/templates/default/js/tabs.js"></script>
+<script type="text/javascript" src="http://img.ahwang.cn/apps/digg/js/digg.js"></script>
+<script type="text/javascript" src="http://img.ahwang.cn/js/lib/jquery.lightbox.js"></script>
+<link rel="stylesheet" type="text/css" href="http://img.ahwang.cn/templates/default/css/imagesbox.css" media="screen" />
+
+<script type="text/javascript">
+var content = '';//第一页内容缓存
+var context = '';//全文内容缓存
+var isfulltext = false;
+$(function(){
+	digg.get(contentid);
+	content = $('#ctrlfscont').html();
+	var font = $.cookie(COOKIE_PRE+'font');//根据cookie设置字体大小并初始化按钮
+	if(font){
+		$('#ctrlfssummary,#ctrlfscont').addClass(font);
+		if(font == 'fs-big'){
+		 	$('#bfont').addClass('cor-current');
+			$('#sfont').removeClass('cor-current');
+		}
+	}
+
+	time();
+
+	$.getJSON(APP_URL+'?app=system&controller=content&action=stat&jsoncallback=?&contentid='+contentid);
+	
+	$('form[id^="vote"]').each(function(){
+		var contentid = $(this).find('>input[name="contentid"]:hidden').val();
+		var maxoptions = $(this).find('>input[name="maxoptions"]:hidden').val();
+		$(this).submit(function(){
+			var checkeds = $(this).find('input:checked').length;
+			if(checkeds == 0){
+				alert('请选择投票选项');
+				return false;
+			}
+			if(maxoptions){
+				if(checkeds > parseInt(maxoptions)){
+					alert('最多允许选'+maxoptions+'项');
+					return false;
+				}
+			}
+		})
+	})
+})
+function fulltext(){  //单页阅读
+		if(context =='')
+		$.getJSON(APP_URL+'?app=article&controller=article&action=fulltext&jsoncallback=?&contentid='+contentid,function(data){
+			context = data.content;
+			$('#ctrlfscont').html(data.content);
+			$('#show-all-cont').html('分页阅读').parent().siblings().hide();
+			$('.bor-ccc').hide();
+			isfulltext = true;
+			holdpic();
+		});
+		else{
+			$('#ctrlfscont').html(isfulltext?content:context);
+			$('#show-all-cont').html(isfulltext?'单页阅读':'分页阅读').parent().siblings().toggle(isfulltext === true);
+			isfulltext = (isfulltext === false);
+			$('.bor-ccc').show();
+			holdpic();
+		}
+}
+function holdpic(){//控制内容区域的的图片大小并为过大的图片添加查看原图
+	var options = {
+		imageLoading:IMG_URL+'js/lib/lightBox/lightbox-ico-loading.gif',
+		imageBtnPrev:IMG_URL+'js/lib/lightBox/lightbox-btn-prev.gif',
+		imageBtnNext:IMG_URL+'js/lib/lightBox/lightbox-btn-next.gif',
+		imageBtnClose:IMG_URL+'js/lib/lightBox/lightbox-btn-close.gif',
+		imageBlank:IMG_URL+'js/lib/lightBox/lightbox-blank.gif'
+	};
+	$('#ctrlfscont').find('img').each(function(){
+		var img = this;
+		if (img.width>608) {
+			img.style.width = '600px';
+			$(img).removeAttr('height');
+			var aTag = document.createElement('a');
+			aTag.href = img.src;
+			$(aTag).addClass('bPic')
+			.insertAfter(img).append(img)
+			.lightBox(options);
+		}
+	});
+}
+$(window).load(function(){
+	holdpic();
+});
+</script>
+
+
+   
+ <div class="footer">
+			
+            
+            <a target="_blank" href="http://www.ahwang.cn/other/about.html">关于我们</a>　|　
+<a target="_blank" href="http://www.ahwang.cn/other/price.html">广告价格</a>　|　
+<a target="_blank" href="http://www.ahwang.cn/image/site/index.html">呼叫中心</a>　|　
+<a target="_blank" href="http://www.ahwang.cn/other/contact.html">联系我们</a> 　|　
+<a target="_blank" href="http://www.ahwang.cn/other/link.html">友情链接</a> 　|　
+<a target="_blank" href="http://www.ahwang.cn/other/bq.html">版权声明 </a>　<br>
+        版权所有：安徽网 &nbsp;&nbsp;广告热线/传真：0551-65286123 &nbsp;65286114&nbsp;&nbsp;投诉受理：962000  <br>
+        合肥市望江西路505号新安传媒印务公司4楼　新闻备案号：皖网宣备06024号　信息产业部备案/许可证编号: 皖ICP备05001054号<br>
+        Copyright © 2010 ahwang.cn All Right Reserved.　
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F716bef8857b6b3abef2452e04a9d0691' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript" src="http://img.ahwang.cn/templates/default/xinan/2012/js/index.js"></script>
+<script type="text/javascript"> 
+jQuery.tab2("video"); 
+jQuery.tab2("pics"); 
+</script> 
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8b45877edf6a43b96e1c54c0e0d4e958' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+<script src="http://s9.cnzz.com/stat.php?id=4394793&web_id=4394793" language="JavaScript"></script>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8240e34bda939a1edb552c0c469c81ff' type='text/javascript'%3E%3C/script%3E"));
+</script>          
+    </div>
+<script type="text/javascript" src="http://img.ahwang.cn/templates/default/xinan/2012/js/index.js"></script> 
+<script type="text/javascript"> 
+jQuery.tab2("video"); 
+jQuery.tab2("pics"); 
+</script> 
+</body>
+</html>

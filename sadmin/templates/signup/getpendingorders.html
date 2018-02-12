@@ -1,0 +1,48 @@
+<!--{include file="library/header.lbi"}-->
+<div class="tab"> 
+	<div class="tab-head border-main">
+		<br>
+		<ul class="tab-nav"> 
+			<li class="active">
+				<a href="index.php?action=signup&op=getpendingorders">报名驾校</a>
+			</li> 
+			<li>
+				<a href="index.php?action=learncar&op=getpendingorders">预约学车</a>
+			</li> 
+		</ul> 
+	</div>
+	<div class="tab-body" style="padding-top:10px;"> 
+		<div class="tab-panel form-x active">
+			<table class="table" onclick="showorders()" style="cursor:pointer"> 
+				<tr class="bg-yellow" style="color:#fff">
+					<th>订单号</th>
+					<th>学员姓名</th>
+					<th>学员电话</th>
+					<th>订单状态</th>
+					<th>下单时间</th>
+				</tr>
+				<!--{foreach $orderlist as $key => $value}-->
+				<tr>
+					<td><!--{$value.so_order_no}--></td>
+					<td><!--{$value.so_username}--></td>
+					<td><!--{$value.so_phone}--></td>
+					<td>
+					<!--{if $value.so_order_status == "已付款"}-->
+                      <span class="badge bg-green"><!--{$value.so_order_status}--></span>
+					<!--{else}-->
+                      <span class="badge bg-red"><!--{$value.so_order_status}--></span>
+                    <!--{/if}-->
+                    </td>
+					<td><!--{$value.addtime}--></td>
+				</tr> 
+				<!--{/foreach}-->
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function showorders() {
+		parent.$('#rightMain').attr('src', 'index.php?action=signup&op=index');
+	}
+</script>
+<!--{include file="library/footer.lbi"}-->

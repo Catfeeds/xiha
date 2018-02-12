@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>学员列表</title>
+</head>
+<body>
+	<nav class="breadcrumb">
+		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>学员管理<span class="c-gray en">&gt;</span> 学员列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.reload();" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	</nav>
+  	<form method="post" action="{:U('Student/searchStudentList')}" name="search">
+		<div class="pd-20">
+			<div class=""> 
+                <if condition="$school_id eq 0">
+                    <label for="status">按删除状态</label>
+                    <select class="" name="status" id="status" style="width:150px;height:30px">                  
+                        <!-- <option value="">--不限状态--</option>    -->
+                        <option style="" value="0" <if condition="$status eq 0">selected</if> >未删除</option>
+                        <option style="" value="2" <if condition="$status eq 2">selected</if> >已删除</option>
+                    </select>
+                </if>
+				<label for="search_type">按学员信息 </label>
+				<select class="" name="search_type" id="search_type" style="width:150px;height:30px">				   
+				    <option style="" value="" >--不限关键词--</option>
+				    <option style="" value="l_user_id" <if condition = "$search_type eq l_user_id">selected</if>>ID</option>
+				    <option style="" value="s_real_name" <if condition = "$search_type eq s_real_name">selected</if>>姓名</option>
+				    <option style="" value="s_phone" <if condition = "$search_type eq s_phone">selected</if>>手机号</option>
+				    <option style="" value="identity_id" <if condition = "$search_type eq identity_id">selected</if>>身份证号</option>
+                    <if condition="$school_id eq 0">
+                        <option style="" value="s_school_name" <if condition = "$search_type eq s_school_name">selected</if>>所属驾校</option>
+                    </if>
+				</select>    
+				   
+                <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" value="{$s_keyword}" placeholder="ID，姓名，手机号，身份证号<if condition='$school_id eq 0'>，所属驾校</if>" style="width:300px;"/>
+				<input type="submit" id="search_student" class="btn btn-primary size-M default" style="width:100px" name="elment" value="搜索" />
+                <div class="" style="margin-top:10px;">
+                    <label for="search_type">范围(<strong>1~9000</strong>) |</label>
+                    开始数：<input type="input-text"  value="1" name="begin_num"  style="width:80px;height:30px;text-align:center;border-radius:3px;" >
+                    
+                    结束数：<input type="input-text"  value="100" name="end_num"  style="width:80px;height:30px;text-align:center;border-radius:3px;" >
+                    <input type="submit" id="search_school_orders" class="btn btn-warning size-M radius" name="elment" style="width:100px" value="Excel下载" /> 
+                    <!-- <i class="Hui-iconfont" style="margin-left:-7%;color:#fff">&#xe640;</i> -->
+                </div>
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+				<a href="javascript:;" onclick="addStudent('添加学员','{: U('Student/addStudent')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加学员</a></span> 
+                <span class="r">共有学员：<strong>{$count}</strong> 个</span> 
+			</div>
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-hover table-bg table-sort">
+					<thead>	
+						<tr class="text-c">
+							<th width="25"><input type="checkbox" name="" value=""></th>
+							<th width="50">ID</th>
+							<th width="60">姓名</th>
+							<th width="60">
+								手机
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多学员信息"></span>
+							</th>
+							<if condition = "$school_id eq 0">
+								<th width="100">驾校</th>
+							</if>
+							<th width="50">性别</th>
+							<th width="50">年龄</th>
+							<th width="80">身份证号</th>
+							<th width="110">地址</th>
+							<!-- <th width="60">来源</th> -->
+                            <th width="70">注册时间</th>
+							<th width="70">最近更新</th>
+							<!-- <if condition="$school_id eq 0">
+								<th width="60">状态</th>
+							</if> -->
+							<th width="50">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						 <foreach name="student_list" item="obj">
+							<tr class="text-c signup_list"  data-id="{$obj.l_user_id}">
+								<td class="va-m"><input type="checkbox" value="1" name=""></td>
+								<td class="va-m">{$obj.l_user_id}</td>
+								<td class="va-m">{$obj.s_real_name|mb_substr=0,8}</td>
+								<td class="va-m">
+									<a href="javascript:;" class="studentdetail" id="signuphover{$obj.l_user_id}" style="color:#09c">
+                                        {$obj.s_phone}
+                                    </a>
+								</td>
+								<if condition = "$school_id eq 0">
+									<td class="va-m">{$obj.s_school_name}</td>
+								</if>
+								<td class="va-m">
+									<switch name='obj.sex'>
+										<case value="1"><span class="btn btn-secondary radius">男</span></case>
+                                        <case value="2"><span class="btn btn-warning radius">女</span></case>
+										<case value="0"><span class="btn btn-danger radius">未设</span></case>
+									</switch>	
+								</td>
+								<td class="va-m">{$obj.age}</td>
+								<td class="va-m">{$obj.identity_id}</td>
+								<td class="va-m">{$obj.address}</td>
+								<!-- <td class="va-m">
+									<switch name="obj.i_from">
+										<case value="0"><span class="btn btn-success-outline radius">苹果</span></case>
+										<case value="1"><span class="btn btn-primary-outline radius">安卓</span></case>
+										<case value="2"><span class="btn btn-secondary-outline radius">线下</span></case>
+									</switch>
+								</td> -->
+                                <td class="va-m">{$obj.addtime}</td>
+								<td class="va-m">{$obj.updatetime}</td>
+								<!-- <if condition="$school_id eq 0">
+									<td class="va-m setStatus"  data-phone="{$obj.s_phone}">
+										<switch name="obj.i_status">
+										    <case value="0"><span data-id="{$obj.l_user_id}"  title="0" class="btn btn-success size-S radius"> 未删除 </span></case>
+										    <case value="2"><span data-id="{$obj.l_user_id}" title="2" class="btn btn-danger size-S radius"> 已删除 </span></case>
+										    <default /><span data-id="{$obj.l_user_id}" class="btn btn-danger size-S radius">其他状态</span>
+										</switch>
+									</td>
+								</if> -->
+								<td class="va-m td-manage">
+									<a title="删除" href="javascript:;" onclick="member_del(this,{$obj.l_user_id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+									<a title="编辑" href="javascript:;" onclick="member_edit('编辑学员信息','{: U('Student/editStudent')}?id={$obj.l_user_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+								</td>
+								<td class="studentinfo" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;"> 
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">姓名</td> 
+                                            <td>{$obj.s_real_name}</td> 
+                                            <td class="blue text-center" style="font-weight:bold">手机号</td> 
+                                            <td>{$obj.s_phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">身份证号</td>
+                                            <td class="red text-red" colspan=3>{$obj.identity_id}</td>
+                                        </tr>
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">昵称</td> 
+                                            <td>{$obj.s_username}</td> 
+                                            <td class="blue text-center" style="font-weight:bold">年龄</td> 
+                                            <td>{$obj.age}</td>
+                                        </tr>
+                                        <if condition ="$school_id eq 0">
+                                            <tr width="100%" > 
+                                                <td class="blue text-center" style="font-weight:bold">所属驾校</td>
+                                                <td class="red text-red" colspan=3>{$obj.s_school_name}</td>
+                                            </tr>
+                                        </if>
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">课程</td> 
+                                            <td>{$obj.lesson_name}</td>
+                                            <td class="blue text-center" style="font-weight:bold">牌照</td> 
+                                            <td>{$obj.license_name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">详细地址</td>
+                                            <td class="red text-red" colspan=3>{$obj.address}</td>
+                                        </tr>
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">领证次数</td> 
+                                            <td>{$obj.license_num}</td>
+                                            <td class="blue text-center" style="font-weight:bold">学习状态</td> 
+                                            <td>{$obj.learncar_status}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">最近更新</td>
+                                            <td class="" >{$obj.updatetime}</td>
+                                            <td class="blue text-center" style="font-weight:bold">来源</td>
+                                            <td class="" >
+                                               <switch name="obj.i_from">
+                                                    <case value="0"><span >苹果</span></case>
+                                                    <case value="1"><span >安卓</span></case>
+                                                    <case value="2"><span >线下</span></case>
+                                                </switch>
+                                            </td>
+                                        </tr>
+                                       <!--  <tr>
+                                        </tr> -->
+                                        <if condition="$role_id eq 1">
+                                        	<tr width="100%" > 
+	                                            <td class="blue text-center" style="font-weight:bold">嘻哈币数量</td> 
+	                                            <td>{$obj.xiha_coin}</td>
+	                                            <td class="blue text-center" style="font-weight:bold">签到数量</td> 
+	                                            <td>{$obj.signin_num}</td>
+                                        	</tr>
+                                        </if>
+                                    </table>
+                                </td>
+							</tr>
+						 </foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+		</div>
+	</form>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+// 学员详情
+$('.studentdetail').on({
+    'mouseenter':function() {
+        var id = $(this).attr('id');
+        var studentinfo = $(this).parents('tr.signup_list').find('td.studentinfo').html();
+        layer.tips(studentinfo, '#'+id, {
+            tips: [1, '#fff'],
+            time:0,
+            area: '500px'
+        });
+    },
+
+    'mouseleave':function() {
+        var index = layer.tips();
+        layer.close(index);  
+    },
+
+    'click':function() {
+        var studentinfo = $(this).parents('tr.signup_list').find('td.studentinfo').html();
+        layer.open({
+            type: 1,
+            title:'学员详情',
+            area: '500px',
+            shade: [0.3, '#333'],
+            shadeClose: true,
+            moveType:1,
+            shift:0,
+            content: studentinfo
+        });
+    }
+})
+// 删除状态设置
+$('.setStatus span').click(function() {
+	    var sid = $(this).attr('data-id');
+	    var status = $(this).attr('title');
+	    var phone = $(this).parent().attr('data-phone');
+	    switch(status){
+          case '0': status = 2; break;
+          case '2': status = 0; break;
+	    }
+     $.ajax({
+        type:"POST",
+        url:"{:U('Student/setStudentStatus')}",
+        data: {'id':sid, 'status':status, 's_phone':phone},
+        dataType: "JSON",
+        success: function(data){
+        	if(data.code == 200){
+               location.reload();
+            } else if (data.code == 105) {
+         		layer.msg(data.msg,{icon:2,time:1000});
+           	} else {
+               	layer.msg(data.msg,{icon:2,time:1000});
+           	}
+         },
+         error: function(){
+         	layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+         }
+     })
+});
+
+
+/*用户-添加*/
+function addStudent(title,url){
+	// layer_show(title,url);
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type:"POST",
+			url:"__URL__/delStudent",
+			data:{'id':id},
+			dataType:'JSON',
+			success:function(data) {
+				if(data.code == 200) {
+					$(obj).parents("tr").remove();
+					layer.msg('已删除!',{icon:1,time:1000});
+				} else if (data.code == 400) {
+					layer.msg(data.msg,{icon:2,time:1000});
+				} else {
+					layer.msg('操作故障!',{icon:2,time:1000});
+				}
+					
+			},
+			error:function() {
+				// document.write(XMLHttpRequest.readState+XMLHttpRequest.status+XMLHttpRequest.responseText);
+				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+			}
+		});
+	});
+}
+</script> 
+</body>
+</html>

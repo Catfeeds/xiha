@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+    <meta name="keywords" content="{$SEO['keyword']}">
+    <meta name="description" content="{$SEO['description']}">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <!--[if IE]><script src="{JS_PATH}html5.js"></script><![endif]-->
+    <script type="text/javascript" src="{JS_PATH}zizhan/js/jquery-1.7.2.min.js"></script> 
+    <link href="{CSS_PATH}zizhan/css/news.css" rel="stylesheet" type="text/css">
+    <link type="text/css" href="{CSS_PATH}sudyNav.css" tppabs="http://www.ahu.edu.cn/_js/_portletPlugs/sudyNavi/css/sudyNav.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{CSS_PATH}style.css" tppabs="http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/style.css" type="text/css" media="all" />
+    <script type="text/javascript" src="{JS_PATH}jquery.sudyNav.js" tppabs="http://www.ahu.edu.cn/_js/_portletPlugs/sudyNavi/jquery.sudyNav.js"></script>
+    <script type="text/javascript" src="{JS_PATH}zizhan/js/nav/navlist.js"></script>
+
+</head>
+<body style="background: #fff;">
+<header>
+    {template "content","head"}
+</header>
+<div id="main" style="margin-top: 150px;">
+    <div class="nav">
+        <dd class="first"><a href="{$CATEGORYS[$catid][url]}" style="color: #000;">频道首页</a></dd> 
+        {if $top_parentid}
+        	{pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+        		{loop $data $r}
+                    <dd><a style="color: #000;" href="{$r[url]}">{$r[catname]}</a></dd> 
+    			{/loop}
+            {/pc}	
+        {/if}
+    </div>
+</div>
+
+<div id="main">
+	<div id="leftbox">
+        <div class="focusPic">
+            <div id="focus_tab" class="main clearfix tab">
+              <div class="normal on">
+                <a href="http://www.ahwang.cn/hefei/20131211/1336771.shtml" target="_blank">
+                    <img src="http://upload.ahwang.cn/2013/1211/1386771145525.jpg" title="输液室人满为患 部分医院已不设注射室" alt="输液室人满为患 部分医院已不设注射室"></a>
+                    <h2><a href="http://www.ahwang.cn/hefei/20131211/1336771.shtml">输液室人满为患 部分医院已不设注射室</a></h2>
+                </div>
+                <!--新闻 幻灯片--> 
+           </div>
+        </div>
+        <div class="video clearfix  m10">
+	        <h2><a href="http://video.ahwang.cn">视频</a></h2>        		
+		      <div class="ct_box">
+                <a href="http://video.ahwang.cn/site/20131212/1336932.shtml" target="_blank">
+                    <img src="http://upload.ahwang.cn/2013/1212/1386814806826.JPG" alt="政府欠6旬老人百万元工程款 准备分50年还清">
+              	     <s class="play_icon"></s><span class="ct_txt">政府欠6旬老人百万元工程款 准备分50年还清</span></a></div>
+		    	
+	                <div class="ct_box">
+                        <a href="http://video.ahwang.cn/site/20131212/1336928.shtml" target="_blank">
+                            <img src="http://upload.ahwang.cn/2013/1212/1386814166568.JPG" alt="男子ATM机前等得不耐烦刺死前面存款人">
+                      	    <s class="play_icon"></s><span class="ct_txt">男子ATM机前等得不耐烦刺死前面存款人</span>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <ul class="medianr">
+                        <li>
+        				 
+        					<span><a href="http://video.ahwang.cn/site/20131212/1336925.shtml" title="河北乡政府收税坐地涨价 晚一天从1万2变6万" target="_blank">河北乡政府收税坐地涨价 晚一天从1万2变6万</a></span>
+        			 
+        					<span><a href="http://video.ahwang.cn/site/20131212/1336915.shtml" title="大树“站”在马路中间九年半  " target="_blank">大树“站”在马路中间九年半  </a></span>
+        			 
+        					<span><a href="http://video.ahwang.cn/site/20131212/1336893.shtml" title="央视探访朝鲜骑马俱乐部 豪华堪称；世界一流" target="_blank">央视探访朝鲜骑马俱乐部 豪华堪称；世界一流</a></span>
+        			 
+        					<span><a href="http://video.ahwang.cn/site/20131212/1336892.shtml" title="央视：美火星车发现淡水湖痕迹或解生命之谜" target="_blank">央视：美火星车发现淡水湖痕迹或解生命之谜</a></span>
+        			 
+        					<span><a href="http://video.ahwang.cn/site/20131212/1336891.shtml" title="斯诺登最新爆料：美英特工“卧底”网游监控玩家" target="_blank">斯诺登最新爆料：美英特工“卧底”网游监控玩家</a></span>
+        			 
+        					<span><a href="http://video.ahwang.cn/site/20131212/1336855.shtml" title="美国电影学会年度十佳《地心引力》上榜" target="_blank">美国电影学会年度十佳《地心引力》上榜</a></span>
+        				               
+                        </li>
+                    </ul>
+                </div>
+        
+                <div class="mod m10">
+                    <div class="ranking">
+                        <span class="lefttitle">新闻排行</span>
+                            <div class="side-tab-title clearfix">                            
+                                <ul id="tab-title-4" >
+                                    <li><a href="#rank_day" class="tabs-focus">24小时</a></li>
+                                    <li><a href="#rank_week">本周</a></li>
+                                    <li><a href="#rank_month">本月</a></li>
+                                </ul>                              
+                            </div>                         		                          
+                        </div>
+                        <div class="place-Article" id="rank_day">
+            				<ol>
+                                <li>
+                                    <em class="hot" >1</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/anhui/20131211/1336715.shtml">六安13岁初一学生万宇豪征服《中国达人秀》【图】</a>
+                                </li>
+                                    
+                                <li>
+                                    <em class="hot" >2</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/china/20131211/1336687.shtml">丈夫摆摊卖饼供妻子读书 把老婆培养成大学教授(图)</a>
+                                </li>
+                                <li>
+                                    <em class="hot" >3</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/anhui/20131211/1336708.shtml">2013年新一轮城市等级划分正式出炉 安徽未有一线城市</a>
+                                </li>
+                                <li>
+                                    <em >4</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/anhui/20131212/1336803.shtml">萧县2岁男童4日在家门口失踪 家人寻找多日杳无音信</a>
+                                </li>
+                                <li>
+                                    <em >5</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/hefei/20131211/1336742.shtml">本月底合肥往广州开通4趟直达高铁 历时约6小时</a>
+                                </li>
+                                <li>
+                                    <em >6</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/china/20131212/1336849.shtml">产妇分娩大哭大叫 陪产丈夫安慰不成竟动手打妻子</a>
+                                </li>
+                                <li>
+                                    <em >7</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/anhui/20131211/1336702.shtml">全国各地幸福指数排名微博热议 安徽排第十上海垫底</a>
+                                </li>
+                                <li>
+                                    <em >8</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/ent/20131212/1336727.shtml">网曝某“小天后”怀双胞胎 网友直指杨幂(图)</a>
+                                </li>
+                                <li>
+                                    <em >9</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/china/20131212/1336918.shtml">华中师范大学校花成“跨界女神” 保研北大兼职模特</a>
+                                </li>
+                                <li>
+                                    <em >10</em>
+                                    <a target="_blank" href="http://www.ahwang.cn/anhui/20131212/1336797.shtml">本报记者回访2013新闻人物 卖菜叔：最近迷上练书法</a>
+                                </li>
+            				</ol>
+		                </div>
+			
+			            <div class="place-Article" id="rank_week" style="display:none;">
+                        	<ol>
+    							<li>
+        							<em class="hot" >1</em><a href="http://www.ahwang.cn/china/20131208/1335814.shtml" target="_blank">北京井底人：超生被罚6万 10年没买过一件衣服</a>							
+        						</li>
+								<li>
+									<em class="hot" >2</em><a href="http://www.ahwang.cn/china/20131205/1335439.shtml" target="_blank">警方：女孩两次殴打原原 抱至阳台逗玩时致原原坠楼</a>							
+								</li>
+								<li>
+									<em class="hot" >3</em><a href="http://www.ahwang.cn/china/20131208/1335839.shtml" target="_blank">男子寻未来丈母娘 望入赘豪门容许老婆外遇(图)</a>							
+								</li>
+								<li>
+									<em >4</em><a href="http://www.ahwang.cn/anhui/20131206/1335645.shtml" target="_blank">全职太太嫌老公给的零花钱不够 微信色诱“剩男”骗钱</a>							
+								</li>
+								<li>
+									<em >5</em><a href="http://www.ahwang.cn/china/20131208/1335816.shtml" target="_blank">骗子编“剧本”最狠诈骗：被骗大妈执着汇钱骗子很痛苦</a>							
+								</li>
+								<li>
+									<em >6</em><a href="http://www.ahwang.cn/zbah/20131210/1336396.shtml" target="_blank">合肥天鹅湖发现一具女子浮尸 年龄在30岁左右</a>							
+								</li>
+								<li>
+									<em >7</em><a href="http://www.ahwang.cn/zbah/20131211/1336597.shtml" target="_blank">宿松县18岁男子将10岁男童杀死后性侵 并焚烧肢解尸体</a>							
+								</li>
+								<li>
+									<em >8</em><a href="http://www.ahwang.cn/hefei/20131208/1335863.shtml" target="_blank">男子合肥打车兜了30多公里回到原点 抵押信用卡后消失</a>							
+								</li>
+								<li>
+									<em >9</em><a href="http://www.ahwang.cn/hefei/20131206/1335445.shtml" target="_blank">合肥雾霾应急预案“难产” 环保局长称春节前后或出台</a>							
+								</li>
+								<li>
+									<em >10</em><a href="http://www.ahwang.cn/china/20131207/1335770.shtml" target="_blank">明年起各地公租房和廉租房并轨运行 统称公租房</a>							
+								</li>
+							</ol>
+                        </div>
+
+			            <div class="place-Article" id="rank_month" style="display:none;">
+                	        <ol>
+								<li>
+									<em class="hot" >1</em><a href="http://www.ahwang.cn/zbah/20131120/1331251.shtml" target="_blank">合肥殡仪馆内一名男婴火化前被发现还活着</a>							
+								</li>
+								<li>
+									<em class="hot" >2</em><a href="http://www.ahwang.cn/china/20131119/1330880.shtml" target="_blank">女子捡7500元联系失主 失主：你留着花吧</a>							
+								</li>
+								<li>
+									<em class="hot" >3</em><a href="http://www.ahwang.cn/mil/20131204/1334786.shtml" target="_blank">美日战舰异动或实施攻击行动</a>							
+								</li>
+								<li>
+									<em >4</em><a href="http://www.ahwang.cn/anhui/20131129/1333564.shtml" target="_blank">淮北一女孩遭上司性骚扰 男同事将其救出后又将她强暴</a>							
+								</li>
+								<li>
+									<em >5</em><a href="http://www.ahwang.cn/china/20131118/1330397.shtml" target="_blank">“拜鞋姐”狂买100双鞋粘车上 报复男友“双11”禁网购</a>							
+								</li>
+								<li>
+									<em >6</em><a href="http://www.ahwang.cn/world/20131119/1330838.shtml" target="_blank">印度15个月大女婴惨遭2人轮奸 母亲将女婴留在佣人宿舍</a>							
+								</li>
+								<li>
+									<em >7</em><a href="http://photo.ahwang.cn/wenyu/20131113/1329399.shtml" target="_blank">韩国“26岁妙龄女诱75岁老人”影片公映引争议</a>							
+								</li>
+								<li>
+									<em >8</em><a href="http://www.ahwang.cn/china/20131208/1335814.shtml" target="_blank">北京井底人：超生被罚6万 10年没买过一件衣服</a>							
+								</li>
+								<li>
+									<em >9</em><a href="http://www.ahwang.cn/china/20131112/1329124.shtml" target="_blank">兰州警花不雅照发布者获刑 因不满分手散播不雅照</a>							
+								</li>
+								<li>
+									<em >10</em><a href="http://www.ahwang.cn/mil/20131201/1333915.shtml" target="_blank">美航空公司向中国通报东海防空识别区飞行计划</a>							
+								</li>
+							</ol>
+                        </div>
+                    </div>
+        
+                    <div class="video clearfix  m10">
+            		<h2><a href="http://www.ahwang.cn/life/">民生</a></h2> 
+                    	<div class="lifenews clearfix">
+                            <ul>
+    							<li><a href="http://www.ahwang.cn/life/20131212/1336818.shtml" title="合肥将开通4趟高铁直达广州 全程只要6小时(图)    " target="_blank">合肥将开通4趟高铁直达广州 全程只要6小时(图)    </a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131212/1336802.shtml" title="合肥金价稳定" target="_blank">合肥金价稳定</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131212/1336801.shtml" title="年后合肥招聘会多" target="_blank">年后合肥招聘会多</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131211/1336785.shtml" title="今起可办理合肥市园林年卡" target="_blank">今起可办理合肥市园林年卡</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131211/1336783.shtml" title="周六合肥市科技馆开展天文沙龙活动" target="_blank">周六合肥市科技馆开展天文沙龙活动</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131210/1336493.shtml" title="合肥11路公交线明起改道" target="_blank">合肥11路公交线明起改道</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131210/1336492.shtml" title="163人争当治安辅警" target="_blank">163人争当治安辅警</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131210/1336490.shtml" title="月底可去肥西打年货" target="_blank">月底可去肥西打年货</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131210/1336477.shtml" title="两项专技考试16日报名" target="_blank">两项专技考试16日报名</a></li>
+    							<li><a href="http://www.ahwang.cn/life/20131210/1336333.shtml" title="合肥车位价格进入“奔3”时代" target="_blank">合肥车位价格进入“奔3”时代</a></li>
+                            </ul>    		
+                        </div>
+                    </div>
+                </div><!--leftbox-->
+                <div id="centerbox">
+                    <div class="hotnews clearfix">   
+                       	<UL>            
+                            {pc:content action="position" posid="10" catid="$catid" thumb="" order="id DESC"  num="3" }
+                				{loop $data $v}
+                            	<li >
+                	               <h2><a href="{$v[url]}" target="_blank"><STRONG>{$v[title]}</STRONG></a></h2>
+                                    <span>{str_cut(strip_tags($v[description]), 182)}</span>
+
+                                </li>
+                                <div class="bk20 hr"><hr /></div>
+                				{/loop}
+                			{/pc}
+                            <!--新闻 头条-->
+                        </UL>
+                    </div>
+                    <div class="clear"></div>
+                    {php $j=1;}
+                	{loop subcat($catid) $v}
+                	   {php if($v['type']!=0) continue;}
+                        <div class="newslist clearfix m10">
+                        	<h2><a href="{$v[url]}">{$v[catname]}</a></h2>
+                            <div class="q_tL">
+                            <ul class="f14 l26 ic_l">
+                                {pc:content action="lists" catid="$v[catid]" num="5" order="id DESC"}
+        					        {loop $data $v}
+                                    <li>
+                                        <a href="{$v[url]}" title="{$v[title]}" target="_blank">{$v[title]}</a>
+                                    </li>
+              					    {/loop}
+                				{/pc}
+                            </ul>
+                        </div>                         
+                        </div>
+                    	{$j++}
+                	{/loop}
+                </div>
+                <div id="rightbox">
+                    <div class="rightnews">          
+                        <h2><a href="http://www.ahwang.cn/zbah/">直播安徽</a></h2>
+                           <div class="liveah">
+                                <ul>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131212/1336933.shtml" target="_blank" title="合肥“十选一”诞生首副号牌 多数车主中意小号">合肥“十选一”诞生首副号牌 多数车主中意小号</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131212/1336931.shtml" target="_blank" title="合肥警用直升机飞临政务区  空中监控确保安全">合肥警用直升机飞临政务区  空中监控确保安全</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131212/1336810.shtml" target="_blank" title="12月12日安徽热点">12月12日安徽热点</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336765.shtml" target="_blank" title="黄山天都峰轮休后生态修复竣工并验收">黄山天都峰轮休后生态修复竣工并验收</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336764.shtml" target="_blank" title="巢湖金山路旁一大片芦苇着火 消防紧急灭火">巢湖金山路旁一大片芦苇着火 消防紧急灭火</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336762.shtml" target="_blank" title="春节后省人才市场将举办多场大型专场招聘会">春节后省人才市场将举办多场大型专场招聘会</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336761.shtml" target="_blank" title="我省170家农企“触网”">我省170家农企“触网”</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336758.shtml" target="_blank" title="十国拳王争霸赛 1月19日决战合肥">十国拳王争霸赛 1月19日决战合肥</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336757.shtml" target="_blank" title="我省试点家庭农场“直管直贷”">我省试点家庭农场“直管直贷”</a></li>
+        			         		<li><a href="http://www.ahwang.cn/zbah/20131211/1336752.shtml" target="_blank" title="2台空调外机掉落 失主寻找时发现已被人拉走">2台空调外机掉落 失主寻找时发现已被人拉走</a></li>
+                	            </ul>    	               
+                            </div>
+               
+                           <div class="special m10">
+                           		<h2><a href="http://zt.ahwang.cn/">专题</a></h2>
+				                <div class="pic">                   
+                                    <h4><a href="http://zt.ahwang.cn/boxilai" target="_blank">薄熙来案在济南中院公开审理</a></h4>
+                                    <a target="_blank" href="http://zt.ahwang.cn/boxilai">
+                                        <img src="http://upload.ahwang.cn/2013/0826/thumb_75_65_1377510441573.jpg" alt="薄熙来案在济南中院公开审理">
+                                        <p>薄熙来受贿、贪污、滥用职权一案，8月22日在济南中院公开审理。</p>
+                                    </a>                               
+                 	                <div class="clear"></div>
+        		                </div>
+                                <Ul>
+                                    <li><a href="http://zt.ahwang.cn/2013lqyg" target="_blank">2013新安·利群阳光助学行动</a>　</li>
+                                    <li><a href="http://zt.ahwang.cn/ahxqjc" target="_blank">合肥新桥机场启用</a>　</li>
+                                </ul>
+        	                   <!--新闻 专题-->
+                            </div>
+               
+                            <div class="photolist clearfix">
+                                <h2><a href="http://photo.ahwang.cn/">图片</a></h2>
+                                <ul>
+                    				<li><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank" title="韩庚美国NASA封闭式训练 "><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386643858299.jpg" alt="韩庚美国NASA封闭式训练 "></a><a href="http://www.ahwang.cn/ent/20131210/1336368.shtml" target="_blank"><p>韩庚美国NASA封闭式训练 </p></a></li>
+                                    <li><a href="http://www.ahwang.cn/world/20131210/1336426.shtml" target="_blank" title="美女裸体“无肉”宣传"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386660385667.jpg" alt="美女裸体“无肉”宣传"></a><a href="http://www.ahwang.cn/world/20131210/1336426.shtml" target="_blank"><p>美女裸体“无肉”宣传</p></a></li>
+                                    <li><a href="http://photo.ahwang.cn/wenyu/20131210/1336306.shtml" target="_blank" title="嫩模限制级私房照"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386637537457.jpg" alt="嫩模限制级私房照"></a><a href="http://photo.ahwang.cn/wenyu/20131210/1336306.shtml" target="_blank"><p>嫩模限制级私房照</p></a></li>
+                                    <li><a href="http://photo.ahwang.cn/story/20131210/1336444.shtml" target="_blank" title="上帝视角拍摄的人物生活瞬间"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386665016535.jpg" alt="上帝视角拍摄的人物生活瞬间"></a><a href="http://photo.ahwang.cn/story/20131210/1336444.shtml" target="_blank"><p>上帝视角拍摄的人物生活瞬间</p>a></li>
+                                    <li><a href="http://photo.ahwang.cn/wenyu/20131210/1336440.shtml" target="_blank" title="台主播萱萱大尺度露毛照疯传"><img src="http://upload.ahwang.cn/2013/1210/thumb_140_110_1386664429128.jpg" alt="台主播萱萱大尺度露毛照疯传"></a><a href="http://photo.ahwang.cn/wenyu/20131210/1336440.shtml" target="_blank"><p>台主播萱萱大尺度露毛照疯传</p></a></li>
+                                    <li><a href="http://photo.ahwang.cn/story/20131209/1336044.shtml" target="_blank" title="记录东京少女的神秘私生活"><img src="http://upload.ahwang.cn/2013/1209/thumb_140_110_1386556957720.jpg" alt="记录东京少女的神秘私生活"></a><a href="http://photo.ahwang.cn/story/20131209/1336044.shtml" target="_blank"><p>记录东京少女的神秘私生活</p></a></li>
+                                    <!--内容页推荐 视觉焦点-->
+				                </ul>
+            	                <div class="clear"></div>
+				                <a href="http://www.ahtv.cn/huod/2013/01/jyjc/" target="_blank"><img src="http://www.ahwang.cn/ad/201304/ahdst_rj.jpg"  width="250" height="80"/></a>
+                            </div> 
+               
+                            <div class="special clearfix m10">
+                           		<h2><a href="http://pinglun.ahwang.cn/">时评</a></h2>
+                                <ul>
+                                  <li><a href="http://pinglun.ahwang.cn/mtgc/20131212/1336930.shtml">如何纾解“延迟退休”焦虑</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/mtgc/20131212/1336929.shtml">环保是一项长期而艰苦的工作</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/ahwp/20131211/1336521.shtml">“背书式辟谣”比法官开房更恶劣</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/ahwp/20131211/1336520.shtml">延迟退休还应“渐进式”消除待遇差别</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/ahwp/20131210/1336215.shtml">国企为镇领导发工资背后的猫腻</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/ahwp/20131210/1336213.shtml">制度正义沉睡才有慈母毒儿悲剧</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/ahwp/20131210/1336211.shtml">政绩考核抵御急功近利的诱惑</a></li>
+                                  <li><a href="http://pinglun.ahwang.cn/mtgc/20131209/1336134.shtml">火车退票政策不能说改就改</a></li>
+                                </ul>
+                                <!--安徽网新闻中心 时评-->
+                            </div>                        
+                        </div>
+                    </div>        
+                </div>
+                <!--友情链接-->
+                <div id="main">
+                    <div class="yqlink">
+                    	<div class="titleTab">
+                          <ul>
+                            <li id="linknav1" class="on"><a onclick="javascript:void(0);" onmouseover="tabDiv('link',1,7,'on')" target="_blank">友情链接</a></li>     
+                          </ul>
+                        </div>
+                		<div class="linknav">
+                			<div id="link1" style="display: block;">
+                				 <div class="b_cont"> 
+                                    <a href="http://www.fynews.net/" target="_blank">阜阳新闻网</a> | <a href="http://www.bbnews.cn/" target="_blank">蚌埠新闻网</a> | <a href="http://www.ahbbtv.com/" target="_blank">蚌埠广播电视网</a>   | <a href="http://www.hbnews.net/" target="_blank">淮北新闻网</a> | <a href="http://www.chuzhou.cn/" target="_blank">滁州在线</a> | <a href='http://www.ysnews.org' target='_blank'>颍上县新闻网</a>  | <a href='http://www.chiznews.com' target='_blank'>池州新闻网</a> | <a href='http://www.bozhou.cn' target='_blank' rel="nofollow">亳州新闻网</a>  |  <a href='http://www.tcnews.cc' target='_blank'>桐城新闻网</a> | <a href='http://www.tlnews.cn' target='_blank'>铜陵新闻网</a> | <a href='http://www.zgfxnews.com' target='_blank'>拂晓新闻网</a> | <a href='http://www.ngnews.cn' target='_blank'>宁国网</a>  | <a href='http://www.gndaily.com/' target='_blank'>赣州网</a> | <a href='http://www.ybnews.cn' target='_blank'>延边新闻网</a> | <a href='http://www.qx162.com/' target='_blank'>黔讯网</a> | <a href='http://bbs.xmfish.com/' target='_blank'>小鱼网</a>
+                                </div>
+                			</div>
+                		</div>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div class="footer">
+                    <a target="_blank" href="http://www.ahwang.cn/other/about.html">关于我们</a>　|　
+                    <a target="_blank" href="http://www.ahwang.cn/other/price.html">广告价格</a>　|　
+                    <a target="_blank" href="http://www.ahwang.cn/image/site/index.html">呼叫中心</a>　|　
+                    <a target="_blank" href="http://www.ahwang.cn/other/contact.html">联系我们</a> 　|　
+                    <a target="_blank" href="http://www.ahwang.cn/other/link.html">友情链接</a> 　|　
+                    <a target="_blank" href="http://www.ahwang.cn/other/bq.html">版权声明 </a>　<br>
+                            版权所有：安徽网 &nbsp;&nbsp;广告热线/传真：0551-65286123 &nbsp;65286114&nbsp;&nbsp;投诉受理：962000  <br>
+                            合肥市望江西路505号新安传媒印务公司4楼　新闻备案号：皖网宣备06024号　信息产业部备案/许可证编号: 皖ICP备05001054号<br>
+                            Copyright © 2010 ahwang.cn All Right Reserved.　
+                    <script type="text/javascript" src="{JS_PATH}zizhan/js/index.js"></script> 
+                    <script type="text/javascript"> 
+                    jQuery.tab2("video"); 
+                    jQuery.tab2("pics"); 
+                    </script>        
+                </div>
+                <script type="text/javascript"> 
+                    $(function() {
+                    	$('#tab-title-4 >li >a').hover(function(){
+                    		var id = $(this).attr('href');
+                    		$('.tabs-focus').removeClass('tabs-focus');
+                    		$(this).addClass('tabs-focus');
+                    		$('.place-Article').hide();
+                    		$(id).show();
+                    	});
+                    });
+                </script> 
+    </body>
+</html>

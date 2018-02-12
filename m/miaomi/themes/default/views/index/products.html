@@ -1,0 +1,593 @@
+
+<link type="text/css" rel="stylesheet" href="{url:#css/product.css}" />
+<!-- <script type='text/javascript' src="{url:#js/jquery.enlarge.js}"></script> -->
+<link rel="stylesheet" type="text/css" href="{url:#css/jquery.fullPage.css}">
+<link rel="stylesheet" type="text/css" href="{url:#css/style.css}">
+<link rel="stylesheet" type="text/css" href="{url:#css/bootstrap.min.css}">
+<link rel="icon" href="{url:#images/favicon.png}" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="keywords" content="{$seo_keywords}">
+    <meta name="description" content="{$seo_description}">
+    <title>喵咪鼠标官网</title>
+    <link rel="shortcut icon" href="{url:@favicon.ico}"/>
+    <link rel="bookmark" href="{url:@favicon.ico}" />
+    <link rel="stylesheet" type="text/css" href="{url:#css/common.css}">
+    <link rel="stylesheet" type="text/css" href="{url:#css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" href="{url:#js/artdialog/tiny-dialog.css}">
+    <style type="text/css">
+        .swiper-container {width: 100%;}
+        .js-template{display:none !important;}
+        .selectpicker{
+            width:160px;
+            height:34px;
+            margin-right:20px;
+            border-color:#cccccc;
+            border-radius: 4px;
+            text-align:center;
+            padding: 6px 12px;
+        }
+        .btn-info {
+            background-color: #3db1fa;
+            border-color: #3db1fa;
+            border-radius: 4px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var server_url = '{url:@}__con__/__act__';
+        var Tiny = {user:{name:'{$user['name']|''}',id:'{$user['id']|0}',online:{$user['id']|'true'|'false'}}};
+    </script>
+</head>
+<style>
+#product-intro .show-list a.current {
+    border-color: #3db1fa;
+}
+.spec-values .selected {
+    border: 1px solid #3db1fa;
+}
+#buy-btn {
+    background-color:#3db1fa;
+    border:1px solid #3db1fa;
+}
+ body .ml-nav{
+    background-color: #fdfcfd;
+}
+body {
+    font-family: '微软雅黑';
+}
+</style>
+<div class="ml-nav" style="height:59px;">
+    <div class="center-wrap clearfix">
+        <span class="ml-logo"><img src="{url:#images/logo.png}" width="40" height="40"></span>
+        <p class="ml-link">
+            <a href="{url:/index}">在线商城</a>
+            <a href="{url:/index/download}">软件下载</a>
+            <a href="{url:/index/instruction}">操作说明</a>
+        </p>
+        <span style="float:right;padding-right:100px;margin:0 auto;">当前位置：在线商城->商品详情页</span>
+    </div>
+</div>
+
+<div class="container" style="margin-top:100px;">
+    <!--S 产品展示-->
+    <div id="product-intro">
+        <!-- <div class="sub-1">
+            <div id="gallery">
+                <a class="turn-left ie6png"></a>
+                <div class="show-list">
+                    <div id="pblack" style="position: absolute;height:800px;display:block;">
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_black.png}"  width="60"></a>
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_orange.png}"  width="60"></a>
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_red.png}"  width="60"></a>
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_yellow.png}"  width="60"></a>
+                    </div>
+                    <div id="pwhite" style="position: absolute;height:800px;display:none;">
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_black.png}"  width="60"></a>
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_orange.png}"  width="60"></a>
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_red.png}"  width="60"></a>
+                        <a class="small-img" href="javascript:;"><img src="{url:#images/detail_yellow.png}"  width="60"></a>
+                    </div>
+                </div>
+                <a class="turn-right ie6png"></a>
+            </div>
+        </div> -->
+        <div class="sub-2" style="left: 1px;width: 400px;">
+            <div id="preview">
+                <div id="imgmini" class="" style="width: 556px;height:580px;border: none;">
+                    <img class="big-pic" width="70%" height="70%" src="{url:#images/detail_black.png}" >
+                </div>
+            </div>
+        </div>
+        <div class="sub-3">
+            <ul class="product-info">
+                <li class="product-title" style="font-size:30px;">
+                    <span style="margin-right: 165px;">大鼠</span><span style="margin-right: 165px;">光电</span><span>有线</span>
+                </li>
+                <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                    <span style="margin-right: 145px;">鼠标大小</span><span style="margin-right: 145px;">工作方式</span><span>连接方式</span>
+                </li>
+                <li class="product-title" style="font-size:30px;">
+                    <span style="margin-right: 165px;">USB</span><span style="margin-right: 174px;">6个</span><span>双向滚轮</span>
+                </li>
+                <li class="product-title2"  style="margin-bottom:10px;font-size:20px;">
+                    <span style="margin-right: 149px;">鼠标接口</span><span style="margin-right: 160px;">按键数</span><span>滚轮方向</span>
+                </li>
+                <fieldset class="line-title" style="color:#eeeeee"></fieldset>
+                <li class="product-title" style="margin-bottom: 10px;font-size:30px;" >标准版&nbsp;/&nbsp;高配版</li>
+                <li class="product-title" style="font-size:22px;" >外观颜色</li>
+                <ul class="spec-values clearfix choosecolor" style="margin-bottom:10px;">
+                    <li data-value="black" class="selected" color-name="沉稳黑" style="margin-right:40px;"><span><img style="margin-right:0px;" src="{url:#images/index_black.png}"></span><i></i></li>
+                    <li data-value="orange" color-name="幸运橙" style="margin-right:40px;"><span><img style="margin-right:0px;" src="{url:#images/index_orange.png}"></span><i></i></li>
+                    <li data-value="red" color-name="激情红" style="margin-right:40px;"><span><img style="margin-right:0px;" src="{url:#images/index_red.png}"></span><i></i></li>
+                    <li data-value="yellow" color-name="活力黄" style="margin-right:40px;"><span><img style="margin-right:0px;" src="{url:#images/index_yellow.png}"></span><i></i></li>
+                </ul>
+               <!--  <li class="product-title" style="font-size:18px;" >
+                    <span class="" style="border:1px solid #3db1fa;"><img style="margin-right:40px;" src="{url:#images/index_black.png}"></span>
+                    <span class=""><img style="margin-right:40px;" src="{url:#images/index_orange.png}"></span>
+                    <span class=""><img style="margin-right:40px;" src="{url:#images/index_red.png}"></span>
+                    <span class=""><img style="" src="{url:#images/index_yellow.png}"></span>
+                </li> -->
+                <li data-value="black" class="selected" style="font-size:20px;">
+                    <span class="" style="margin-right:40px;">沉稳黑</span>
+                    <span class="" style="margin-right:40px;">幸运橙</span>
+                    <span class="" style="margin-right:40px;">激情红</span>
+                    <span class="" style="">活力黄</span>
+                </li>
+
+                <fieldset class="line-title" ></fieldset>
+            </ul>
+
+            <div class="spec-info">
+                <div class="spec-close"></div>
+
+                <dl class="spec-item clearfix">
+                    <dt style="font-size:20px;">购买量</dt>
+                    <dd class="buy-num" id="buy-num-bar">
+                        <a href="javascript:;" class="decrease"><i class="icon-minus-16"></i></a>
+                        <input id="buy-num" name="buy_Num" value="1"  maxlength=4 style="height:26px;">
+                        <a href="javascript:;" class='increase' style="margin-right:20px;"><i class="icon-plus-16"></i></a>
+                        <button type="button" class="btn btn-primary" id="buy-btn" style="letter-spacing:7px;font-size:20px;">现在购买</button>
+                        <b id="store_Nums" class="red" style="display:none;">9999</b>
+                    </dd>
+                </dl>
+                <dl id="spec-msg" class="spec-item clearfix" style="display: none;">
+                    <dt></dt>
+                    <dd ><p class="msg"><i class="icon icon-alert-16"></i><span >请选择您要购买的商品规格</span></p>
+                    </dd>
+                    <dd class="product-btns">
+                        <button type="button" class="btn btn-primary" id="buy-btn">现在购买</button>
+                    </dd>
+                </dl>
+                <!-- <dl class="spec-item clearfix">
+                    <dd class="product-btns">
+                        <button type="button" class="btn btn-primary" id="buy-btn">现在购买</button>
+                    </dd>
+                </dl> -->
+            </div>
+        </div>
+    </div>
+     <fieldset class="line-title" style="margin-top:60px;margin-bottom:16px;border-top: 1px solid #a0a0a0;"></fieldset>
+     <div class="sub-3">
+        <ul class="product-info">
+            <li class="product-title" style="font-size:18px;margin-bottom:10px;">
+                <span style="margin-right: 325px;color:#333;font-weight:bold;font-size:30px;">配置</span><span style="margin-right: 325px;color:#333;font-weight:bold;font-size:30px;">标准版</span><span style="color:#333;font-weight:bold;font-size:30px;">高配版</span>
+            </li>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 305px;">鼠标大小</span><span style="margin-right: 376px;">大鼠</span><span>大鼠</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 217px;">工作方式/连接方式</span><span style="margin-right: 330px;">USB,有线</span><span>USB,有线</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 326px;">按键数</span><span style="margin-right: 381px;">6个</span><span>6个</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 306px;">滚轮方向</span><span style="margin-right: 335px;">双向滚轮</span><span>双向滚轮</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 178px;">最高分辨率/分辨率可调</span><span style="margin-right: 292px;">4000dpi,四挡</span><span>4000dpi,四挡</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 304px;">人体工学</span><span style="margin-right: 336px;">右手设计</span><span>右手设计</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+           <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 305px;">鼠标颜色</span><span style="margin-right: 240px;">黑色,橙色,红色,黄色</span><span>黑色,橙色,红色,黄色</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 306px;">系统支持</span><span style="margin-right: 114px;">win10,win8,win7,winvista,winxp</span><span>win10,win8,win7,winvista,winxp</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 306px;">产品特点</span><span style="margin-right: 124px;">支持语音识别,语音输入,人工智能</span><span>支持语音识别,语音输入,人工智能</span>
+            </li>
+            <fieldset class="line-title"></fieldset>
+            <li class="product-title2" style="margin-bottom:10px;font-size:20px;">
+                <span style="margin-right: 345px;">价格</span><span style="margin-right: 379px;color:#3db1fa;">199</span><span style="color:#3db1fa;">299</span>
+            </li>
+        </ul>
+     </div>
+     <fieldset class="line-title" style="margin-top:16px;margin-bottom:16px;border-top: 1px solid #999999;"></fieldset>
+     <div class="sub-3" style="width:1210px;height:1400px;">
+        <img src="{url:#images/detail_parama1.png}" width="1200" height="534" alt="">
+        <fieldset class="line-title" style="margin-top:60px;margin-bottom:16px;border-top: 1px solid #a0a0a0;"></fieldset>
+        <img src="{url:#images/detail_parama2.png}" width="1200" height="363" alt="">
+        <fieldset class="line-title" style="margin-top:60px;margin-bottom:16px;border-top: 1px solid #a0a0a0;"></fieldset>
+        <img src="{url:#images/detail_parama3.png}" width="1200" height="364" alt="">
+
+     </div>
+</div>
+<div class="container" style="width:100%;margin-top:100px;background-color: #eeeeee;height:110px;font-size:22px;color:#aaaaaa;text-align: center;line-height:110px;">
+    保修政策：返厂保修，享受三包服务&nbsp;&nbsp;&nbsp;质保时间：1年&nbsp;&nbsp;&nbsp;质保备注：7日包退，15日包换，1年保修&nbsp;&nbsp;&nbsp;客服电话：0551-68157793
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;border-bottom: 1px solid #3db1fa;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel"><b style="font-weight:600;font-size:18px;">确认订单</b></h4>
+      </div>
+      <div class="modal-body">
+        <form id="subform">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label" style="margin-bottom:10px;"><b style="font-weight:600;">配送信息:</b></label>
+            <div class="row">
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="accept_name" placeholder="请输入姓名">
+              </div>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="mobile" placeholder="请输入手机号">
+              </div>
+              <div class="col-sm-6" style="margin-top:20px;">
+                  <input type="text" class="form-control" id="smscode" placeholder="请输入验证码">
+              </div>
+              <div class="col-sm-6" style="margin-top:20px;">
+                  <!-- <button class="btn btn-info" type="button" id="getsms" onclick="update_p()">获取验证码</button> -->
+                  <input type="button" class="btn btn-info" value="获取验证码"  id="getsms" name="getsms" onclick="showtime(30)">
+              </div>
+              <div class="col-sm-12" style="margin-top:20px;">
+                    <select id="province"  name="province" class="selectpicker">
+                      <option value="0">==省份/直辖市==</option>
+                    </select>
+                    <select id="city" name="city"  class="selectpicker">
+                        <option value="0">==市==</option>
+                    </select>
+                    <select id="county" name="county"  class="selectpicker">
+                        <option value="0">==县/区==</option>
+                    </select>
+              </div>
+              <div class="col-sm-12"></br>
+                  <textarea class="form-control" rows="2" id="addr" placeholder="详细地址：街道、楼牌号等"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" style="border-top: 1px solid #3db1fa;">
+              <label for="message-text" class="control-label" style="margin:10px 0 10px 0;"><b style="font-weight:600;">商品清单:</b></label>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width:33.33333%;text-align:center;"> 名称 </th>
+                        <th style="width:33.33333%;text-align:center;"> 数量 </th>
+                        <th style="width:33.33333%;text-align:center;"> 价格 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="goods_name"  style="text-align:center;"> 喵咪鼠标标配版 </td>
+                        <td id="goods_num"  style="text-align:center;"></td>
+                        <td id="goods_price"  style="text-align:center;"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table" style="border-collapse: collapse !important;">
+                <tbody>
+                     <tr>
+                        <td style="width:33.33333%;"></td>
+                        <td style="width:33.33333%;text-align:right;"> 商品小计金额 </td>
+                        <td style="width:33.33333%;text-align:center;" id="subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>  </td>
+                        <td style="text-align:right;"> 快递费 </td>
+                        <td id="freight" style="text-align:center;">  </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:right;"> 总计 </td>
+                        <td id="totalprice" style="color:#3db1fa;font-weight:600;text-align:center;"></td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+            <div class="form-group" style="border-top: 1px solid #3db1fa;">
+                <label for="recipient-name" class="control-label" style="margin-top:10px;"><b style="font-weight:600;">支付方式:</b></label>
+            </div>
+            <div class="form-group" >
+                <label class="radio-inline">
+                <input type="radio" class="pay_code" name="inlineRadioOptions" id="inlineRadio2" value="alipay"> <img src="{url:#images/alipay.png}" width="40" height="40"/><div>支付宝</div>
+                </label>
+                <!-- <label class="radio-inline" style="margin-left:50px;">
+                  <input type="radio" class="pay_code" name="inlineRadioOptions" id="inlineRadio3" value="wxpay"> <img src="{url:#images/wxpay.png}" width="40" height="40" /><div>微信</div>
+                </label> -->
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="border-top: 1px solid #3db1fa;">
+        <!-- <label for="recipient-name" class="control-label totalprice" style="margin-right:10px;background-color:#e5f8ff;"></label> -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="confirm_order" style="background-color: #3db1fa;border-color: #3db1fa;">确认订单</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{url:#js/jquery.min.js}"></script>
+<script src="{url:#js/jquery.fullPage.js}"></script>
+<script src="{url:#js/bootstrap.min.js}"></script>
+<script src="{url:#js/artdialog/dialog-plus-min.js}"></script>
+<script src="{url:#js/common.js}"></script>
+<script src="{url:#js/tinyslider.js}"></script>
+<script src="{url:#js/layer/layer.js}"></script>
+<script type="text/javascript">
+ function update_p(num) {
+    if(num > 0 && num < 60) {
+        $('#getsms').attr('disabled',true);
+        $('#getsms').val('已发送('+num+'s)');
+    }else {
+        $('#getsms').attr('disabled',false);
+        $('#getsms').val('获取验证码');
+    }
+}
+function showtime() {
+    if(!$('#mobile').val()) {
+        layer.alert('请填写手机号码', {icon: 5,skin: 'layer-ext-moon'});return;
+    }else{
+        for(var i=0; i<=60; i++) {
+            window.setTimeout("update_p(" + i + ")", (60-i) * 1000);
+        }
+        $.ajax({
+            type: 'post',
+            url: "{url:/index/sendsms}",
+            data: {"mobile":$('#mobile').val()},
+            dataType: 'json',
+            success:function(ret) {
+                if(ret.status == 1) {
+                    //layer.alert(ret.msg, {icon: 1,skin: 'layer-ext-moon'});
+                }else {
+                    layer.alert(ret.msg, {icon: 5,skin: 'layer-ext-moon'});
+                }
+            },
+            error: function() {
+                layer.alert('请求出错', {icon: 5,skin: 'layer-ext-moon'});
+            }
+        });
+    }
+}
+
+
+$("#areas").Linkage({ url:"{url:/ajax/area_data}",selected:[{$province|0},{$city|0},{$county|0}],callback:function(data){
+    console.log(data);
+}});
+
+$('#province').on('change',function() {
+    $.ajax({
+        type: 'post',
+        url: "{url:/ajax/area}",
+        data: {"id":$(this).val()},
+        dataType: 'json',
+        success:function(ret) {
+            var html = '<option value="0">==市==</option>';
+            $.each(ret, function(idx, obj){
+                html += '<option value="'+obj.id+'">'+obj.name+'</option>';
+            })
+            $('#city').html("");
+            $('#city').html(html);
+        },
+        error: function() {
+            layer.alert('请求出错', {icon: 5,skin: 'layer-ext-moon'});
+        }
+    });
+})
+
+$('#city').on('change',function() {
+    $.ajax({
+        type: 'post',
+        url: "{url:/ajax/area}",
+        data: {"id":$(this).val()},
+        dataType: 'json',
+        success:function(ret) {
+            var html = '<option value="0">==县/区==</option>';
+            $.each(ret, function(idx, obj){
+                html += '<option value="'+obj.id+'">'+obj.name+'</option>';
+            })
+            $('#county').html("");
+            $('#county').html(html);
+        },
+        error: function() {
+            layer.alert('请求出错', {icon: 5,skin: 'layer-ext-moon'});
+        }
+    });
+})
+
+$("#gallery  .small-img").each(function(i){
+    if(i==0)$(this).addClass("current");
+    $(this).on("mouseenter",function(){
+        $(this).parent().find("a").removeClass("current");
+        $(this).addClass("current");
+        $("#imgmini img").attr("src",$(this).find("img").attr("src"));
+        $("#imgmini img").attr("source",$(this).find("img").attr("source"));
+    })
+});
+
+var _Color = '';
+var _ColorName = '';
+var _Config = 'standard';
+var _ConfigName = '标准版';
+var _Num = 0;
+var _UnitPrice = {$_UnitPrice};
+var _SubTotal = 0;
+var _Total = 0;
+var _Freight = {$_Freight};
+
+if($('.chooseconfig').find('.selected').attr('data-value')) {
+    _Config = $('.chooseconfig').find('.selected').attr('data-value');
+    _ConfigName = $('.chooseconfig').find('.selected').text();
+}
+if($('.choosecolor').find('.selected').attr('data-value')) {
+    _Color = $('.choosecolor').find('.selected').attr('data-value');
+    _ColorName = $('.choosecolor').find('.selected').attr('color-name');
+}
+if($("#buy-num-bar input").val()) {
+    _Num = parseInt($("#buy-num-bar input").val());
+}
+
+$(".spec-values.chooseconfig li").on("click", function(){
+    var disabled = $(this).hasClass('disabled');
+    if(disabled) return;
+    var flage = $(this).hasClass('selected');
+    $(this).parent().find("li").removeClass("selected");
+    if(!flage){
+        $(this).addClass("selected");
+        _Config = $(this).attr('data-value');
+        _ConfigName = $(this).text();
+        if(_Config == 'standard') {
+            _UnitPrice = {$_UnitPrice};
+        }else if(_Config == 'luxury') {
+            _UnitPrice = {$_UnitPrice2};
+        }
+    }else {
+        _Config = '';
+    }
+})
+
+$(".spec-values.choosecolor li").on("click", function(){
+    var disabled = $(this).hasClass('disabled');
+    if(disabled) return;
+    var flage = $(this).hasClass('selected');
+    $(this).parent().find("li").removeClass("selected");
+    if(!flage){
+        $(this).addClass("selected");
+        _Color = $(this).attr('data-value');
+        _ColorName = $(this).attr('color-name');
+        if(_Color == 'black') {
+            // $("#pblack").show();
+            // $('#pwhite').hide();
+            $("#imgmini img").attr("src","{url:#images/detail_black.png}");
+        }else if(_Color == 'orange') {
+            // $('#pblack').hide();
+            // $('#pwhite').show();
+            $("#imgmini img").attr("src","{url:#images/detail_orange.png}");
+        }else if(_Color == 'red') {
+            $("#imgmini img").attr("src","{url:#images/detail_red.png}");
+        }else if(_Color == 'yellow') {
+            $("#imgmini img").attr("src","{url:#images/detail_yellow.png}");
+        }else {
+            $("#imgmini img").attr("src","{url:#images/detail_black.png}");
+        }
+    }else {
+        _Color = '';
+    }
+})
+
+$("#buy-num-bar .decrease").on("click",function(){
+    var num = $("#buy-num-bar input").val();
+    if(num>1) num--;
+    else num=1;
+    $("#buy-num-bar input").val(num);
+    _Num = parseInt(num);
+});
+$("#buy-num-bar .increase").on("click",function(){
+    var num = $("#buy-num-bar input").val();
+    var max = parseInt($("#store_Nums").text());
+    if(num<max) num++;
+    else num=max;
+    $("#buy-num-bar input").val(num);
+    _Num = parseInt(num);
+});
+$("#buy-num-bar input").on("change",function(){
+    var value = $(this).val();
+    var max = parseInt($("#store_Nums").text());
+    if((/^\d+$/i).test(value)){
+        value = Math.abs(parseInt(value));
+        if(value<1) value = 1;
+        if(value>max) value = max;
+    }else{
+        value = 1;
+    }
+    $(this).val(value);
+    _Num = parseInt(value);
+})
+
+$(document).on('click','#buy-btn',function() {
+    if(!_Config) {
+        layer.alert('请选择配置', {icon: 5,skin: 'layer-ext-moon'});return;
+    }
+    if(!_Color) {
+        layer.alert('请选择颜色', {icon: 5,skin: 'layer-ext-moon'});return;
+    }
+    if(!_Num) {
+        layer.alert('请输入购买量', {icon: 5,skin: 'layer-ext-moon'});return;
+    }
+    _SubTotal = Math.round(_Num * _UnitPrice * 100) / 100;
+    _Total = Math.round((_SubTotal + _Freight)*100) / 100 ;
+    $('#goods_name').text(_ConfigName + _ColorName);
+    $('#goods_num').text('x ' + _Num);
+    $('#goods_price').text('¥ ' + _UnitPrice);
+    $('#freight').text('¥ ' + _Freight);
+    $('#subtotal').text('¥ ' + _SubTotal);
+    $('#totalprice').text('¥ ' + +_Total);
+    $('.totalprice').text('总计金额: ' + '¥ ' +_Total);
+    $('#exampleModal').modal();
+})
+
+$(document).on('click','#confirm_order',function() {
+    var param = {};
+    param.accept_name = $('#accept_name').val();
+    param.mobile = $('#mobile').val();
+    param.smscode = $('#smscode').val();
+    param.province = $('#province').val();
+    param.city = $('#city').val();
+    param.county = $('#county').val();
+    param.addr = $('#addr').val();
+    if($('.pay_code:checked').val() != undefined) {
+        param.pay_code = $('.pay_code:checked').val();
+    }else {
+        param.pay_code = '';
+    }
+    param.spec = $('#goods_name').text();
+    param.goods_nums = _Num;
+    param.goods_price = _UnitPrice;
+    param.price = Math.round(_Num * _UnitPrice * 100) / 100;
+    param.freight = _Freight;
+    param.total_price = Math.round((param.price+param.freight)*100) / 100 ;
+    $.ajax({
+        type: 'post',
+        url: "{url:/index/order}",
+        data: param,
+        dataType: 'json',
+        success:function(ret) {
+            if(ret.status == 1) {
+                layer.alert(ret.msg, {icon: 1,skin: 'layer-ext-moon'});
+                //  跳转至支付页面
+                window.location.href = "/index.php?con=trade&act=pay"+"&order_id="+ret.data.order_id + "&pay_code="+ret.data.pay_code;
+            }else {
+                layer.alert(ret.msg, {icon: 5,skin: 'layer-ext-moon'});
+            }
+        },
+        error: function() {
+            layer.alert('请求出错', {icon: 5,skin: 'layer-ext-moon'});
+        }
+    });
+})
+
+</script>
+<!--E 产品展示-->

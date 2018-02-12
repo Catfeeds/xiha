@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            {{ message }}
+        </div>
+        <script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue! Hi, Linux!'
+    }
+});
+console.log(app);
+        </script>
+    </body>
+</html>

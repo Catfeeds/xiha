@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "page/xh_component/index",
+    "page/xh_component/ucenter",
+    "page/xh_component/test"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "嘻哈学车",
+    "navigationBarBackgroundColor": "#fbf9fe",
+    "backgroundColor": "#fbf9fe",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#1FCC7B",
+    "borderStyle": "white",
+    "backgroundColor": "#fbf9fe",
+    "list": [{
+      "pagePath": "page/xh_component/index",
+      "iconPath": "image/baoming@3x.png",
+      "selectedIconPath": "image/baoming-hover@3x.png",
+      "text": "报名"
+    }, {
+      "pagePath": "page/xh_component/ucenter",
+      "iconPath": "image/wode@3x.png",
+      "selectedIconPath": "image/wode-hover@3x.png",
+      "text": "我的"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

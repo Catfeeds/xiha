@@ -1,0 +1,38 @@
+a, span, p, div {font-family: "微软雅黑";}
+
+.navbar-toggle {padding: 10px; margin-right: 10px;}
+.navbar {margin-bottom: 0px;}
+.navbar-default {border: none; border-bottom: 1px solid #e7e7e7; background: #fff !important; color: #009688 !important; z-index: 9999;}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {position: absolute; width: 100%; background: #fff; opacity: 0.95; box-shadow: 0px 2px 3px rgba(0,0,0,0.15); border: none;}
+.navbar-right li {border-bottom: 1px solid #e7e7e7;}
+.navbar-nav {margin: 0px 10px;}
+.products {}
+.products .btn {padding: 0px ;}
+.products-list {background: #fff; height: 150px; width: 100%; border-bottom: 1px solid #eee; border-top: 1px solid #eee; border-radius: 0px !important; position: relative;}
+.products-list-left {z-index: 999; width: 100%; position: absolute;}
+
+.products a {display: block; margin-bottom: 10px; border-bottom: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5;}
+.products a:hover {background: #00BD9C; }
+
+.coach-banner-content {width: 100%; height: 200px; position: absolute; z-index: 999; top:100px; text-align: center; color: #555;}
+.slide-products-inner {position: relative; margin: 0px auto; width: 50%; z-index: 0;}
+.products-detail {position: relative;}
+.slide-content {height: 170px; width: 100%; padding-top: 60px;}
+.slide-content ul {list-style: none; padding: 0px;}
+.slide-content ul li {text-align: center; opacity: 0;}
+.slide-content .active {opacity: 1;}
+.swiper-button-prev {background-image: url(../images/arrow-l.png) !important;}
+.swiper-button-next {background-image: url(../images/arrow-r.png) !important;}
+
+.footer {color: #c4c4c4; text-align: center; margin-top: 10px;  margin-bottom: 10px;}
+.download {background: #000; opacity: 0.8; width: 100%; height: 60px; position: fixed; bottom: 0px;}
+.download img {height: 40px; width: 40px; margin-top: 10px; margin-left: 10px; float: left;}
+.download .app-name {color: #eee; font-size: 18px; width: 130px; margin-top: 17px; margin-left: 10px; float: left;}
+.download .download-btn {background: #009688; color: #fff; border: none; border-radius: 40px; width: 100px; float: right; margin-right: 10px; margin-top: 14px;}
+
+.coach-recruit {position: fixed; width: 100%; left:0px; bottom: 0px; z-index: 999;}
+.recruit-input {border: 1px solid #e7e7e7; padding: 10px; margin-bottom: 10px;}
+.recruit-input input {border: none;}
+.recruit-input .identify_code {float: right; background: #ccc; border: none; padding: 2px 10px; color: #fff; border-radius: 2px;}
+
+.recruit-info-tips {padding-left: 15px; height: 60px; background: #22CD7E; color: #fff; line-height: 60px; font-size: 1.8rem;}

@@ -1,0 +1,245 @@
+<!--{include file="library/header.lbi"}-->
+
+	<form method="post" action="index.php?action=coach&op=searchcoach" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>教练列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+                <a href="index.php?action=coach&op=add" class="button button-small border-green">添加教练</a>
+                <input type="button" class="button button-small border-yellow" onclick="delallcoach()" value="批量删除" />
+                <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+
+                <select class="input input-auto" name="conditiontype" id="search_condition">
+                    <option value="1">教练ID</option>
+                    <option value="2">教练姓名</option>
+                    <option value="3">教练号码</option>
+                </select>
+                <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="keywords">
+                <input type="submit" id="membersearch" class="button border-blue" value="搜索" />
+
+            </div>
+            <table class="table table-hover table-striped">
+            	<tr>
+                    <th width="50">选择</th>
+                    <th width="50" class="th-order">
+                        <div class="th-order-title">ID</div> 
+                        <div class="th-order-div">
+                            <a href="index.php?action=coach&op=index&type=default&order=asc"><span class="icon-caret-up" <!--{if $type == 'default' && $order == 'asc'}-->style="color:#09c;"<!--{/if}-->></span></a>
+                            <a href="index.php?action=coach&op=index&type=default&order=desc"><span class="icon-caret-down" <!--{if $type == 'default' && $order == 'desc'}-->style="color:#09c;"<!--{/if}-->></span></a>
+                        </div>
+                    </th>
+                    <th width="100">姓名
+                        <span class="tips icon-exclamation-circle" title="点击姓名可查看姓名信息" data-place="right" data-toggle="hover" style="color:#f60; cursor:pointer;"></span>
+                    </th>
+                    <th width="100">号码</th>
+                    <th width="150" class="th-order">
+                        <div class="th-order-title">星级</div> 
+                        <div class="th-order-div">
+                            <a href="index.php?action=coach&op=index&type=star&order=asc"><span class="icon-caret-up" <!--{if $type == 'star' && $order == 'asc'}-->style="color:#09c;"<!--{/if}-->></span></a>
+                            <a href="index.php?action=coach&op=index&type=star&order=desc"><span class="icon-caret-down" <!--{if $type == 'star' && $order == 'desc'}-->style="color:#09c;"<!--{/if}-->></span></a>
+                        </div>
+                    </th>
+                    <th width="100" class="th-order">
+                        <div class="th-order-title">好评数</div> 
+                        <div class="th-order-div">
+                            <a href="index.php?action=coach&op=index&type=comment&order=asc"><span class="icon-caret-up" <!--{if $type == 'comment' && $order == 'asc'}-->style="color:#09c;"<!--{/if}-->></span></a>
+                            <a href="index.php?action=coach&op=index&type=comment&order=desc"><span class="icon-caret-down" <!--{if $type == 'comment' && $order == 'desc'}-->style="color:#09c;"<!--{/if}-->></span></a>
+                        </div>
+                    </th>
+                    <th width="150">地址</th>
+                    <th width="100">类型</th>
+                    <th width="80">在线
+                        <span class="tips icon-exclamation-circle" title="鼠标点击教练下面在线不在线按钮，可改变在线状态" data-place="right" data-toggle="hover" style="color:#f60; cursor:pointer;"></span>
+                    </th>
+                    <th width="230">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                <!--{if $coach_list}-->
+                <!--{foreach $coach_list as $key => $value}-->
+                <tr>
+                    <td><input type="checkbox" id="checkbox_<!--{$key}-->" name="id" value="<!--{$value.coach_id}-->" /></td>
+                    <td><!--{$value.coach_id}--></td>
+                    <td><a style="color:#09c;" href="index.php?action=coach&op=coachinfo&id=<!--{$value.coach_id}-->" title="查看教练详情"><!--{$value.coach_name}--></a></td>
+                    <td><!--{$value.coach_phone}--></td>
+                    <td>
+                        <!--{section name=loop loop=$value.coach_star}-->
+                        <span class="icon-star text-small text-red"></span>
+                        <!--{/section}-->
+                    </td>
+                    <td><!--{$value.good_coach_star}--></td>
+                    <td><!--{$value.coach_address}--></td>
+                    <td><!--{$value.type}--></td>
+                    <td>
+                        <a href="javascript:;" onclick="javascript:setonlinestatus(<!--{$value.coach_id}-->,this)">
+                            <!--{if $value.is_online == 1}-->
+                            <span class="badge bg-green"><!--{$value.online_status}--></span>
+                            <!--{else}-->
+                            <span class="badge bg-gray"><!--{$value.online_status}--></span>
+                            <!--{/if}-->
+                        </a>
+                    </td>
+                    <td>
+                        
+                        <div class="button-group border-blue">
+                            <button type="button" class="button button-little text-blue dropdown-toggle">
+                    
+                                修改 <span class="downward"></span>
+                            </button>
+                            <ul class="drop-menu" style="min-width:85px;">
+                    
+                                 <li>
+                                    <a href="javascript:void(0)" onclick="javascript:showcoachbase('<!--{$value.coach_id}-->', 'edit', '基本信息')">基本信息</a>
+                                </li>
+                                <li><a href="javascript:void(0)" onclick="javascript:showcoach('<!--{$value.coach_id}-->', 'timeconfig', '时间配置')">时间配置</a> </li>
+                            </ul>
+                    
+                        </div>
+                        <!-- <a class="button border-yellow button-little" href="#" onclick="delcoach(<!--{$value.coach_id}-->,this)">删除</a> -->
+                    </td>
+                </tr>
+                <!-- 弹出框 -->
+                <!--{/foreach}-->
+                <!--{else}-->
+                    <tr>
+                        <td colspan=5>暂无教练列表</td>
+                    </tr>
+                <!--{/if}-->
+            </table>
+            <div id="showdialog">
+    
+            </div>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+    // 展示教练时间配置信息
+        function showcoach(id, op, title) {
+            //iframe层-父子操作
+            layer.open({
+                type: 2,
+                title:title,
+                area: ['100%', '100%'],
+                shade:false,
+                moveType:1,
+                shift:0,
+                content: 'index.php?action=coach&op='+op+'&id='+id
+            });
+        }
+        // 展示教练基本信息
+        function showcoachbase(id, op, title) {
+            //iframe层-父子操作
+            layer.open({
+                type: 2,
+                title:title,
+                area: ['100%', '100%'],
+                shade:false,
+                moveType:1,
+                shift:0,
+                content: 'index.php?action=coach&op='+op+'&id='+id
+            });
+        }
+        // 跳转页面
+        $('#skipping').click(function() {
+            $(this).html('跳转中...');
+            var selectpage = $('#selectpage').find('option:selected').val();
+            location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&page="+selectpage;
+        })
+        
+        // 设置在线不在线状态
+        function setonlinestatus(id, obj) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=coach&op=online",
+                // dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data == 1) {
+                        if($(obj).find('span').hasClass('bg-green')) {
+                            $(obj).find('span').removeClass('bg-green');
+                            $(obj).find('span').addClass('bg-gray');
+                            $(obj).find('span').html('不在线');
+                        } else {
+                            $(obj).find('span').addClass('bg-green');
+                            $(obj).find('span').removeClass('bg-gray');
+                            $(obj).find('span').html('在线');
+                        }
+                            
+                    }
+                }
+            })
+        }
+
+        // 删除教练
+        function delcoach(id, obj) {
+            if(window.confirm('你确定删除吗？')) {
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=coach&op=delcoach",
+                    // dataType:'JSON',
+                    data:{'id':id},
+                    success:function(data) {
+                        if(data == 1) {
+                            $(obj).parents('tr').remove();
+                        }
+                    }
+                })
+                
+            } else {
+                return false;
+            }
+        }
+
+        // 批量删除教练
+        function delallcoach() {
+            if($('.table-hover').find('input:checked').val() == undefined) {
+                // alert('请选择需要删除的教练列表！');
+                layer.msg('请选择需要删除的教练列表！',{icon:0, offset:['0px','40%'], time:1500});
+                return false;
+            }
+            if(confirm('你确定删除吗？')) {
+                var check_id = '';
+                $(".table-hover input:checkbox").each(function(index) {
+                    if($("#checkbox_"+index+':checked').val() != undefined) {
+                        check_id += $("#checkbox_"+index+':checked').val()+',';
+                    }
+                        
+                    // alert($("#checkbox_"+index).val());
+                });
+                if(check_id.lastIndexOf(',') > 0) {
+                    check_id = check_id.substr(0, check_id.lastIndexOf(','));
+                }
+                // alert(check_id);
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=coach&op=delmore",
+                    data:{"check_id":check_id},
+                    dataType:"JSON",
+                    success:function(data) {
+                        if(data.code == 1) {
+                            location.href="index.php?action=coach&op=index";
+                        }
+                        // alert(data.code);
+                    }
+                })
+            } else {
+                return false;
+            }
+        }
+
+       
+
+        // 搜索检测
+        function searchcheck() {
+          var keywords = $('#keywords').val();
+          var type = $('#search_condition').find('option:selected').val();
+          if(keywords.trim() == '' || type.trim() == '') {
+            layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});
+            return false;
+          }
+        }
+    </script>
+<!--{include file="library/footer.lbi"}-->

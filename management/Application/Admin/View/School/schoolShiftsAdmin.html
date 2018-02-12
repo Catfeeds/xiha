@@ -1,0 +1,572 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>班制管理</title>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>驾校管理<span class="c-gray en">&gt;</span> 班制管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+            title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <form method="post" action="{:U('School/searchSchoolShifts')}" name="search">
+        <div class="pd-20">
+            <div class="">
+                <label for="deleted">按班制上架状态</label>
+                <select class="" name="deleted" id="deleted" style="width:150px;height:30px">                  
+                    <option value="">--不限状态--</option>    
+                    <option  value="1" <if condition="$deleted eq 1">selected</if> >上架</option>
+                    <option  value="2" <if condition="$deleted eq 2">selected</if> >下架</option>
+                </select>
+                <label for="is_promote">按班制推荐状态</label>
+                <select class="" name="is_promote" id="is_promote" style="width:150px;height:30px">                  
+                    <option value="">--不限状态--</option>   
+                    <option  value="1" <if condition="$is_promote eq 1">selected</if> >推荐</option>
+                    <option  value="2" <if condition="$is_promote eq 2">selected</if> >不推荐</option>
+                </select>
+                <label for="is_package">按套餐状态</label>
+                <select class="" name="is_package" id="is_package" style="width:150px;height:30px">                  
+                    <option value="">--不限状态--</option>   
+                    <option  value="1" <if condition="$is_package eq 1">selected</if> >是套餐</option>
+                    <option  value="2" <if condition="$is_package eq 2">selected</if> >不是套餐</option>
+                </select>
+                <label for="search_info">按班制信息 </label>
+                <select class="" name="search_info" id="search_info" style="width:150px;height:30px">                  
+                    <option value="">--不限关键词--</option>
+                    <option value="id" <if condition="$search_info eq id">selected</if> >ID</option>
+                    <if condition="$school_id eq 0">
+                        <option value="s_school_name" <if condition="$search_info eq s_school_name">selected</if> >驾校名称</option>
+                    </if>
+                    <option value="sh_title" <if condition="$search_info eq sh_title">selected</if> >班制名称</option>
+                    <option value="sh_license_name" <if condition="$search_info eq sh_license_name">selected</if> >牌照名称</option>
+                    <option value="sh_tag" <if condition="$search_info eq sh_tag">selected</if> >标签名称</option>
+                </select>
+                <input type="text" value="{$s_keyword}" name="s_keyword" placeholder="请输入关键词" class="input-text default size-M" style="width:200px">
+                <input type="submit" id="search_stu_comment_tea" class="btn btn-primary size-M default" style="width:60px" value="搜索" />
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+                <a href="javascript:;" onclick="addSchoolShift('添加班制','{: U('School/addSchoolShifts')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加班制</a></span> <span class="r"></span>
+                <span class="r">共有班制：<strong>{$count}</strong> 个</span>
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="40">ID</th>
+                            <th width="50">
+                                排序
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标双击排序表格有意外惊喜哦"></span>
+                            </th>
+                            <if condition="$school_id eq 0">
+                                <th width="80">驾校名称</th>
+                            </if>
+                            <th width="80">
+                                班制名称
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多班制信息"></span>
+                            </th>
+                            <th width="80">班制类型</th>
+                            <th width="60">教练名称</th>
+                            <th width="60">牌照名称</th>
+                            <th width="70">最终价格</th>
+                            <th width="70">班制头像</th>
+                            <th width="80">添加时间</th>
+                            <th width="50">是否推荐</th>
+                            <th width="50">是否套餐</th>
+                            <th width="50">是否上架</th>
+                            <th width="50">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="shifts_list" id="vo">
+                            <tr class="text-c signup_list" module-data="{$vo.id}">
+                                <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                                <td class="va-m">{$vo.id}</td>
+                                <td class="va-m changeable" data-field="order">
+                                    <span>{$vo.order}</span>
+                                    <input class="input-text " value="{$vo.order}" style="display:none" name="order" type="text" style="text-align:center;border-radius:5px;">
+                                </td>
+                                <if condition="$school_id eq 0">
+                                    <td class="va-m">{$vo.s_school_name}</td>
+                                </if>
+                                <td class="va-m">
+                                    <a href="javascript:;" class="schoolshiftsdetail" id="signuphover{$vo.id}" style="color:#09c">
+                                        {$vo.sh_title}
+                                    </a>
+                                </td>
+                                <td class="va-m">
+                                    <if condition="$vo.sh_type eq 1">
+                                        <span class="btn btn-success-outline radius">计时班</span>
+                                        <else/>
+                                        <span class="btn btn-warning-outline radius">非计时班</span>
+                                    </if>
+                                </td>
+                                <td class="va-m">{$vo.s_coach_name}</td>
+                                <td class="va-m">{$vo.sh_license_name}</td>
+                                <td class="va-m">￥{$vo.sh_money} 元</td>
+                                <if condition="$vo.sh_imgurl eq ''">
+                                    <td class="va-m">
+                                        --
+                                    </td>
+                                    <else/>
+                                    <td class="va-m">
+                                        <a href="javascript:;" class="shiftsimgurl" id="signuphover{$vo.id}" style="color:#09c">
+                                            预览
+                                        </a>
+                                    </td>
+                                </if>
+                                <td class="va-m">{$vo.addtime}</td>
+                                <td class="va-m setstatus">
+                                    <switch name="vo.is_promote">
+                                        <case value="1"><span data-id="{$vo.id}" title="1" class="btn btn-success size-S radius">推荐</span></case>
+                                        <case value="2"><span data-id="{$vo.id}" title="2" class="btn btn-danger size-S radius">不推荐</span></case>
+                                        <default /><span data-id="{$vo.id}" title="2" class="btn btn-danger size-S radius">不推荐</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setPackageStatus">
+                                    <switch name="vo.is_package">
+                                        <case value="1"><span data-id="{$vo.id}" title="1" class="btn btn-success size-S radius">是</span></case>
+                                        <case value="2"><span data-id="{$vo.id}" title="2" class="btn btn-danger size-S radius">否</span></case>
+                                        <default /><span data-id="{$vo.id}" title="2" class="btn btn-danger size-S radius">不推荐</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m setdeletedstatus">
+                                    <switch name="vo.deleted">
+                                        <case value="1"><span data-id="{$vo.id}" title="1" class="btn btn-success size-S radius">上架</span></case>
+                                        <case value="2"><span data-id="{$vo.id}" title="2" class="btn btn-danger size-S radius">下架</span></case>
+                                        <default /><span data-id="{$vo.id}" title="2" class="btn btn-danger size-S radius">不推荐</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m td-manage">
+                                    <a title="删除" href="javascript:void(0);" onclick="javascript:member_del(this,{$vo.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:void(0);" onclick="member_edit('编辑班制','{: U('School/editSchoolShifts')}?id={$vo.id}&school_id={$vo.sh_school_id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                                <td class="va-m schoolshiftsdetail" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;">
+                                        <tr width="100%">
+                                            <td class="blue text-center" style="font-weight:bold;width:100px;">班制名称</td>
+                                            <td>{$vo.sh_title}</td>
+                                            <td class="blue text-center" style="font-weight:bold;width:100px;">班制类型</td>
+                                            <td>
+                                                <if condition="$vo.sh_type eq 1">
+                                                    计时班
+                                                    <else/> 非计时班
+                                                </if>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold;width:100px;">标签名</td>
+                                            <td class="red text-red" colspan=3>{$vo.sh_tag}</td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td class="blue text-center" style="font-weight:bold;width:100px;">牌照</td>
+                                            <td>{$vo.sh_license_name}</td>
+                                            <td class="blue text-center" style="font-weight:bold;width:100px;">教练名称</td>
+                                            <td>{$vo.s_coach_name}</td>
+                                        </tr>
+                                        <if condition="$school_id eq 0">
+                                            <tr width="100%">
+                                                <td class="blue text-center" style="font-weight:bold">所属驾校</td>
+                                                <td class="red text-red" colspan=3>{$vo.s_school_name}</td>
+                                            </tr>
+                                        </if>
+                                        <tr width="100%">
+                                            <td class="blue text-center" style="font-weight:bold">原始价格</td>
+                                            <td>￥{$vo.sh_original_money} 元</td>
+                                            <td class="blue text-center" style="font-weight:bold">最终价格</td>
+                                            <td>￥{$vo.sh_money} 元</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">优惠券兑换码</td>
+                                            <if condition="$obj.coupon_code neq ''">
+                                                <td class="red text-red" colspan=3>{$vo.coupon_code}</td>
+                                                <else/>
+                                                <td class="red text-red" colspan=3>--</td>
+                                            </if>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">添加时间</td>
+                                            <td>{$vo.addtime}</td>
+                                            <td class="blue text-center" style="font-weight:bold">更新时间</td>
+                                            <td>{$vo.updatetime}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold;width:100px;">班制描述</td>
+                                            <if condition="$vo.coach_id eq null">
+                                                <td class="red text-red" colspan=3>{$vo.sh_description_1}</td>
+                                                <else/>
+                                                <td class="red text-red" colspan=3>{$vo.sh_description_2}</td>
+                                            </if>
+                                        </tr>
+                                        <!--<if condition="$vo.is_package eq 1">
+                                            <tr width="100%">
+                                                <td class="blue text-center" style="font-weight:bold;width:100px;">套餐描述</td>
+                                                <td class="red text-red" colspan=3>{$vo.sh_info}</td>
+                                            </tr>
+                                        </if>-->
+                                    </table>
+                                </td>
+                                <td class="va-m shiftsimgurl" style="display:none">
+                                    <div style="margin: 20px auto;text-align: center;">
+                                        <img src="{$vo.sh_imgurl}" width="500" height="300">
+                                    </div>
+                                </td>
+                            </tr>
+                        </volist>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p style="text-align:center">{$page}</p>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>-->
+    <script type="text/javascript">
+        // 显示驾校班制详情
+        $('.shiftsimgurl').on({
+            'mouseenter': function() {
+                var id = $(this).attr('id');
+                var shiftsimgurl = $(this).parents('tr.signup_list').find('td.shiftsimgurl').html();
+                layer.tips(shiftsimgurl, '#' + id, {
+                    tips: [1, '#fff'],
+                    time: 0,
+                    area: '600px'
+                });
+            },
+
+            'mouseleave': function() {
+                var index = layer.tips();
+                layer.close(index);
+            },
+
+            'click': function() {
+                var shiftsimgurl = $(this).parents('tr.signup_list').find('td.shiftsimgurl').html();
+                layer.open({
+                    type: 1,
+                    title: '班制头像',
+                    area: '600px',
+                    shade: [0.3, '#333'],
+                    shadeClose: true,
+                    moveType: 1,
+                    shift: 0,
+                    content: shiftsimgurl
+                });
+            }
+        })
+
+        // 设置驾校班制的套餐状态
+        $('.setPackageStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '2':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 2;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('School/setShiftsPackageStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        // 显示驾校班制详情
+        $('.schoolshiftsdetail').on({
+            'mouseenter': function() {
+                var id = $(this).attr('id');
+                var schoolshiftsdetail = $(this).parents('tr.signup_list').find('td.schoolshiftsdetail').html();
+                layer.tips(schoolshiftsdetail, '#' + id, {
+                    tips: [1, '#fff'],
+                    time: 0,
+                    area: '600px'
+                });
+            },
+
+            'mouseleave': function() {
+                var index = layer.tips();
+                layer.close(index);
+            },
+
+            'click': function() {
+                var schoolshiftsdetail = $(this).parents('tr.signup_list').find('td.schoolshiftsdetail').html();
+                layer.open({
+                    type: 1,
+                    title: '驾校班制详情',
+                    area: '600px',
+                    shade: [0.3, '#333'],
+                    shadeClose: true,
+                    moveType: 1,
+                    shift: 0,
+                    content: schoolshiftsdetail
+                });
+            }
+        })
+
+        // 鼠标双击排序表格事件
+        $('td.changeable').dblclick(function() {
+            var s = $(this).find('span');
+            var i = $(this).find('input');
+            s.css('display', 'none');
+            i.css('display', 'inline-block').css('text-align', 'center').css('border-radius', '5px');
+            i.focus();
+        });
+        $('td.changeable input').blur(function() {
+            var s = $(this).parent().find('span');
+            var i = $(this).parent().find('input');
+            var mid = $(this).parent().parent().attr('module-data');
+            var field = $(this).parent().attr('data-field');
+            var order = $(this).val();
+            s_params = '{"id":' + '"' + mid + '"' + ',"' + field + '":"' + order + '"' + '}';
+            j_params = JSON.parse(s_params);
+            $.ajax({
+                type: "post",
+                url: "__URL__/setSchoolShiftsOrder",
+                data: j_params,
+                dataType: 'JSON',
+                success: function(data) {
+                    if (data.code == 200) {
+                        layer.tips(data.msg, s, {
+                            time: 1000,
+                            tips: [2, '#00CD66']
+                        });
+                        s.html(order);
+                        // location.reload();
+                    } else if (data.code == 105) {
+                        i.val(s.html());
+                        layer.tips('未做任何修改', s, {
+                            time: 1000
+                        });
+                    } else if (data.code == 102) {
+                        i.val(s.html());
+                        layer.tips('参数类型错误', s, {
+                            time: 1000
+                        });
+                    } else {
+                        i.val(s.html());
+                        layer.tips(data.msg, s, {
+                            time: 1000
+                        });
+                    }
+
+                },
+                error: function() {
+                    i.val(s.html());
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            });
+
+            i.css('display', 'none');
+            s.css('display', 'inline');
+        });
+        /**
+         * 设置驾校班制是否推荐的状态
+         *
+         * @return  void
+         * @author  wl
+         * @date    Nov 01, 2016
+         **/
+        $('.setstatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '2':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 2;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('School/setSchoolShiftsStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+        /**
+         * 设置驾校班制是否删除的状态
+         *
+         * @return  void
+         * @author  wl
+         * @date    Nov 01, 2016
+         **/
+        $('.setdeletedstatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '2':
+                    status = 1;
+                    break;
+                case '1':
+                    status = 2;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('School/setSchoolShiftsDeletedStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        /*用户-添加*/
+        function addSchoolShift(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        function member_show(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delSchoolShifts",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        console.log(data);
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

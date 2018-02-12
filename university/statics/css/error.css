@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/* Base Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small,strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+:focus { outline:0;}
+img { border:0;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}
+table {	border-collapse: collapse;	border-spacing: 0;}
+.clear { width:100%; height:0; line-height:0; font-size:0; overflow:hidden; clear:both; display:block; _display:inline;}
+.none { display:none;}
+.hidden { visibility:hidden;}
+.clearfix:after{clear: both;content: ".";display: block;height: 0;visibility: hidden;}
+.clearfix{display: block; *zoom:1;}
+
+body { font:13px/1 '\u5b8b\u4f53',Tahoma, Geneva, sans-serif; color: #333; background:#dde0e0 url("bg.gif")/*tpa=http://www.ahu.edu.cn/_images/error/bg.gif*/ repeat-x;}
+a{ text-decoration: none; color: #333;}
+a:hover{ text-decoration: underline; color: #c00;}
+
+.wp_error { width:100%; height:573px; background:url("bg.jpg")/*tpa=http://www.ahu.edu.cn/_images/error/bg.jpg*/ no-repeat center top; position:absolute; top:0; left:0;}
+
+/** 提示图片 **/
+.wp_error_image { text-align: center;}
+.wp_error_image img { margin-top: 130px;  }
+@media screen and (max-width: 640px) {
+    .wp_error_image img { margin-top: 100px;  }
+}
+@media screen and (max-width: 480px) {
+    .wp_error_image img { margin-top: 70px;  }
+}
+@media screen and (max-width: 360px) {
+    .wp_error_image img { margin-top: 50px;  }
+}
+@media screen and (max-width: 320px) {
+    .wp_error_image img { margin-top: 20px;  }
+}
+/** 按钮 **/
+.wp_error_button {padding-top: 10px; text-align: center; height:35px; }
+.wp_error_button span {font-family:"微软雅黑", Arial;display: inline-block;margin: 0;font-size: 14px;height: 23px;color: #626262;padding-top: 4px;text-decoration: none;text-align: left;}
+.wp_error_button span a {color:#626262; text-decoration:none;}
+.wp_error_button .main { background:url("m.gif")/*tpa=http://www.ahu.edu.cn/_images/error/m.gif*/ no-repeat; width:50px; padding-left:27px;}
+.wp_error_button .relogin {background:url("n.gif")/*tpa=http://www.ahu.edu.cn/_images/error/n.gif*/ no-repeat; width:70px; padding-left:27px;}
+.wp_error_button .close { background:url("l.gif")/*tpa=http://www.ahu.edu.cn/_images/error/l.gif*/ no-repeat; width:70px; padding-left:27px;}
+
+/** 提示信息 **/
+.wp_error_msg { margin-bottom: 8px; text-align: center;}
+.wp_error_msg span { font-family:"微软雅黑", Arial; line-height: 20px; text-align: center; font-size: 14px; color: #818181;}
+
+/** 登录框 **/
+.wp_error_login { width: 220px; margin:0 auto; padding-top: 20px;} /**登录区域宽度**/
+.wp_error_login .login_bar { margin-bottom: 5px;} 
+.wp_error_login .login_item { display: block; position: relative;}
+.wp_error_login .login_item .label_text { font-family:"微软雅黑", Arial; display: block; width: 40px; height:20px; text-align: right; line-height: 20px; position: absolute; left: 0; top: 50%; margin-top: -10px; color: #7E7E7E; font-size: 12px;}
+.wp_error_login .login_item .login_input { margin-left: 45px; border:1px solid #ccc; }
+.wp_error_login .login_item .input_verify {width:80px;}
+.wp_error_login .login_item .verify_code {width:60px; height: 20px; position: absolute; left: 134px; top: 50%; margin-top: -10px;}
+.wp_error_login .login_item .verify_code img { vertical-align: top; width: 100%; height: 100%;}
+.wp_error_login .login_item .input_inner { padding: 0 5px; background-color: #ffffff; }
+.wp_error_login .login_item .input_inner input { vertical-align: top;/**输入框 高度 18 + 8，修改padding值**/ height: 18px; line-height: 18px; padding: 4px 0; width:100%; border:0; outline: 0; }
+.wp_error_login .login_btn {margin:0;}
+.wp_error_login .login_btn .login_input { margin-left: 45px; height: 32px; }
+.wp_error_login .login_btn .input_inner { height: 32px; border: 1px solid #C5CDD1; background-color: #D4E3EB;}
+.wp_error_login .login_btn .input_inner input { font-family:"微软雅黑", Arial; background: none; height: 32px; line-height: 31px; width:100%; cursor: pointer; border:0; outline: 0;}
+.wp_error_login .login_btn .input_link { font-family:"微软雅黑", Arial; text-align: right; background: none; height: 32px; line-height: 31px; width:100%; cursor: pointer; border:0; outline: 0; }
+.wp_error_login .login_btn .input_link a {color: blue; text-decoration:none;}
+
+
+/** 已登录 **/
+.wp_error_logined {margin-top: 20px; }
+.wp_error_logined .tip { font-family:"微软雅黑", Arial; line-height: 20px; text-align: center; font-size: 14px; color: #818181;}
+.wp_error_logined .logout { cursor: pointer; font-size: 16px; color: blue; text-decoration: none; }
+.wp_error_logined .login_btn .login_input {   height: 32px;  margin: 0 auto; width: 100px; margin-top: 10px;}
+.wp_error_logined .login_btn .input_inner {  height: 32px; border: 1px solid #C5CDD1; background-color: #D4E3EB;}
+.wp_error_logined .login_btn .input_inner input { font-family:"微软雅黑", Arial; background: none; height: 32px; line-height: 31px; width:100%; cursor: pointer; border:0; outline: 0;}
+.wp_error_logined .login_btn .input_link { font-family:"微软雅黑", Arial; background: none; height: 32px; text-align: center; line-height: 31px; width:100%; cursor: pointer; border:0; outline: 0;}
+.wp_error_logined .login_btn .input_link a {color: blue; text-decoration:none;}

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>系统日志</title>
+</head>
+<body>
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>系统管理<span class="c-gray en">&gt;</span> 教练设置 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<br />
+    <div id="tab_school" class="HuiTab">
+		<div class="pd-0">
+			<form action="{:U('System/addCoachConfig')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="form-article-add">	
+			   	
+				<div class="row cl">
+					<label class="form-label col-2" for="start_hour"><strong>开始的小时：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" class="input-text" name="start_hour" value = "" id= "start_hour"  placeholder="请输入开始时间,如:8">
+					</div>
+			 	</div>  
+
+				<div class="row cl">
+					<label class="form-label col-2" for="start_minute"><strong>开始的分钟：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" name="start_minute" class="input-text" value = "" id= "start_minute" placeholder="请输入开始分钟,如:00">
+					</div> 
+				</div>
+				<div class="row cl">
+					<label class="form-label col-2" for="end_hour"><strong>结束的小时：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" name="end_hour" class="input-text" value = "" id= "end_hour" placeholder="请输入结束时间,如:9">
+					</div>
+			 	</div>  
+
+				<div class="row cl">
+					<label class="form-label col-2" for="end_minute"><strong>结束的分钟：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" class="input-text" name="end_minute" value = "" id= "end_minute" placeholder="请输入结束分钟,如:30">
+					</div> 
+				</div>
+				<div class="row cl">
+					<label class="form-label col-2" for="lesson_time"><strong>课程时间：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" class="input-text" name="lesson_time" value = "" id= "lesson_time" placeholder="请输入开始分钟,如:1.5">
+					</div> 
+				</div>
+				<div class="row cl">
+					<label class="form-label col-2" for="price"><strong>价格：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" class="input-text" name="price" value = "" id= "price" placeholder="请输入预约价格,如:100.00">
+					</div> 
+				</div>
+				<div class="row cl">
+					<label class="form-label col-2" for="max_user_num"><strong>预约最多人数：</strong></label>
+	                <div class="formControls col-2" > 
+	                	<input type = "text" class="input-text" name="max_user_num" value = "" id= "max_user_num" placeholder="请输入预约的最多人数">
+					</div> 
+				</div>
+				<div class="row cl">
+	                <label  class="form-label col-2"><strong>课程名称：</strong></label>
+	                <div class="formControls col-2" > 
+						<select  id="lesson_id" class="form-control" name="lesson_id" placeholder="请选择驾校" style="width:217px;height:30px">
+							<option value="">请选择科目</option> 
+							<option value="2">科目二</option> 
+							<option value="3">科目三</option> 
+						</select>
+	                    <span class="clearfix"></span>
+	                </div>
+	            </div>
+
+				<div class="row cl">
+					<label class="form-label col-2"><strong>是否在线： </strong></label>
+					<div class="formControls col-8">
+						<input type="radio" name="is_online" value="1" checked />是
+						<input type="radio" name="is_online" value="2"  />否
+				 	</div>  
+				</div>
+				<div class="row cl">
+					<label class="form-label col-2"><strong>是否发布： </strong></label>
+					<div class="formControls col-8">
+						<input type="radio" name="is_publish" value="1" checked />是
+						<input type="radio" name="is_publish	" value="2"  />否
+				 	</div>  
+				</div>	
+				<div class="row cl">
+					<div class="col-10 col-offset-2">
+						<button class="btn btn-primary radius " id="submit" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+						<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<script type="text/javascript">
+</script> 
+</body>
+</html>

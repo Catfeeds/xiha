@@ -1,0 +1,83 @@
+{template "content","header_category"}
+<!--main-->
+
+<div class="wrapper" style="position: absolute; left: 0px; top: 46px; z-index: -1; height: 360px;">
+             <div class="inner" style="height:360px; max-width:1100px; background:url(statics/images/bg.jpg) no-repeat 0 0;">
+                <div frag="面板44">
+                   <div frag="窗口44" portletmode="simpleColumnAttri">
+                          <img border='0' src="statics/images/picture.jpg" tppabs="statics/images/picture.jpg"  />
+                   </div>
+                </div>
+             </div>
+        </div>
+
+    </div>
+
+    <div class="wrapper" id="container" style="background: #fff;">
+        <div class="inner">
+            <div class="col_menu">
+                <div class="col_menu_head" frag="面板13">
+                    <h2 class="col_name" frag="窗口13" portletmode="simpleColumnAnchor">
+                        <span class="col_name_text">
+                            <span class='Column_Anchor'>{$CATEGORYS[$CAT[parentid]][catname]}</span>
+                        </span>
+                    </h2>
+                </div>
+                <div class="col_menu_con" frag="面板14">
+                    <div class="col_list" frag="窗口14" portletmode="simpleColumnList">
+                        <div id="wp_listcolumn_w14"> 
+                            <ul class="wp_listcolumn"> 
+                                {pc:content action="category" catid="$parentid" num="25" siteid="$siteid" order="listorder DESC"}
+                                    {loop $data $k $r}
+                                     <li {if $r[catid] == $catid}class="wp_column column-1 selected"{else}class="wp_column column-1"{/if}> 
+                                         <a href="{$r[url]}" tppabs="http://www.ahu.edu.cn/148/list.htm" title="{$r[catname]}" {if $r[catid]==$catid} class="selected"{/if} target="_self"><span class="column-name">{$r[catname]}</span></a> 
+                                     </li>
+                                    {/loop}
+                                {/pc}
+                            </ul> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col_news">
+                <div class="col_news_head" frag="面板15">
+                    <ul class="col_metas clearfix" frag="窗口15" portletmode="simpleColumnAttri">
+                        <li class="col_path">
+                            <a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} 列表
+
+                        </li>
+                    </ul>
+              </div>
+              <div class="col_news_con" frag="面板16">
+                <div class="col_news_list" frag="窗口16" portletmode="simpleList">
+                    <div id="wp_news_w16">
+                    	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table"> 
+							<tr> 
+                				{pc:content action="lists" catid="$catid" num="10" order="id DESC" page="$page"}
+                				{loop $data $k $r}
+								<td> 
+									<div class="wp_listalbumn"> 
+									     <div id="{$k}" class="albumn_info"> 
+									         <i class="albumn_mark"></i> 
+									         <span class='Article_MicroImage'><a href="{$r[url]}" title='{str_cut($r[title],28)}'><image src="{$r[thumb]}" width='150' height='112'></a></span> 
+									         <span class='Article_Title'><a href="{$r[url]}" target='_blank' title='{$r[title]}'>{str_cut($r[title],28)}</a></span> 
+									     </div> 
+									</div> 
+								</td> 
+                				{/loop}
+								{/pc}
+							</tr> 
+						</table> 
+						
+            	    </div> 
+                </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+	{template "content","footer_category"}
+</body>
+</html>

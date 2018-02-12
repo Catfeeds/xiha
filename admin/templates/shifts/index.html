@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>后台管理-后台管理</title>
+    <link rel="stylesheet" href="templates/assests/css/pintuer.css">
+    <link rel="stylesheet" href="templates/assests/css/admin.css">
+    <script src="templates/assests/js/jquery.js"></script>
+    <script src="templates/assests/js/pintuer.js"></script>
+    <script src="templates/assests/js/respond.js"></script>
+    <script src="templates/assests/js/admin.js"></script>
+    <link type="image/x-icon" href="http://www.pintuer.com/favicon.ico" rel="shortcut icon" />
+    <link href="http://www.pintuer.com/favicon.ico" rel="bookmark icon" />
+</head>
+
+<body>
+	<form method="post">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>驾校列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="school_id[]" value="全选" />
+                <a href="index.php?action=school&op=add" class="button button-small border-green">添加驾校</a>
+                <!-- <input type="button" class="button button-small border-green" value="添加文章" /> -->
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+                <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="45">选择</th>
+                    <th width="100">驾校名称</th>
+                    <th width="120">法人代表</th>
+                    <th width="100">法人手机</th>
+                    <th width="150">组织结构代码</th>
+                    <th width="150">驾校性质</th>
+                    <th width="150">地址</th>
+                    <th width="150">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+
+                <!--{foreach $school_list as $key => $value}-->
+                <tr class="schoolist">
+                    <td><input type="checkbox" name="school_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.school_id}-->" /></td>
+                    <td><!--{$value.school_name}--></td>
+                    <td><!--{$value.frdb}--></td>
+                    <td><!--{$value.frdb_mobile}--></td>
+                    <td><!--{$value.zzjgdm}--></td>
+                    <!--{if $value.dwxz == 1}-->
+                        <td><span class="badge bg-main">一类驾校</span></td>
+                    <!--{else if $value.dwxz == 2}-->
+                        <td><span class="badge bg-green">二类驾校</span></td>
+                    <!--{else if $value.dwxz == 3}-->
+                        <td><span class="badge bg-yellow">三类驾校</span></td>
+                    <!--{/if}-->
+                    <td><!--{$value.address}--></td>
+                    <td>
+                        <a class="button border-blue button-little" href="index.php?action=school&op=edit&id=<!--{$value.school_id}-->"><span class="icon-edit text-blue"></span> 修改</a> 
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delschool(<!--{$value.school_id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+            </table>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+    // 删除驾校
+    function delschool(id, obj) {
+        if(confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                dataType:"JSON",
+                url:"index.php?action=school&op=del",
+                data:{"id":id},
+                success:function(data) {
+                    if(data.code == 1) {
+                        $(obj).parents('.schoolist').remove();
+                    }
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的驾校列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+</body>
+</html>

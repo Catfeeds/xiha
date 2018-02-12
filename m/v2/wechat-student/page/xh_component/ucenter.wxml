@@ -1,0 +1,71 @@
+<view class="ucenter">
+    <view class="body">
+        <!--<view class="ucenter-bg">
+            <image src="/image/ucenterbg@3x.png"></image>
+            <view class="ucenter-photo-view">
+                <image src="/image/wechatHL.png"></image>
+                <view>我的昵称是cx</view>
+            </view>
+        </view>-->
+
+        <view class="ucenter-top">
+			<view class="ucenter-top-top">
+				<view class="ucenter-top-top-p">
+                    <navigator url="index" hover-class="navigator-hover">
+                        <view class="ucenter-top-name">点击登录</view>
+                    </navigator>
+                </view>
+			</view>
+			<view class="ucenter-top-photo">
+				<navigator url="index">
+                    <image src="/image/ucenter-no-photo.png" style="width:70px; height: 70px;" alt=""></image>
+                </navigator>
+			</view>
+			<view class="ucenter-top-bottom">
+				<view class="row">
+			      <view class="col-50" style="border-right: 1px solid #F3F3F3;">
+                    <navigator url="index">
+			      		<view style="font-size: 0.8rem; color:#333; text-align: center;">学车券</view>
+			      		<view style="font-size: 0.6rem; color: #999; text-align: center;"><text id="tickets_num">0</text>张</view>
+                    </navigator>
+			      </view>
+			      <view class="col-50">
+                    <navigator url="index">
+			      		<view style="font-size: 0.8rem; color:#333; text-align: center;">我的教练</view>
+			      		<view style="font-size: 0.6rem; color: #999; text-align: center;">去绑定教练</view>
+			      	</navigator>
+			      </view>
+			    </view>
+			</view>
+
+		</view>
+
+        <view class="widgets__list widgets__list_show">
+            <block>
+                <navigator url="test" class="widget">
+                    <image class="widget__arrow__left" src="/image/ucenter-index-myorder-logo.png" ></image>
+                    <text class="widget__name">我的订单</text>
+                    <image class="widget__arrow" src="/image/arrowright.png" mode="aspectFill" ></image>
+                    <view class="widget__line "></view>
+                </navigator>
+            </block>
+            <block>
+                <navigator url="test" class="widget">
+                    <image class="widget__arrow__left" src="/image/ucenter-index-myappoint-logo.png" ></image>
+                    <text class="widget__name">我的预约</text>
+                    <image class="widget__arrow" src="/image/arrowright.png" mode="aspectFill" ></image>
+                    <view class="widget__line "></view>
+                </navigator>
+            </block>
+            <block>
+                <navigator url="test" class="widget">
+                    <image class="widget__arrow__left" src="/image/ucenter-index-share-logo.png" ></image>
+                    <text class="widget__name">我要分享</text>
+                    <image class="widget__arrow" src="/image/arrowright.png" mode="aspectFill" ></image>
+                    <view class="widget__line "></view>
+                </navigator>
+            </block>
+        </view>
+
+    </view>
+</view>

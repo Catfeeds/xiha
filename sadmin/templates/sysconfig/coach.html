@@ -1,0 +1,153 @@
+<!--{include file="library/header.lbi"}-->
+<link rel="stylesheet" type="text/css" href="templates/assests/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="templates/assests/css/select2.css">
+<link rel="stylesheet" type="text/css" href="templates/assests/css/select2-bootstrap.css">
+
+<div class="tab-body" style="margin-top:10px;">
+
+    <div class="tab"> 
+        <div class="tab-head border-main"> 
+            <ul class="tab-nav" style="margin-bottom:0px;"> 
+                <li>
+                    <a href="index.php?action=sysconfig&op=school">驾校设置</a>
+                </li> 
+                <li class="active">
+                    <a href="index.php?action=sysconfig&op=coach">教练设置</a>
+                </li> 
+                <!-- 			<li>
+                    <a href="index.php?action=sysconfig&op=order">订单设置</a>
+                    </li>  -->
+            </ul> 
+        </div> 
+        <div class="tab-body" style="padding-top:10px;"> 
+            <!-- 基本信息 -->
+            <div class="tab-panel form-x active">
+                <div class="media media-x">
+                    <div class="media-body">
+                        <div class="table-responsive"> 
+                            <form method="post" class="form-x" style="width:100%" action="index.php?action=sysconfig&op=coachedit" onsubmit="return submitcheck();" enctype="multipart/form-data">
+
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="label" style="color:#555; font-size:16px;">教练：</div>
+                                    <div class="field">
+                                        <div class="container-fluid" ng-controller="appCtrl" style="padding-left:0px;">
+                                            <div class="row" style="">
+                                                <div class="col-sm-2">
+                                                    <select select2 ng-model="b" class="form-control" name="coach_id" placeholder="请选择教练">
+                                                        <!--{foreach $coachlist as $key => $value}-->
+                                                        <option value="<!--{$value['l_coach_id']}-->"><!--{$value['s_coach_name']}-->（<!--{$value['name']}-->|<!--{$value['car_type_name']}-->）</option>
+                                                        <!--{/foreach}-->
+                                                    </select>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="label" style="color:#555; font-size:16px;">上午科目：</div>
+                                    <div class="field">
+                                        <select name="morning_subjects" class="input input-auto" id="">
+                                            <option value="">上午科目选择</option>
+                                            <option value="1">科目一</option>
+                                            <option value="2" selected>科目二</option>
+                                            <option value="3">科目三</option>
+                                            <option value="4">科目四</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="label" style="color:#555; font-size:16px;">下午科目：</div>
+                                    <div class="field">
+                                        <select name="afternoon_subjects" class="input input-auto" id="">
+                                            <option value="">下午科目选择</option>
+                                            <option value="1">科目一</option>
+                                            <option value="2" selected>科目二</option>
+                                            <option value="3">科目三</option>
+                                            <option value="4">科目四</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="label" style="color:#555; font-size:16px;">上午时间：</div>
+                                    <div class="field">
+                                        <table class="table table-hover table-striped" >
+                                            <tr>
+                                                <th width="50">
+                                                    <input type="button" class="button button-small checkall" name="checkall" checkfor="am_time_config_id[]" value="全选" /></th>
+                                                <th width="100">开始时间</th>
+                                                <th width="100">结束时间</th>
+                                                <th width="100">是否可被预约</th>
+                                            </tr>
+
+                                            <!--{foreach $time_list['am_time_list'] as $k => $v}-->
+                                            <tr title="<!--{$v['id']}-->">
+                                                <td class="checking"><input type="checkbox" name="am_time_config_id[]" checked id="checkbox_<!--{$k+1}-->" value="<!--{$v['id']}-->" /></td>
+
+                                                <td><span><!--{$v['final_start_time']}--></span></td>
+                                                <td><!--{$v['final_end_time']}--></td>
+                                                <td class="setting">
+                                                    <span class="badge bg-green" style="background:#2c7;">可以</span>
+                                                    <!-- <span class="badge bg-gray">不可以</span> -->
+                                                </td>
+                                            </tr>
+                                            <!--{/foreach}-->
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="label" style="color:#555; font-size:16px;">下午时间：</div>
+                                    <div class="field">
+                                        <table class="table table-hover table-striped" >
+                                            <tr>
+                                                <th width="50">
+                                                    <input type="button" class="button button-small checkall" name="checkall" checkfor="pm_time_config_id[]" value="全选" /></th>
+                                                <th width="100">开始时间</th>
+                                                <th width="100">结束时间</th>
+                                                <th width="100">是否可被预约</th>
+                                            </tr>
+
+                                            <!--{foreach $time_list['pm_time_list'] as $k => $v}-->
+                                            <tr title="<!--{$v['id']}-->">
+                                                <td class="checking"><input type="checkbox" name="pm_time_config_id[]" checked id="checkbox_<!--{$k+1}-->" value="<!--{$v['id']}-->" /></td>
+
+                                                <td><span><!--{$v['final_start_time']}--></span></td>
+                                                <td><!--{$v['final_end_time']}--></td>
+                                                <td class="setting">
+                                                    <span class="badge bg-green" style="background:#2c7;">可以</span>
+                                                    <!-- <span class="badge bg-gray">不可以</span> -->
+                                                </td>
+                                            </tr>
+                                            <!--{/foreach}-->
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <div class="label"><label></label></div>    
+                                    <div class="">
+                                        <button class="button bg-main" type="submit">提交</button> 
+                                        <button class="button bg-primary" type="reset">重置</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+
+        </div> 
+    </div>
+</div>
+<script type="text/javascript" src="templates/assests/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/angular.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/select2.min.js"></script>
+<script type="text/javascript" src="templates/assests/js/selectindex.js"></script>
+
+<!--{include file="library/footer.lbi"}-->

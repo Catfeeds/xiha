@@ -1,0 +1,121 @@
+{include file="index/header"/}
+<div class="page" id="drive">
+  	<header class="bar bar-nav">
+    	<h1 class="title" id="lesson-choose">拿驾照 <span class="icon icon-down" style="font-size: 0.8rem;"></span></h1>
+  	</header>
+  	{include file="drive/lesson_navbar"}
+  	<div class="content" style="margin:0 0 2.5rem 0;">
+  		<!--驾考内容-->
+		<div class="drive-banner">
+			<img src="__PUBLIC__/static/images/index-banner-01.png" style="width: 100%;" alt="" />
+		</div>
+		
+		<div class="list-block" style="margin: 10px 0px 0px;">
+		  	<ul>
+		      <li class="item-content">
+		        <div class="item-inner">
+		          <div class="item-title">领照须知</div>
+		        </div>
+		      </li>
+	      	</ul>
+	      	
+	      	<ul style="border: none;">
+		      <li class="item-content">
+		      	<div class="row" style="width: 100%;">
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-01.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">驾照年审、年检</span>
+		      		</div>
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-02.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">领驾照时间、地点</span>
+		      		</div>
+		      	</div>
+	      	  </li>
+	      	  <li class="item-content" style="border-top: 1px solid #e7e7e7;">
+		      	<div class="row" style="width:100%">
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-03.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">驾照年审、年检</span>
+		      		</div>
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-04.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">领驾照时间、地点</span>
+		      		</div>
+		      	</div>
+		      </li>
+	        </ul>
+	  	</div>
+	  	
+	  	<div class="list-block" style="margin: 10px 0px 0px;">
+		  	<ul>
+		      <li class="item-content">
+		        <div class="item-inner">
+		          <div class="item-title">新手上路</div>
+		        </div>
+		      </li>
+	      	</ul>
+	      	
+	      	<ul style="border: none;">
+		      <li class="item-content">
+		      	<div class="row" style="width: 100%;">
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-05.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">车辆操作大全</span>
+		      		</div>
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-06.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">上路前注意事项</span>
+		      		</div>
+		      	</div>
+	      	  </li>
+	      	  <li class="item-content" style="border-top: 1px solid #e7e7e7;">
+		      	<div class="row" style="width:100%">
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-07.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">行驶时注意事项</span>
+		      		</div>
+		      		<div class="col-50">
+		      			<img src="__PUBLIC__/static/images/drive-graduation-08.png" style="width: 20px;" alt="" />
+		      			<span style="margin-left: 5px; font-size: 0.8rem;">使用驾车技巧</span>
+		      		</div>
+		      	</div>
+		      </li>
+		      
+	        </ul>
+	  	</div>
+	  
+	  	<a href="{:url('/article', ['l'=>$lesson_id, 'device'=>$device])}">
+		  	<div class="drive-cate-title" style="">
+		    	晒驾照
+		    	<div class="drive-quanzi-info">
+		    		<span style="color:#e89d4d;">2.5万</span>人讨论<span style="color:#e89d4d;">100万</span>人关注
+		    		<span class="icon icon-right"></span>
+		    	</div>
+		    </div>
+		    <div class="index-logo-list" style="margin: 0px;">
+			    <div class="row" style="">
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			    </div>
+		  	</div>
+	    </a>
+	    
+  	</div>
+  	<!--navbar底部导航-->
+	{include file="index/navbar"/}
+</div>
+{include file="index/footer"/}

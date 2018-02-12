@@ -1,0 +1,24 @@
+{include file="index/header"/}
+<div class="page" id="coinstore-rule">
+	{if condition="$device eq 1"}
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/coinstore', ['device'=>$device])}">
+      <span class="icon icon-left"></span>
+  		返回
+    </a>
+    <h1 class='title'>{$title}</h1>
+  </header>
+  {/if}
+  <div class="content" style="background: #fff; padding-bottom: 40px;">
+		<img class="lazy" src="__PUBLIC__/static/images/coinstore-rule-01.png" style="width: 100%;" alt="" />
+		<img class="lazy" src="__PUBLIC__/static/images/coinstore-rule-02.png" style="width: 100%;" alt="" />
+		<img class="lazy" src="__PUBLIC__/static/images/coinstore-rule-03.png" style="width: 100%;" alt="" />
+		<img class="lazy" src="__PUBLIC__/static/images/coinstore-rule-04.png" style="width: 100%;" alt="" />
+			  
+	  <p style="text-align: center; color: #999; height: 40px;">
+	  	兑奖项目和活动均与设备生产商 Apple Inc.无关
+	  </p>
+  </div>
+  
+</div>
+{include file="index/footer"/}

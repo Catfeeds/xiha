@@ -1,0 +1,41 @@
+<!--{include file="library/header.lbi"}-->
+  <div class="tab-body">
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x float-left" style="width:40%" action="index.php?action=school&op=addaddressoperate"  enctype="multipart/form-data">
+
+            <div class="form-group">
+                <div class="label"><label for="tl_train_address">报名点地址</label></div>
+                <div class="field">
+                     <input type="text" class="input" id="tl_train_address" name="tl_train_address" size="50" placeholder="请填写报名点地址" data-validate="required:请填写报名点地址" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="tl_phone">电话号码</label></div>
+                <div class="field">
+                     <input type="text" class="input" id="tl_phone" name="tl_phone" size="50" placeholder="请填写电话号码" data-validate="required:请填写电话号码" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="school_location">设置坐标</label></div>
+                <div class="field">
+                    <!-- <iframe src="index.php?action=manager&op=map" frameborder="0" width="100%" height="100%" ></iframe> -->
+                    <input type="text" class="input" id="school_location_x" name="tl_location_x" value="" size="50" placeholder="请填写经度" data-validate="required:请填写经度" /><br>
+                    <input type="text" class="input" id="school_location_y" name="tl_location_y" value="" size="50" placeholder="请填写纬度" data-validate="required:请填写纬度" />
+                </div>
+            </div>
+            
+            <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+        </form>
+        <div class="float-left" style=" margin-left:20px; width:40%; height:100%">
+            <iframe id="iframe_map" src="index.php?action=manager&op=map" frameborder="0" width="100%" height="600px" ></iframe>
+            <p class="text-red text-big" style="margin-top:10px;"><i class="icon-exclamation-circle"></i> 点击地图中你选择位置，可生成左边的坐标</p>
+        </div>
+    </div>
+
+    <script>
+
+    </script> 
+<!--{include file="library/footer.lbi"}-->

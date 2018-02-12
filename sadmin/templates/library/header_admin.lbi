@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>驾校后台管理-管理员登录</title>
+    <link rel="stylesheet" href="templates/assests/css/pintuer.css">
+    <link rel="stylesheet" href="templates/assests/css/admin.css">
+    <script src="templates/assests/js/jquery.js"></script>
+    <script src="templates/assests/js/uploadPreview.min.js"></script>
+    <script src="templates/assests/js/pintuer.js"></script>
+    <script src="templates/assests/js/respond.js"></script>
+    <script src="templates/assests/js/admin.js"></script>
+    <script src="templates/assests/layerv2/layer.js"></script>
+
+    <link type="image/x-icon" href="templates/assests/images/favicon.ico" rel="shortcut icon" />
+    <link href="templates/assests/images/favicon.ico" rel="bookmark icon" />
+    <link rel="stylesheet" href="templates/assests/css/iconfont/iconfont.css">
+    
+    <style>
+        html { overflow-x:hidden; }
+    </style>
+</head>
+
+<body class="body-bg" style="background-color:#293038 !important;">

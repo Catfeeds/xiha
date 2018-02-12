@@ -1,0 +1,106 @@
+<!--{include file="library/header.lbi"}-->
+    <div class="tab-body" style="">
+        <br>
+        <div class="tab"> 
+            <div class="tab-head border-main"> 
+                <ul class="tab-nav"> 
+                    <li <!--{if $i_type == 2}-->class="active"<!--{/if}-->>
+                        <a href="index.php?action=message&op=<!--{$op}-->&type=2">正常消息</a>
+                    </li> 
+                    <li <!--{if $i_type == 1}-->class="active"<!--{/if}-->>
+                        <a href="index.php?action=message&op=<!--{$op}-->&type=1">通知消息</a>
+                    </li> 
+                </ul> 
+            </div>
+            <div class="tab-body" style="padding-top:10px;"> 
+                <!-- 基本信息 -->
+                <form method="post">
+                    <div class="panel admin-panel" style="border-top:none;">
+
+                        <div class="padding border-bottom">
+                            <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+                            <a href="index.php?action=message&op=studentsend" class="button button-small border-green">发送消息</a>
+                            <!-- <input type="button" class="button button-small border-yellow" onclick="delallcoach()" value="批量删除" /> -->
+                            <!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
+                            <select class="input input-auto" name="is_read" id="is_read">
+                                <option value="1" <!--{if $is_read == 1}-->selected<!--{/if}-->>已读</option>
+                                <option value="2" <!--{if $is_read == 2}-->selected<!--{/if}-->>未读</option>
+                                <option value="101" <!--{if $is_read == 101}-->selected<!--{/if}-->>已删除</option>
+                            </select>
+                        </div>
+                        <table class="table table-hover">
+                            <tr>
+                                <th width="100">选择</th>
+                                <th width="50">ID</th>
+                                <th width="100">姓名</th>
+                                <th width="100">号码</th>
+                                <th width="150">内容</th>
+                                <th width="100">来源</th>
+                                <th width="100">类型</th>
+                                <th width="100">备注</th>
+                                <th width="100">时间</th>
+                                <th width="80">是否已读</th>
+                                <!-- <th width="230">操作</th> -->
+                            </tr>
+                            <!--{if $messagelist}-->
+                            <!--{foreach $messagelist as $key => $value}-->
+                            <tr>
+                                <td><input type="checkbox" id="checkbox_<!--{$key}-->" name="id" value="<!--{$value.id}-->" /></td>
+                                <td><!--{$value.id}--></td>
+                                <td><!--{$value.name}--></td>
+                                <td><!--{$value.phone}--></td>
+                                <td><!--{$value.s_content}--></td>
+                                <td><!--{$value.s_from}--></td>
+                                <td>
+                                    <!--{if $value.i_yw_type == 1}-->
+                                    <span class="badge bg-green"><!--{$value.i_yw}--></span>
+                                    <!--{else}-->
+                                    <span class="badge bg-main"><!--{$value.i_yw}--></span>
+
+                                    <!--{/if}-->
+                                </td>
+                                <td><!--{$value.s_beizhu}--></td>
+                                <td><!--{$value.addtime}--></td>
+                                <td>
+                                    <!--{if $value['is_read'] == 1}-->
+                                        <span class="badge bg-green"><!--{$value.read}--></span>
+                                    <!--{else}-->
+                                        <span class="badge bg-gray"><!--{$value.read}--></span>
+                                    <!--{/if}-->
+                                </td>
+                                <!-- <td><a class="button border-yellow button-little" href="#" onclick="delcoach(<!--{$value.id}-->,this)">删除</a></td> -->
+                            </tr>
+                            <!--{/foreach}-->
+                            <!--{else}-->
+                            <tr>
+                                <td colspan=5>暂无消息列表</td>
+                            </tr>
+                            <!--{/if}-->
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <div class="panel-foot text-center">
+                        <!--{$pagehtml}-->
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+	<script>
+        // 跳转页面
+        $('#skipping').click(function() {
+            $(this).html('跳转中...');
+            var selectpage = $('#selectpage').find('option:selected').val();
+            location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&type=<!--{$i_type}-->&page="+selectpage;
+        })
+
+        $('#is_read').change(function() {
+            var is_read = this.value;
+            var type = <!--{$i_type}-->;
+            var member_type = <!--{$member_type}-->;
+            location.href="index.php?action=message&op=index&type="+type+"&is_read="+is_read+"&member_type="+member_type;
+        });
+    </script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,112 @@
+<!--{include file="library/header.lbi"}-->
+  <div class="tab-body">
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" style="width:80%" action="index.php?action=manager&op=editoperate" onSubmit="return passwordcheck();">
+
+            <div class="form-group">
+                <div class="label"><label for="manage_name">管理员</label></div>
+                <div class="field">
+                     <input type="text" class="input" id="manage_name" name="manage_name" value="<!--{$managerinfo.name}-->" size="50" placeholder="请填写姓名" data-validate="required:请填写姓名" /><a href="javascript:;" class="button bg-yellow" onclick="javascript:checknamerepeat()">检测重复</a>
+                     <span id="tip_name" class="text-dot"></span>
+                </div>
+            </div>
+            
+             <div class="form-group">
+                <div class="label"><label for="manage_permission">管理角色</label></div>
+                <div class="field">
+                     <select class="input" id="manage_permission" style="width:20%; float:left" name="manage_permission"> 
+                         <option value="">请选择角色</option> 
+                         <!--{foreach $permission_list as $key => $value}-->
+                         <option value="<!--{$value.l_rolepress_id}-->"<!--{if $value.l_rolepress_id == $managerinfo.role_permission_id}-->selected<!--{/if}-->><!--{$value['role_name']}--></option> 
+                         <!--{/foreach}-->
+                     </select>
+                </div>
+            </div>
+    
+             <div class="form-group">
+                <div class="label"><label for="manage_content">备注</label></div>
+                <div class="field">
+                     <input type="text" class="input" id="manage_content" name="manage_content" value="<!--{$managerinfo.content}-->" size="50" placeholder="请填写备注:例如某某驾校" data-validate="required:请填写备注" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="manage_password">密码</label></div>
+                <div class="field">
+                     <input type="password" class="input" id="manage_password" name="manage_password" value="" size="50" placeholder="请填写密码" data-validate="required:请填写密码" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="manage_repeat_password">重复密码</label></div>
+                <div class="field">
+                     <input type="password" class="input" id="manage_repeat_password" name="manage_repeat_password" value="" size="50" placeholder="请填写重复密码" data-validate="required:请填写重复密码" />
+                </div>
+            </div>
+            <input type="hidden" value="<!--{$id}-->" name="id">
+            <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+        </form>
+    </div>
+
+    <script>
+
+    // 验证密码是否一致
+    function passwordcheck() {
+        var manage_password = $('#manage_password').val()
+        var manage_repeat_password = $('#manage_repeat_password').val();
+        if(manage_password != manage_repeat_password) {
+            alert('密码不一致！');
+            return false;
+        }
+    }
+
+    // 检测用户名是否重复
+    function checknamerepeat() {
+        var manage_name = $('#manage_name').val();
+        if(manage_name == '') {
+            $('#tip_name').html('请填写姓名以便检查');
+            return false;
+        }
+        $.ajax({
+            type:"POST",
+            url:"index.php?action=manager&op=usercheck",
+            data:{'name':manage_name},
+            dataType:"JSON",
+            success:function(data) {
+                if(data.code == 1) {
+                    $('#tip_name').html('这个名称不可使用');
+                } else {
+                    $('#tip_name').html('这个名称可以使用');
+                }
+            }
+        })
+    }
+
+    // // 上传图片预览
+    //     window.onload = function () { 
+    //         new uploadPreview({ UpBtn: "license_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+    //     }
+
+    //     // 城市联动
+    //     $('#province').change(function() {
+    //         var province_id = $(this).val();
+    //         $("#city").load("index.php?action=school&op=getcity&province_id="+province_id);
+    //     });
+
+    //     $('#city').change(function() {
+    //         var city_id = $(this).val();
+    //         $('#area').load('index.php?action=school&op=getarea&city_id='+city_id);
+    //         var city_html = $(this).find('option:selected').html();
+    //         var province_html = $('#province').find('option:selected').html();
+    //         $('#s_address').val(province_html+city_html);
+    //     })
+
+    //     $('#area').change(function() {
+    //         var city_html = $('#city').find('option:selected').html();
+    //         var province_html = $('#province').find('option:selected').html();
+    //         var area_html = $(this).find('option:selected').html();
+    //         $('#s_address').val(province_html+city_html+area_html);
+    //     })
+    </script>
+<!--{include file="library/footer.lbi"}-->

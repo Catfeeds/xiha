@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <style type="text/css">
+        .drop-menu a {
+            font-size: 14px;
+        }
+        
+        .drop-menu a:hover {
+            text-decoration: none;
+        }
+    </style>
+    <title>预约学车订单</title>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>订单管理<span class="c-gray en">&gt;</span> 预约学车订单 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+            title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div id="tab_school" class="HuiTab">
+        <form method="post" action="{: U('Order/searchStudyOrders')}" name="search">
+            <div class="pd-20">
+                <div class="">
+                    <label for="deal_type">按支付方式 </label>
+                    <select class="" name="deal_type" id="deal_type" style="width:150px;height:30px">                
+					    <option style="" value="" >--不限支付方式--</option>
+					    <option style="" value="1" <if condition="$deal_type eq 1">selected</if>>支付宝支付</option>
+					    <option style="" value="2" <if condition="$deal_type eq 2">selected</if>>线下支付</option>
+					    <option style="" value="3" <if condition = "$deal_type eq 3">selected</if>>微信支付</option>
+					    <option style="" value="4" <if condition = "$deal_type eq 4">selected</if>>银联支付</option>
+					</select>
+
+                    <label for="i_status">按订单状态</label>
+                    <select class="" name="i_status" id="i_status" style="width:150px;height:30px">                
+					    <option style="" value="" >--不限订单状态--</option>
+					    <option style="" value="2" <if condition="$i_status eq 2">selected</if>>已完成</option>
+					    <option style="" value="1" <if condition="$i_status eq 1">selected</if>>已付款</option>
+					    <option style="" value="3" <if condition = "$i_status eq 3">selected</if>>已取消</option>
+					    <option style="" value="1003" <if condition = "$i_status eq 1003">selected</if>>未付款</option>
+					    <option style="" value="1006" <if condition = "$i_status eq 1006">selected</if>>退款中</option>
+					    <option style="" value="1007" <if condition="$i_status eq 1007">selected</if>>已退款</option>
+					    <if condition="$school_id eq 0">
+					    	<option style="" value="101" <if condition = "$i_status eq 101">selected</if>>已删除</option>
+					    </if>
+					</select>
+                    <label for="i_status">按预约日期</label>
+                    <input type="text" id="appoint_time" name="appoint_time" style="height:30px;width:150px" class="input-text  date_picker laydate-icon" value="{$appoint_time}" placeholder="请选择预约日期" readonly />
+                    <label for="search_type">按关键词</label>
+                    <select class="" name="search_type" id="search_type" style="width:150px;height:30px">				   
+					    <option style="" value="" >--不限关键词--</option>
+					    <option style="" value="l_study_order_id" <if condition="$search_type eq l_study_order_id">selected</if>>ID</option>
+					    <option style="" value="s_user_name" <if condition="$search_type eq s_user_name">selected</if>>学员姓名</option>
+					    <option style="" value="s_user_phone" <if condition="$search_type eq s_user_phone">selected</if>>学员手机</option>
+					    <option style="" value="s_coach_name" <if condition="$search_type eq s_coach_name">selected</if>>教练姓名</option>
+					    <option style="" value="s_coach_phone" <if condition="$search_type eq s_coach_phone">selected</if>>教练手机</option>
+					    <option style="" value="s_order_no" <if condition="$search_type eq s_order_no">selected</if>>订单号</option>
+					    <option style="" value="s_zhifu_dm" <if condition="$search_type eq s_zhifu_dm">selected</if>>交易号</option>
+					    <if condition="$school_id eq 0">
+					    	<option style="" value="s_school_name" <if condition = "$search_type eq s_school_name">selected</if>>驾校名称</option>
+					    </if>
+					</select>
+
+                    <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" value="{$s_keyword}" placeholder="ID，姓名，手机，订单号，交易号<if condition='$school_id eq 0'>，驾校名称</if>" style="width:300px;" />
+                    <input type="submit" id="search_stu_comment_tea" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+                </div>
+                <div class="cl pd-5 bg-1 bk-gray mt-20">
+                    <span class="ml-10">
+    					<a id="delete-all" href="javascript:;"  class="btn btn-warning radius">批量删除</a>
+    				</span>
+                    <span class="r " style="margin-top: 5px">
+					 	已完成：<strong>{$total_time | default=0}</strong> 学时  
+					 	<span style="margin-left: 10px; margin-right: 10px;"> | </span> 共：
+                    <strong>{$count}</strong> 条订单
+                    </span>
+                    <!-- <span class="l"> 已完成：<strong>{$total_time | default=0}</strong> 学时</span>  -->
+                </div>
+                <div class="mt-20">
+                    <table class="table table-border table-bordered table-hover table-bg table-sort" id="checkedid">
+                        <thead>
+                            <tr class="text-c">
+                                <th width="25"><input type="checkbox" name="" value=""></th>
+                                <th width="30">ID</th>
+                                <if condition="$school_id eq 0">
+                                    <th width="80">驾校名称</th>
+                                </if>
+                                <th width="60">学员姓名</th>
+                                <th width="70">学员手机</th>
+                                <th width="60">教练姓名</th>
+                                <th width="70">教练手机</th>
+                                <th width="80">预约时间</th>
+                                <th width="60">支付金额</th>
+                                <th width="80">
+                                    订单号
+                                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多订单信息"></span>
+                                </th>
+                                <th width="70">
+                                    交易号
+                                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="交易号是在线支付平台上面生成的，微信，支付宝，银联等。"></span>
+                                </th>
+                                <th width="60">支付形式</th>
+                                <th width="60">订单状态</th>
+                                <th width="70">下单时间</th>
+                                <th width="60">设置状态</th>
+                                <th width="40">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="study_orders" key="key" item="obj">
+                                <tr class="va-m text-c orderlist">
+                                    <td class="va-m"><input type="checkbox" id="checkbox_{$key}" value="{$obj.l_study_order_id}" name="id"></td>
+                                    <td class="va-m">{$obj.l_study_order_id}</td>
+                                    <if condition="$school_id eq 0">
+                                        <td class="va-m">{$obj.s_school_name}</td>
+                                    </if>
+                                    <td class="va-m">{$obj.s_user_name|mb_substr=0,6}</td>
+                                    <td class="va-m">{$obj.s_user_phone}</td>
+                                    <td class="va-m">{$obj.s_coach_name|mb_substr=0,6}</td>
+                                    <td class="va-m">{$obj.s_coach_phone}</td>
+                                    <td class="text-c text-red">
+                                        <span style="color:#333;">{$obj.appoint_time_date}</span>
+                                        <br/>
+                                        <span style="color:red;">{$obj.appoint_time}</span>
+                                    </td>
+                                    <td class="va-m">￥{$obj.dc_money}元</td>
+                                    <td class="va-m">
+                                        <a href="javascript:;" class="orderdetail" id="orderdetail{$obj.l_study_order_id}" style="color:#09c">
+										{$obj.s_order_no}
+			                          	</a>
+                                    </td>
+                                    <td class="va-m">{$obj.s_zhifu_dm|substr=-8,8}</td>
+                                    <td class="va-m">
+                                        <switch name="obj.deal_type">
+                                            <case value="1"><span class="btn btn-secondary-outline radius" style="display:inline">支付宝支付</span></case>
+                                            <case value="2"><span class="btn btn-warning-outline radius" style="display:inline">线下支付</span></case>
+                                            <case value="3"><span class="btn btn-success-outline radius" style="display:inline">微信支付</span></case>
+                                            <case value="4"><span class="btn btn-primary-outline radius" style="display:inline">银联支付</span></case>
+                                            <default />
+                                            <case value="4"><span class="btn btn-default-outline disabled radius" style="display:inline">其它方式</span></case>
+                                        </switch>
+                                    </td>
+                                    <td class="va-m">
+                                        <switch name="obj.i_status">
+                                            <case value="1003"><span class="btn btn-default" style="display:inline">未付款</span></case>
+                                            <case value="1"><span class="btn btn-secondary" style="display:inline">已付款</span></case>
+                                            <case value="2"><span class="btn btn-success" style="display:inline">已完成</span></case>
+                                            <case value="3"><span class="btn btn-danger" style="display:inline">已取消</span></case>
+                                            <case value="1006"><span class="btn btn-warning" style="display:inline">退款中</span></case>
+                                            <case value="1007"><span class="btn btn-success" style="display:inline">已退款</span></case>
+                                            <case value="101"><span class="btn btn-danger" style="display:inline">已删除</span></case>
+                                            <default /><span class="btn btn-default disabled" style="display:inline">其它状态</span>
+                                        </switch>
+                                    </td>
+                                    <td class="va-m">{$obj.dt_order_time}</td>
+                                    <td class="va-m td-manage">
+                                        <div class="button-group border-blue">
+                                            <button type="button" class="button button-little text-blue dropdown-toggle">
+		                                        设置 <span class="downward"></span>
+		                                    </button>
+                                            <ul class="drop-menu" style="min-width:85px;margin-left:-20px;">
+                                                <if condition="$obj.i_status eq 1003">
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 1003, this);" style="">未付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 1, this);" style="">已付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 2, this);">已完成</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 3, this);">已取消</a></li>
+                                                    <else/>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 1003, this);" style="">未付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 1006, this);">退款中</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 1, this);" style="">已付款 </a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 2, this);">已完成</a></li>
+                                                    <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 3, this);">已取消</a></li>
+                                                    <!-- <li><a href="javascript:;" onclick="javascript:setStudyOrdersStatus({$obj.l_study_order_id}, 101, this);">已删除</a></li> -->
+                                                </if>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td class="va-m td-manage">
+                                        <a title="删除" href="javascript:;" class="vm-a" onclick="member_del(this,{$obj.l_study_order_id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" class="vm-a">&#xe6e2;</i></a>
+                                    </td>
+                                    <td class="orderinfo " style="display:none">
+                                        <table class="table table-border table-bordered table-hover" style="color:#333;">
+                                            <!-- <tr width="100%"> 
+												<td class=" blue " style="font-weight:bold;width:70px">学员姓名</td> 
+												<td>{$obj.s_user_name}</td> 
+												<td class="blue " style="font-weight:bold;width:70px">学员号码</td> 
+												<td>{$obj.s_user_phone}</td>
+											</tr> -->
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold; width:100px ">驾校名称</td>
+                                                <td class=" ">{$obj.s_school_name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold; width:100px ">学员姓名</td>
+                                                <td class=" ">{$obj.s_user_name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">学员号码</td>
+                                                <td class=" ">{$obj.s_user_phone}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">订 单 号</td>
+                                                <td class=" ">{$obj.s_order_no}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">交 易 号</td>
+                                                <td class=" ">{$obj.s_zhifu_dm}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">订单金额</td>
+                                                <td class="text-red ">￥{$obj.dc_money}元</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">预约计时</td>
+                                                <td class="text-red">{$obj.i_service_time}小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">预约科目</td>
+                                                <td class="text-red " colspan=3>{$obj.s_lesson_name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">预约牌照</td>
+                                                <td class="text-red " colspan=3>{$obj.s_lisence_name}</td>
+                                            </tr>
+                                            <!-- <tr>
+												<td class="blue" style="font-weight:bold">训练费用</td>
+												<td >￥{$obj.dc_money}元</td>
+												<td class="blue " style="font-weight:bold">预约时长</td>
+												<td>{$obj.i_service_time}小时</td>
+											</tr> -->
+                                            <!-- <tr>
+												<td class="blue" style="font-weight:bold">预约科目</td> 
+												<td>{$obj.s_lesson_name}</td>
+												<td class="blue " style="font-weight:bold">预约牌照</td> 
+												<td>{$obj.s_lisence_name}</td>
+											</tr> -->
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">下单时间</td>
+                                                <td class=" " colspan=3>{$obj.dt_order_time}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue text-c" style="font-weight:bold">支付时间</td>
+                                                <td class=" " colspan=3>{$obj.dt_zhifu_time}</td>
+                                            </tr>
+                                            <if condition="$obj.i_status eq 3">
+                                                <tr>
+                                                    <td class="blue text-c" style="font-weight:bold">取消时间</td>
+                                                    <td class=" ">{$obj.cancel_time}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="blue text-c" style="font-weight:bold">取消原因</td>
+                                                    <if condition="$obj.cancel_reason neq ''">
+                                                        <td class=" ">{$obj.cancel_reason}</td>
+                                                        <else/>
+                                                        <td class=" ">--</td>
+                                                    </if>
+                                                </tr>
+                                            </if>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page pagination" style="display:inline;">
+                    <empty name="count">
+                        <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                    </empty>
+                    <p>{$page}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/laydate.dev.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        // 批量删除订单
+        $('#delete-all').click(function() {
+            if ($('#checkedid').find('input:checked').val() == undefined) {
+                layer.msg('您还未选中需删除的订单', {
+                    icon: 2,
+                    time: 1000
+                });
+                return false;
+            }
+            layer.confirm('您确认要删除吗？', function(index) {
+                var checked_id = '';
+                $('.table-hover input:checkbox').each(function(index) {
+                    if ($('#checkbox_' + index + ':checked').val() != undefined) {
+                        checked_id += $('#checkbox_' + index + ':checked').val() + ',';
+                    }
+                })
+
+                if (checked_id.lastIndexOf(',') > 0) {
+                    checked_id = checked_id.substr(0, checked_id.lastIndexOf(','));
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{:U("Order/delAppointOrders")}',
+                    data: {
+                        'id': checked_id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,
+                                time: 1000
+                            });
+                            location.reload();
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+
+        })
+
+        // 时间选择搜索
+        $(function() {
+            laydate({
+                elem: '#appoint_time',
+                // format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+                format: 'YYYY-MM-DD', //日期格式
+                // min: laydate.now(),
+                max: '2099-12-31 23:59:59', //最大日期
+                // istime: true //是否开启时间选择
+            });
+            laydate.skin('danlan');
+        })
+
+        // 设置订单状态
+        function setStudyOrdersStatus(id, status, obj) {
+            if (id == '' || status == '') {
+                alert('参数错误');
+                return false; //参数错误
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('Order/setStudyOrdersStatus')}",
+                data: {
+                    'id': id,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        // layer.msg('设置失败',{icon:2,time:1000});
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        }
+        // 鼠标订单事件
+        $('.orderdetail').on({
+            'mouseenter': function() {
+                var id = $(this).attr('id');
+                var orderinfo = $(this).parents('tr.orderlist').find('td.orderinfo').html();
+                layer.tips(orderinfo, '#' + id, {
+                    tips: [1, '#fff'],
+                    time: 0,
+                    area: '500px'
+                });
+            },
+            'mouseleave': function() {
+                var index = layer.tips();
+                layer.close(index);
+            },
+            'click': function() {
+                var orderinfo = $(this).parents('tr.orderlist').find('td.orderinfo').html();
+                layer.open({
+                    type: 1,
+                    title: '预约计时订单详情',
+                    area: '500px',
+                    moveType: 1,
+                    shift: 0,
+                    shade: [0.3, '#333'],
+                    shadeClose: true,
+                    content: orderinfo
+                });
+            }
+        })
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delAppointLearner",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('删除成功!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else if (data.code == 400) {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

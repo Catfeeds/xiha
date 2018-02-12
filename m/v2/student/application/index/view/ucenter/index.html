@@ -1,0 +1,111 @@
+{include file="index/header"/}
+<div class="page" id="ucenter">
+  	<div class="content" style="margin:0 0 2.5rem 0;">
+		<!--我的内容-->
+		<div class="ucenter-top">
+			<div class="ucenter-top-top">
+				<p><a style="color: #fff;" href="{:url('/ucenter/info', ['token'=>$token, 'device'=>$device])}"><span class="ucenter-top-name">点击登录</span></a></p>
+			</div>
+			<div class="ucenter-top-photo">
+				<a href="{:url('/ucenter/info', ['token'=>$token, 'device'=>$device])}"><img src="__PUBLIC__/static/images/ucenter-no-photo.png" alt="" /></a>
+			</div>
+			<div class="ucenter-top-bottom">
+				<div class="row">
+			      <div class="col-50" style="border-right: 1px solid #F3F3F3;">
+			      	<a href="{:url('/ucenter/tickets', ['token'=>$token, 'device'=>$device])}">
+			      		<p style="font-size: 0.8rem; color:#333; text-align: center;">学车券</p>
+			      		<p style="font-size: 0.6rem; color: #999; text-align: center;"><span id="tickets_num">0</span>张</p>
+			      	</a>
+			      </div>
+			      <div class="col-50">
+			      	<a href="{:url('/ucenter/mycoach', ['token'=>$token, 'device'=>$device])}">
+			      		<p style="font-size: 0.8rem; color:#333; text-align: center;">我的教练</p>
+			      		<p style="font-size: 0.6rem; color: #999; text-align: center;">去绑定教练</p>
+			      	</a>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		
+		<div class="ucenter-mid">
+		  <div class="list-block" style="margin-top:10px;">
+		    <ul>
+		      <!--<li>
+		      	 <a href="{:url('/ucenter/mywollet', ['token'=>$token, 'device'=>$device])}" class="item-link item-content">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-mybag-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+			          <div class="item-title">我的钱包</div>
+			        </div>
+		        </a>
+		      </li>-->
+		      <li>
+			      <a href="{:url('/ucenter/myexams', ['token'=>$token, 'device'=>$device])}" class="item-content item-link">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-mytiku-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+			          <div class="item-title">我的题库</div>
+			        </div>
+			      </a>
+		      </li>
+		      <li>
+		      	<a href="{:url('/signup/myorder', ['token'=>$token, 'device'=>$device])}" class="item-content item-link">
+		        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-myorder-logo.png" style="width: 30px;" alt="" /></div>
+		        <div class="item-inner">
+		          <div class="item-title">我的订单</div>
+		        </div>
+		        </a>
+		      </li>
+		      <!--<li>
+		      	<a href="{:url('/article/mypost', ['token'=>$token, 'device'=>$device])}" class="item-content item-link">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-mytiezi-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+		          		<div class="item-title">我的帖子</div>
+			           	<div class="item-after"><span class="badge bg-danger">2</span></div>
+			        </div>
+		        </a>
+		      </li>-->
+		      <li>
+		      	<a href="{:url('/ucenter/mymessage', ['token'=>$token, 'device'=>$device])}" class="item-content item-link">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-mymessage-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+			          <div class="item-title">我的消息</div>
+		              <div class="item-after"><span class="badge bg-danger">10</span></div>
+			        </div>
+		        </a>
+		      </li>
+		      <li>
+		      	<a href="http://m.xihaxueche.com/html_h5/index.html" class="external item-content item-link">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-dianzijiaolian-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+			          <div class="item-title">电子教练</div>
+			          <div class="item-after">练车的好帮手</div>
+			        </div>
+		        </a>
+		      </li>
+		      <li>
+		      	<a href="javascript:;" class="item-content item-link -mob-share-open">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-share-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+			          <div class="item-title">我要分享</div>
+			        </div>
+		        </a>
+		      </li>
+		      <li>
+		      	<a href="{:url('/ucenter/settings', ['token'=>$token, 'device'=>$device])}" class="item-content item-link">
+			        <div class="item-media"><img src="__PUBLIC__/static/images/ucenter-index-settings-logo.png" style="width: 30px;" alt="" /></div>
+			        <div class="item-inner">
+			          <div class="item-title">设置中心</div>
+			        </div>
+		        </a>
+		      </li>
+		    </ul>
+		  </div>
+		</div>
+  	</div>
+  	<!--sharebar-->
+	{include file="index/sharebar"/}
+  	
+  	<!--navbar底部导航-->
+	{include file="index/navbar"/}
+</div>
+
+{include file="index/footer"/}

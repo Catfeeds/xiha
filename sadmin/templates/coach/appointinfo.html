@@ -1,0 +1,179 @@
+<!--{include file="library/header.lbi"}-->
+<script src="templates/assests/js/laydate/laydate.js"></script>
+<div class="tab-body" style="">
+	<div class="panel-head">
+	    <a href="index.php?action=coach&op=index" class=""><strong>返回教练列表 >></strong></a>
+	</div>
+	<br />
+<div class="tab"> 
+	<div class="tab-head border-main"> 
+		<ul class="tab-nav"> 
+			<li>
+				<a href="index.php?action=coach&op=coachinfo&id=<!--{$coach_id}-->">基本信息</a>
+			</li> 
+			<li class="active">
+				<a href="index.php?action=coach&op=appointinfo&id=<!--{$coach_id}-->">预约详情</a>
+			</li> 
+			<li>
+				<a href="index.php?action=coach&op=studentlist&id=<!--{$coach_id}-->">学员列表</a>
+			</li> 
+		</ul> 
+	</div> 
+	<div class="tab-body" style="padding-top:10px;"> 
+
+		<!-- 时间配置 -->
+		<div class="tab-panel form-x active">
+			<div class="collapse">
+	            <div class="clearfix"></div>
+				<!--{if $current_time_config}-->
+				<div class="form-group" style="margin-top:15px;">   
+				    <div class="field" style="width:100%;">
+				        <div class="tab"> 
+				            <div class="tab-head border-main float-left"> 
+				                 <ul class="tab-nav date_config "> 
+				                    <!-- 时间7天日期显示 -->
+
+				                    <!--{foreach $current_time_config['date_time'] as $key => $value}-->
+				                    	<li title="<!--{$value['fulldate']}-->" style="margin-right:5px;" <!--{if $value['fulldate'] == $date}-->class="active float-left"<!--{else}-->class="float-left"<!--{/if}-->>
+				                    	<a href="index.php?action=coach&op=appointinfo&id=<!--{$coach_id}-->&date=<!--{$value['fulldate']}-->" title="<!--{$value['fulldate']}-->"><!--{$value['date']}--></a>
+				                    	</li>
+				                    <!--{/foreach}-->
+				                </ul>
+				            </div>
+			                <div class="float-left">
+			                	<form action="index.php?action=coach&op=appointinfo&id=<!--{$coach_id}-->" method="post">
+				                    <label for="dt_order_time">日期</label>
+				                    <input type="text" name="date" class="input input-auto date_picker laydate-icon" size="20" id="start" style="height:34px;" value="<!--{$date}-->">
+				                    <input type="submit" class="button border-green" value="搜索">
+			                    </form>
+			                </div>
+
+				            <div class="float-right" style="margin-right:100px;">
+				                <a href="javascript:location.reload()"><img src="templates/assests/images/iconfont-fresh.png" style="width:35px; height:35px;" alt=""></a>
+				            </div>
+				            	
+				            <div class="clearfix"></div>
+
+				            <!-- 每一天的时间配置 -->
+				            <div class="tab-body time_config">
+				
+				                <div id="time_config_ids_arr"> 
+				                    <table class="table table-bordered">
+				                        <tr>
+				                            <th width="100">时间段ID</th>
+				                            <th width="100">开始时间</th>
+				                            <th width="100">结束时间</th>
+				                            <th width="100">牌照</th>
+				                            <th width="100">科目</th>
+				                            <th width="100">单价</th>
+				                            <th width="100">是否设置</th>
+				                            <th width="100">是否被预约</th>
+				                        </tr>
+				                        <tr class="bg-yellow" style="color:#fff">
+				                            <td colspan=9>上午时间：</td>
+				                        </tr>
+				                        <!--{if $current_time_config['am_time_list']}-->
+				                        <!--{foreach $current_time_config['am_time_list'] as $k => $v}-->
+				                        <tr>
+			                                <td><span><!--{$v['id']}--></span></td>
+			                                <td><span><!--{$v['final_start_time']}--></span></td>
+			                                <td><span><!--{$v['final_end_time']}--></span></td>
+			                                <td>
+			                                    <span><!--{$v['license_no']}--></span>
+			                                </td>
+			                                <td>
+			                                    <span><!--{$v['subjects']}--></span>
+			                                </td>
+			                                <td>
+			                                	<span><!--{$v['price']}--></span>
+			                                </td>
+			                                <td class="setting">
+			                                	<!--{if $v['is_set'] == 1}-->
+			                                    	<span class="badge bg-green">已设置</span>
+			                                    <!--{else}-->
+			                                    	<span class="badge bg-gray">未设置</span>
+			                                    <!--{/if}-->
+			                                </td>
+			                                <td class="appoint">
+			                                	<!--{if $v['is_appointed'] == 1}-->
+			                                    	<span class="badge bg-yellow">已预约</span>
+			                                    <!--{else}-->
+			                                    	<span class="badge bg-gray">未预约</span>
+			                                    <!--{/if}-->
+			                                </td>
+			                            </tr>
+				                        <!--{/foreach}-->
+				                        <!--{else}-->
+				                        	<tr>
+				                        		<td colspan=9>暂无时间配置</td>
+				                        	</tr>
+				                        <!--{/if}-->
+
+            	                        <tr class="bg-yellow" style="color:#fff">
+            	                            <td colspan=9>下午时间：</td>
+            	                        </tr>
+            	                        <!--{if $current_time_config['pm_time_list']}-->
+            	                        <!--{foreach $current_time_config['pm_time_list'] as $k => $v}-->
+            	                        <tr>
+                                            <td><span><!--{$v['id']}--></span></td>
+                                            <td><span><!--{$v['final_start_time']}--></span></td>
+                                            <td><span><!--{$v['final_end_time']}--></span></td>
+                                            <td>
+                                                <span><!--{$v['license_no']}--></span>
+                                            </td>
+                                            <td>
+                                                <span><!--{$v['subjects']}--></span>
+                                            </td>
+                                            <td>
+                                            	<span><!--{$v['price']}--></span>
+                                            </td>
+                                            <td class="setting">
+                                            	<!--{if $v['is_set'] == 1}-->
+                                                	<span class="badge bg-green">已设置</span>
+                                                <!--{else}-->
+                                                	<span class="badge bg-gray">未设置</span>
+                                                <!--{/if}-->
+                                            </td>
+                                            <td class="appoint">
+                                            	<!--{if $v['is_appointed'] == 1}-->
+                                                	<span class="badge bg-yellow">已预约</span>
+                                                <!--{else}-->
+                                                	<span class="badge bg-gray">未预约</span>
+                                                <!--{/if}-->
+                                            </td>
+                                        </tr>
+            	                        <!--{/foreach}-->
+            	                        <!--{else}-->
+            	                        	<tr>
+            	                        		<td colspan=8>暂无时间配置</td>
+            	                        	</tr>
+            	                        <!--{/if}-->
+				                    </table> 
+				                 </div>
+				            </div> 
+				        </div>
+				    </div>
+				</div>
+				<!--{else}-->
+					<div class="alert alert-yellow"><span class="close rotate-hover"></span><strong>注意：</strong>暂无时间配置</div>
+				<!--{/if}-->
+			</div>
+		</div> 
+
+	</div> 
+</div>
+</div>
+<script>
+    laydate({
+        elem: '#start',
+        // min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+        // max: laydate.now(+6) //+1代表明天，+2代表后天，以此类推
+    });
+    laydate.skin('yalan');
+
+    function getredirecturl() {
+    	
+    }
+</script>
+
+<!--{include file="library/footer.lbi"}-->

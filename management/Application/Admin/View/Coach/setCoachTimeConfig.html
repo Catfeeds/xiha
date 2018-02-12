@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/pintuer.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/css/select2.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css" rel="stylesheet" type="text/css" /> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>教练时间设置</title>
+<style type="text/css">
+    .tab ul li a:hover{
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+    <div id="tab_school" class="HuiTab">
+        <div class="pd-20">
+            <div class="tabBar clearfix">
+                <span>时间模板</span>
+                <span id="timeConfig" data_date="{$current_date}">时间配置</span>
+            </div>
+            <div class="tabCon pd-20 " >
+                 <form action="{:U('Coach/setCoachTimeConfig')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="setCoachTimeConfig">
+                    <input type="hidden" name="coach_id" value="{$coach_id}">
+                    <div class="mt-20">
+                        <label for="s_am_subject"><strong>上午科目： </strong></label>
+                        <select class="" name="s_am_subject" id="s_am_subject" style="width:240px;height:30px" >
+                            <option value="">选择上午科目</option>
+                            <option value="1" <if condition="$time_list.am_subject eq 1">selected</if> >科目一</option>
+                            <option value="2" <if condition="$time_list.am_subject eq 2">selected</if> >科目二</option>
+                            <option value="3" <if condition="$time_list.am_subject eq 3">selected</if> >科目三</option>
+                            <option value="4" <if condition="$time_list.am_subject eq 4">selected</if> >科目四</option>
+                        </select>
+                    </div>
+                    <div class="mt-20">
+                        <label for="s_pm_subject"><strong>下午科目： </strong></label>
+                         <select class="" name="s_pm_subject" id="s_pm_subject" style="width:240px;height:30px">
+                            <option value="">选择下午科目</option>
+                            <option value="1" <if condition="$time_list.pm_subject eq 1">selected</if>>科目一</option>
+                            <option value="2" <if condition="$time_list.pm_subject eq 2">selected</if>>科目二</option>
+                            <option value="3" <if condition="$time_list.pm_subject eq 3">selected</if>>科目三</option>
+                            <option value="4" <if condition="$time_list.pm_subject eq 4">selected</if>>科目四</option>
+                         </select>
+                    </div>
+                    <div class="mt-30">
+                        <label for="system_amtimeconf"><strong>上午时间设置：</strong></label>
+                        <table class="table table-border table-bordered table-hover" id="system_amtimeconf">
+                              <thead>
+                                <tr>
+                                    <th width="20%"><input type="checkbox" name="" value="">全选</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>是否可被预约</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <foreach name="time_list['am_time_list']" item="v" key="k">
+                                    <tr title="{$v.id}">
+                                        <td>
+                                            <input type="checkbox" id="checkbox_{$k+1}" value="{$v.id}" name="s_am_time_list[]" <if condition="$v.is_set eq 1">checked</if>>
+                                        </td>
+                                        <td>{$v.final_start_time}</td>
+                                        <td>{$v.final_end_time}</td>
+                                        <td class="setting">
+                                            <span class="btn btn-success ">可以</span>
+                                        </td>
+                                    </tr>
+                                </foreach>
+                              </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-20">
+                        <label for="system_pmtimeconf"><strong>下午时间设置：</strong></label>
+                        <table class="table table-border table-bordered table-hover" id="system_pmtimeconf">
+                              <thead>
+                                <tr>
+                                    <th width="20%"><input type="checkbox" name="" value="">全选</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>是否可被预约</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <foreach name="time_list['pm_time_list']" item="v" key="k">
+                                    <tr title="{$v.id}">
+                                        <td>
+                                            <input type="checkbox" id="checkbox_{$k+1}" value="{$v.id}" name="s_pm_time_list[]" <if condition="$v.is_set eq 1">checked</if> >
+                                        </td>
+                                        <td>{$v.final_start_time}</td>
+                                        <td>{$v.final_end_time}</td>
+                                        <td class="setting">
+                                            <span class="btn btn-success ">可以</span>
+                                        </td>
+                                    </tr>
+                                </foreach>
+                              </tbody>
+                        </table>
+                    </div>
+                    <div style="margin:50px 5px">
+                        <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                        <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    </div>
+                </form>
+            </div>
+            <!--教练的最终时间配置-->
+            <div class="tabCon pd-20 timeconfig">
+                <div class="tab-panel active" id="tab-set">
+                    <form method="post" class="form-x"  action="{: U('Coach/setCoachFinalTime')}" enctype="multipart/form-data" id ="timeconfigform" >
+                        <input type="hidden" id="l_coach_id" name="l_coach_id" value="{$coach_id}"  />
+                        <input type="hidden" id="school_id" name="school_id" value="{$school_id}"  />
+                        <!-- 预约时间的配置 -->
+                        <div class="form-group">
+                            <div class="field" style="width:1000px">
+                                <div class="tab">
+                                    <div class="tab-head border-main float-left">
+                                         <ul class="tab-nav date_config">
+                                            <!-- 时间7天日期显示 -->
+                                            <foreach name="date_list" key="key" item="value">
+                                                <li class="date_time_{$key} <if condition='$key eq 0'>active</if>" title="{$value.fulldate}" ><a href="javascript:void(0)" title="{$value.fulldate}">{$value.fulldate}</a></li>
+                                            </foreach>
+                                        </ul>
+                                    </div>
+                                    <div class="float-left" style="margin-left:10px;">
+                                        <a title="删除" href="javascript:;" onclick="javascript:delpretime(this,{$coach_id});" class="btn btn-warning-outline radius" style="text-decoration:none">删除上一天时间</a>
+                                        <a title="删除" href="javascript:;" onclick="javascript:delalltime(this,{$coach_id});" class="btn btn-danger-outline radius" style="text-decoration:none">删除全部时间</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <!-- 每一天的时间配置 -->
+                                    <div class="tab-body time_config">
+                                        <div class="time_config_ids_arr">
+                                            <table class="table">
+                                                <tr>
+                                                    <th width="50">
+                                                        <input type="button" class="button button-small checkall" name="checkall" checkfor="time_config_id[]" value="全选" />
+                                                    </th>
+                                                    <th width="100">开始时间</th>
+                                                    <th width="100">结束时间</th>
+                                                    <th width="100">牌照</th>
+                                                    <th width="100">科目</th>
+                                                    <th width="100">单价 <a href="javascript:showpricesetting()" class="text-main" id="parentIframe"><span class="icon-cog"></span></a></th>
+                                                    <th width="100">是否可预约</th>
+                                                    <th width="100">预约状况</th>
+                                                    <th width="150">
+                                                        <a title="保存" href="javascript:;" onclick="javascript:gettimeconfig(this,{$coach_id});" class="btn btn-success radius" style="text-decoration:none">保存</a>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background:#f6f6f6;" colspan="9">
+                                                        上午时间：
+                                                    </td>
+                                                </tr>
+                                                <foreach name="am_time_list" key="k" item="v">
+                                                    <tr title="{$v.id}">
+                                                        <td class="checking" ><input type="checkbox" name="time_config_id[]"  id="checkbox_{$v.id}" value="{$v.id}" /></td>
+                                                        <td><span>{$v.final_start_time}</span></td>
+                                                        <td><span>{$v.final_end_time}</span></td>
+                                                        <td class="lisence_no">
+                                                            <select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_{$k+1}">
+                                                                <option value="C1" <if condition="$v.license_no eq C1">selected</if>>C1</option>
+                                                                <option value="C2" <if condition="$v.license_no eq C2">selected</if>>C2</option>
+                                                                
+                                                            </select>
+                                                        </td>
+                                                        <td class="lesson">
+                                                            <select name="subjects[]" class="input input-auto" style="width:100px;" id="lesson_name_{$k+1}">
+                                                                <option value="科目二" <if condition="$v.subjects eq '科目二'">selected</if>>科目二</option>
+                                                                <option value="科目三" <if condition="$v.subjects eq '科目三'">selected</if>>科目三</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="price">
+                                                            <input type="text" class="input input-auto single_price_{$v.id}" id="single_price_{$v.id}" style="text-align:center" size="10" value="{$v.price}" name="single_price[]">
+                                                        </td>
+                                                        <input type="hidden" value="{$v.id}" name="time_config_ids[]" id="time_config_ids">
+                                                        <td class="va-m setting">
+                                                            <span class="btn btn-danger-outline radius">不可以</span>
+                                                        </td>
+                                                        <td class="va-m appointing">
+                                                            <span class="btn btn-warning-outline radius">未被预约</span>
+                                                        </td>
+                                                        <td><input type="hidden" value=""></td>
+                                                    </tr>
+                                                </foreach> 
+                                                <tr>
+                                                    <td style="background:#f6f6f6" colspan="9">
+                                                      <span style="">下午时间：</span>
+                                                    </td>
+                                                </tr>
+                                                <foreach name="pm_time_list" key="k" item="v">
+                                                    <tr title="{$v.id}">
+                                                        <td class="checking"><input type="checkbox" name="time_config_id[]"  id="checkbox_{$v.id}" value="{$v.id}" /></td>
+                                                        <td><span>{$v.final_start_time}</span></td>
+                                                        <td><span>{$v.final_end_time}</span></td>
+                                                        <td class="lisence_no">
+                                                            <select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_{$k+1}">
+                                                                <option value="C1" <if condition="$v.license_no eq C1">selected</if>>C1</option>
+                                                                <option value="C2" <if condition="$v.license_no eq C2">selected</if>>C2</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="lesson">
+                                                            <select name="subjects[]" class="input input-auto" style="width:100px;" id="lesson_name_{$k+1}">
+                                                                <option value="科目二" <if condition="$v.subjects eq '科目二'">selected</if>>科目二</option>
+                                                                <option value="科目三" <if condition="$v.subjects eq '科目三'">selected</if>>科目三</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="price">
+                                                            <input type="text" class="input input-auto single_price_{$v.id}" id="single_price_{$v.id}" style="text-align:center" size="10" value="{$v.price}" name="single_price[]">
+                                                        </td>
+                                                        <input type="hidden" value="{$v.id}" name="time_config_ids[]" id="time_config_ids">
+                                                        <td class="va-m setting">
+                                                            <span class="btn btn-danger-outline radius">不可以</span>
+                                                        </td>
+                                                        <td class="va-m appointing">
+                                                            <span class="btn btn-warning-outline radius">未被预约</span>
+                                                        </td>
+                                                        <td><input type="hidden" value=""></td>
+                                                    </tr>
+                                                </foreach>
+                                            </table>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" value="" name="currentdate" id="currentdate">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/layerv2/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/pintuer.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>  -->
+<script type="text/javascript">
+    // 标题切换
+    $(function(){
+        $.Huitab("#tab_school .tabBar span","#tab_school .tabCon","current","click","0");
+    });
+
+// 1.教练时间模板的配置
+    // 表单认证
+    $( function () {
+        $('#setCoachTimeConfig').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    })
+
+// 2.教练时间配置
+    $(function() {
+        // layer.tips('增加一天时间配置，便于提前修改可预约时间！', '.date_time_7', {
+        //     tips: 2,
+        //     time: 5000
+        // });
+        $('#timeConfig').click(function() {
+            var current_date = $(this).attr('data_date');
+            var id = {$coach_id};
+            $('#currentdate').val(current_date);
+            getajaxtimeconfig(current_date, id, 'li.active');
+        })
+    })
+
+    $('.date_config li').click(function() {
+        $('#currentdate').val($(this).attr('title'));
+    });
+
+    function gettimeconfig(obj) {
+        if($('#currentdate').val().trim() != '') {
+            layer.confirm('你确定保存吗？',function(index){
+                $.ajax({
+                    type:"POST",
+                    url:'__URL__/setCoachFinalTime',
+                    data:$('#timeconfigform').serialize(),
+                    dataType:"JSON",
+                    beforeSend:function() {
+                        $(obj).html('正在保存中...');
+                    },
+                    success:function(data) {
+                        $(obj).html('保存');   
+                        if(data.code == 1) {
+                            layer.msg('保存成功',{icon:1, offset:['0px','40%'], time:1500});
+
+                        } else if(data.code == 2) {
+                            var html = '';
+                            $.each(data.data, function(e, t) {
+                                html += '<span class="button border-red button-little">'+t+'</span>';
+                            }) 
+                            layer.alert(html+' <br />时间段已经被预约，不能取消时间段设置，保存请勾选该时间段或者删除该时间段的订单！', {
+                                icon:2,
+                                title:'保存失败'
+                            });
+
+                        } else {
+                            layer.msg('保存失败',{icon:1, offset:['0px','40%'], time:1500});
+                        }
+                    },
+                    error:function() {
+                        $(obj).html('保存');
+                        layer.msg('网络错误,请检查网络连接',{icon:1, offset:['0px','40%'], time:1500});    
+                    }
+                });
+            });
+            
+        } else {
+            layer.msg('请选择日期',{icon:6, time:1500});
+            return false;
+        }
+        // $("#timeconfigform").submit();
+    }
+
+
+    // 删除前一天的时间配置
+    function delpretime(obj,id){
+        var day_config = $('.date_config').find('.active').attr('title');
+        layer.confirm('确认要删除吗？',function(index){
+            $.ajax({
+                type:"POST",
+                url:"__URL__/delpretime",
+                data:{'id' : id, 'day_config' : day_config},
+                dataType:'JSON',
+                success:function(data) {
+                    if(data.code == 200) {
+                        layer.msg('已删除!',{icon:1,time:1000});
+                    } else {
+                        layer.msg('删除失败!',{icon:2,time:1000});
+                    }
+
+                },
+                error:function() {
+                    layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+                }
+
+            });
+        });
+    }
+
+
+    // 删除所有时间数据
+    function delalltime(obj,id){
+      layer.confirm('确认要删除吗？',function(index){
+          $.ajax({
+              type:"POST",
+              url:"__URL__/delalltime",
+              data:{'id':id},
+              dataType:'JSON',
+              success:function(data) {
+                  if(data.code == 200) {
+                      layer.msg('已删除!',{icon:1,time:1000});
+                  } else {
+                      layer.msg('删除失败!',{icon:2,time:1000});
+                  }
+
+              },
+              error:function() {
+                  layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+              }
+          });
+      });
+    }
+    // 点击获取时间配置
+    $('.date_config').find('li').click(function() {
+        var date = $(this).attr('title');
+        var id = {$coach_id};
+        if(date) {
+            // $(this).html('加载中...');
+            getajaxtimeconfig(date, id, this);
+        }
+    })
+
+    // 时间配置
+    function getajaxtimeconfig(date, id, obj) {
+        var date_html = $(obj).attr('title');
+        var school_id = {$school_id};
+        $.ajax({
+            type:"POST",
+            url:"{:U('Coach/getCoachCurrentTime')}",
+            data:{'date':date, 'id':id, 'school_id' : school_id},
+            async:false,
+            dataType:"JSON",
+            // beforeSend:function() {
+            //     $(obj).find('a').html('正在加载中.');
+            // },
+            success:function(data) {
+                    // 是否可预约
+                    if(data.data.time_config_id.length > 0) {
+                        $.each(data.data.time_config_id, function(k,v) {
+                            var setting_html = '<span class="btn btn-success-outline radius">可以</span>';
+                            $('.time_config_ids_arr').find('tr[title='+v+']').find('.setting').html(setting_html);
+                            $('.time_config_ids_arr').find('#checkbox_'+v).attr('checked', true);
+                        });
+                    } else {
+                        var setting_html = '<span class="btn btn-danger-outline radius">不可以</span>';
+                        $('.time_config_ids_arr').find('tr').find('.setting').html(setting_html);
+                        $('.time_config_ids_arr').find('input[type="checkbox"]').attr('checked', false);
+                    }
+                    // 预约状况
+                    if(data.data.is_appoint.length > 0) {
+                        $.each(data.data.is_appoint, function(k,v) {
+                            var appoint_html = '<span class="btn btn-success-outline radius">已被预约</span>';
+                            $('.time_config_ids_arr').find('tr[title='+v+']').find('.appointing').html(appoint_html);
+                        })
+                    } else {
+                        var appoint_html = '<span class="btn btn-warning-outline radius">未被预约</span>';
+                        $('.time_config_ids_arr').find('tr').find('.appointing').html(appoint_html);
+                    } 
+
+                    // 单价
+                    // var time_money_config = length(data.data.time_config_money_id);
+                    // if(time_money_config > 0) {
+                    //     $.each(data.data.time_config_money_id, function(k,v) {
+                    //         var money_html = '<input type="text" class="input input-auto single_price_'+k+'" id="single_price_'+k+'" style="text-align:center" size="10" value="'+v+'" name="single_price[]">';
+                    //         $('.time_config_ids_arr').find('tr').find('.price').html(money_html);
+
+                    //     })
+                    // } else {
+                    //     var money_html = '<input type="text" class="input input-auto single_price_{$v.id}" id="single_price_{$v.id}" style="text-align:center" size="10" value="{$v.price}" name="single_price[]">';
+                    //     $('.time_config_ids_arr').find('tr').find('.price').html(money_html);
+                    // }
+
+                    // // 牌照
+                    // var lisence_no = length(data.data.time_lisence_config_id);
+                    // if(lisence_no > 0) {
+                    //     $.each(data.data.time_lisence_config_id, function(k,v) {
+                    //         if (v == 'C1') {
+                    //             var lisence_html = '<select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_'+k+'"><option value="C1" selected>C1</option><option value="C2" >C2</option></select>';
+                    //         } else if (v == 'C2') {
+                    //             var lisence_html = '<select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_'+k+'"><option value="C1" >C1</option><option value="C2" selected>C2</option></select>';
+                    //         }
+                    //         $('.time_config_ids_arr').find('tr').find('.lisence_no').html(lisence_html);
+                    //     })
+                    // } else {
+                    //     var lisence_html = '<select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_{$k+1}"><option value="C1" <if condition="$v.license_no eq C1">selected</if>>C1</option><option value="C2" <if condition="$v.license_no eq C2">selected</if>>C2</option></select>';
+                    //     $('.time_config_ids_arr').find('tr').find('.price').html(lisence_html);
+                    // }
+
+                    // 科目
+                    // var lesson_length = length(data.data.time_lesson_config_id);
+                    // if(lesson_length > 0) {
+                    //     $.each(data.data.time_lesson_config_id, function(k,v) {
+                    //         if (v == '科目二') {
+                    //             var lesson_html = '<select name="subjects[]" class="input input-auto" style="width:100px;" id="lesson_name_{$k+1}"><option value="科目二" selected>科目二</option><option value="科目三" >科目三</option></select>';
+                    //         } else if (v == '科目三') {
+                    //             var lisence_html = '<select name="subjects[]" class="input input-auto" style="width:100px;" id="lesson_name_{$k+1}"><option value="科目二" >科目二</option><option value="科目三" selected>科目三</option></select>';
+                    //         }
+                    //         $('.time_config_ids_arr').find('tr').find('.lesson').html(lesson_html);
+                    //     })
+                    // } else {
+                    //     var lisence_html = '<select name="lisence_no[]" class="input input-auto" style="width:100px;" id="lisence_name_{$k+1}"><option value="C1" <if condition="$v.license_no eq C1">selected</if>>C1</option><option value="C2" <if condition="$v.license_no eq C2">selected</if>>C2</option></select>';
+                    //     $('.time_config_ids_arr').find('tr').find('.price').html(lisence_html);
+                    // }
+                $(obj).find('a').html(date_html);
+            },
+            error:function() {
+                layer.msg('网络错误,请检查网络连接',{icon:1, offset:['0px','40%'], time:1500});   
+            }
+        })
+    }
+
+    function length(obj){
+        var count = 0;
+        for(var i in obj){
+            if(obj.hasOwnProperty(i)){
+                count++;
+            };
+        };
+        return count;   
+    }
+    // 设置统一价格
+    function showpricesetting() {
+        layer.prompt({
+            title: '统一修改价格',
+            formType: 0,//prompt风格，支持0-2
+            shade: false,
+            moveType:1,    
+
+        }, function(price){
+            var re = /^[0-9]+.?[0-9]*$/;
+            if(!re.test(price)) {
+                layer.msg('不是数值型');
+            }
+            $('.price').each(function(e,t) {
+                $(".price:eq("+e+")").find('input.input-auto').val(price);
+            })
+            layer.msg('修改成功');
+
+        });
+    }
+</script>
+</body>
+</html>

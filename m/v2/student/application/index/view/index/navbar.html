@@ -1,0 +1,18 @@
+<nav class="bar bar-tab">
+	<a {if condition="$Request.controller eq 'Index'"}class="tab-item active no-transition "{else}class="tab-item no-transition "{/if} {if condition="$Request.controller neq 'Index'"}href="{:url('/index', ['token'=>$token, 'device'=>$device])}"{/if}>
+	  <span class="icon icon-home"></span>
+	  <span class="tab-label">首页</span>
+	</a>
+	<a {if condition="$Request.controller eq 'Drive'"}class="tab-item active no-transition "{else}class="tab-item no-transition "{/if} {if condition="$Request.controller neq 'Drive'"}href="{:url('/drive', ['token'=>$token, 'device'=>$device])}"{/if}>
+	  <span class="icon iconfont">&#xe638;</span>
+	  <span class="tab-label">驾考</span>
+	</a>
+	<a {if condition="$Request.controller eq 'Signup'"}class="tab-item active no-transition "{else}class="tab-item no-transition "{/if} {if condition="$Request.controller neq 'Signup'"}href="{:url('/signup', ['token'=>$token, 'device'=>$device])}"{/if}>
+	  <span class="icon iconfont">&#xe609;</span>
+	  <span class="tab-label">报名</span>
+	</a>
+	<a {if condition="$Request.controller eq 'Ucenter'"}class="tab-item active no-transition "{else}class="tab-item no-transition "{/if} {if condition="$Request.controller neq 'Ucenter'"}href="{:url('/ucenter', ['token'=>$token, 'device'=>$device])}"{/if}>
+	  <span class="icon icon-friends"></span>
+	  <span class="tab-label">我的</span>
+	</a>
+</nav>

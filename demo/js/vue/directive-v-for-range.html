@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue - v-for</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <template v-for="n in linuxn">
+                <li>
+                    Linux {{ n }}
+                </li>
+            </template>
+        </div>
+        <script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        linuxn: 20
+    }
+});
+        </script>
+    </body>
+</html>

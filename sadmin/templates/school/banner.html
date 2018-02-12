@@ -1,0 +1,124 @@
+<!--{include file="library/header.lbi"}-->
+	<form method="post" action="index.php?action=school&op=addbanner" enctype="multipart/form-data">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>轮播图列表</strong></div>
+            <div class="line-middle" style="margin-left:15px; margin-top:10px;"> 
+                <div class="form-group">
+                    <div class="field img_field">
+                        <input type="file" value="" class="button" name="school_banner[]" data-validate="required:请选择文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件">
+                    </div>
+                    <div class="label"></div>
+                    <div class="field" style="margin-top:10px;">
+                        <span class="button icon-plus" style="cursor:pointer; margin-top:10px;" onclick="javascript:addimg();"> 添加图片</span>
+                    </div>
+
+                </div>
+                <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+                <p class="text-red text-big" style="margin-top:10px; color:#f60; cursor:pointer;">
+                    <i class="icon-exclamation-circle"></i>
+                    最多只能添加5张图,单张图片不要超过2M, 单张图片标准尺寸为 720*400px
+                </p>
+            </div>
+            <div class="line-middle" style="margin-left:10px; margin-top:10px;"> 
+                <!--{foreach $bannerlist as $key => $value}-->
+                <div class="xl12 xs6 xm4 xb3 banner_list" style="position:relative; overflow:hidden;">  
+                    <div class="media padding-bottom clearfix"> 
+                        <a href="javascript:;" class="img_banner"><img src="<!--{$value.s_all_imgurl}-->" class="radius img-responsive" style="width:470px !important; height:266px !important;" ></a> 
+                <!--        <div class="media-body"> 
+                            <strong>拼图框架</strong>
+                             拼图跨屏响应式前端框架
+                        </div>  -->
+                    </div>
+                    <div class="del_hover" onclick="javascript:delbanner('<!--{$value.s_imgurl}-->', this)" style="background:#333; opacity:0.8; position:absolute; border-radius:4px; width: 98%; height: 96%; display:none; top:0px; text-align:center; line-height:350px;"><span class="close" style="color:#ccc; font-size:10rem;"></span></div>
+                </div>
+                <!--{/foreach}-->
+            </div>
+        </div>
+    </form>
+    <script>
+
+    $('.img-responsive, .del_hover').on({
+        mouseenter:function() {
+            $(this).parents('.xm4').find('.del_hover').css('display','block');
+        },
+        mouseleave:function() {
+            $(this).parents('.xm4').find('.del_hover').css('display','none');
+        }
+    });
+
+    // 删除banner图
+    function delbanner(url, obj) {
+        if(window.confirm('你确定要删除吗？')) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delbanner",
+                // dataType:"JSON",
+                data:{'url':url},
+                success:function(data) {
+                    if(data == 1) {
+                        $(obj).parents('.banner_list').remove();
+                    } else {
+                        alert('删除失败！');
+                        return false;
+                    }
+                }
+            })   
+        }
+        
+    }
+
+    function addimg() {
+        var html = '<input type="file" value="" class="button" name="school_banner[]" data-validate="required:请选择文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件">'; 
+        $('.img_field').append(html); 
+    }
+    // // 删除驾校
+    // function deladdress(id, obj) {
+    //     if(window.confirm('你确定删除吗？')) {
+    //         $.ajax({
+    //             type:"POST",
+    //             url:"index.php?action=school&op=deladdress",
+    //             // dataType:"JSON",
+    //             data:{'id':id},
+    //             success:function(data) {
+    //                 if(data == 1) {
+    //                     $(obj).parents('.carlist').remove();
+    //                 }
+    //             }
+    //         })
+
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的车辆列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

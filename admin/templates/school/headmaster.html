@@ -1,0 +1,111 @@
+<!--{include file="library/header.lbi"}-->
+
+	<form method="post" action="index.php?action=school&op=searchheadmaster" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>校长列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="l_user_id[]" value="全选" />
+                <a href="index.php?action=school&op=addheadmaster" class="button button-small border-green">添加校长</a>
+                <select class="input input-auto" name="search_condition" id="search_condition">
+                    
+                    <option value="1" <!--{if $op == 'searchheadmaster'}--><!--{if $search_condition == 1}-->selected<!--{/if}--><!--{/if}-->>校长姓名</option>
+                
+                    <option value="2" <!--{if $op == 'searchheadmaster'}--><!--{if $search_condition == 2}-->selected<!--{/if}--><!--{/if}-->>手机号码</option>
+                    <option value="3" <!--{if $op == 'searchheadmaster'}--><!--{if $search_condition == 3}-->selected<!--{/if}--><!--{/if}-->>驾校名称</option>
+                
+                </select>
+                <input type="text" class="input input-auto" size="20" name="keyword" value="<!--{if $op == 'searchheadmaster'}--><!--{$keywords}--><!--{/if}-->" placeholder="请输入查询条件" id="keywords">
+                <input type="hidden" value="" name="order_id">
+                <input type="submit" id="time-search" class="button border-blue" value="搜索" />
+            </div>
+
+            <table class="table table-hover">
+            	<tr>
+                    <th width="45">选择</th>
+                    <th width="45">ID</th>
+                    <th width="100">校长姓名</th>
+                    <th width="100">驾校名称</th>
+                    <th width="120">手机号码</th>
+                    <th width="100">身份证</th>
+                    <th width="150">年龄</th>
+                    <th width="150">性别</th>
+                    <th width="150">地址</th>
+                    <th width="150">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                <!--{if $headmaster_list}-->
+                <!--{foreach $headmaster_list as $key => $value}-->
+                <tr class="headmasterlist">
+                    <td><input type="checkbox" name="l_user_id[]" id="checkbox_<!--{$key}-->" class="headmaster_check" value="<!--{$value.l_user_id}-->" /></td>
+                    <td><!--{$value.l_user_id}--></td>
+                    <td><!--{$value.s_real_name}--></td>
+                    <td><!--{$value.school_name}--></td>
+                    <td><!--{$value.s_phone}--></td>
+                    <td><!--{$value.identity_id}--></td>
+                    <td><!--{$value.age}--></td>
+                    <td>
+                        <!--{if $value.sex == 1}-->
+                        <span class="badge bg-green">男</span>
+                        <!--{else}-->
+                        <span class="badge bg-red">女</span>
+                        <!--{/if}-->
+                    </td>
+                    <td><!--{$value.address}--></td>
+                    <td> 
+                        <a class="button border-blue button-little" href="index.php?action=school&op=editheadmaster&id=<!--{$value.l_user_id}-->">
+                            <span class="icon-edit text-blue"></span> 修改</a> 
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delheadmaster(<!--{$value.l_user_id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+                <!--{else}-->
+                <tr><td colspan=5>暂无校长列表</td></tr>
+                <!--{/if}-->
+            </table>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+
+    // 跳转页面
+    $('#skipping').click(function() {
+        $(this).html('跳转中...');
+        var selectpage = $('#selectpage').find('option:selected').val();
+        location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&page="+selectpage;
+    })
+    
+    // 删除驾校
+    function delheadmaster(id, obj) {
+        if(confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                dataType:"JSON",
+                url:"index.php?action=school&op=delheadmaster",
+                data:{"id":id},
+                success:function(data) {
+                    if(data.code == 1) {
+                        $(obj).parents('.headmasterlist').remove();
+                    }
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    // 搜索检测
+    function searchcheck() {
+      var keywords = $('#keywords').val();
+      var type = $('#search_condition').find('option:selected').val();
+      if(keywords.trim() == '' || type.trim() == '') {
+        layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});
+        return false;
+      }
+    }
+    </script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>在线模拟</title>
+</head>
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>学员管理<span class="c-gray en">&gt;</span> 在线模拟 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div class="tab-body" style="padding:20px">
+        <form method="post" action="{:U('Student/searchUserRecords')}" name="search">
+            <input type="hidden" name="" value="" />
+            <div class=""> 
+                 <label for="search_info">按用户信息 </label>
+                 <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" value="{$s_keyword}" placeholder="用户名，手机号，身份证号" style="width:200px;" /> 
+                 <input type="submit" id="search_stu_comment_tea" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+                <div class="cl pd-5 bg-1 bk-gray mt-20">
+                    <span class="r">共有模拟记录：<strong>{$count}</strong>条</span> 
+                </div>
+            </div>
+        </form> 
+        <div class="mt-20">
+            <table class="table table-border table-bordered table-hover table-bg table-sort">
+                <thead> 
+                    <tr class="text-c">
+                        <th width="25"> <input type="checkbox" name="" value=""></th>
+                        <th width="40">ID</th>
+                        <if condition="$school_id eq 0">
+                            <th width="80">所属驾校</th>
+                        </if>
+                        <th width="80">用户名</th>
+                        <th width="100">手机号</th>
+                        <th width="60">身份证</th>
+                        <th width="60">信息来源</th>
+                        <th width="50">牌照</th>
+                        <th width="50">考试科目</th>
+                        <th width="90">考试用时</th>
+                        <th width="80">交卷时间</th>
+                        <th width="70">考试成绩</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <foreach name="recordsList" item="list">
+                        <tr class="text-c">
+                            <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                            <td class="va-m">{$list.id}</td>
+                            <if condition="$school_id eq 0">
+                                <td class="va-m">{$list.s_school_name}</th>
+                            </if>
+                            <td class="va-m">{$list.realname}</td>
+                            <td class="va-m">{$list.s_phone}</td>
+                            <td class="va-m">{$list.identify_id}</td>
+                            <td class="va-m">
+                                <switch name="list.os">
+                                    <case value="web"><span class="btn btn-success-outline radius">web</span></case>
+                                    <case value="ios"><span class="btn btn-secondary-outline radius">ios</span></case>
+                                    <case value="android"><span class="btn btn-primary-outline radius">android</span></case>
+                                    <default /><span class="btn btn-success-outline radius">web</span>
+                                </switch>
+                            </td>
+                            <td class="va-m">{$list.ctype}</td>
+                            <td class="va-m">{$list.stype_name}</td>
+                            <td class="va-m">{$list.exam_total_time}</td>
+                            <td class="va-m">{$list.add_time}</td>
+                            <td class="va-m">{$list.score}分</td>
+                        </tr>
+                     </foreach>
+                </tbody>
+            </table>
+        </div>
+        <div class="page pagination" style="">
+            <empty name="count">
+                <br /><strong>暂无列表</strong><br /><br /><br />
+            </empty>
+            <p>{$page}</p>
+        </div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+</script> 
+</body>
+</html>

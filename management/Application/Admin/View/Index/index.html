@@ -1,0 +1,41 @@
+<extend name="Public:common" />
+<block name="main">
+<aside class="Hui-aside">
+	<input runat="server" id="divScrollValue" type="hidden" value="" />
+	<div class="menu_dropdown bk_2">
+
+     <volist name="menu_list" id="menu">
+		<dl id="">
+            <dt> {$menu.menu_first.m_cname}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+			    <ul>
+                    <volist name="menu.menu_second_list" id="menu_second">
+                    <li><a _href="{$menu_second.m_menu_url}" data-title="{$menu_second.m_cname}" href="javascript:;"><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d7;</i> {$menu_second.m_cname}</a></li>
+                    </volist>
+			    </ul>
+			</dd>
+		</dl>
+      </volist>
+
+</aside>
+<div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+	<div id="Hui-tabNav" class="Hui-tabNav">
+		<div class="Hui-tabNav-wp">
+			<ul id="min_title_list" class="acrossTab cl">
+				<li class="active"><span title="信息统计" data-href="welcome.html">信息统计</span><em></em></li>
+			</ul>
+		</div>
+		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+	</div>
+	<div id="iframe_box" class="Hui-article">
+		<div class="show_iframe">
+			<div style="display:none" class="loading"></div>
+			<!-- <iframe scrolling="yes" frameborder="0" src="{: U('Index/welcome')}"></iframe> -->
+			<iframe scrolling="yes" frameborder="0" src="__URL__/welcome"></iframe>
+			
+
+		</div>
+	</div>
+</section>
+</block>

@@ -1,0 +1,206 @@
+<!--{include file="library/header.lbi"}-->
+
+	<form method="post" action="index.php?action=school&op=search" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+        	<div class="panel-head"><strong>驾校列表</strong></div>
+            <div class="padding border-bottom">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="school_id[]" value="全选" />
+                <a href="index.php?action=school&op=add" class="button button-small border-green">添加驾校</a>
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+
+                <select class="input input-auto" name="search_condition" id="search_condition">
+                    <option value="1" <!--{if $op == 'search' && $search_condition == 1}-->selected<!--{/if}-->>驾校名称</option>
+                    <option value="2" <!--{if $op == 'search' && $search_condition == 2}-->selected<!--{/if}-->>城市名称</option>
+                    <option value="3" <!--{if $op == 'search' && $search_condition == 3}-->selected<!--{/if}-->>省份名称</option>
+                </select>
+                <input type="text" class="input input-auto" size="20" name="keyword" value="<!--{if $op == 'search'}--><!--{$keywords}--><!--{/if}-->" placeholder="请输入查询条件" id="keywords">
+<!--                 <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="keywords"> -->
+                <input type="hidden" value="" name="order_id">
+                <input type="submit" id="time-search" class="button border-blue" value="搜索" />
+
+            </div>
+            <table class="table table-hover">
+            	<tr>
+                    <th width="45">选择</th>
+                    <th width="45">ID</th>
+                    <th width="100">名称</th>
+                    <th width="100">品牌标识</th>
+                    <th width="120">法人代表</th>
+                    <th width="100">法人手机</th>
+                    <th width="150">组织结构代码</th>
+                    <th width="150">驾校性质</th>
+                    <th width="150">地址</th>
+                    <th width="150">是否展示<span class="tips icon-exclamation-circle" title="鼠标点击驾校下面展示不展示按钮，可改变在app的展示状态" data-place="right" data-toggle="hover" style="color:#f60; cursor:pointer;"></span></th>
+                    <th width="150">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+
+                <!--{foreach $school_list as $key => $value}-->
+                <tr class="schoolist">
+                    <td><input type="checkbox" name="school_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.school_id}-->" /></td>
+                    <td><!--{$value.school_id}--></td>
+                    <td><!--{$value.school_name}--></td>
+                    <td><a href="javascript:;" onclick="javascript:setschoolbrand(<!--{$value.school_id}-->,this)">
+                            <!--{if $value.brand == 2}-->
+                            <span class="badge bg-red">品牌驾校</span>
+                            <!--{else}-->
+                            <span class="badge bg-green">普通驾校</span></td>
+                            <!--{/if}-->
+                        </a>
+                    </td>
+                    <td><!--{$value.frdb}--></td>
+                    <td><!--{$value.frdb_mobile}--></td>
+                    <td><!--{$value.zzjgdm}--></td>
+                    <!--{if $value.dwxz == 1}-->
+                        <td><span class="badge bg-main">一类驾校</span></td>
+                    <!--{else if $value.dwxz == 2}-->
+                        <td><span class="badge bg-green">二类驾校</span></td>
+                    <!--{else if $value.dwxz == 3}-->
+                        <td><span class="badge bg-yellow">三类驾校</span></td>
+                    <!--{else}-->
+                        <td><span class="badge bg-yellow">其它驾校</span></td>
+                    <!--{/if}-->
+                    <td><!--{$value.address}--></td>
+                    <td>
+                        <a href="javascript:;" onclick="javascript:setonlinestatus(<!--{$value.school_id}-->,this)">
+                            <!--{if $value.is_show == 1}-->
+                            <span class="badge bg-green">展示</span>
+                            <!--{else}-->
+                            <span class="badge bg-gray">不展示</span>
+                            <!--{/if}-->
+                        </a>
+                    </td>
+
+                    <td> 
+                       
+                        <a class="button border-blue button-little" href="index.php?action=school&op=edit&id=<!--{$value.school_id}-->">
+                            <span class="icon-edit text-blue"></span> 修改</a> 
+                        <a class="button border-yellow button-little" href="javascript:;" onclick="javascript:delschool(<!--{$value.school_id}-->, this);">
+                            <span class="icon-trash-o text-red"></span> 删除</a>
+                    </td>
+                </tr>
+                <!--{/foreach}-->
+            </table>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+    // 跳转页面
+    $('#skipping').click(function() {
+        $(this).html('跳转中...');
+        var selectpage = $('#selectpage').find('option:selected').val();
+        location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&search_condition=<!--{$search_condition}-->&keyword=<!--{$keywords}-->&page="+selectpage;
+    })
+
+    // 删除驾校
+    function delschool(id, obj) {
+        if(confirm('你确定删除吗？')) {
+            $.ajax({
+                type:"POST",
+                dataType:"JSON",
+                url:"index.php?action=school&op=del",
+                data:{"id":id},
+                success:function(data) {
+                    if(data.code == 1) {
+                        $(obj).parents('.schoolist').remove();
+                    }
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    // 设置在线不在线状态
+    function setonlinestatus(id, obj) {
+        $.ajax({
+            type:"POST",
+            url:"index.php?action=school&op=online",
+            // dataType:"JSON",
+            data:{'id':id},
+            success:function(data) {
+                if(data == 1) {
+                    if($(obj).find('span').hasClass('bg-green')) {
+                        $(obj).find('span').removeClass('bg-green');
+                        $(obj).find('span').addClass('bg-gray');
+                        $(obj).find('span').html('不展示');
+                    } else {
+                        $(obj).find('span').addClass('bg-green');
+                        $(obj).find('span').removeClass('bg-gray');
+                        $(obj).find('span').html('展示');
+                    }
+                        
+                }
+            }
+        })
+    }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            alert('请选择需要删除的驾校列表！');
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                check_id += $("#checkbox_"+index).val()+',';
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            alert(check_id);
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=delmore",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+     //设置品牌驾校
+     function setschoolbrand(id, obj) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=brand",
+                // dataType:"JSON",
+                data:{'id':id},
+                success:function(data) {
+                    if(data == 1) {
+                        if($(obj).find('span').hasClass('bg-red')) {
+                            $(obj).find('span').removeClass('bg-red');
+                            $(obj).find('span').addClass('bg-green');
+                            $(obj).find('span').html('普通驾校');
+                        } else {
+                            $(obj).find('span').addClass('bg-red');
+                            $(obj).find('span').removeClass('bg-green');
+                            $(obj).find('span').html('品牌驾校');
+                        }
+                            
+                    }
+                }
+            })
+        }
+
+        // 搜索检测
+        function searchcheck() {
+          var keywords = $('#keywords').val();
+          var type = $('#search_condition').find('option:selected').val();
+          if(keywords.trim() == '' || type.trim() == '') {
+            layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});
+            return false;
+          }
+        }
+    </script>
+<!--{include file="library/footer.lbi"}-->

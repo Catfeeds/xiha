@@ -1,0 +1,118 @@
+<!--{include file="library/header.lbi"}-->
+  <div class="tab-body">
+    <!-- <div class="panel-head">
+        <a href="index.php?action=car&op=index" class=""><strong>返回车辆列表 >></strong></a>
+    </div> -->
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" style="width:100%" action="index.php?action=car&op=editoperate"  enctype="multipart/form-data">
+
+            <div class="form-group">
+                <div class="label"><label for="car_name">车辆名称</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="car_name" value="<!--{$carinfo['name']}-->" name="car_name" size="50" placeholder="请填写车辆名称" data-validate="required:请填写车辆名称" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="car_no">车牌号</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="car_no" name="car_no" value="<!--{$carinfo['car_no']}-->" size="50" placeholder="请填写车牌号" data-validate="required:请填写车牌号" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="car_type">车辆类型</label></div>
+                <div class="field">
+                    <select class="input" id="car_type" style="width:20%; float:left" name="car_type"> 
+                        <option value="">请选择车辆类型</option> 
+                        <option value="1" <!--{if $carinfo['car_type'] == 1}-->selected<!--{/if}-->>普通车型</option>
+                        <option value="2" <!--{if $carinfo['car_type'] == 2}-->selected<!--{/if}-->>加强车型</option>
+                        <option value="3" <!--{if $carinfo['car_type'] == 3}-->selected<!--{/if}-->>模拟车型</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="car_img">车辆图片</label></div>
+                <div class="field img_field">
+                    <!--{if $carinfo['imgurl']}-->
+                        <!--{foreach $carinfo['imgurl'] as $key => $value}-->
+                        <img src="<!--{$value}-->" width="50px" height="50px" alt="">
+                        <input type="file" class="button" value="<!--{$value}-->" name="car_img[]"><br>
+                        <!--{/foreach}-->
+                    <!--{else}-->
+                        <img src="templates/assests/images/logo.jpg" width="50px" height="50px" alt="">
+                        <input type="file" value="templates/assests/images/logo.jpg" class="button" name="car_img[]">
+                    <!--{/if}-->
+
+                    <!--{if $carinfo['original_imgurl']}-->
+                        <!--{foreach $carinfo['original_imgurl'] as $key => $value}-->
+                            <input type="hidden" value="<!--{$value}-->" name="original_car_img[]">
+                        <!--{/foreach}-->
+                    <!--{/if}-->
+
+                    <!--{if $carinfo['imgurl']}-->
+                        <!--{foreach $carinfo['imgurl'] as $key => $value}-->
+                            <input type="hidden" value="<!--{$value}-->" name="thumb_car_img[]">
+                        <!--{/foreach}-->
+                    <!--{/if}-->
+                </div>
+                <div class="clearfix"></div>
+                <div class="label"></div>
+                <div class="field" style="margin-top:10px;">
+                    <span class="button bg-secondary icon-plus border-main" style="cursor:pointer; margin-top:10px;" onclick="javascript:addimg();"> 添加图片</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label"><label for="car_img"></label></div>
+                <div class="field">
+                    <p class="text-red text-big" style="margin-top:10px; color:#f60; cursor:pointer;">
+                        <i class="icon-exclamation-circle"></i>
+                        最多只能添加5张图,单张图片不要超过100KB, 单张图片标准尺寸为 320*240px
+                    </p>
+                </div>
+            </div>
+            <input type="hidden" value="<!--{$id}-->" name="car_id">
+            <div class="form-group">
+                <div class="label"></div>
+                <button class="button bg-main" type="submit">提交</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+    // 上传图片预览
+        // window.onload = function () { 
+        //     new uploadPreview({ UpBtn: "license_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+        // }
+
+        // 城市联动
+        // $('#province').change(function() {
+        //     var province_id = $(this).val();
+        //     $("#city").load("index.php?action=school&op=getcity&province_id="+province_id);
+        // });
+
+        // $('#city').change(function() {
+        //     var city_id = $(this).val();
+        //     $('#area').load('index.php?action=school&op=getarea&city_id='+city_id);
+        //     var city_html = $(this).find('option:selected').html();
+        //     var province_html = $('#province').find('option:selected').html();
+        //     $('#s_address').val(province_html+city_html);
+        // })
+
+        // $('#area').change(function() {
+        //     var city_html = $('#city').find('option:selected').html();
+        //     var province_html = $('#province').find('option:selected').html();
+        //     var area_html = $(this).find('option:selected').html();
+        //     $('#s_address').val(province_html+city_html+area_html);
+        // })
+        // 添加图片位
+        function addimg() {
+            var html = '<input type="file" value="" class="button" name="car_img[]">'; 
+            $('.img_field').append(html); 
+        }
+
+    </script>
+<!--{include file="library/footer.lbi"}-->

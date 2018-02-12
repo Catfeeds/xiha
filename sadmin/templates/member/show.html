@@ -1,0 +1,109 @@
+<!--{include file="library/header.lbi"}-->
+<div class="tab-body" style="">
+	<div class="tab-panel active">
+        <!-- <div class="panel-head" style="position:fixed; width:100%; top:0px; z-index:9999; "><a href="index.php?action=member&op=index" class=""><strong>返回会员列表 >></strong></a></div> -->
+	</div>
+	<br />
+	<div class="tab" style="margin-top:30px;"> 
+		<div class="tab-head border-main"> 
+			<ul class="tab-nav"> 
+				<li <!--{if $type == 'appoint'}-->class="active"<!--{/if}-->>
+					<a href="index.php?action=member&op=show&type=appoint&id=<!--{$member_id}-->">预约学车</a>
+				</li> 
+				<li <!--{if $type == 'signup'}-->class="active"<!--{/if}-->>
+					<a href="index.php?action=member&op=show&type=signup&id=<!--{$member_id}-->">报名驾校</a>
+				</li> 
+				<li <!--{if $type == 'exam'}-->class="active"<!--{/if}-->>
+					<a href="index.php?action=member&op=show&type=exam&id=<!--{$member_id}-->">在线模拟</a>
+				</li> 
+			</ul> 
+		</div>
+		<div class="tab-body" style="padding-top:10px;"> 
+			<!-- 信息展示 -->
+			<div class="tab-panel form-x active">
+				<form action="index.php?action=member&op=show" method="post" onSubmit="return searchcheck();">
+				    <div class="panel admin-panel">
+						<div class="studentlist_select" style="padding-top:10px; margin-left:20px; margin-bottom:10px;">	
+							<select class="input input-auto" name="conditiontype" id="search_condition">                  
+							     <option value="">请选择科目</option>               
+							     <option <!--{if $conditiontype == '科目二'}-->selected<!--{/if}--> value="科目二">科目二</option>               
+							     <option <!--{if $conditiontype == '科目三'}-->selected<!--{/if}--> value="科目三">科目三</option>               
+						    </select>
+						    <input type="hidden" value="<!--{$member_id}-->" name="id">
+						    <input type="hidden" value="<!--{$type}-->" name="type">
+
+						    <input type="submit" id="searchstudent" class="button border-blue" value="搜索" />
+						    <!--{$conditiontype}-->总时长：<!--{$memberinfo['service_time']}-->小时
+						</div>
+				        <table class="table table-bordered table-hover" style="">
+				            <tr>
+				                <th width="20">选择</th>
+				                <th width="45">ID</th>
+				                <th width="120">订单号</th>
+				                <th width="60">牌照</th>
+				                <th width="60">科目</th>
+				                <th width="100">教练姓名</th>
+				                <th width="100">教练手机号</th>
+				                <th width="100">总价格</th>
+				                <th width="50">时长</th>
+				                <th width="70">交易类型</th>
+				                <th width="150">下单时间</th>
+				                <th width="150">学车时间</th>
+				                <!-- <th width="150">操作</th> -->
+				            </tr>
+				            <!-- 循环列表 -->
+				            <!--{if $memberinfo['orderlist']}-->
+				            <!--{foreach $memberinfo['orderlist'] as $key => $value}-->
+				            <tr class="memberlist">
+				                <td><input type="checkbox" name="member_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.l_study_order_id}-->" /></td>
+				                <td><!--{$value.l_study_order_id}--></td>
+				                <td><!--{$value.s_order_no}--></td>
+				                <td><!--{$value.s_lisence_name}--></td>
+				                <td><!--{$value.s_lesson_name}--></td>
+				                <td><a style="color:#09c" href="index.php?action=coach&op=coachinfo&id=<!--{$value.l_coach_id}-->"><!--{$value.s_coach_name}--></a></td>
+				                <td><!--{$value.s_coach_phone}--></td>
+				                <td><!--{$value.dc_money}-->元</td>
+				                <td><!--{$value.i_service_time}-->小时</td>
+				                <td>
+				                    <!--{if $value.deal_type == 1}-->
+				                        <span class="badge bg-main icon-android">支付宝</span>
+				                    <!--{else if $value.deal_type == 2}-->
+				                        <span class="badge bg-yellow icon-user"> 线下</span>
+				                    <!--{else}-->
+				                        <span class="badge icon-apple">微信</span>
+				                    <!--{/if}-->
+				                </td>
+				                <td><!--{$value.dt_order_time}--></td>
+				                <td><!--{$value.dt_appoint_time}--></td>
+				             <!--    <td>
+				                 <a class="button border-blue button-little" href="index.php?action=member&op=show&id=<!--{$value.l_study_order_id}-->"><span class="icon-edit text-blue"></span> 查看</a>
+				                    <a class="button border-yellow button-little" href="index.php?action=member&op=edit&id=<!--{$value.l_study_order_id}-->"><span class="icon-edit"></span> 编辑</a> 
+				                </td> -->
+				            </tr>
+				            <!--{/foreach}-->
+				            <!--{else}-->
+				                <tr><td colspan=13>暂无订单列表</td></tr>
+				            <!--{/if}-->
+				        </table>
+
+				        <!-- 分页 -->
+				        <div class="panel-foot text-center">
+				            <!--{$pagehtml}-->
+				        </div>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script>
+	// 跳转页面
+	$('#skipping').click(function() {
+	    $(this).html('跳转中...');
+	    var selectpage = $('#selectpage').find('option:selected').val();
+	    location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&type=<!--{$type}-->&conditiontype=<!--{$conditiontype}-->&id=<!--{$member_id}-->&page="+selectpage;
+	})
+</script>
+
+<!--{include file="library/footer.lbi"}-->

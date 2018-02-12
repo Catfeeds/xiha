@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>系统行为</title>
+</head>
+<body>
+    <nav class="breadcrumb">
+    	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>系统管理<span class="c-gray en">&gt;</span> 系统行为 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div class="pd-20">
+    	<form method="post" action="{:U('System/searchSystemAction')}" name="search">
+    		<div class=""> 
+                <label for="title">按关键词</label>
+                <select class="" name="action_info" id="action_info" style="width:150px;height:30px">                  
+                    <option value="">--不限关键词--</option>   
+                    <option style="" value="name" <if condition="$action_info eq name">selected</if> >唯一标识</option>
+                    <option style="" value="title" <if condition="$action_info eq title">selected</if> >行为说明</option>
+                </select>
+                <input type="text" value="{$s_keyword}" name="s_keyword" placeholder="唯一标识、行为说明" class="input-text default size-M"style="width:220px">
+                <input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+    	    </div>
+    	</form>
+    	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+    		<!-- <span class="l ml-15">
+    			<input type="submit" id="delete-all"  value="批量删除" class="btn btn-danger radius">
+    		</span> 
+    		<span class="l ml-15">
+    			<input type="submit" id="recover-all"  value="批量恢复" class="btn btn-success radius">
+    		</span> -->
+            	<a href="javascript:;" onclick="addSystemAction('添加系统行为','{: U('System/addSystemAction')}')" class="l ml-15 btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加系统行为</a></span> 
+    		<span class="r">共有系统行为：<strong>{$count}</strong> 种</span> 
+    	</div>
+        <div id="tab_school" class="HuiTab">
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-hover table-bg table-sort" id="checkedid">
+					<thead>	
+						<tr class="text-c">
+							<th width="25"><input type="checkbox" name="" value=""></th>
+							<th width="40">ID</th>
+							<th width="70">唯一标识</th>
+							<th width="80">行为说明</th>
+							<th width="100">日志规则</th>
+							<th width="70">添加时间</th>
+							<th width="70">更新时间</th>
+							<th width="50">使用状态</th>
+							<th width="40">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+    					<foreach name="systemActionList" key="key" item="obj">
+    						<tr class="text-c">
+    							<td class="va-m"><input type="checkbox" id="checkbox_{$key}" value="{$obj.id}" name="id"></td>
+    							<td class="va-m">{$obj.id}</td>
+    							<td class="va-m">{$obj.name}</td>
+    							<td class="va-m">{$obj.title}</td>
+    							<td class="text-l">{$obj.log}</td>
+    							<td class="va-m">{$obj.add_time}</td>
+    							<td class="va-m">{$obj.update_time}</td>
+    							<td class="va-m setStatus">
+    								<switch name="obj.status">
+    								    <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-success size-S radius"> 启用 </span></case>
+    								    <case value="2"><span data-id="{$obj.id}" title="2" class="btn btn-danger size-S radius"> 关闭 </span></case>
+    								    <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">关闭</span>
+    								</switch>
+    							</td>
+    							<td class="va-m td-manage">				
+    								<a title="删除" href="javascript:;" onclick="member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+    								<a title="编辑" href="javascript:;" onclick="member_edit('编辑系统行为','{: U('System/editSystemAction')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+    							</td>
+    						</tr>
+    					</foreach>
+					</tbody>
+				</table>
+			</div>
+    	</div>
+    	<div class="page pagination" style="">
+    		<empty name="count">
+                <br /><strong>暂无列表</strong><br /><br /><br />
+    		</empty>
+    		<p>{$page}</p>
+    	</div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+// 日志行为的状态设置
+    $('.setStatus span').click(function() {
+	    var sid = $(this).attr('data-id');
+	    var status = $(this).attr('title');
+	    switch(status){
+          case '1': status = 2; break;
+          case '2': status = 1; break;
+	    }
+        $.ajax({
+            type:"POST",
+            url:"{:U('System/setSystemActionStatus')}",
+            data: {'id':sid, 'status':status},
+            dataType: "JSON",
+            success: function(data){
+            	if(data.code == 200){
+                   location.reload();
+               	} else {
+                   	layer.msg(data.msg,{icon:2,time:1000});
+               	}
+             },
+             error: function(){
+             	layer.msg('网络错误，请检查网络!',{icon:2,time:1000});
+             }
+         })
+    });
+
+    // 批量删除
+    $('#delete-all').click(function () {
+        if ($('#checkedid').find('input:checked').val() == undefined) {
+        	layer.msg('请选择要删除的登录信息!',{icon:2,time:1000});
+    		return false;
+        }
+        // layer.confirm('确认要全部删除吗？',function(index){
+        if(confirm('确认要全部删除吗？')){
+        	var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                if($("#checkbox_"+index+':checked').val() != undefined) {
+                    check_id += $("#checkbox_"+index+':checked').val()+',';
+                }
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+    		$.ajax({
+    			type:"POST",
+    			url:"__URL__/delSystemActions",
+    			data:{'check_id':check_id},
+    			dataType:'JSON',
+    			success:function(data) {
+    				if(data.code == 200) {
+    					alert('删除成功');
+    					return false;
+    				} else {
+    					alert('删除失败');
+    					return false;
+    				}
+    			},
+    			// error:function() {
+    			// 	layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+    			// }
+    		});
+    	}
+    	// });
+    })
+    // 批量恢复
+    $('#recover-all').click(function () {
+        if ($('#checkedid').find('input:checked').val() == undefined) {
+        	layer.msg('请选择要恢复系统行为!',{icon:2,time:1000});
+    		return false;
+        }
+        // layer.confirm('确认要全部删除吗？',function(index){
+        if(confirm('确认要全部恢复吗？')){
+        	var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                if($("#checkbox_"+index+':checked').val() != undefined) {
+                    check_id += $("#checkbox_"+index+':checked').val()+',';
+                }
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+    		$.ajax({
+    			type:"POST",
+    			url:"__URL__/recoverSystemActions",
+    			data:{'check_id':check_id},
+    			dataType:'JSON',
+    			success:function(data) {
+    				if(data.code == 200) {
+    					alert('恢复成功');
+    					return false;
+    				} else {
+    					alert('恢复失败');
+    					return false;
+    				}
+    			},
+    			// error:function() {
+    			// 	layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+    			// }
+    		});
+    	}
+    	// });
+    })
+
+    /*用户-添加*/
+    function addSystemAction(title,url){
+    	// layer_show(title,url);
+    	var index = layer.open({
+    		type: 2,
+    		title: title,
+    		content: url
+    	});
+    	layer.full(index);
+    }
+
+    /*用户-编辑*/
+    function member_edit(title,url,id,w,h){
+    	var index = layer.open({
+    		type: 2,
+    		title: title,
+    		content: url
+    	});
+    	layer.full(index);
+
+    }
+
+    /*用户-删除*/
+    function member_del(obj,id){
+    	layer.confirm('确认要删除吗？',function(index){
+    		$.ajax({
+    			type:"POST",
+    			url:"__URL__/delSystemAction",
+    			data:{'id':id},
+    			dataType:'JSON',
+    			success:function(data) {
+    				// alert(data);
+    				if(data.code == 200) {
+    					$(obj).parents("tr").remove();
+    					layer.msg('已删除!',{icon:1,time:1000});
+    				} else {
+    					layer.msg('删除失败!',{icon:2,time:1000});
+    				}
+    			},
+    			error:function() {
+    				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+    			}
+    		});
+    	});
+    }	
+
+</script> 
+</body>
+</html>

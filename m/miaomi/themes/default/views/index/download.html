@@ -1,0 +1,94 @@
+<html>
+
+<link type="text/css" rel="stylesheet" href="{url:#css/product.css}" />
+<!-- <script type='text/javascript' src="{url:#js/jquery.enlarge.js}"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="{url:#css/jquery.fullPage.css}"> -->
+<link rel="stylesheet" type="text/css" href="{url:#css/style.css}">
+<link rel="icon" href="{url:#images/favicon.png}" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="keywords" content="{$seo_keywords}">
+    <meta name="description" content="{$seo_description}">
+    <title>喵咪鼠标官网</title>
+    <link rel="shortcut icon" href="{url:@favicon.ico}"/>
+    <link rel="bookmark" href="{url:@favicon.ico}" />
+    <link rel="stylesheet" type="text/css" href="{url:#css/common.css}">
+    <link rel="stylesheet" type="text/css" href="{url:#css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" href="{url:#js/artdialog/tiny-dialog.css}">
+    <style type="text/css">
+        .swiper-container {width: 100%;}
+        .js-template{display:none !important;}
+    </style>
+    <script src="{url:#js/jquery.min.js}"></script>
+    <script src="{url:#js/common.js}"></script>
+    <script type="text/javascript">
+        var server_url = '{url:@}__con__/__act__';
+        var Tiny = {user:{name:'{$user['name']|''}',id:'{$user['id']|0}',online:{$user['id']|'true'|'false'}}};
+    </script>
+</head>
+<style>
+
+body .ml-nav{
+    background-color: #fdfcfd;
+}
+.container .btn-primary {
+    background-image:url({url:#images/downloadbtn.png});
+    border-radius: 30.4px;
+    border:none;
+    height:65px;
+    width:189px;
+}
+
+.container .btn-primary2 {
+    background:url({url:#images/backtotop.png}) #ffffff;
+    border-radius: 30.4px;
+    border:none;
+    height:132px;
+    width:189px;
+    margin-top: 2400px;
+}
+.container .p1 {
+    letter-spacing: 0.12em;
+}
+
+</style>
+<body style="height:100%;">
+<div class="ml-nav" >
+    <div class="center-wrap clearfix">
+        <span class="ml-logo"><img src="{url:#images/logo.png}" width="40" height="40"></span>
+        <p class="ml-link">
+            <a href="{url:/index}">在线商城</a>
+            <a href="{url:/index/download}" style="color: #31a5e7;">软件下载</a>
+            <a href="{url:/index/instruction}">操作说明</a>
+        </p>
+        <a class="buy-now" href="{url:/index/products/id/20}">立即购买</a>
+    </div>
+</div>
+<div class="container" style="display:table;width:100%;height:3439px;background-image:url({url:#images/downloadbg.jpg});">
+	<div class="cell" style="vertical-align:middle;text-align:center;">
+        <p style="font-size:30px;margin:318px 0 0 90px;" class="p1"><button type="button" class="btn btn-primary" id="buy-btn" onclick="location.href='http://www.miaomimouse.com/themes/default/qudong/MiaoMi_Setup.exe'" ></button></p>
+
+        <p style="font-size:30px;margin:318px 0 0 90px;" class="p1"><button type="button" class="btn btn-primary2" id="to_top" onclick="" ></button></p>
+	</div>
+</div>
+</body>
+<script>
+window.onload = function(){
+  var oTop = document.getElementById("to_top");
+  var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  oTop.style.left = screenw - oTop.offsetWidth +"px";
+  oTop.style.top = screenh - oTop.offsetHeight + "px";
+  window.onscroll = function(){
+    var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+    oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+  }
+  oTop.onclick = function(){
+    document.documentElement.scrollTop = document.body.scrollTop =0;
+  }
+}  
+
+</script>
+</html>

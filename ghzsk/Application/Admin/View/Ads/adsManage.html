@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>广告列表</title>
+</head>
+<body>
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>广告管理<span class="c-gray en">&gt;</span> 广告列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<br>
+      <form method="post" action="{:U('Ads/addAds')}" name="add">
+		<div class="pd-20">
+			<div class="cl pd-5 bg-1 bk-gray"> <a href="javascript:;" onclick="addschool_order('添加学员','{: U('Student/addStudent')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加广告</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+			<div class="mt-20">
+			<table class="table table-border table-bordered table-hover table-bg table-sort">
+				<thead>	
+					<tr class="text-c">
+						<th width="25"><input type="checkbox" name="" value=""></th>
+						<th width="40">ID</th>
+						<th width="180">描述</th>
+						<th width="150">广告场景</th>
+						<th width="160">发布区域</th>
+						<th width="80">展示形式</th>
+						<th width="150">有效期</th>
+						<th width="40">可招租数</th>
+						<th width="80">设备类型</th>
+						<th width="70">订单数量</th>
+						<th width="70">发布时间</th>
+						<th width="150">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				 <foreach name="ads_info" item="obj">
+					<tr class="text-c">
+						<td><input type="checkbox" value="{$obj.id}" name=""></td>
+						<td>{$obj.id}</td>
+						<td>{$obj.intro}</td>
+						<td>{$obj.scene}</td>
+						<td>{$obj.address}</td>
+						<td>{$obj.resource_type}形式</td>
+						<td>{$obj.expire_time}</td>
+						<td>{$obj.limit_num}条</td>
+						<td>
+							<switch name="obj.device">
+								<case value="IOS(苹果)"><span class="label label-success radius">{$obj.device}</span></case>
+								<case value="Android(安卓)"><span class="label label-secondary radius">{$obj.device}</span></case>
+								<case value="IOS and Android(苹果和安卓)"><span class="label label-default radius">{$obj.device}</span></case>
+							</switch>
+						</td>
+						<td>{$obj.order_number}</td>
+						<td>{$obj.addtime}</td>
+						<td class="td-manage">
+							<!-- <a title="查看档案" href="javascript:;" onclick="member_view('查看学员档案','{: U('Student/view')}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 	 -->
+							<input class="btn btn-primary  size-MINI radius" type="button"  onclick="member_view('查看学员档案','{: U('Student/view')}','4','','510')" value="查看档案">		
+							<a title="删除" href="javascript:;" onclick="member_del(this,{$obj.l_user_id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							<a title="编辑" href="javascript:;" onclick="member_edit('编辑学员信息','{: U('Student/editStudent')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+						</td>
+					</tr>
+				 </foreach>
+
+				</tbody>
+			</table>
+			</div>
+		</div>
+		<div class="page pagination" style="">
+		<empty name="count">
+		<br /><strong>暂无学员列表</strong><br /><br /><br />
+		</empty>
+		<p>{$page}</p>
+		</div>
+</form>
+<footer class="footer">
+	 <p>Copyright &copy;2015 安徽嘻哈网路技术有限公司 All Rights Reserved.<br>
+    本后台系统由<a href="http://www.xihaxueche。com/" target="_blank" title="嘻哈学车">嘻哈网路技术有限公司</a>提供技术支持</p>
+</footer>  
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+
+/*用户-添加*/
+function addschool_order(title,url){
+	// layer_show(title,url);
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type:"POST",
+			url:"__URL__/delStudent",
+			data:{'id':id},
+			dataType:'JSON',
+			success:function(data) {
+				// alert(data);
+				// console.log(data);
+				if(data.code == 200) {
+					$(obj).parents("tr").remove();
+					layer.msg('已删除!',{icon:1,time:1000});
+				} else {
+					layer.msg('删除失败!',{icon:2,time:1000});
+				}
+					
+			},
+			error:function() {
+				layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+			}
+		});
+	});
+}
+</script> 
+</body>
+</html>

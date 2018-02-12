@@ -1,0 +1,341 @@
+CREATE DATABASE IF NOT EXISTS `timetraining` DEFAULT CHARSET utf8;
+
+USE `timetraining`;
+
+DROP TABLE IF EXISTS `institution`;
+CREATE TABLE `institution` (
+    `insid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '机构id',
+    `district` CHAR(6) NULL DEFAULT NULL COMMENT '区县行政区划代码，见GB/T 2260' ,
+    `name` VARCHAR(256) NULL DEFAULT NULL COMMENT '培训机构名称，填写名称全称' ,
+    `shortname` VARCHAR(128) NOT NULL COMMENT '培训机构简称，填写简称' ,
+    `licnum` CHAR(12) NOT NULL COMMENT '经营许可证编号' ,
+    `licetime` VARCHAR(64) NOT NULL COMMENT '经营许可日期，格式: YYYYMMDD' ,
+    `business` CHAR(20) NOT NULL COMMENT '营业执照注册号' ,
+    `creditcode` CHAR(18) NULL DEFAULT NULL COMMENT '统一社会信用代码' ,
+    `address` VARCHAR(512) NOT NULL COMMENT '培训机构地址' ,
+    `postcode` CHAR(6) NOT NULL COMMENT '邮政编码' ,
+    `legal` VARCHAR(64) NOT NULL COMMENT '法人代表' ,
+    `contact` VARCHAR(64) NOT NULL COMMENT '联系人' ,
+    `phone` VARCHAR(32) NOT NULL COMMENT '联系电话' ,
+    `busiscope` VARCHAR(8) NOT NULL COMMENT '经营范围 下列编码可以多选，以英文逗号分隔：A1, A2, A3, B1, B2, C1, C2, C3, C4, C5, D, E, F, M, N, P' ,
+    `busistatus` VARCHAR(8) NOT NULL COMMENT '经营状态 采用1位数字码，定义如下：1 营业，2 停业， 3 整改， 4 停业整顿，5 歇业， 6 注销， 9 其他' ,
+    `level` VARCHAR(8) NOT NULL COMMENT '分类等级： 1 一级， 2 二级， 3 三级' ,
+    `coachnumber` BIGINT(16) UNSIGNED NOT NULL COMMENT '教练员总数' ,
+    `grasupvnum` BIGINT(16) UNSIGNED NOT NULL COMMENT '考核员总数' ,
+    `safmngnum` BIGINT(16) UNSIGNED NOT NULL COMMENT '安全员总数' ,
+    `tracarnum` BIGINT(16) UNSIGNED NOT NULL COMMENT '教练车总数' ,
+    `classroom` BIGINT(16) UNSIGNED NULL COMMENT '教室总面积：m^2' ,
+    `thclassroom` BIGINT(16) UNSIGNED NULL COMMENT '理论教室面积：m^2' ,
+    `practicefield` BIGINT(16) NOT NULL COMMENT '教练场总面积：m^2' ,
+    `inscode` CHAR(16) NULL COMMENT '培训机构编号：统一编号' ,
+    PRIMARY KEY (`insid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '培训机构表';
+
+DROP TABLE IF EXISTS `coach`;
+CREATE TABLE `coach` ( 
+    `coachid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '教练id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `name` VARCHAR(64) NOT NULL COMMENT '姓名' ,
+    `sex` SMALLINT(4) NOT NULL COMMENT '性别 1：男性，2：女性' ,
+    `idcard` VARCHAR(128) NOT NULL COMMENT '身份证号' ,
+    `mobile` VARCHAR(32) NOT NULL COMMENT '手机号码' ,
+    `address` VARCHAR(256) NULL COMMENT '联系地址' ,
+    `photo` BIGINT(16) UNSIGNED NOT NULL COMMENT '照片文件ID 成功上传的教练员头像文件ID' ,
+    `fingerprint` BIGINT(16) UNSIGNED NULL COMMENT '指纹图片文件ID 成功上传的指纹图片ID' ,
+    `drilicence` VARCHAR(128) NOT NULL COMMENT '驾驶证号' ,
+    `fstdrilicdate` VARCHAR(64) NOT NULL COMMENT '驾驶证初领日期 格式：YYYYMMDD' ,
+    `occupationno` VARCHAR(128) NULL COMMENT '职业资格证号' ,
+    `occupationlevel` VARCHAR(8) NULL COMMENT '职业资格等级 1：一级，2：二级，3：三级，4：四级' ,
+    `dripermitted` VARCHAR(8) NOT NULL COMMENT '准驾车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `teachpermitted` VARCHAR(8) NOT NULL COMMENT '准教车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `employstatus` VARCHAR(4) NOT NULL COMMENT '供职状态 0：在职，1：离职' ,
+    `hiredate` VARCHAR(64) NOT NULL COMMENT '入职日期 格式：YYYYMMDD' ,
+    `leavedate` VARCHAR(64) NULL COMMENT '离职日期 格式：YYYYMMDD' ,
+    `coachnum` CHAR(16) NULL COMMENT '教练员编号 统一编号' ,
+    PRIMARY KEY (`coachid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '教练员表';
+
+DROP TABLE IF EXISTS `examiner`;
+CREATE TABLE `examiner` ( 
+    `examid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '考核员id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `name` VARCHAR(64) NOT NULL COMMENT '姓名' ,
+    `sex` SMALLINT(4) NOT NULL COMMENT '性别 1：男性，2：女性' ,
+    `idcard` VARCHAR(128) NOT NULL COMMENT '身份证号' ,
+    `mobile` VARCHAR(32) NOT NULL COMMENT '手机号码' ,
+    `address` VARCHAR(256) NULL COMMENT '联系地址' ,
+    `photo` BIGINT(16) UNSIGNED NOT NULL COMMENT '照片文件ID 成功上传的教练员头像文件ID' ,
+    `fingerprint` BIGINT(16) UNSIGNED NULL COMMENT '指纹图片文件ID 成功上传的指纹图片ID' ,
+    `drilicence` VARCHAR(128) NOT NULL COMMENT '驾驶证号' ,
+    `fstdrilicdate` VARCHAR(64) NOT NULL COMMENT '驾驶证初领日期 格式：YYYYMMDD' ,
+    `occupationno` VARCHAR(128) NULL COMMENT '职业资格证号' ,
+    `occupationlevel` VARCHAR(8) NULL COMMENT '职业资格等级 1：一级，2：二级，3：三级，4：四级' ,
+    `dripermitted` VARCHAR(8) NOT NULL COMMENT '准驾车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `teachpermitted` VARCHAR(8) NULL COMMENT '准教车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `employstatus` VARCHAR(4) NOT NULL COMMENT '供职状态 0：在职，1：离职' ,
+    `hiredate` VARCHAR(64) NOT NULL COMMENT '入职日期 格式：YYYYMMDD' ,
+    `leavedate` VARCHAR(64) NULL COMMENT '离职日期 格式：YYYYMMDD' ,
+    `examnum` CHAR(16) NULL COMMENT '考核员编号 统一编号' ,
+    PRIMARY KEY (`examid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '考核员表';
+
+DROP TABLE IF EXISTS `securityguard`;
+CREATE TABLE `securityguard` ( 
+    `secuid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '考核员id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `name` VARCHAR(64) NOT NULL COMMENT '姓名' ,
+    `sex` SMALLINT(4) NOT NULL COMMENT '性别 1：男性，2：女性' ,
+    `idcard` VARCHAR(128) NOT NULL COMMENT '身份证号' ,
+    `mobile` VARCHAR(32) NOT NULL COMMENT '手机号码' ,
+    `address` VARCHAR(256) NULL COMMENT '联系地址' ,
+    `photo` BIGINT(16) UNSIGNED NOT NULL COMMENT '照片文件ID 成功上传的教练员头像文件ID' ,
+    `fingerprint` BIGINT(16) UNSIGNED NULL COMMENT '指纹图片文件ID 成功上传的指纹图片ID' ,
+    `drilicence` VARCHAR(128) NOT NULL COMMENT '驾驶证号' ,
+    `fstdrilicdate` VARCHAR(64) NOT NULL COMMENT '驾驶证初领日期 格式：YYYYMMDD' ,
+    `dripermitted` VARCHAR(8) NULL COMMENT '准驾车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `teachpermitted` VARCHAR(8) NULL COMMENT '准教车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `employstatus` VARCHAR(4) NOT NULL COMMENT '供职状态 0：在职，1：离职' ,
+    `hiredate` VARCHAR(64) NOT NULL COMMENT '入职日期 格式：YYYYMMDD' ,
+    `leavedate` VARCHAR(64) NULL COMMENT '离职日期 格式：YYYYMMDD' ,
+    `secunum` CHAR(16) NULL COMMENT '安全员编号 统一编号' ,
+    PRIMARY KEY (`secuid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '安全员表';
+
+DROP TABLE IF EXISTS `trainingcar`;
+CREATE TABLE `trainingcar` ( 
+    `carid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '教练车id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `franum` VARCHAR(32) NULL COMMENT '车架号' ,
+    `engnum` VARCHAR(32) NULL COMMENT '发动机号' ,
+    `licnum` VARCHAR(64) NOT NULL COMMENT '车辆牌号' ,
+    `platecolor` VARCHAR(64) NOT NULL COMMENT '车牌颜色 1：蓝色，2：黄色，3：黑色，4：白色，5：绿色，9：其他' ,
+    `photo` BIGINT(16) UNSIGNED NULL COMMENT '照片文件ID 成功上传的教练车照片文件ID' ,
+    `manufacture` VARCHAR(256) NOT NULL COMMENT '生产厂家 如：上汽大众' ,
+    `brand` VARCHAR(256) NOT NULL COMMENT '车辆品牌 如：桑塔纳' ,
+    `model` VARCHAR(128) NULL COMMENT '车辆型号 如：普通桑塔纳，桑塔纳2000' ,
+    `perdritype` VARCHAR(8) NOT NULL COMMENT '培训车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `buydate` VARCHAR(64) NULL COMMENT '购买日期 格式：YYYYMMDD' ,
+    `carnum` CHAR(16) NULL COMMENT '教练车编号 统一编号' ,
+    PRIMARY KEY (`carid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '教练车表';
+
+DROP TABLE IF EXISTS `device`;
+CREATE TABLE `device` ( 
+    `devid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '终端id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `termtype` SMALLINT(4) UNSIGNED NOT NULL COMMENT '计时终端类型 1：车载计程计时终端，2：课堂教学计时终端，3：模拟训练计时终端' ,
+    `vendor` VARCHAR(128) NOT NULL COMMENT '生产厂家' ,
+    `model` VARCHAR(128) NOT NULL COMMENT '终端型号' ,
+    `imei` VARCHAR(128) NOT NULL COMMENT '终端IMEI号或设置mac地址' ,
+    `sn` VARCHAR(128) NOT NULL COMMENT '终端出厂序列号' ,
+    `devnum` CHAR(16) NULL COMMENT '终端编号 统一编号' ,
+    `key` VARCHAR(4096) NULL COMMENT '终端证书' ,
+    `passwd` CHAR(10) NULL COMMENT '终端证书口令' ,
+    PRIMARY KEY (`devid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '终端表';
+
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student` ( 
+    `stuid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '学员id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `cardtype` VARCHAR(4) NOT NULL COMMENT '证件类型 1：身份证，2：护照，3：军官证，4：其他' ,
+    `idcard` VARCHAR(128) NOT NULL COMMENT '证件号' ,
+    `nationality` VARCHAR(128) NOT NULL COMMENT '国籍' ,
+    `name` VARCHAR(64) NOT NULL COMMENT '姓名' ,
+    `sex` VARCHAR(4) NOT NULL COMMENT '性别 1：男性，2：女性' ,
+    `phone` VARCHAR(32) NOT NULL COMMENT '手机号码' ,
+    `address` VARCHAR(256) NULL COMMENT '联系地址' ,
+    `photo` BIGINT(16) UNSIGNED NOT NULL COMMENT '照片文件ID 成功上传的学员头像照片文件ID' ,
+    `fingerprint` BIGINT(16) UNSIGNED NULL COMMENT '指纹图片ID' ,
+    `busitype` VARCHAR(4) NOT NULL COMMENT '业务类型 0：初领，1：增领，9：其他' ,
+    `drilicnum` VARCHAR(128) NULL COMMENT '驾驶证号' ,
+    `fstdrilicdate` VARCHAR(64) NULL COMMENT '驾驶证初领日期 格式：YYYYMMDD' ,
+    `perdritype` VARCHAR(8) NULL COMMENT '原始准驾车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `traintype` VARCHAR(8) NOT NULL COMMENT '培训车型 下列编码单选：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `applydate` VARCHAR(64) NOT NULL COMMENT '报名时间 格式：YYYYMMDD' ,
+    `stunum` CHAR(16) NULL COMMENT '学员编号 统一编号' ,
+    PRIMARY KEY (`stuid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '学员表';
+
+DROP TABLE IF EXISTS `filedata`;
+CREATE TABLE `filedata` ( 
+    `fileid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文件id',
+    `filetype` VARCHAR(255) NOT NULL COMMENT '文件类型 见A.26' ,
+    `path` VARCHAR(1024) NOT NULL COMMENT '文件路径' ,
+    PRIMARY KEY (`fileid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '文件上传信息表';
+
+DROP TABLE IF EXISTS `region`;
+CREATE TABLE `region` ( 
+    `regionid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '教学区域id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `seq` SMALLINT(4) UNSIGNED NOT NULL COMMENT '计时平台顺序编号' ,
+    `name` VARCHAR(256) NULL COMMENT '教学区域名称' ,
+    `address` VARCHAR(256) NOT NULL COMMENT '教学区域地址' ,
+    `area` MEDIUMINT(6) UNSIGNED NOT NULL COMMENT '教学区域面积 单位：m^2' ,
+    `vehicletype` VARCHAR(256) NULL COMMENT '培训车型 下列编码可多选，以英文逗号分隔：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `polygon` VARCHAR(1024) NOT NULL COMMENT '多边形坐标序列 经度1,纬度1;经度2,纬度2;经度3,纬度3;......' ,
+    `totalvehnum` MEDIUMINT(6) NULL COMMENT '可容纳车辆数' ,
+    `curvehnum` MEDIUMINT(6) NULL COMMENT '已投放车辆数' ,
+    PRIMARY KEY (`regionid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '教学区域表';
+
+DROP TABLE IF EXISTS `charstandard`;
+CREATE TABLE `charstandard` ( 
+    `charstdid` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '收费标准id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `seq` SMALLINT(4) UNSIGNED NOT NULL COMMENT '计时平台顺序编号' ,
+    `vehicletype` VARCHAR(256) NULL COMMENT '培训车型 下列编码可多选，以英文逗号分隔：A1，A2，A3，B1，B2，C1，C2，C3，C4，C5，D，E，F，M，N，P' ,
+    `trainingmode` SMALLINT(4) UNSIGNED NULL COMMENT '培训模式 1：定时培训，2：预约培训，9：其他' ,
+    `subject` SMALLINT(4) UNSIGNED NULL COMMENT '培训部分及方式 1：第一部分集中教学，2：第一部分网络教学，3：第四部分集中教学，4：第四部分网络教学，5：模拟器教学，6：第二部分普通教学，7：第二部分智能教学，8：第三部分普通教学，9：第三部分智能教学' ,
+    `trainingtime` SMALLINT(4) UNSIGNED NULL COMMENT '培训时段 1：普通时段，2：高峰时段，3：节假日时段' ,
+    `chargemode` SMALLINT(4) UNSIGNED NULL COMMENT '收费模式 1：一次性收费，2：计时收费，9：其他' ,
+    `paymode` SMALLINT(4) UNSIGNED NULL COMMENT '付费模式 1：先学后付，2：先付后学，9：其他' ,
+    `service` VARCHAR(1024) NULL COMMENT '服务内容 班型包含的其它服务' ,
+    `price` BIGINT(16) UNSIGNED NOT NULL COMMENT '金额 总价：chargemode=1时，小时单价：chargemode=2时' ,
+    `classcurr` VARCHAR(256) NOT NULL COMMENT '班型名称 具体的班级课程名称' ,
+    `uptime` VARCHAR(64) NOT NULL COMMENT '更新时间 格式：YYYYMMDD' ,
+    PRIMARY KEY (`charstdid`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '收费标准表';
+
+DROP TABLE IF EXISTS `devbind`;
+CREATE TABLE `devbind` ( 
+    `devnum` CHAR(16) NOT NULL COMMENT '终端编号 统一编号' ,
+    `carnum` CHAR(16) NOT NULL COMMENT '车辆编号 统一编号' ,
+    `sim` VARCHAR(16) NOT NULL COMMENT '终端SIM卡号'
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '终端绑定表';
+
+DROP TABLE IF EXISTS `traininginfo`;
+CREATE TABLE `traininginfo` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `s1inscode` CHAR(16) NOT NULL DEFAULT '' COMMENT '第一部分培训机构编号' ,
+    `s1thrhours` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第一部分已培训学时' ,
+    `s1result` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第一部分考核结果 1：合格，2：不合格' ,
+    `s2inscode` CHAR(16) NOT NULL DEFAULT '' COMMENT '第二部分培训机构编号' ,
+    `s2prahours` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第二部分已培训学时' ,
+    `s2result` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第二部分考核结果 1：合格，2：不合格' ,
+    `s3inscode` CHAR(16) NOT NULL DEFAULT '' COMMENT '第三部分培训机构编号' ,
+    `s3thrhours` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第三部分已培训学时' ,
+    `s3mileage` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第三部分已培训里程' ,
+    `s3result` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第三部分考核结果 1：合格，2：不合格' ,
+    `s4inscode` CHAR(16) NOT NULL DEFAULT '' COMMENT '第四部分培训机构编号' ,
+    `s4thrhours` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第四部分已培训学时' ,
+    `s4result` INT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '第四部分考核结果 1：合格，2：不合格' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '培训信息表';
+
+DROP TABLE IF EXISTS `classrecord`;
+CREATE TABLE `classrecord` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `coachnum` CHAR(16) NULL COMMENT '教练员编号 可选，统一编号' ,
+    `carnum` CHAR(16) NULL COMMENT '教练车编号 可选，统一编号' ,
+    `simunum` CHAR(16) NULL COMMENT '计时终端编号 可选，统一编号' ,
+    `platnum` CHAR(5) NOT NULL COMMENT '平台编号 计时平台或远程教育平台编号' ,
+    `recnum` CHAR(5) NOT NULL COMMENT '电子教学日志编号 平台自主编号' ,
+    `subjcode` CHAR(10) NOT NULL COMMENT '课程编码 见A4.2' ,
+    `photo1` INT(16) UNSIGNED NOT NULL COMMENT '签到照片 相片文件1ID' ,
+    `photo2` INT(16) UNSIGNED NULL COMMENT '随机照片 相片文件2ID，从每15分钟拍摄的照片中随机选一张' ,
+    `photo3` INT(16) UNSIGNED NOT NULL COMMENT '签退照片 相片文件3ID' ,
+    `starttime` VARCHAR(64) NOT NULL COMMENT '培训开始时间 格式：YYYYMMDDHHmmss' ,
+    `endtime` VARCHAR(64) NOT NULL COMMENT '培训结束时间 格式：YYYYMMDDHHmmss' ,
+    `duration` INT(6) UNSIGNED NOT NULL COMMENT '培训学时 单位：min' ,
+    `mileage` INT(16) UNSIGNED NOT NULL COMMENT '培训里程 单位：km' ,
+    `avevelocity` INT(16) UNSIGNED NULL COMMENT '培训平均速度 单位：km/h' ,
+    `coacmt` VARCHAR(64) NULL COMMENT '教练员点评' ,
+    `total` INT(6) UNSIGNED NOT NULL COMMENT '总累计学时 单位：min' ,
+    `part1` INT(6) UNSIGNED NOT NULL COMMENT '第一部分累计学时 单位：min' ,
+    `part2` INT(6) UNSIGNED NOT NULL COMMENT '第二部分累计学时 单位：min' ,
+    `part3` INT(6) UNSIGNED NOT NULL COMMENT '第三部分累计学时 单位：min' ,
+    `part4` INT(6) UNSIGNED NOT NULL COMMENT '第四部分累计学时 单位：min' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '电子教学日志表';
+
+DROP TABLE IF EXISTS `stagetrainingtime`;
+CREATE TABLE `stagetrainingtime` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `subject` INT(8) UNSIGNED NOT NULL COMMENT '培训部分 1：第一部分，2：第二部分，3：第三部分，4：第四部分' ,
+    `duration` INT(6) UNSIGNED NOT NULL COMMENT '培训学时 本培训部分的初审总学时，单位：min' ,
+    `examresult` SMALLINT(4) NOT NULL COMMENT '考核结果 0：未考核，1：合格，2：不合格' ,
+    `mileage` INT(6) UNSIGNED NULL COMMENT '培训里程 非第三部分时可置"0"' ,
+    `pdfid` BIGINT(16) UNSIGNED NULL COMMENT '电子培训部分记录表PDF文件ID 计时平台应使用' ,
+    `esignature` VARCHAR(1024) NOT NULL COMMENT '培训机构电子签章数据' ,
+    `recarray` TEXT NOT NULL COMMENT '学时记录编号数组' ,
+    /* `rnum` CHAR(26) NOT NULL COMMENT '第1个学时记录编号' , */
+    /* `rnum` CHAR(26) NOT NULL COMMENT '第2个学时记录编号' , */
+    /* `rnum` CHAR(26) NOT NULL COMMENT '第3个学时记录编号' , */
+    /* `rnum` CHAR(26) NOT NULL COMMENT '第4个学时记录编号' , */
+    /* ... */
+    /* `rnum` CHAR(26) NOT NULL COMMENT '第n个学时记录编号' , */
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '阶段培训学时记录表';
+
+DROP TABLE IF EXISTS `graduation`;
+CREATE TABLE `graduation` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `autinscode` CHAR(16) NOT NULL COMMENT '发证培训机构编号 统一编号' ,
+    `gracertnum` VARCHAR(128) NOT NULL COMMENT '结业证书编号 省级道路运输管理机构统一编号' ,
+    `grantdate` VARCHAR(64) NOT NULL COMMENT '结业证书发放日期 格式：YYYYMMDD' ,
+    `pdfid` BIGINT(16) UNSIGNED NOT NULL COMMENT '结业证书PDF文件ID' ,
+    `esignature` VARCHAR(1024) NOT NULL COMMENT '培训机构电子签章数据' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '结业信息表';
+
+DROP TABLE IF EXISTS `evaluation`;
+CREATE TABLE `evaluation` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `evalobject` CHAR(16) NOT NULL COMMENT '评价对象编号 教练员或培训机构编号' ,
+    `type` SMALLINT(4) UNSIGNED NOT NULL COMMENT '评价对象类型 1：教练员，2：培训机构' ,
+    `overall` SMALLINT(4) UNSIGNED NOT NULL COMMENT '总体满意度 1：一星，2：二星，3：三星，4：四星，5：五星（最满意）' ,
+    `part` SMALLINT(4) UNSIGNED NULL COMMENT '培训部分 1：第一部分，2：第二部分，3：第三部分，4：第四部分' ,
+    `evaluatetime` VARCHAR(64) NOT NULL COMMENT '评价时间 格式：YYYYMMDDHHmmss' ,
+    `srvmanner` VARCHAR(512) NULL COMMENT '评价用语列表 英文逗号分隔' ,
+    `teachlevel` VARCHAR(512) NULL COMMENT '个性化评价' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '评价信息表';
+
+DROP TABLE IF EXISTS `complaint`;
+CREATE TABLE `complaint` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `type` SMALLINT(4) UNSIGNED NOT NULL COMMENT '投诉对象类型 1：教练员，2：培训机构' ,
+    `objectnum` CHAR(16) NOT NULL COMMENT '投诉对象编号 教练员或培训机构编号' ,
+    `cdate` VARCHAR(64) NOT NULL COMMENT '投诉时间 格式：YYYYMMDDHHmmss' ,
+    `content` VARCHAR(125) NOT NULL COMMENT '投诉内容' ,
+    `depaopinion` VARCHAR(1024) NULL COMMENT '管理部门处理意见' ,
+    `schopinion` VARCHAR(1024) NULL COMMENT '培训机构处理意见' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '投诉信息表';
+
+DROP TABLE IF EXISTS `traininginfo`;
+CREATE TABLE `traininginfo` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `coachnum` CHAR(16) NULL COMMENT '教练员编号 统一编号' ,
+    `subjcode` CHAR(10) NOT NULL COMMENT '课程编码 见A4.2' ,
+    `platnum` CHAR(16) NOT NULL COMMENT '来源计时终端编号 统一编号' ,
+    `pdate` VARCHAR(64) NOT NULL COMMENT '时间 格式：YYYYMMDDHHmmss' ,
+    `fileid` BIGINT(16) UNSIGNED NOT NULL COMMENT '成功上传的图片文件ID' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '培训过程图片资料信息表';
+
+DROP TABLE IF EXISTS `videorecord`;
+CREATE TABLE `videorecord` ( 
+    `id` BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `inscode` CHAR(16) NOT NULL COMMENT '培训机构编号：统一编号' ,
+    `stunum` CHAR(16) NOT NULL COMMENT '学员编号 统一编号' ,
+    `coachnum` CHAR(16) NULL COMMENT '教练员编号 统一编号' ,
+    `subjcode` CHAR(10) NOT NULL COMMENT '课程编码 见A4.2' ,
+    `starttime` VARCHAR(64) NOT NULL COMMENT '开始时间 格式：YYYYMMDDHHmmss' ,
+    `endtime` VARCHAR(64) NOT NULL COMMENT '结束时间 格式：YYYYMMDDHHmmss' ,
+    `event` SMALLINT(4) UNSIGNED NOT NULL COMMENT '触发事件 1：紧急报警主动上传，2：关车门后达到指定车速主动上传，3：侧翻报警主动上传，4：上客，5：定时录像，6：进区域，7：出区域，8：事故疑点（紧急刹车），9：开车门，17：学员登录，18：学员登出，19：学员培训过程中' ,
+    `fileid` BIGINT(16) UNSIGNED NOT NULL COMMENT '成功上传的视频文件ID' ,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = '培训过程视频资料信息表';

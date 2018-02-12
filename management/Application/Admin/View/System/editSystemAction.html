@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css"> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>编辑系统行为</title>
+</head>
+<body>
+    <div id="tab_school" class="HuiTab">
+		<div class="pd-20">
+			<form action="{:U('System/editSystemAction')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addActionForm">	
+				<input class="input-text" type="hidden" name="id" value="{$systemactionlist.id}"  />
+				<div class="row cl">
+					<label class="form-label col-2" for="name"><span style="color:red">*</span>唯一标识：</label>
+	                <div class="formControls col-3" > 
+						<input class="input-text" type="text" name="name" value="{$systemactionlist.name}" placeholder="请输入唯一标识;如：user_login" datatype="*1-32" nullmsg="行为唯一标识不能为空" />
+					</div>
+			 	</div>  
+				<div class="row cl">
+					<label class="form-label col-2" for="title"><span style="color:red">*</span>行为说明：</label>
+	                <div class="formControls col-3" > 
+						<input class="input-text"  type="text" name="title" value="{$systemactionlist.title}" placeholder="请输入行为说明;如：用户登录" datatype="*1-32" nullmsg="行为说明不能为空" />
+					</div>
+			 	</div> 
+			 	<div class="row cl">
+			        <label class="form-label col-2">状态显示：</label>
+			        <div class="formControls col-6 btn-group">
+			        	<if condition="$systemactionlist.status eq 1">
+			           		<label class="btn radius btn-success radio setstatus"><input name="status" value="1" checked type="radio" style="display:none;">显示</label>
+		           		<else/>
+			           		<label class="btn radius btn-outline radio setstatus"><input name="status" value="1"  type="radio" style="display:none;">显示</label>
+		           		</if>
+		           		<if condition="$systemactionlist.status eq 2">
+			           		<label class="btn radius btn-success radio setstatus"><input name="status" value="2" checked type="radio" style="display:none;">掩藏</label>
+		           		<else/>
+			           		<label class="btn radius btn-outline radio setstatus"><input name="status" value="2"  type="radio" style="display:none;">掩藏</label>
+		           		</if>
+			        </div>
+			    </div>
+			 	<div class="row cl">
+					<label class="form-label col-2" for="rule">行为规则：</label>
+	                <div class="formControls col-4" > 
+	                	<textarea name="rule" style="" id="rule" cols="" rows="" class="textarea"  placeholder="请输入系统行为的描述;如：table:member|field:score|condition:uid={$self} AND status>-1|rule:score+10|cycle:24|max:1;"  dragonfly="true"  onKeyUp="textarealength(this,1000)" >{$systemactionlist.rule}</textarea>
+        				<p class="textarea-numberbar"><em class="textarea-length">0</em>/500</p>
+					</div>
+			 	</div>
+				<div class="row cl">
+					<label class="form-label col-2" for="remark"><span style="color:red">*</span>行为描述：</label>
+	                <div class="formControls col-4" > 
+	                	<textarea name="remark" style="" id="remark" cols="" rows="" class="textarea"  placeholder="请输入系统行为的描述"  dragonfly="true"  onKeyUp="textarealength(this,1000)" datatype="*1-500" nullmsg="行为描述不能为空">{$systemactionlist.remark}</textarea>
+        				<p class="textarea-numberbar"><em class="textarea-length">0</em>/500</p>
+					</div>
+			 	</div>
+			 	<div class="row cl">
+					<label class="form-label col-2" for="log"><span style="color:red">*</span>行为日志：</label>
+	                <div class="formControls col-4" > 
+	                	<textarea name="log" style="" id="log" cols="" rows="" class="textarea"  placeholder="请输入系统行为的描述;如：[user|getOperator]在[time|time_format]登录了后台"  dragonfly="true"  onKeyUp="textarealength(this,1000)" datatype="*1-500" nullmsg="行为描述不能为空">{$systemactionlist.log}</textarea>
+        				<p class="textarea-numberbar"><em class="textarea-length">0</em>/500</p>
+					</div>
+			 	</div> 
+				<div class="row cl">
+					<div class="col-10 col-offset-2">
+						<button class="btn btn-primary radius "  type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+						<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script> -->
+<script type="text/javascript">
+    // 表单验证
+    $( function () {
+        $('#addActionForm').Validform({
+                tiptype:2,
+                callback:function(form){
+                    form[0].submit();
+                }
+        });
+    }) 
+    /*
+    * 按钮的切换
+    * 点击切换效果
+    */
+    $('.btn-group .setstatus input').click(function() {
+        var current = $(this).parent();
+        var siblings = $(this).parent().siblings();
+        current.removeClass("btn-warning-outline").addClass("btn-success");
+        siblings.removeClass("btn-success").addClass("btn-warning-outline");
+    });
+</script> 
+</body>
+</html>

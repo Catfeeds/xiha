@@ -1,0 +1,7 @@
+192.168.100.69 [2016-08-18T15:38:13+08:00] "GET /php/api/demo/api_tpl.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 需要POST
+192.168.100.69 [2016-08-18T16:05:20+08:00] "POST /php/api/demo/demo1.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 参数不完整或参数类型不对，请核对文档与您传的参数
+192.168.100.69 [2016-08-18T16:05:39+08:00] "POST /php/api/demo/demo1.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 参数不完整或参数类型不对，请核对文档与您传的参数
+192.168.100.69 [2016-08-19T16:02:34+08:00] "GET /php/api/demo/demo1.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 需要POST
+192.168.100.69 [2016-08-19T16:03:57+08:00] "GET /php/api/demo/demo1.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 需要POST
+192.168.100.69 [2016-08-19T16:04:51+08:00] "GET /php/api/demo/demo1.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 需要POST
+192.168.100.69 [2016-08-19T16:05:51+08:00] "GET /php/api/demo/demo1.php []" 200 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" 需要POST

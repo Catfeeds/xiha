@@ -1,0 +1,125 @@
+{include file="index/header"/}
+
+<div class="page" id="signupflow">
+	<style type="text/css">
+  .changeTab {
+    width:30%;
+    color:#5ac97c;
+    /*font-weight:bold;*/
+    background:#5ac97c;
+    color:#fff;
+    border-radius:50%;
+    padding-left:5px;
+    text-align:center;
+    font-size:0.8rem;
+
+  }
+  .changeText {
+    font-size: 0.8rem;
+    /*font-weight:bold;*/
+    margin-left:10px;
+    width:70%;
+    border:0px solid red;
+    font-size: 0.8rem;
+  }
+  .contentStyle ul li {
+    font-size: 0.8rem;
+    line-height: 180%;
+  }
+</style>
+  {if condition="$device eq '1'"}
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+      <span class="icon icon-left"></span>
+  		 返回 
+    </a>
+    <h1 class='title'>{$title}</h1>
+    <div>
+    </div>
+  </header>
+  {/if}
+  
+  <div class="content" style="border:0px solid red;background-color:#fff;margin-top:1px;">
+    <img src="__PUBLIC__/static/img/flowimg.png" style="width:100%;">
+    <div class="content-block" style="background-color:white;margin-top:10%;">
+        <!-- <img src="__PUBLIC__/static/img/flownav.png" style="width:42%;"> -->
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 1 </span> 
+            <span class="changeText"> 报名须知 </span>
+          </span>
+          <ul>
+            <li>（1）合肥市的学员携带身份证原件；</li>
+            <li>（2）外地人员，携带身份证原件及居住证；</li>
+            <li>（3）现役军人的身份证明是《军官证》、《士兵证》；武警的身份证明是《警官证》。且部队驻地须在合肥并开具团级以上《军人证明信》；</li>
+            <li>（4）内地居留的港、澳居民的身份证明是《港澳往来通行证》、《居留证》；</li>
+            <li>（5）在中国境内居留的外国人身份证明是《护照》、《居住证》；</li>
+          </ul>
+          <strong style="color:red; font-weight: 700">温馨提示：</strong>
+          <ul>
+            <li>① 申办人所持身份证明须在有效期内；</li>
+            <li>②《居住证》须带有编号并输入公安户籍网。</li>
+          </ul>
+        </div>
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 2 </span> 
+            <span class="changeText"> 身体条件 </span>
+          </span>
+          <ul>
+            <li style="color:red">初次申请驾驶证的学员必须经合肥市驾管所体检站体检合格。</li>
+            <li>（1）<strong style="font-weight: 700">身高：</strong>申请大型客车、牵引车、城市公交车、大型货车、无轨电车准驾车型的，身高为155厘米以上。申请中型客车准驾车型的，身高为150厘米以上；</li>
+            <li>（2）<strong style="font-weight: 700">视力：</strong>申请大型客车、牵引车、城市公交车、中型客车、大型货车、无轨电车或者有轨电车准驾车型的，两眼裸视力或者矫正视力达到对数视力表5.0以上。申请其他准驾车型的，两眼裸视力或者矫正视力达到对数视力表4.9以上；</li>
+            <li>（3）<strong style="font-weight: 700">辨色力：</strong>无红绿色盲；</li>
+            <li>（4）<strong style="font-weight: 700">听力：</strong>两耳分别距音叉50厘米能辨别声源方向。有听力障碍但佩戴助听设备能够达到以上条件的，可以申请小型汽车、小型自动挡汽车准驾车型的机动车驾驶证；</li>
+            <li>（5）<strong style="font-weight: 700">上肢：</strong>双手拇指健全，每只手其他手指必须有三指健全，肢体和手指运动功能正常。但手指末节残缺或者右手拇指缺失的，可以申请小型汽车、小型自动挡汽车准驾车型的机动车驾驶证；</li>
+            <li>（6）<strong style="font-weight: 700">下肢：</strong>双下肢健全且运动功能正常，不等长度不得大于5厘米。但左下肢缺失或者丧失运动功能的，可以申请小型自动挡汽车准驾车型的机动车驾驶证。右下肢、双下肢缺失或者丧失运动功能但能够自主坐立的，可以申请残疾人专用小型自动挡载客汽车准驾车型的机动车驾驶证；</li>
+            <li>（7）<strong style="font-weight: 700">躯干、颈部：</strong>无运动功能障碍。</li>
+          </ul>
+
+        </div>
+        <div class="contentStyle" >
+          <span style="color:#5ac97c">
+            <span class="changeTab"> 3 </span> 
+            <span class="changeText"> 年龄条件 </span>
+          </span>
+          <ul>
+            <li>小型汽车（C1）、小型自动档汽车（C2）：学员需年满18至70周岁。</li>
+          </ul>
+          </div>
+          <div class="contentStyle">
+              
+            <span style="color:#5ac97c">
+              <span class="changeTab"> 4 </span> 
+              <span class="changeText"> 公安部“123”号令第十二条规定 </span>
+            </span>
+            <ul>
+              <li style="color:red">第十二条有下列情形之一的，不得申请机动车驾驶证:</li>
+              <li>（一）有器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹、精神病、痴呆以及影响肢体活动的神经系统疾病等妨碍安全驾驶疾病的；</li>
+              <li>（二）三年内有吸食、注射毒品行为或者解除强制隔离戒毒措施未满三年，或者长期服用依赖性精神药品成瘾尚未戒除的；</li>
+              <li>（三）造成交通事故后逃逸构成犯罪的；</li>
+              <li>（四）饮酒后或者醉酒驾驶机动车发生重大交通事故构成犯罪的；</li>
+              <li>（五）醉酒驾驶机动车或者饮酒后驾驶营运机动车依法被吊销机动车驾驶证未满五年的；</li>
+              <li>（六）醉酒驾驶营运机动车依法被吊销机动车驾驶证未满十年的；</li>
+              <li>（七）因其他情形依法被吊销机动车驾驶证未满二年的；</li>
+              <li>（八）驾驶许可依法被撤销未满三年的；</li>
+              <li>（九）法律、行政法规规定的其他情形。</li>
+            </ul>
+          </div>
+          <div class="contentStyle">
+              
+            <span style="color:#5ac97c">
+              <span class="changeTab"> 5 </span> 
+              <span class="changeText"> 相关费用（自理）</span>
+            </span>
+            <ul>
+              <li>（一）体检费用：照相16元/人，体检40元/人，共计56元/人；</li>
+              <li>（二）学员卡费用：30元/人。</li>
+            </ul>
+          </div>
+          
+
+    </div> 
+  </div>
+</div>
+{include file="index/footer"/}

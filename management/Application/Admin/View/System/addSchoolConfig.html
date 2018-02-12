@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加驾校时间配置</title>
+</head>
+<body>
+	<br />
+    <div id="tab_school" class="HuiTab">
+		<div class="pd-20">
+			<form action="{:U('System/addSchoolConfig')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="form-article-add">	
+			   	<if condition = "$school_id eq 0" >
+		            <div class="row cl">
+		                <label  class="form-label col-2"><strong>驾校：</strong></label>
+		                <div class="formControls col-2" > 
+		                    <select select2 ng-model="b" id="school_id" class="form-control" name="school_id" placeholder="请选择驾校">
+		                            <foreach name="school_list"  item="value">
+		                              <option value="{$value.l_school_id}">{$value.s_school_name}</option> 
+		                            </foreach>
+		                    </select>
+		                    <span class="clearfix"></span>
+		                </div>
+		            </div>
+	        	</if>
+			 	<div class="row cl">
+					<label class="form-label col-2" for="cancel_in_advance"><strong>取消必须提前： </strong></label>
+	                <div class="formControls col-2" > 
+	                	<select class="" name="cancel_in_advance" id="cancel_in_advance" style="width:215px;height:30px">              
+						 	<option value="2" selected>2小时</option>
+							<option value="4">4小时</option>
+							<option value="8">8小时</option>
+							<option value="12">12小时</option>
+							<option value="24">1天</option>
+							<option value="48">2天</option>
+							<option value="72">3天</option>
+                            <option value="168">1周</option>
+						</select>
+					</div>
+			 	</div>
+				<div class="row cl">
+					<label class="form-label col-2" for="i_cancel_order_time"><strong>当天最多可取消： </strong></label>
+	                <div class="formControls col-2" > 
+				 		<select class="" name="i_cancel_order_time" id="i_cancel_order_time" style="width:215px;height:30px">              
+						 	<option value="1">1次</option>
+						 	<option value="2" selected>2次</option>
+						 	<option value="3">3次</option>
+							<option value="4">4次</option>
+							<option value="8">8次</option>
+							<option value="24">24次</option>
+						</select> 
+					</div>
+			 	</div>  
+				<div>
+                    <!--
+				 	<p class="c-warning pd-15">
+				 		此选项设置的是限制 预约学车 订单取消时间节点（比如提前2个小时取消订单，就选择2）	
+				 	</p>
+                    -->
+				</div> 
+				<div class="row cl">
+					<label class="form-label col-2" for="i_sum_appoint_time"><strong>最多可预约一天中的： </strong></label>
+	                <div class="formControls col-4" > 
+						<select class="" name="i_sum_appoint_time" id="i_sum_appoint_time" style="width:215px;height:30px">              
+							<option value="1">1小时</option>
+						 	<option value="2" selected>2小时</option>
+							<option value="4">4小时</option>
+							<option value="8">8小时</option>
+						</select> 
+					</div> 
+				</div>
+				<div>
+                    <!--
+				 	<p class="c-warning pd-15">
+				 		此选项设置的是每个人每天 预约学车 多少小时限制（比如只能预约2个小时，就选择2, 如果不限制默认为2个小时）	
+				 	</p>
+                    -->
+				</div>  
+				<div class="row cl">
+					<label class="form-label col-2"><strong>教练时间自动生成： </strong></label>
+					<div class="formControls col-8">
+						<input type="radio" name="is_automatic" value="1" checked />是
+						<input type="radio" name="is_automatic" value="2"  />否
+				 	</div>  
+				</div>
+				<div>
+                    <!--
+				 	<p class="c-warning pd-15">
+				 		该项是设置教练的时间配置是否采用自动生成或者手动设置的选项（默认是自动生成）	
+				 	</p>
+                    -->
+				</div> 
+				<div class="row c1">
+					<label class="form-label col-2" for="system_timeconf"><strong>系统时间设置：</strong></label>
+					<div class="formControls col-8">
+					    <table class="table table-border table-bordered table-hover" id="system_timeconf">
+	      					  <thead>
+							    <tr>
+						    		<th width="20%"><input type="checkbox" name="" value="">全选</th>
+							    	<th>开始时间</th>
+							    	<th>结束时间</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	<foreach name="coach_config" item="v" key="k">
+								    <tr title="{$v.id}">
+								    	<td><input type="checkbox" id="checkbox_{$k+1}" value="{$v.id}" name="time_config_id[]" <eq name="v.is_set" value="1" >checked</eq>>
+								    	</td>
+								    	<td>{$v.final_start_time}</td>
+								    	<td>{$v.final_end_time}</td>
+								    </tr>
+								</foreach>
+							  </tbody>
+	    				</table>
+    				</div>
+    			</div>
+				<div class="row cl">
+					<div class="col-10 col-offset-2">
+						<button class="btn btn-primary radius " id="submit" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+						<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<script type="text/javascript">
+</script> 
+</body>
+</html>

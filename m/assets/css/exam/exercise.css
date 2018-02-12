@@ -1,0 +1,18 @@
+.mui-table-view-cell:after {left:0px;}
+.mui-table-view:after {height: 0px;}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {border-right-style:dashed;}
+.choosed {color:#00BD9C !important}
+.active {color:#00BD9C !important}
+.choose {color: #999 ;}
+#showexplain .mui-table-view:before {height: 0;}
+.mui-bar .mui-btn {top:0px; border:none;}
+.nav-tab-item {display: table-cell;overflow: hidden;width: 1%;height: 50px;text-align: center;vertical-align: middle;white-space: nowrap;text-overflow: ellipsis;color: #929292;}
+.nav-tab-item .mui-icon {top: 3px;width: 24px;height: 24px;padding-top: 0;padding-bottom: 0;z-index: 20;}
+.nav-tab-item .mui-tab-label {display: block; font-size: 11px; overflow: hidden; text-overflow: ellipsis;}
+.choosequestion {margin-left:0px; border:1px solid #ccc; color: #fff; box-sizing: border-box; width:50px; background:#d2d2d2; height:2.3rem; margin:5px; display:inline-block; border-radius:5px; text-align:center; line-height:2.3rem;}
+.layermbox2 .layermcont i {width: 15px !important; height: 15px !important;}
+.layermchild {border-radius: 10px !important;}
+.layermbtn span:first-child {border-radius: 0 0 0 10px !important;}
+.xuanze_no {display: inline-block;text-align: center;border-radius: 100%;font-weight: bold;border: 1px solid #c8c8c8;color: #828282;font-size: 1rem;width: 2rem;height: 2rem;line-height: 2rem;font-family: "Microsoft YaHei",'微软雅黑';vertical-align: middle;overflow: hidden; }
+#showexplain p {font-size: 1rem; color: #8e734d;}
+.xuanze_checked {color: rgb(255, 255, 255); border-color: rgb(24, 180, 237); background-color: rgb(24, 180, 237);}

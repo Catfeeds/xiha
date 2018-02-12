@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="assets/libs/element/index.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="app">
+        <div class="iframe-content">
+            <div class="gx-breadcrumb line">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                </el-breadcrumb>
+            </div>
+            <div class="gx-search">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>                              
+                            <el-select v-model="value" placeholder="请选择性别">
+                                <el-option
+                                v-for="item in options"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </td>
+                        <td>
+                            <el-input placeholder="请输入电话" v-model="input">
+                                <template slot="prepend">电话：</template>
+                            </el-input>
+                        </td>
+                        <td>
+                            <el-input placeholder="请输入手机号" v-model="input">
+                                <template slot="prepend">手机号：</template>
+                            </el-input>
+                        </td>
+                        <td>
+                            <el-input placeholder="请输入身份证号" v-model="input">
+                                <template slot="prepend">身份证号：</template>
+                            </el-input>
+                        </td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td colspan="4" style="padding-top: 10px;"><el-button type="primary" icon="search">搜索</el-button></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="gx-iframe-content">
+                <div class="gx-iframe-operation">
+                    <el-button type="danger" style="margin-left:10px;"><i class="el-icon-delete"></i> 批量删除</el-button>
+                    <el-button type="success"><i class="el-icon-plus"></i> 添加学员</el-button>
+                </div>
+                <el-tabs v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="已付款" name="first">
+                        <el-table
+                            :data="tableData3"
+                            border
+                            tooltip-effect="dark"
+                            style="width: 100%"
+                            @selection-change="handleSelectionChange">
+                            <el-table-column
+                            type="selection"
+                            width="55">
+                            </el-table-column>
+                            <el-table-column
+                            label="日期"
+                            sortable
+                            width="120">
+                            <template scope="scope">{{ scope.row.date }}</template>
+                            </el-table-column>
+                            <el-table-column
+                            prop="name"
+                            label="姓名"
+                            width="120">
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column
+                            prop="address"
+                            label="地址"
+                            show-overflow-tooltip>
+                            </el-table-column>
+                            <el-table-column label="操作">
+                                
+                                <template scope="scope">
+                                    <el-button
+                                    size="small"
+                                    @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                                    <el-button
+                                    size="small"
+                                    type="danger" @click="open2">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </el-tab-pane>
+                    <el-tab-pane label="未付款" name="second">未付款</el-tab-pane>
+                    <el-tab-pane label="已取消" name="third">已取消</el-tab-pane>
+                    <el-tab-pane label="已完成" name="fourth">已完成</el-tab-pane>
+                    <el-tab-pane label="已评价" name="fifth">已评价</el-tab-pane>
+                </el-tabs>
+
+                <!--page-->
+                 <div class="block" style="float: right; margin-top: 10px;">
+                    <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage4"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="400">
+                    </el-pagination>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="assets/js/vue.min.js"></script>
+    <script src="assets/libs/element/index.js"></script>
+    <script>
+        Vue.config.devtools = true;
+        new Vue({
+            el: '#app',
+            data: {
+                activeIndex: '1',
+                activeIndex2: '1',
+                activeName: 'first',
+                form: {
+                    name: "chenxi"
+                },
+                input: '',
+                options: [{
+                    value: '1',
+                    label: '男'
+                }, {
+                    value: '2',
+                    label: '女'
+                }],
+                visible2: false,
+                value: '',
+                tableData3: [{
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-08',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-06',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-07',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-07',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-07',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-07',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-07',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-07',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }],
+                multipleSelection: [],
+                currentPage4: 100,
+            },
+            methods: {
+                handleSelect(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleOpen(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleClick(tab, event) {
+                    console.log(tab, event);
+                },
+                handleSelectionChange(val) {
+                    this.multipleSelection = val;
+                },
+                open2() {
+                    this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
+                    }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });          
+                    });
+                },
+                handleSizeChange(val) {
+                    console.log(`每页 ${val} 条`);
+                },
+                handleCurrentChange(val) {
+                    this.currentPage = val;
+                    console.log(`当前页: ${val}`);
+                },
+            }
+        })
+    </script>
+</body>
+</html>

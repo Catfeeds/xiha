@@ -1,0 +1,116 @@
+{include file="index/header"/}
+{css href="__PUBLIC__/static/css/swiper.min.css"}
+<div class="container-fluid main" style="padding:0px;">
+    <div class="swiper-container" style="height: auto; min-height: 630px;">
+        <div class="swiper-wrapper" style="height: auto;">
+            <div class="swiper-slide" style="background:#0164a7; text-align:center; position: relative;">
+	            <img src="__PUBLIC__/static/images/xiha_student_banner_001.png" alt="" style="width: 100%; min-height: 630px;"/>
+            	<div class="xiha-coach-banner">
+	        		<div class="xiha_coach_download_all">
+	        			<div class="xiha_coach_download">
+		        			<div class="xiha_coach_download_left_btn">
+								<a href="https://itunes.apple.com/cn/app/xi-ha-xue-che/id1035332887?mt=8" target="_blank" class="btn btn-default xiha-student-download-btn" style="">
+									<span class="iconfont xiha-student-download-iconfont" style="">&#xe60b;</span> iPhone下载</a>	
+								<a href="http://imtt.dd.qq.com/16891/BAB21A21A895D820C084E9F950EAE19B.apk?fsname=com.zfang.xi_ha_xue_che.student.activity_2.83_87.apk&csr=4d5s" class="btn btn-default xiha-student-download-btn" style="">
+									<span class="iconfont xiha-student-download-iconfont" style="">&#xe60c;</span> Android下载</a>
+		        			</div>
+		        			<div class="xiha_coach_download_right_btn">
+								<img src="__PUBLIC__/static/images/xiha_student_download.png" width="165px" height="165px"/>
+		        			</div>
+		        				
+	        			</div>
+	        		</div>
+            	</div>
+            		
+            </div>
+        </div>
+        <!--<div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>-->
+        <div class="swiper-pagination"></div>
+    </div>
+    
+    <div class="xiha-student-point">
+    	<div class="xiha-student-point-div">
+	    	<div class="xiha-student-point-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_01.png" style="min-width: 900px;" alt="" />
+	    	</div>
+    	</div>
+    	<div class="xiha-student-point-div">
+	    	<div class="xiha-student-point-list" style="background: #fff;">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_02.png" style="min-width: 900px;" alt="" />
+	    	</div>
+    	</div>
+    	<div class="xiha-student-point-div">
+	    	<div class="xiha-student-point-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_03.png" style="min-width: 900px;" alt="" />
+	    	</div>
+    	</div>
+    	<div class="xiha-student-point-div">
+	    	<div class="xiha-student-point-list" style="background: #fff;">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_04.png" style="min-width: 900px;" alt="" />
+	    	</div>
+    	</div>
+    </div>
+    
+    <div class="xuecheliucheng">
+    	<div class="xuecheliucheng-div">
+    		<!--<div class="liucheng-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_01.png" alt="" />
+    		</div>
+    		<div class="liucheng-list">
+    			<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_02.png" alt="" />
+    		</div>
+    		<div class="liucheng-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_03.png" alt="" />
+	    	</div>
+    		<div class="liucheng-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_04.png" alt="" />
+    		</div>
+    		<div class="liucheng-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_05.png" alt="" />
+    		</div>
+    		<div class="liucheng-list">
+	    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_06.png" alt="" />
+    		</div>		-->
+    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_01.png" alt="" />
+    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_02.png" alt="" />
+    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_03.png" alt="" />
+    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_04.png" alt="" />
+    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_05.png" alt="" />
+    		<img src="__PUBLIC__/static/images/xiha_student_point_liucheng_06.png" alt="" />
+    		
+    		<div class="xuecheliucheng-car" id="car">
+    			<img src="__PUBLIC__/static/images/xiha_student_point_car.png" alt="" />
+    		</div>
+    	</div>
+    </div>
+</div>
+{js href="__PUBLIC__/static/js/swiper.min.js"}
+<script>
+//  var mySwiper = new Swiper ('.swiper-container', {
+//      loop: true,
+//      autoplay: 4000,
+//      pagination: '.swiper-pagination',
+////      nextButton: '.swiper-button-next',
+////      prevButton: '.swiper-button-prev',
+//	});
+	$('.xuecheliucheng-div img').on({
+		'mouseover':function(evt) {
+//			var img_position_x = evt.clientX;
+//			console.log(img_position_x)
+			var img_postion = $(this).offset().left;
+			var img_width = $(this).width()
+			console.log(img_postion)
+			console.log(img_width)
+			$('.xuecheliucheng-car').stop().animate({
+				left:(img_postion+(img_width/2))+'px',
+			}, 200)
+		},
+		'mouseleave':function() {
+			$('.xuecheliucheng-car').stop().animate({
+				left:'0px',
+			}, 200)
+		}
+	})
+</script>
+{include file="index/footer"/}

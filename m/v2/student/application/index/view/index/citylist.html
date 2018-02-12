@@ -1,0 +1,204 @@
+{include file="index/header"/}
+<div class="page" id="citylist">
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+      <span class="icon icon-left"></span>
+  		返回
+    </a>
+    <h1 class='title'>{$title}</h1>
+  </header>
+  <div class="content">
+	<div class="list-block" style="margin-top:0px; margin-bottom: 0px;">
+	    <ul style=" border: none;">
+	      <li class="item-content">
+	        <div class="item-media">
+	          	<i class="iconfont" style="font-size: 1rem; color:#11cd6e">&#xe60c;</i>
+	        </div>
+	        <div class="item-inner" style="margin: 0px;">
+	          <div class="item-title">当前定位城市：<span id="citylist-current-place">定位中</span></div>
+	        </div>
+	      </li>
+      	</ul>
+  	</div>
+  	
+	<div class="list-block contacts-block city-list" style="margin-top: 0px;">
+	    <div class="list-group">
+	      <ul>
+	      	<li class="list-group-title" style="display: none;">热门</li>
+	      	<li class="list-group-showname" style="">热门城市</li>
+      		<li>
+	          <div class="citylist-hotcity-all">
+		  		<div class="row" style="text-align: center;">
+		  			<div class="col-33">
+		  				<a class="no-transition" href="{:url('/index', ['cityid'=>'340100', 'device'=>$device])}"><span data-id="340100" class="button button-light hot-city-cell">合肥市</span></a>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">南京市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">上海市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">北京市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">广州市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">深圳市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell city-active">合肥市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">厦门市</span>
+		  			</div>
+		  			<div class="col-33">
+		  				<span class="button button-light hot-city-cell">淮北市</span>
+		  			</div>
+		  		</div>
+		  		
+			</div>
+			</li>
+			</ul>
+    </div>
+	    
+	 	<div class="list-group">
+	      	<ul>
+	        <li class="list-group-title">A</li>
+	        <li class="city-cell">
+	          <a class="no-transition" href="{:url('/index', ['cityid'=>'340100', 'device'=>$device])}">
+		          <div class="item-content">
+		            <div class="item-inner">
+		              <div class="item-title">安庆市</div>
+		            </div>
+		          </div>
+	          </a>
+	        </li>
+	        
+	      </ul>
+	    </div>
+	    <div class="list-group">
+	      <ul>
+	        <li class="list-group-title">B</li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">北京市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">蚌埠市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">包头市</div>
+	            </div>
+	          </div>
+	        </li>
+	        
+	      </ul>
+	    </div>
+	    <div class="list-group">
+	      <ul>
+	        <li class="list-group-title">C</li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">成都市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">重庆市</div>
+	            </div>
+	          </div>
+	        </li>
+	        
+	      </ul>
+	    </div>
+	    <div class="list-group">
+	      <ul>
+	        <li class="list-group-title">S</li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	      </ul>
+	    </div>
+	    <div class="list-group">
+	      <ul>
+	        <li class="list-group-title">T</li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">上海市</div>
+	            </div>
+	          </div>
+	        </li>
+	        
+	      </ul>
+	    </div>
+	    <div class="list-group">
+	      <ul>
+	        <li class="list-group-title">V</li>
+	        <li class="city-cell">
+	          <div class="item-content">
+	            <div class="item-inner">
+	              <div class="item-title">标题1</div>
+	            </div>
+	          </div>
+	        </li>
+	      </ul>
+	    </div>
+  	</div>
+	  
+  </div>
+</div>
+{include file="index/footer"/}

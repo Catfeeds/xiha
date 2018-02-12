@@ -1,0 +1,151 @@
+{include file="index/header"/}
+<div class="page" id="coinstore">
+	{if condition="$device eq '1'"}
+  	<header class="bar bar-nav">
+  		<a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+	      <span class="icon icon-left"></span>
+	  		返回
+	    </a>
+    	<h1 class="title">{$title}</h1>
+  	</header>
+  	{/if}
+  	<div class="content">
+
+	  <div class="list-block media-list" style="margin: 0px;">
+	    <ul style="border-top: none; border-bottom: 0px;">
+	      <li>
+	        <div class="item-content">
+	          <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 3.5rem; border-radius: 50%;'></div>
+	          <div class="item-inner">
+	            <div class="item-title-row">
+	              <div class="item-title" style="">张三</div>
+	              <div class="item-after">
+	              	<a href="javascript:;" id="coinstore-signin" class="button button-success" style="color: #44B474;">
+	              		<i class="iconfont">&#xe664;</i> 签到
+	              	</a>
+	              </div>
+	              <div class="coinstore-rule" style="">
+	              	<a href="{:url('/coinstore/rule', ['device'=>$device])}">金币规则<i class="iconfont" style="font-size: 1rem; color: #44B474;">&#xe601;</i></a>
+	              </div>
+	            </div>
+	            <div class="item-text" style="padding-top: 15px;">您已连续签到<span style="color:#ED7731;">2</span>天</div>
+	          </div>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	  <div class="coinstore-banner" style="height: 150px; overflow: hidden;">
+		<img src="__PUBLIC__/static/images/index-banner-01.png" style="width: 100%;" alt="" />
+	  </div>
+	  <div class="row" style="background: #fff; height: 50px; margin:0px; padding-top: 13px;">
+	      <div class="col-33" style="border-right: 1px solid #E5E5E5; color:#666; font-size: 0.8rem;"><i class="iconfont">&#xe60b;</i> 嘻哈币 <span style="color: #44B474;">101</span></div>
+	      <div class="col-33" style="border-right: 1px solid #E5E5E5; color:#666; font-size: 0.8rem;"><a href="{:url('/coinstore/earncoin', ['token'=>'', 'device'=>$device])}"><i class="iconfont">&#xe663;</i> 赚取嘻哈币</a></div>
+	      <div class="col-33"style=" color:#666; font-size: 0.8rem;"><a href="{:url('/coinstore/earnrecords', ['token'=>'', 'device'=>$device])}"><i class="iconfont">&#xe64b;</i> 兑换记录</a></div>
+	  </div>
+	  
+	  <div class="list-block" style="margin: 10px 0px 0px;">
+	  	<ul>
+	      <li class="item-content item-link">
+	        <div class="item-inner">
+	          <div class="item-title">限量抢兑</div>
+	          <div class="item-after">查看更多</div>
+	        </div>
+	      </li>
+        </ul>
+	  </div>
+	  <div class="coinstore-goods-list" style="padding: 10px; background: #fff; margin-bottom: 10px;">
+		  <div class="row goods-list" style="margin-bottom: 15px;">
+		    <div class="col-50">
+		      <a href="{:url('/coinstore/goodsdetail', ['id'=>1, 'device'=>$device])}"><img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" /></a>
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		  </div>
+		  <div class="row" style="margin-bottom: 15px;">
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		  </div>
+		  <div class="row" style="margin-bottom: 15px;">
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		  </div>
+	  </div>
+	  
+	  <div class="list-block" style="margin: 10px 0px 0px;">
+	  	<ul>
+	      <li class="item-content item-link">
+	        <div class="item-inner">
+	          <div class="item-title">抽奖专区</div>
+	          <div class="item-after">查看更多</div>
+	        </div>
+	      </li>
+        </ul>
+	  </div>
+	  <div class="coinstore-goods-list" style="padding: 10px; background: #fff; margin-bottom: 10px;">
+		  <div class="row goods-list" style="margin-bottom: 15px;">
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		  </div>
+		  <div class="row" style="margin-bottom: 15px;">
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		  </div>
+		  <div class="row" style="margin-bottom: 15px;">
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		    <div class="col-50">
+		      <img src="__PUBLIC__/static/images/coinstore-goods-pic.png" style="width: 100%;" alt="" />
+		      <p style="color: #44B474;">嘻哈学车优惠券100元</p>
+		      <p style="color: #999;">500嘻哈币</p>
+		    </div>
+		  </div>
+	  </div>
+	  
+	  <p style="text-align: center; color: #999; height: 40px;">
+	  	兑奖项目和活动均与设备生产商 Apple Inc.无关
+	  </p>
+  	</div>
+</div>
+
+{include file="index/footer"/}

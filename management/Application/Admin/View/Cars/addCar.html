@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+<!-- <link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="__PUBLIC__/Admin/assets/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" /> -->
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+</head>
+<body>
+    <div class="pd-20">
+        <form action="{: U('Cars/addCar')}" enctype="multipart/form-data" method="post" class="form form-horizontal" id="addCar">
+            <if condition = "$school_id eq 0" >
+                <div class="row cl">
+                    <label  class="form-label col-2"><span style="color:red">*</span>驾校名称：</label>
+                    <div class="formControls col-2" > 
+                        <select select2 ng-model="b" datatype="*1-32" nullmsg="所属驾校不能为空" id="school_id" class="form-control" name="school_id"  placeholder="请选择驾校">
+                            <foreach name="school_list"  item="value">
+                            <option value="{$value.l_school_id}">{$value.s_school_name}</option> 
+                            </foreach>
+                        </select>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+            </if>
+            <div class="row cl">
+                <label  class="form-label col-2">车品牌：</label>
+                <div class="formControls col-2" > 
+                    <select select2 ng-model="c" datatype="*1-32" nullmsg="车品牌不能为空" id="car_cate_id" class="form-control" name="car_cate_id"  placeholder="请选择车品牌">
+                        <foreach name="carcategorylist"  item="value">
+                            <option value="{$value.id}">{$value.name}</option> 
+                        </foreach>
+                    </select>
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2" ><span style="color:red">*</span>车名称：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" datatype="*1-32" nullmsg="车名称不能为空" value="" style="border-radius:5px;height:30px;width:220px" placeholder="请填写车名称" id="car_name" name="car_name">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2" ><span style="color:red">*</span>车牌号：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" datatype="*1-32" nullmsg="车牌号不能为空" value="" style="border-radius:5px;height:30px;width:220px" placeholder="请填写车牌号" id="car_no" name="car_no">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span style="color:red">*</span>车辆类型：</label>
+                <div class="formControls col-2">
+                    <select class="form-control " datatype="*1-32" nullmsg="车辆类型不能为空" name="car_type" id="car_type" style="border-radius:5px;height:30px;width:220px;border-color:#ccc;">
+                        <option value="">请选择车辆类型</option>
+                        <option value="1" >普通车型</option>
+                        <option value="2" >加强车型</option>
+                        <option value="3" >模拟车型</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">车辆图片上传：</label>
+                <div class="formControls col-2">
+                    <input type="file" name="car_img[]" />
+                    <input type="file" name="car_img[]" />
+                    <input type="file" name="car_img[]" />  
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-10 col-offset-2">
+                    <if condition = "$school_id eq 0">
+                        <button class="btn btn-primary radius" id="submitone" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <else/>
+                        <button class="btn btn-primary radius"  type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    </if>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<script type="text/javascript"> 
+// 表单验证
+    $( function () {
+        $('#addCar').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!--{template "content","header"}-->
+<div class="yuanju-div yuanju-anli-div" style="position:relative; margin-top: 120px; width:1120px;">
+    <p style="border-bottom: 1px solid #eaeaea; padding-bottom: 30px; font-size:30px; padding-left: 0px; margin: 0px; margin-bottom:20px;">案例</p>
+    <p class="yuanju-anli-p" style="position: absolute; right: 0px; top:0px; padding-left: 0px; margin: 0px;">
+        <a href="{APP_PATH}cases" {if $catid == 9}class="active"{/if}>全部</a>
+        {pc:content action="category" catid="9" num="7" siteid="$siteid" order="listorder ASC"}
+        {loop $data $index $r}
+        <a href="{$r[url]}" {if $catid == $r[catid]}class="active"{/if}>{$r[catname]}</a>
+        {/loop}
+        {/pc}
+    </p>
+
+    <!-- begin -->
+    <div class="centered-wrapper">
+        <section id="portfolio-wrapper">
+            <ul class="portfolio grid isotope" style="position: relative; overflow: hidden; height: 1880px;">
+                <li class="isotope-item 33 item-small">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">                       
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>小小莫扎特音乐馆</h1>
+                            </div>
+                            <span>公益作品</span>
+                        </div>
+                        <img src="{IMG_PATH}anli/little-star.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>                    
+                </li>
+                <li class="isotope-item 32 item-small" style="position: absolute; left: 285px; top: 0px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover" style="opacity: 0;">
+                            <div class="grid-text">
+                                <h1>移动媒体发展新趋势</h1>
+                            </div>
+                            <span>动画图形</span>
+                        </div>
+                        <img src="{IMG_PATH}anli/newm-media.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 32 34 item-small" style="position: absolute; left: 570px; top: 0px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover" style="opacity: 0;">
+                            <div class="grid-text">
+                                <h1>【复旦MBA】新生数据揭秘</h1>
+                            </div>
+                            <span>动画图形, 商业演示</span>
+                        </div>
+                        <img src="{IMG_PATH}anli/fudan1-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 item-high" style="position: absolute; left: 855px; top: 0px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">                
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>无障碍电影在行动</h1>
+                            </div>
+                            <span>公益作品</span>
+                        </div>
+                        <img src="{IMG_PATH}anli/wuzhangai-265x353.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 32 34 item-wide" style="position: absolute; left: 0px; top: 235px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover" style="opacity: 0;">
+                            <div class="grid-text">
+                                <h1>
+                                    CMSYOU 动画项目合集
+                                </h1>
+                            </div>
+                            <span>
+                                动画图形, 商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/Animation-Collection11.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 34 item-small" style="position: absolute; left: 570px; top: 235px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover" style="opacity: 0;">
+                            <div class="grid-text">
+                                <h1>
+                                    Oppo产品推介演示
+                                </h1>
+                            </div>
+                            <span>
+                                商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/oppo-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 32 item-long" style="position: absolute; left: 570px; top: 470px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    还你一个真实的新疆
+                                </h1>
+                            </div>
+                            <span>
+                                公益作品, 动画图形
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/xinjiang-470x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 32 item-small" style="position: absolute; left: 0px; top: 705px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    今天你“萌萌哒”了么？
+                                </h1>
+                            </div>
+                            <span>
+                                公益作品, 动画图形
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/meng-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 32 item-wide" style="position: absolute; left: 285px; top: 705px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover" style="opacity: 0;">
+                            <div class="grid-text">
+                                <h1>
+                                    低头方寸间，我们错失了什么？
+                                </h1>
+                            </div>
+                            <span>
+                                公益作品, 动画图形
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/shoujidang1.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 34 item-small" style="position: absolute; left: 855px; top: 705px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    卡尔蔡司新产品演示
+                                </h1>
+                            </div>
+                            <span>
+                                商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/ziess-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 32 34 item-small" style="position: absolute; left: 0px; top: 940px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    演示，改变世界的力量！
+                                </h1>
+                            </div>
+                            <span>
+                                动画图形, 商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/slidepower-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 34 item-long" style="position: absolute; left: 0px; top: 1175px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    罗技G系列新品发布演示
+                                </h1>
+                            </div>
+                            <span>
+                                商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/logitech-470x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 32 34 item-small" style="position: absolute; left: 855px; top: 940px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    【麦田计划】九周年演示
+                                </h1>
+                            </div>
+                            <span>
+                                公益作品, 动画图形, 商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/mowo-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 32 item-small" style="position: absolute; left: 570px; top: 1175px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    世界人口日
+                                </h1>
+                            </div>
+                            <span>
+                                公益作品, 动画图形
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/renkouri-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 34 item-small" style="position: absolute; left: 855px; top: 1175px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    医药咨询公司行业报告
+                                </h1>
+                            </div>
+                            <span>
+                                商业演示
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/RXB-265x215.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                <li class="isotope-item 33 32 item-wide" style="position: absolute; left: 0px; top: 1410px;">
+                    <a href="http://www.cmsyou.com/demo/iwhiteresponsive/details.html" class="preloader">
+                        <div class="grid-item-on-hover">
+                            <div class="grid-text">
+                                <h1>
+                                    钓鱼岛历史
+                                </h1>
+                            </div>
+                            <span>
+                                公益作品, 动画图形
+                            </span>
+                        </div>
+                        <img src="{IMG_PATH}anli/diaoyudao.jpg" alt="" style="display: block; visibility: visible; opacity: 1;">
+                    </a>
+                </li>
+                
+            </ul>                       
+        </section>
+    </div>
+    <!-- end -->
+
+</div>
+<!--{template "content","footer"}-->
+    

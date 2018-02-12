@@ -1,0 +1,84 @@
+<!--{include file="library/header.lbi"}-->
+<div class="panel admin-panel">
+        	<div class="panel-head"><strong>在线模拟考试记录</strong></div>
+</div>
+<div class="tab-body" style="padding:20px">
+	<form method="post" action="index.php?action=member&op=examsearch" onSubmit="return searchcheck();">
+		<div class="padding border-bottom">
+		    <select class="input input-auto" name="conditiontype" id="search_condition">
+		        <option value="1">学员姓名</option>
+		        <option value="2">学员号码</option>
+		    </select>
+		    <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="keywords">
+		    <input type="submit" id="membersearch" class="button border-blue" value="搜索" />
+
+		</div>
+	</form>
+		<div class="tab-body" style="padding-top:10px;"> 
+			<!-- 信息展示 -->
+			<div class="tab-panel form-x active">
+				<form action="index.php?action=member&op=show" method="post">
+				        <table class="table table-bordered table-hover">
+				            <tr>
+				                <th width="40">选择</th>
+				                <th width="45">ID</th>
+				                <th width="80">用户名</th>
+				                <th width="80">号码</th>
+				                <th width="80">身份证</th>
+				                <th width="100">牌照</th>
+				                <th width="100">考试科目</th>
+				                <th width="100">考试用时</th>
+				                <th width="150">交卷时间</th>
+				                <th width="100">考试成绩</th>
+				            </tr>
+				            <!-- 循环列表 -->
+				            <!--{if $examrecords}-->
+				            <!--{foreach $examrecords as $key => $value}-->
+				            <tr class="memberlist">
+				                <td><input type="checkbox" name="member_id[]" id="checkbox_<!--{$key}-->" class="school_check" value="<!--{$value.record_id}-->" /></td>
+				                <td><!--{$value.record_id}--></td>
+				                <td><!--{$value.real_name}--></td>
+				                <td><!--{$value.phone}--></td>
+				                <td><!--{$value.identify_id}--></td>
+				                <td><!--{$value.license}--></td>
+				                <td><!--{$value.subject}--></td>
+				                <td><!--{$value.exam_use_time}--></td>
+				                <td><!--{$value.adddate}--></td>
+				                <td><!--{$value.score}--></td>
+				            </tr>
+				            <!--{/foreach}-->
+				            <!--{else}-->
+				                <tr><td colspan="8" style="text-align: center;">暂无模拟考试记录</td></tr>
+				            <!--{/if}-->
+				        </table>
+
+				        <!-- 分页 -->
+				        <div class="panel-foot text-center">
+				            <!--{$pagehtml}-->
+				        </div>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script>
+	// 跳转页面
+	$('#skipping').click(function() {
+	    $(this).html('跳转中...');
+	    var selectpage = $('#selectpage').find('option:selected').val();
+	    location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&conditiontype=<!--{$conditiontype}-->&page="+selectpage;
+	})
+
+ 	// 搜索检测
+    function searchcheck() {
+      var keywords = $('#keywords').val();
+      if(keywords.trim() == '') {
+        layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});
+        return false;
+      }
+    }
+</script>
+
+<!--{include file="library/footer.lbi"}-->

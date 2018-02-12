@@ -1,0 +1,148 @@
+<!--{include file="library/header.lbi"}-->
+    <form action="index.php?action=comment&op=searchstu" method="post" onSubmit="return searchcheck();">
+        <div class="panel admin-panel">
+        	<div class="panel-head" style="position:fixed; top:0px; width:100%; margin-bottom:40px;"><strong>评价学员</strong></div>
+            <div class="padding form-x border-bottom search-position" style="top:40px;">
+                <input type="button" class="button button-small checkall" name="checkall" checkfor="check_id[]" value="全选" />
+                <input type="button" class="button button-small border-yellow" onclick="javascript:delall()" value="批量删除" />
+                <select class="input input-auto" name="studentconditiontype" id="student_search_condition">
+                    <option value="">请选择学员条件</option>
+                    <option value="1">学员姓名</option>
+                    <option value="2">学员号码</option>
+                </select>
+                <input type="text" class="input input-auto" size="20" name="keyword" placeholder="请输入查询条件" id="keywords">
+                <input type="submit" id="searchstu" class="button button-small border-blue" value="搜索" />
+            </div>
+            <table class="table table-hover" style="margin-top:95px;">
+            	<tr>
+                    <th width="50">选择</th>
+                    <th width="50">ID</th>
+                    <th width="100">学员昵称</th>
+                    <th width="100">学员姓名</th>
+                    <th width="100">学员号码</th>
+                    <th width="100">订单号</th>
+                    <th width="100">评价学员星级</th>
+                    <th width="100">教练姓名</th>
+                    <th width="300">学员评价</th>
+                    <th width="150">评价时间</th>
+                    <th width="230">操作</th>
+                </tr>
+                <!-- 循环列表 -->
+                <!--{if $student_comment_list}-->
+                <!--{foreach $student_comment_list as $key => $value}-->
+                <tr class="commentlist">
+                	<td><input type="checkbox" name="check_id[]" id="checkbox_<!--{$key}-->" class="id_check" value="<!--{$value.id}-->" />
+                    </td>
+                    <td><!--{$value.id}--></td>
+                    <td><!--{if $value.s_username == ''}-->嘻哈学员<!--{else}--><!--{$value.s_username}--><!--{/if}--></td>
+                    <td><!--{$value.s_real_name}--></td>
+                    <td><!--{$value.s_phone}--></td>
+                    <td><!--{$value.order_no}--></td>
+                    <td>
+                        <!--{section name=loop loop=$value.star_num}-->
+                        <span class="icon-star text-small text-red"></span>
+                        <!--{/section}-->
+                    </td>
+                    <td><!--{$value.s_coach_name}--></td>
+                    <td><!--{$value.content}--></td>
+                    <td><!--{$value.addtime}--></td>
+                    <td>                        
+                        <a class="button border-yellow button-little" href="#" onclick="delstucom(<!--{$value.id}-->,this)">删除</a>
+                    </td>
+                </tr>
+                <!-- 弹出框 -->
+                <!--{/foreach}-->
+                <!--{else}-->
+                    <tr>
+                        <td colspan=5>暂无教练评价</td>
+                    </tr>
+                <!--{/if}-->
+            </table>
+            <div id="showdialog">
+    
+            </div>
+
+            <!-- 分页 -->
+            <div class="panel-foot text-center">
+                <!--{$pagehtml}-->
+            </div>
+        </div>
+    </form>
+    <script>
+
+     // 删除学员评价信息
+        function delstucom(id, obj) {
+            if(window.confirm('你确定删除吗？')) {
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=comment&op=delstucom",
+                    // dataType:'JSON',
+                    data:{'id':id},
+                    success:function(data) {
+                        if(data == 1) {
+                            $(obj).parents('tr').remove();
+                        }
+                    }
+                })
+                
+            } else {
+                return false;
+            }
+        }
+
+    // 批量删除
+    function delall() {
+        if($('.table-hover').find('input:checked').val() == undefined) {
+            layer.msg('请选择需要删除的评价！',{icon:0, offset:['0px','40%'], time:1500});        
+            return false;
+        }
+        if(confirm('你确定删除吗？')) {
+            var check_id = '';
+            $(".table-hover input:checkbox").each(function(index) {
+                if($('#checkbox_'+index+':checked').val() != undefined) {
+                    check_id += $("#checkbox_"+index+':checked').val()+',';
+                }
+                // alert($("#checkbox_"+index).val());
+            });
+            if(check_id.lastIndexOf(',') > 0) {
+                check_id = check_id.substr(0, check_id.lastIndexOf(','));
+            }
+            // alert(check_id);
+            // return false;
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=comment&op=delmorestucom",
+                data:{"check_id":check_id},
+                dataType:"JSON",
+                success:function(data) {
+                    if(data == 1) {
+                         //$('.school_check:checked').parents('.memberlist').remove();
+                    }
+                    location.reload();
+                    // alert(data);
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+     // 搜索检测
+    function searchcheck() {
+      var keywords = $('#keywords').val();
+      var student_search_condition = $('#student_search_condition').find('option:selected').val();
+      var coach_search_condition = $('#coach_search_condition').find('option:selected').val();
+      if(keywords.trim() == '') {
+        layer.msg('请输入搜索内容',{icon:0, offset:['0px','40%'], time:1500});        
+        return false;
+      }
+      
+    }
+
+    // 跳转页面
+    $('#skipping').click(function() {
+        $(this).html('跳转中...');
+        var selectpage = $('#selectpage').find('option:selected').val();
+        location.href="index.php?action=<!--{$action}-->&op=<!--{$op}-->&page="+selectpage;
+    })
+    </script>
+<!--{include file="library/footer.lbi"}-->

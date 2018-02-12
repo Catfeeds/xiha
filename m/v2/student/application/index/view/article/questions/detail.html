@@ -1,0 +1,156 @@
+{include file="index/header"/}
+<div class="page">
+  {if condition="$device eq '1'"}
+  <header class="bar bar-nav">
+    <a class="button button-link button-nav pull-left back" href="{:url('/article', ['l'=>$lesson_id, 'cid'=>$cate_id, 'device'=>$device])}">
+      <span class="icon icon-left"></span>
+  		返回
+    </a>
+    <a class="button button-link button-nav pull-right" style="margin-right: 0px;" href="javascript:;">
+	    	<i class="iconfont open-popover" data-popover=".popover-report" style="font-size: 1.6rem;">&#xe685;</i>
+		</a>
+		
+    <h1 class='title'>{$title}</h1>
+  </header>
+  {/if}
+  <div class="content" style="background: #fff; margin:0 0 2.5rem 0;">
+		<div class="list-block media-list article-list" style=" margin: 0px; border: none;">
+	    <ul style="border: 0px;">
+	      <li>
+	        	<div class="item-content">
+		          <div class="item-media" style="overflow: hidden; position: absolute; top:0px;">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 1.6rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner" style="margin-left: 2rem;">
+		            <div class="item-title-row">
+		              <div class="item-title">嘻哈学员</div>
+		            </div>
+		            <div class="item-subtitle" style="color: #999;">09-28 21:30</div>
+		            <div class="item-subtitle" style="color: #666; white-space: initial">
+		            	教练不错，教导的很好，教练不错，非常好教练不错！
+		            	教练不错，教导的很好，教练不错，非常好教练不错！
+		            	教练不错，教导的很好，教练不错，非常好教练不错！
+		            	教练不错，教导的很好，教练不错，非常好教练不错！
+		            	教练不错，教导的很好，教练不错，非常好教练不错！
+		            </div>
+		            <div class="article-detail-dianzan-list">
+		            	<img src="__PUBLIC__/static/images/no-picture.png" style="width: 30px; margin: 0px;" alt="" />
+		            	<img src="__PUBLIC__/static/images/no-picture.png" style="width: 30px;" alt="" />
+		            	<img src="__PUBLIC__/static/images/no-picture.png" style="width: 30px;" alt="" />
+		            	<img src="__PUBLIC__/static/images/no-picture.png" style="width: 30px;" alt="" />
+		            	<img src="__PUBLIC__/static/images/no-picture.png" style="width: 30px;" alt="" />
+		            	<div class="article-detail-dianzan-right">
+		            		600人赞过 <i class="icon icon-right"></i>
+		            	</div>
+		            </div>
+			          <div class="item-after" style="float: right; margin-top: 10px;">
+			          	<div style="margin-right: 20px;"><i class="iconfont">&#xe642;</i> 分享</div>
+			          	<div style=""><i class="iconfont" style="font-size: 1rem;">&#xe65b;</i> 10</div>
+			          </div>
+		          </div>
+		        </div>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	  <!--全部回复-->
+	  <div style="position: relative; width: 100%; padding: 15px;">
+	  	<p style="border-bottom: 1px solid #EAEAEA;"></p>
+	  	<p style="position: absolute; top: 13px; left:50%; font-size: 0.8rem; transform: translate(-50%, -50%); background: #fff; width: 100px; text-align: center; height: 20px;">全部回复</p>
+	  </div>
+	  
+	  <div class="list-block media-list article-list" style=" margin: 0px; border: 0px;">
+	    <ul style="border: 0px;">
+	      <li>
+        	<div class="item-content">
+	          <div class="item-media" style="overflow: hidden; position: absolute; top:0px;">
+	          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 1.6rem; border-radius: 50%;'>
+	          </div>
+	          <div class="item-inner" style="margin-left: 2rem; padding-bottom: 20px; border-bottom: 1px solid #eaeaea;">
+	            <div class="item-title-row">
+	              <div class="item-title">嘻哈学员</div>
+	              <div class="item-after">
+		            	<i class="iconfont" style="color: #FF9208;">&#xe657;</i> <span style="color: #666; font-size: 0.8rem;">23421</span>
+		            </div>
+	            </div>
+	            <div class="item-subtitle" style="color: #999;">09-28 21:30</div>
+	            <div class="item-subtitle" style="color: #666; white-space: initial">
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            </div>
+	          </div>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	  <div class="list-block media-list article-list" style=" margin: 0px; border: 0px;">
+	    <ul style="border: 0px;">
+	      <li>
+        	<div class="item-content">
+	          <div class="item-media" style="overflow: hidden; position: absolute; top:0px;">
+	          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 1.6rem; border-radius: 50%;'>
+	          </div>
+	          <div class="item-inner" style="margin-left: 2rem; padding-bottom: 20px; border-bottom: 1px solid #eaeaea;">
+	            <div class="item-title-row">
+	              <div class="item-title">嘻哈学员</div>
+	              <div class="item-after">
+		            	<i class="iconfont" style="">&#xe658;</i> <span style="color: #666; font-size: 0.8rem;">12</span>
+		            </div>
+	            </div>
+	            <div class="item-subtitle" style="color: #999;">09-28 21:30</div>
+	            <div class="item-subtitle" style="color: #666; white-space: initial">
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            </div>
+	          </div>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	  
+	  <div class="list-block media-list article-list" style=" margin: 0px; border: 0px;">
+	    <ul style="border: 0px;">
+	      <li>
+        	<div class="item-content">
+	          <div class="item-media" style="overflow: hidden; position: absolute; top:0px;">
+	          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 1.6rem; border-radius: 50%;'>
+	          </div>
+	          <div class="item-inner" style="margin-left: 2rem; padding-bottom: 20px; border-bottom: 1px solid #eaeaea;">
+	            <div class="item-title-row">
+	              <div class="item-title">嘻哈学员</div>
+		            <div class="item-after">
+		            	<i class="iconfont" style="">&#xe658;</i> <span style="color: #666; font-size: 0.8rem;">23</span>
+		            </div>
+	            </div>
+	            <div class="item-subtitle" style="color: #999;">09-28 21:30</div>
+	            <div class="item-subtitle" style="color: #666; white-space: initial">
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            	教练不错，教导的很好，教练不错，非常好教练不错！
+	            </div>
+	          </div>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	  
+  </div>
+  <div class="" style="position: absolute; bottom: 0px; width: 100%; background: #fff; height: 50px; box-shadow: 0 0px 3px rgba(89,89,89,0.25); padding: 10px 0px 0px 15px;">
+	  	<i class="iconfont" style="font-size: 1rem;">&#xe658;</i>
+  		<input type="text" placeholder="回复楼主：" style="margin-left: 10px; width: 85%; background:#E8E8EA !important; border:none; height: 30px; border-radius: 4px; padding: 0px 10px;"/>
+  </div>
+  
+</div>
+<div class="popover popover-report">
+  <div class="popover-angle on-top"></div>
+  <div class="popover-inner">
+  	<div class="list-block">
+      <ul>
+        <li><a href="#" class="list-button item-link">举报</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{include file="index/footer"/}

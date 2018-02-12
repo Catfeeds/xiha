@@ -1,0 +1,121 @@
+body, div, h1, h2, h3, h4, h5, h5, p, ul, ol, li, dl, dt, dd { margin: 0; padding: 0;}
+ul, ol { list-style-type: none;}
+
+body { font: 14px "Microsoft Yahei",Arial,Helvetica,sans-serif; color: #515151;}
+a { color: #515151; text-decoration: none;}
+a:hover { color: #31a5e7;}
+
+.clearfix:after { content: ""; display: table; clear: both;}
+
+.ml-nav { position: fixed; top: 0; left: 0; z-index: 10; width: 100%;height:28px; padding: 15px 0; border-bottom: 1px solid #acacac;background-color: rgba(255, 255, 255, 0.85);}
+.ml-logo { float: left; width: 40px; height: 40px; margin-left: 70px; font-size: 0;}
+.ml-link { float: left; margin: 0 auto; font-size: 0;}
+.ml-link a { display: inline-block; margin: 0 15px 0 50px; font-size: 20px;}
+.buy-now { position: absolute; font-size:18px;right: 0; top: 0; width: 100px; height: 36px; line-height: 36px; margin-right:100px;text-align: center; color: #fff; background-color: #3db1fa;}
+.buy-now:hover { color: #fff;}
+
+.center-wrap { position: relative; z-index: 1; width: 100%; height: 100%; margin: 0 auto;}
+.desc { position: relative; z-index: 1;font-size:1.05rem;}
+
+.section { overflow: hidden;}
+.section h1 { margin-bottom: 20px; line-height: 1.4; font-size: 40px; font-weight: 400;}
+.section p { line-height: 25px;}
+
+.section .meizu-logo { float: left; margin: 0; padding: 30px 0;}
+.meizu-logo a { float: left; width: 114px; height: 20px; font-size: 0; background-image: url(../images/logo.png);}
+.nav { float: right; margin-right: 150px;}
+.nav li { float: left;}
+.nav a { display: block; padding: 31px 22px 30px;}
+.login { position: absolute; right: 0; top: 31px;}
+.login a { margin: 0 5px; padding-top: 31px;}
+
+.scroll_banner1 { background: url(../images/bg1.png) 50% 0 no-repeat;}
+.scroll_banner1-desc { position: absolute; margin: 0 auto; color: #FFF; top:20%; left: 30%; margin-left: -193px;color:black;}
+.scroll_banner1-desc h1 { text-align: center;}
+.scroll_banner2 { width:auto;height:auto;}
+.scroll_banner2 { background: url(../images/bg2.png) 50% 0 no-repeat;}
+
+.scroll_banner2-img img { position: absolute;}
+.scroll_banner2-img1 { left: 1px; width: 100px;}
+.scroll_banner2-img2 { left: 1px; width: 100px;}
+.scroll_banner2-img3 { left: 1px; width: 100px;}
+.scroll_banner2-img4 { left: 1px; width: 100px;}
+.scroll_banner2-desc { position: absolute; margin: 0 auto; color: #FFF; top:40%; left: 45%; margin-left: -193px;color:black;text-align:center;}
+.scroll_banner2-desc h1 { text-align: center;}
+
+.scroll_banner3 { background: #ff8fa5 url(../images/bg3.png) center 0 no-repeat;}
+.scroll_banner4-desc { position: absolute; margin: 0 auto; color: #FFF; top:25%; left: 45%; margin-left: -193px;color:white;text-align:center;}
+.scroll_banner4-desc h1 { text-align: center;}
+
+.scroll_banner4 { background: url(../images/bg4.png) center 0 no-repeat;}
+.scroll_banner4-desc { position: relative; width: 640px; padding-top: 100px; z-index: 1;}
+.parameters-list { margin-top: 28px; width: 230px;}
+.parameters-list li { position: relative; border-top: #333 1px solid; border-bottom: #333 1px solid; margin-bottom: -1px;}
+.parameters-list li h2 { font-size: 32px; font-weight: 400; height: 80px; line-height: 80px; margin-top: 0!important;}
+.parameters-list li i { display: inline-block; position: absolute; top: 66px; font-size: 12px;}
+.parameters-list li span { position: absolute; top: 30px; right: 0; font-size: 14px;}
+.parameters-list li.ps h2 { position: relative; line-height: 90px;}
+.parameters-list li.ps span { top: 26px;}
+.scroll_banner4-img { position: absolute; bottom: 0; right: 0; line-height: 0;}
+.scroll_banner4-img img { width: 900px;}
+
+.scroll_banner5 { background: url(../images/bg5-s.png) center 0 no-repeat;}
+.scroll_banner5-desc { padding-top: 10%; width: 610px; margin: 0 auto;}
+.scroll_banner5-img { position: absolute; bottom: -346px; left: 50%; margin-left: -500px;}
+.scroll_banner5-img img { width: 1000px;}
+.scroll_banner5-desc { position: absolute; margin: 0 auto; color: #FFF; top:60%; left: 73%; margin-left: -193px;color:white;text-align:center;}
+.scroll_banner5-desc h1 { text-align: center;}
+
+
+
+
+
+/*.flyme { background: url(../../images/meilannote2/features/bg9-s.png) center 0 no-repeat;}
+.flyme-desc { padding-top: 14%; text-align: center;}
+.flyme-img { position: absolute; top: 0; left: 50%; margin-left: -600px; padding-top: 400px; width: 1200px; height: 752px; z-index: 1;}
+.flyme-img { position: absolute; top: 0; left: 50%; margin-left: -400px; padding-top: 290px; width: 800px; height: 752px; z-index: 1;}
+.flyme-img img { position: absolute;}
+.flyme-pic1 { width: 296px; left: 0; padding-top: 60px;}
+.flyme-pic2 { width: 310px; left: 236px; z-index: 1;}
+.flyme-pic3 { width: 296px; left: 482px; padding-top: 60px;}*/
+
+.footer-link { padding: 30px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+.footer-link dl { float: left; width: 19.9%;}
+.footer-link dt { line-height: 45px; font-weight: 700;}
+.footer-link dd { line-height: 28px;}
+.footer-link a { color: #515151; text-decoration: none;}
+.footer-link a:hover { color: #31a5e7;}
+
+.copyright { padding: 20px 0; text-align: center;}
+
+#fp-nav ul li:first-child, #fp-nav ul li:last-child { display: none;}
+
+@media screen and (min-width:1920px) {
+	.scroll_banner1 { background: url(../images/bg1.png) center 0 no-repeat;}
+	.scroll_banner2 { background: url(../images/bg2.png) center 0 no-repeat;}
+	.scroll_banner3 { background: url(../images/bg3.png) center 0 no-repeat;}
+	.scroll_banner4 { background: url(../images/bg4.png) center 0 no-repeat;}
+	.scroll_banner5 { background: url(../images/bg5.png) center 0 no-repeat;}
+
+
+	.scroll_banner3-desc { padding-top: 50%;}
+	.scroll_banner2-img { margin-top: 100px; margin-left: -720px;}
+	.scroll_banner2-img2 { left: 400px;}
+	.scroll_banner2-img1 { left: 230px; width: auto;}
+	.scroll_banner2-img2 { left: 480px; width: auto;}
+	.scroll_banner4-desc { padding-top: 200px;}
+	.scroll_banner4-img img { width: 1200px;}
+	.scroll_banner5-img { position: absolute; bottom: -300px; left: 50%; margin-left: -666px;}
+	.scroll_banner5-img img { width: 1200px;}
+
+
+/*	.flyme-img { position: absolute; top: 0; left: 50%; margin-left: -600px; padding-top: 400px; width: 1200px; height: 752px; z-index: 1;}
+	.flyme-img img { position: absolute;}
+	.flyme-pic1 { left: 0; padding-top: 60px; width: auto;}
+	.flyme-pic2 { left: 368px; width: auto; z-index: 1;}
+	.flyme-pic3 { left: 755px; padding-top: 60px; width: auto;}*/
+	.parameters-list li h2 { height: 100px; line-height: 100px;}
+}
+@media screen and (max-width:1440px) {
+	.scroll_banner3 { background: url(../images/bg3-xs.png) center 0 no-repeat;}
+}

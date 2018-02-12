@@ -1,0 +1,42 @@
+{echo:JS::import("form")}
+<div style="overflow: auto;width:900px;height: 450px;margin-top:10px;">
+	<table class="default" style="margin-bottom: 10px;">
+		<tr>
+			<td>请填写退款理由：</td>
+		</tr>
+		<tr>
+			<td colspan=2><textarea id="reason" pattern="required" alt="退款理由不能为空！" style="width: 867px; margin: 0px; height: 275px;"> </textarea> <label></label></td>
+		</tr>
+		<input type="hidden" id="order_id" value="{$order_id}"/>
+	</table>
+	<div class="alone_footer tc"><button class="focus_button" onclick="alipay_trade_query();">提交操作</button></div>
+</div>
+
+<script type="text/javascript">
+
+function alipay_trade_query(order_id, reason) {
+	var order_id = $('#order_id').val();
+	var reason = $('#reason').val();
+	if(!order_id) {
+		alert('订单不存在');return;
+	}
+	if(!reason) {
+		alert('请填写退款理由');return;
+	}
+    $.ajax({
+        type: 'post',
+        url: "{url:/trade/alipay_trade_refund}",
+        data: {"order_id":order_id,'refund_reason':reason},
+        dataType: 'json',
+        success:function(ret) {
+        	alert(ret.msg);
+        	if(ret.status == 1) {
+        		window.parent.location.reload();
+        	}
+        },
+        error: function() {
+            alert('请求出错');
+        }
+    });
+}
+</script>

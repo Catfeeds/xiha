@@ -1,0 +1,223 @@
+<!--{include file="library/header.lbi"}-->
+  <div class="tab-body">
+    <div class="panel-head">
+        <a href="index.php?action=coach&op=index" class=""><strong>返回教练列表 >></strong></a>
+    </div>
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" style="width:80%" action="index.php?action=coach&op=addoperate" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <div class="label"><label for="s_coach_name">姓名</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="s_coach_name" name="s_coach_name" size="50" placeholder="请填写姓名" data-validate="required:请填写姓名" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_coach_phone">手机号码</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="s_coach_phone" name="s_coach_phone" size="50" placeholder="请填写手机号码" data-validate="required:请填写手机号码" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="s_coach_sex">性别</label></div>
+                <div class="field">
+                     <input type="radio" name="s_coach_sex" value="1" checked/>男
+                     <input type="radio" name="s_coach_sex" value="0" />女
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_coach_age">教龄</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="s_coach_age" name="s_coach_age" size="50" placeholder="请填写教龄数字（例如：5）" data-validate="required:请填写教龄数字" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="coach_img">头像</label></div>
+                <div class="field">
+                    <div class="imgdiv">
+                        <img src="templates/assests/images/default_photo.jpg" id="imgShow" width="128" height="128" class="img-border radius-small" />
+                    </div>
+
+                    <a class="button input-file bg-green" href="javascript:void(0);">+ 浏览文件
+                        <input size="100" type="file" name="coach_img" value="" id="coach_img" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" />
+                        <input type="hidden" name="oldimg" value="templates/assests/images/default_photo.jpg">
+                    </a>
+                    <p class="text-red text-big" style="margin-top:10px; color:#f60; cursor:pointer;">
+                        <i class="icon-exclamation-circle"></i>
+                        上传图片不要超过300K, 图片标准尺寸为 100*100px
+                    </p>
+                </div>
+            </div>
+
+      <!--       <div class="form-group">
+          <div class="label"><label for="coach_school">所属驾校</label></div>
+          <div class="field">
+              <div><span>{$school_detail.s_school_name}</span></div>
+      
+          </div>
+      </div> -->
+              <input type="hidden" value="<!--{$school_detail.l_school_id}-->" name="coach_school_id">
+
+            <div class="form-group">
+                <div class="label"><label for="coach_lesson">培训科目</label></div>
+                <div class="field">
+                    <div class="button-group border-main checkbox"> 
+                        <!--{foreach $lesson_config as $key => $value}-->
+                        <!--{if $key == 2}-->
+                        <label class="button active">
+                            <input name="lesson_id[]" value="<!--{$key}-->" type="checkbox" checked="checked"><!--{$value}--></label> 
+                        <!--{else}-->
+                            <label class="button"><input name="lesson_id[]" value="<!--{$key}-->" type="checkbox"><!--{$value}--></label>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </div>
+                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="培训课程可多选"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="coach_lesson">驾照类型</label></div>
+                <div class="field">
+                    <div class="button-group border-main checkbox"> 
+                        <!--{foreach $lisence_config as $key => $value}-->
+                        <!--{if $key == 1}-->
+                        <label class="button active"><input name="lisence_id[]" value="1" type="checkbox" checked="checked"><!--{$value}--> </label>
+                        <!--{else}-->
+                            <label class="button"><input name="lisence_id[]" value="<!--{$key}-->" type="checkbox"><!--{$value}--></label>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </div>
+                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="培训牌照可多选"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="coach_school_car">所属车辆</label></div>
+                <div class="field">
+                    <select class="input input-auto" id="coach_school_car" style="width:20%; float:left" name="coach_school_car"> 
+                        <option value="">请选择车辆</option> 
+                        <!--{if $car_list}-->
+                            <!--{foreach $car_list as $key => $value}-->
+                             <option value="<!--{$value.id}-->"><!--{$value.name}--> (<!--{$value.car_no}-->)</option>
+                            <!--{/foreach}-->
+                        <!--{else}-->
+                            <option value="">暂无车辆列表</option>
+                        <!--{/if}-->
+                    </select>
+                     <!-- <a href="index.php?action=car&op=add" class="button bg-yellow">添加车辆</a> -->
+                    <a href="index.php?action=car&op=add&type=coachadd" type="button" class="button border-yellow" id="phonecheck">添加车辆</a>   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="i_wdid">地址</label></div>
+                <div class="field">
+                   <select class="input" id="province" style="width:20%; float:left" name="province"> 
+                       <option value="">请选择省</option> 
+                       <!--{foreach $provincelist as $key => $value}-->
+                        <option value="<!--{$value.provinceid}-->"><!--{$value.province}--></option>
+                       <!--{/foreach}-->
+                   </select>
+                   <select class="input" id="city" style="width:20%; float:left" name="city"> 
+                       <option value="">请选择市</option>
+            
+                   </select>
+                   <select class="input" id="area" style="width:20%; float:left" name="area"> 
+                       <option value="">请选择区域</option> 
+                   </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_address">详细地址</label></div>
+                <div class="field">
+                    <!-- <input type="text" class="address_start" value=""> -->
+                    <input type="text" class="input input-auto" id="s_address" name="s_address" value="" size="80" placeholder="详细地址" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="coach_type">教练类型</label></div>
+                <div class="field">
+                    <select class="input" id="coach_type" style="width:20%; float:left" name="coach_type"> 
+                        <option value="">请选择教练类型</option> 
+                        <option value="1">普通教练</option>
+                        <option value="0">金牌教练</option>
+                    </select> 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label>是否在线</label></div>
+                <div class="field">
+                    <div class="button-group button-group-small radio">
+                        <label class="button active">
+                            <input name="is_online" value="1" checked="checked" type="radio">
+                            <span class="icon icon-check text-green"></span> 在线</label>
+                        <label class="button">
+                            <input name="is_online" value="0" type="radio">
+                            <span class="icon icon-times"></span> 不在线</label>
+                    </div>
+                </div>
+            </div>
+            
+<!--             <div class="form-group">
+                <div class="label"><label for="s_yh_name">收款银行名称</label></div>
+                <div class="field">
+                    <input type="text" class="input" id="s_yh_name" name="s_yh_name" value="" size="50" placeholder="收款银行名称" data-validate="required:请填写你收款银行名称"/>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="s_yh_zhanghao">收款银行账号</label></div>
+                <div class="field">
+                    <input type="text" class="input" id="s_yh_zhanghao" name="s_yh_zhanghao" value="" size="50" placeholder="收款银行账号" data-validate="required:请填写你收款银行账号"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_yh_huming">银行账户户名</label></div>
+                <div class="field">
+                    <input type="text" class="input" id="s_yh_huming" name="s_yh_huming" value="" size="50" placeholder="银行账户户名" data-validate="required:请填写你银行账户户名" />
+                </div>
+            </div> -->
+        <div class="form-group">
+            <div class="label"><label></label></div>    
+            <div class=""><button class="button bg-main" type="submit">提交</button></div>
+        </div>
+        </form>
+    </div>
+
+    <script>
+    // 上传图片预览
+        window.onload = function () { 
+            new uploadPreview({ UpBtn: "coach_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+        }
+
+        // 城市联动
+        $('#province').change(function() {
+            var province_id = $(this).val();
+            $("#city").load("index.php?action=school&op=getcity&province_id="+province_id);
+        });
+
+        $('#city').change(function() {
+            var city_id = $(this).val();
+            $('#area').load('index.php?action=school&op=getarea&city_id='+city_id);
+            var city_html = $(this).find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            $('#s_address').val(province_html+city_html);
+        })
+
+        $('#area').change(function() {
+            var city_html = $('#city').find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            var area_html = $(this).find('option:selected').html();
+            $('#s_address').val(province_html+city_html+area_html);
+        })
+    </script>
+<!--{include file="library/footer.lbi"}-->

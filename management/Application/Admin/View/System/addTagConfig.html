@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/jquery-ui.css" /> -->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]--> 
+<title>添加系统标签</title>
+</head>
+<body>
+    <div class="pd-20">
+        <form action="{:U('System/addTagConfig')}" method="post" class="form form-horizontal" id="addTagConfig">
+          	<div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>中文名：</label>
+                <div class="formControls col-2">
+                    <input class="input-text" type="text" name="tag_name" placeholder="请填写标签中文名" datatype="*1-16" nullmsg="标签英文名不能为空！" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>英文名：</label>
+                <div class="formControls col-2" > 
+                    <input class="input-text" type="text" name="tag_slug" placeholder="请填写标签英文名" datatype="*1-16" nullmsg="标签英文名不能为空！" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">排序：</label>
+                <div class="formControls col-2" > 
+                    <input type="button" value="-" onclick="subOne(this)" class="btn btn-success" style="border-radius:0px;" >
+                    <input type="input-text" value="0" name="order"  style="width:135px;height:26px;text-align:center">
+                    <input type="button" value="+" onclick="add(this)" class="btn btn-success" style="border-radius:0px;" >
+                    <!-- <input class="input-text" type="text" name="order" placeholder="请填写排序"  /> -->
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>标签类别：</label>
+                <div class="formControls col-4">
+                    <select class="form-control"  name="user_type" id="user_type" datatype="*1-16" nullmsg="标签标签类别不能为空！" placeholder="请选择模板关联名称" style="border-radius:0px;height:30px;width:218px;border-color:#ccc;" >
+                        <option value="">请选择标签</option>
+                        <option value="1">学员</option>
+                        <option value="2">教练</option>
+                        <option value="3">驾校</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-8 col-offset-2">
+                    <button id="submitOne" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery.form.min.js"></script>
+<script type="text/javascript">
+// 表单验证
+    $( function () {
+        $('#addTagConfig').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    }) 
+
+// 数目的增加
+    function subOne(obj){
+        var temp=parseInt(obj.nextElementSibling.value);
+        if(temp>0){
+            temp--;
+            obj.nextElementSibling.value=temp;
+        }
+    }
+    function add(obj){
+        var temp=parseInt(obj.previousElementSibling.value);
+        temp++;
+        obj.previousElementSibling.value=temp;
+    }
+</script>
+</body>
+</html>

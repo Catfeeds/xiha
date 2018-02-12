@@ -1,0 +1,217 @@
+@charset "utf-8";
+/* Base Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small,strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+:focus { outline:0;}
+img { border:0;}
+body {line-height: 1; }
+ol, ul {list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}
+table {	border-collapse: collapse;	border-spacing: 0;}
+.clear { width:100%; height:0; line-height:0; font-size:0; overflow:hidden; clear:both; display:block; _display:inline;}
+.none { display:none;}
+.hidden { visibility:hidden;}
+.clearfix:after{clear: both;content: ".";display: block;height: 0;visibility: hidden;}
+.clearfix{display: block; *zoom:1;}
+
+/**布局开始**/
+body { background-color:#eaeff2;}
+body,p { font:12px/1 "\u5b8b\u4f53", Tahoma, Geneva, sans-serif; color:#333; font-family: "SimSun";font-family: "Microsoft YaHei";}
+a { color:#333; text-decoration:none;}
+a:hover { color:#cd0200;}
+.wrapper { width:100%; margin:0 auto;}
+.wrapper .inner { max-width:1100px; margin:0 auto; width:100%;} /**页面全局宽度**/
+
+/**标题栏新闻窗口**/
+.post { margin-bottom:10px;}
+.post .tt { height:32px; border-bottom:1px solid #6db4e0;} /**标题栏**/
+.post .tt .tit { display:inline-block; float:left; font-size:14px; font-weight:bold; color:#216687;} /**标题字体**/
+.post .tt .tit .title { display:inline-block; height:32px; line-height:32px; padding-left:35px; background:url("../images/icon_tit.gif")/*tpa=../images/icon_tit.gif*/ no-repeat 5px center;} /**标题图标**/
+.post .tt .more_btn { display:inline-block; height:32px; line-height:32px; float:right;}   /**更多按钮**/
+.post .con { padding:5px 0; margin:0 auto;}
+.post .con .wp_article_list .list_item { border-bottom:1px dashed #ccc;} /**新闻列表**/
+.post .con .wp_article_list .list_item .Article_Index { background:url("../images/li.gif")/*tpa=../images/li.gif*/ no-repeat center;} /**新闻列表图标**/
+
+/**自定义新闻列表**/
+.news_list {}
+.news_list li.news { line-height:24px; padding-left:13px; background:url("../images/icon_li0.gif")/*tpa=../images/icon_li0.gif*/ no-repeat 0 9px;} /**标题图标**/
+.news_list li.news span.news_title { float:left;}
+.news_list li.news span.news_meta { float:right; margin-left:2px;}
+.news_list li.news p {clear:both; line-height:20px; color:#787878;}
+.news_list li.news p a { color:#787878;}
+.news_list li.news p a:hover { color:#444; text-decoration:underline;}
+
+
+/**页头开始**/
+#header-1{ background-color:#03233e;filter:alpha(opacity=95);-moz-opacity:0.95;opacity:0.95;}
+#header-1 .wp_nav .nav-item a{ color:#fff; font-size:13px;}
+#header-1 .wp_nav .nav-item a:hover{ color:#f90;}
+#header-1 .wp_nav .nav-item a span.item-name{ padding:12px 13px;}
+.header-1-l{ width:300px; height:46px; float:left;}
+.header-1-l .wp_nav .nav-item a{ border-right:1px solid #163147;}
+.header-1-r{  float:right;}
+.header-1-r .header-1-r-1{  float:left;}
+.header-1-r .header-1-r-2{  float:right; margin-top:8px; margin-left:10px;}
+#header-1 .header-1-r .wp_nav .nav-item a span.item-name{ padding:12px 6px;}
+#header { background-color:#2d70c4;filter:alpha(opacity=70);-moz-opacity:0.7;opacity:0.7;}
+#header .inner { height:126px;}
+.head-l{ width:110px; height:110px; float:left; background:url("../images/logo.png") no-repeat 0 0; background-size: 110px 110px; margin:8px 0px 0px 0px; display:inline-block;}
+.head-r{ width:550px; float:right; margin-top:25px;}
+#container-1{ background-color:#0c304a;filter:alpha(opacity=95);-moz-opacity:0.95;opacity:0.95;}
+.cont-l{  float:left; margin-top:34px;}
+.cont-c{  float:left;  background:url("../images/tup-6.png")/*tpa=../images/tup-6.png*/ no-repeat 0 0; margin:39px 57px 30px 0px;}
+.cont-r{  float:right; margin-top:28px;}
+.cont-r-2{ margin-top:8px;}
+.cont-r-2 a{ margin-left:15px;}
+
+.navbar { width:100%; height:40px; background:url("../images/navbar.png")/*tpa=../images/navbar.png*/ repeat-x 0 50%;}   	/**导航区域背景**/
+.navbar .navbox { width:980px; height:40px; margin:0 auto;}   /**导航窗口大小及位置**/
+
+/**导航样式：后台绑定时也可以定义配置**/
+.navbar .navbox .wp_nav,.navbar .navbox .nav { height:40px;}  /**导航高度**/
+.navbar .navbox .wp_nav li.nav-item a { font-size:16px; font-weight:bold; color:#fff;}    /**导航字体样式**/
+.navbar .navbox .wp_nav li.nav-item a:hover,.navbar .navbox .wp_nav li.nav-item a.parent{ color:#F90;}   	/**鼠标经过或当前选中时样式**/
+.navbar .navbox .wp_nav li.nav-item a span.item-name { padding:0 10px; height:40px; line-height:40px;}   /**导航栏目高度与边距**/
+
+.wp_nav .sub-nav{ top:32px!important; border:none;}/*子菜单位置*/
+.wp_nav .second-nav {right: -118px !important; top: 0px !important;}
+.wp_nav .sub-nav .nav-item a{ border-top:none;}/*去边框*/
+
+#wp_nav_w4 .wp_nav .sub-nav li.nav-item i.mark { background:#000;}  /**子菜单背景**/
+#wp_nav_w4 .wp_nav .sub-nav li.nav-item a { font-size:14px; font-weight:normal; background:none;color:#fff;}		/**子菜单字体样式**/
+#wp_nav_w4 .wp_nav .sub-nav li.nav-item a:hover,.navbar .navbox .wp_nav .sub-nav li.nav-item a.parent { background:#1F5E7C; color:#fff;}
+#wp_nav_w4 .wp_nav .sub-nav li.nav-item a span.item-name { padding:0 10px; height:26px; line-height:26px;}		/**子菜单栏目高度与边距**/
+
+/**主体开始**/
+#container {}
+#container .inner { background:#eaeff2;}
+
+/**首页三列布局**/
+.mod {}
+.mod1 { width:236px; float:left;} /**左列**/
+.mod1 .ml { width:100%;} 
+.mbox { padding:0 10px; border:1px solid #d3d3d3; background:#f9f8fd;}
+.mod2 { width:728px; float:right;}
+.mod2 .mc { width:478px; float:left;} /**中间**/
+.mod2 .mr { width:236px; float:right;} /**右列**/
+
+/**列表页**/
+.col_menu { float:left;margin-top:24px;width:175px;} 
+.col_menu .col_menu_head { border-bottom:4px solid #004772; padding-left:20px; }   /**位置栏目背景**/
+.col_menu .col_menu_head h2.col_name { font-size:18px; font-weight:normal; color:#383838; }		/**位置栏目字体**/
+.col_menu .col_menu_head h2.col_name .col_name_text { display:block; line-height:37px;}  /**栏目名称图标**/
+.col_menu_con{ background-color:#f7f7f7;}
+ /**栏目列表*/
+.col_list .wp_listcolumn { border-top:none; border-bottom:none; }
+.col_list .wp_listcolumn .wp_column a { color:#565656; background:transparent; border-top:none; border-bottom:none; font-weight:normal; font-size:14px; background:url("../images/list-tt.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/list-tt.jpg*/ no-repeat 140px center;} 	/**一级子栏目**/
+.col_list .wp_listcolumn .wp_column a:hover,.col_list .wp_listcolumn .wp_column a.selected { color:#fff;  background:#589bc3 url("../images/list-hover.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/list-hover.jpg*/ no-repeat 140px center;} 	/**鼠标经过或选中一级子栏目**/
+.col_list .wp_listcolumn .wp_column a.selected span.column-name{ color:#fff;background:#589bc3 url("../images/list-hover.jpg")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/list-hover.jpg*/ no-repeat 112px center;}
+.wp_listcolumn .wp_column a .column-name{ padding:0px!important;line-height:30px!important; margin-left:20px;}  /*系统自己的样式，让元素居中*/
+
+.col_list .wp_listcolumn .wp_subcolumn .wp_column a { color:#454545; background:transparent; border-top:1px solid #fff; border-bottom:1px solid #bbb;} 	/**二级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_column a:hover,.col_list .wp_listcolumn .wp_subcolumn .wp_column a.selected { color:#fff; background:#52a3db;} 	/**鼠标经过或选中二级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_column a.selected span.column-name{ color:#fff;}
+
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_column a { background:#f2f2f2 url("../images/icon_column_3.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/icon_column_3.gif*/ no-repeat 26px 10px; border-top:1px solid #fff; border-bottom:1px solid #ccc;} 	/**三级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_column a:hover,.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_column a.selected { color:#000; background-image:url("../images/icon_column_3_hover.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/icon_column_3_hover.gif*/;} 	/**鼠标经过或选中三级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_column a.selected span.column-name{ color:#124D83;}
+
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a { background:#f5f5f5 url("../images/icon_column_3.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/icon_column_3.gif*/ no-repeat 36px 10px; border-top:1px solid #fff; border-bottom:1px solid #ddd;} 	/**四级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a:hover,.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a.selected { color:#000; background-image:url("icon_column_3_hover.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/icon_column_3_hover.gif*/;} 	/**鼠标经过或选中四级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a.selected span.column-name{ color:#124D83;}
+
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a { background:#f9f9f9 url("../images/icon_column_3.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/icon_column_3.gif*/ no-repeat 46px 10px; border-top:1px solid #fff; border-bottom:1px solid #eee;} 	/**五级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a:hover,.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a.selected { color:#000; background-image:url("icon_column_3_hover.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/icon_column_3_hover.gif*/;} 	/**鼠标经过或选中五级子栏目**/
+.col_list .wp_listcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_subcolumn .wp_column a.selected span.column-name{ color:#124D83;}
+
+.col_news {  float:right;margin:23px 0px 15px 0px;min-height:600px;width:750px;} /**栏目新闻**/
+.col_news_head { border-bottom:1px solid #898989;}
+.col_metas .col_title { display:inline-block; float:left; height:30px; line-height:30px; }  /**当前栏目**/
+.col_metas .col_title h2 { display:inline-block; font-size:18px; font-weight:bold; color:#000;}   /**当前栏目名称**/
+.col_metas .col_path { display:inline-block; float:left; white-space:nowrap; height:38px; line-height:38px; font-size:14px; color:#004772;} 
+.col_metas .col_path a{ color:#004772;}
+.col_metas .col_path a:hover{ color:#f90;}
+/**当前位置**/
+
+.col_news_box { padding:10px 0; margin:0 7px;}
+.col_news_list { margin-top:17px;}
+.col_news_list .wp_article_list .list_item { border-bottom:1px dashed #cfd0d1;height:36px;line-height:36px;}  /**栏目新闻列表**/
+.col_news_list .wp_article_list .list_item .Article_Index { background:url("../images/li.gif")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/li.gif*/ no-repeat center;height:36px; margin:0px; margin-left:5px;}  /**栏目新闻图标序号**/
+.col_news_list .wp_entry,.col_news_list .wp_entry p { line-height:1.6; font-size:14px; color:#333;}
+.col_news_list .wp_entry p { margin-bottom:6px;}
+.col_news_list .wp_entry img { max-width:680px; _width:expression(this.width > 680 ? "680px" : this.width); }   /**列表页文章图片大小限制**/
+
+/**文章页**/
+.infobox { margin:0 auto;min-height:650px;}
+.article {}
+.article h1.arti_title { line-height:26px; font-family: "Microsoft YaHei"; padding:6px 0 6px 0; text-align:center; font-size:24px; color:#0f0f0f; font-weight: bold;} /**文章标题**/
+.article h2.arti_title {height:auto; width: 100%; float:left; line-height:20px;padding:16px 0 6px 0; font-family: "Microsoft YaHei";  text-align:center; font-size:18px; color:#0f0f0f; } /**文章标题**/
+.article h3.arti_title { height:auto; line-height:20px; font-family: "Microsoft YaHei";padding:3px 0 3px 0;  text-align:center; font-size:18px; color:#0f0f0f; } /**文章标题**/
+.article .arti_metas { padding:15px; text-align:center;color:#8c8c8c;}
+.article .arti_metas span { margin:0 5px; font-size:12px; color:#8c8c8c;} /**文章其他属性**/
+.article .entry { margin:0 auto; overflow:hidden;} /**文章内容**/
+.article .entry .read,.article .entry .read p { line-height:1.6; font-size:14px; color:#333;}  /**阅读字体**/
+.article .entry .read p { margin-bottom:6px;}
+.article .entry .read img { max-width:940px; _width:expression(this.width > 940 ? "940px" : this.width); }   /**文章阅读部分图片大小限制**/
+
+/**页脚开始**/
+#footer { background-color:#fff;filter:alpha(opacity=90);-moz-opacity:0.9;opacity:0.9;}
+#footer .inner {}
+
+.foot-l{  float:left; padding:6px 0px; height: 46px; overflow: hidden;}
+ 
+.foot-l p{ color:#8c8c8d; text-align:left; line-height:23px; font-size:12px;}
+.foot-r{ width:111px; height:40px; float:right; margin-top:8px;}
+
+#footer1{ background-color:#004772;}
+.foot-1{  height:43px; line-height:43px; float:left;}
+.foot-2{ height:43px; line-height:43px; float:right;}
+#footer1 p{ line-height:43px; color:#cbd3db;}
+
+#keyword{width: 120px!important;height: 25px;border: 1px solid #284258;border-radius: 5px 0px 0px 5px; background-color: transparent; line-height: 25px;text-indent: 5px; color: #fff;}
+.wp_search .search{ width:28px; height:29px; background:url("../images/sous.png")/*tpa=../images/sous.png*/ no-repeat 0 0;}
+
+#wp_nav_w4 .wp_nav .nav-item a{ color:#fff; font-size:16px; background:url("../images/nav-li.png")/*tpa=http://www.ahu.edu.cn/_upload/tpl/00/0f/15/template15/images/nav-li.png*/ no-repeat 95px center;}
+#wp_nav_w4 .wp_nav .nav-item a:hover{ color:#f90;}
+#wp_nav_w4 .wp_nav .nav-item a span.item-name{ padding:5px 23px;}
+
+#wp_nav_w5 .wp_nav .nav-item a{ color:#c4c9cd; font-size:14px;}
+#wp_nav_w5 .wp_nav .nav-item a:hover{ color:#f90;}
+#wp_nav_w5 .wp_nav .nav-item a{ width:83px; padding-top:43px; }
+#wp_nav_w5 .wp_nav .nav-item a span.item-name{ padding:0px;}
+#wp_nav_w5 .wp_nav .i1{ background:url("../images/tupp-1.png")/*tpa=../images/tupp-1.png*/ no-repeat center top;}
+#wp_nav_w5 .wp_nav .i2{ background:url("../images/tupp-2.png")/*tpa=../images/tupp-2.png*/ no-repeat center top;}
+#wp_nav_w5 .wp_nav .i3{ background:url("../images/tupp-3.png")/*tpa=../images/tupp-3.png*/ no-repeat center top;}
+#wp_nav_w5 .wp_nav .i4{ background:url("../images/tupp-4.png")/*tpa=../images/tupp-4.png*/ no-repeat center top;}
+#wp_nav_w5 .wp_nav .i5{ background:url("../images/tupp-5.png")/*tpa=../images/tupp-5.png*/ no-repeat center top;}
+
+#wp_nav_w6 .wp_nav .nav-item a{ color:#c4c9cd; font-size:13px;}
+#wp_nav_w6 .wp_nav .nav-item a:hover{ color:#f90;}
+#wp_nav_w6 .wp_nav .i1 a{ background:url("../images/sg.png")/*tpa=../images/sg.png*/ no-repeat right center;}
+
+#container-1{ position:fixed; left:0px; bottom:58px;}
+#footer{position:fixed; left:0px; bottom:0px;}
+
+
+.wp_article_list .list_item .Article_Title a{ font-size:14px; color:#4a4a4a;}
+.wp_article_list .list_item .Article_Title a:hover{ color:#f90;}
+.wp_article_list .list_item .Article_PublishDate{ color:#4a4a4a; font-size:14px;}
+
+
+.wp_nav .on{ z-index:1000;}
+
+.header-1-r-1 .wp_nav .sub-nav{ top:46px!important;}
+.header-1-r-1 .wp_nav .sub-nav .nav-item .mark{ background-color:#000;}
+#wp_news_w16 .wp_article_list .list_item .Article_Title a { font-weight:bold;}
+@media screen and (max-width: 1099px) {
+      
+}
+@media screen and (max-width: 767px){ .foot-l p{ color:#8c8c8d; text-align:left; line-height:2em; font-size:0.75em;}}
+@media screen and (max-width: 479px) { .foot-l p{ color:#8c8c8d; text-align:left; line-height:2em; font-size:0.75em;}}
+.header-1-r .header-1-r-3 #winfloat_div_w8 .wp_article_list .list_item .pr_fields{display: none;}
+#winfloat_div_w8 >div >div{display:none;}
+.col_news.col_news1 {
+    width: 1024px;
+}

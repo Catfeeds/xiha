@@ -1,0 +1,197 @@
+@charset "gb2312";
+/* CSS Document */
+body{
+	margin:0 auto;
+	font-size:12px;
+	color:#555555;
+	font-family:"微软雅黑";
+}
+img{
+	border:none;
+}
+a{
+	font-size:12px;
+	color:#555;
+	text-decoration:none;
+	font-family:"微软雅黑";
+}
+a:hover{
+	font-size:12px;
+	color:#555;
+	text-decoration:underline;
+	font-family:"微软雅黑";
+}
+li{
+	list-style:none;
+}
+ul{
+	list-style:none;
+	margin:0px;
+}
+#dy{
+	width:960px;
+	margin:0 auto;
+	border:1px solid #dbe2e8;
+	height:297px;
+	border-top:none;
+	background:url(../image/topline.gif) center top no-repeat;
+	padding-left:15px;
+}
+.dytitle{
+	width:960px;
+	font-size:22px;
+	color:#485c7f;
+	padding-top:3px;
+	padding-bottom:5px;
+}
+.dyclear{
+	clear:both;
+}
+.dymain{
+	width:960px;
+}
+.dyad{
+	clear:both;
+	margin:0 auto;
+	width:180px;
+}
+.dyad1{
+	clear:both;
+	margin:0 auto;
+	width:514px;
+}
+
+.dymt{
+	padding-top:10px;
+}
+.dyleft{
+	float:left;
+	width:176px;
+	margin-right:10px;
+}
+.dymid{
+	width:514px;
+	margin-right:10px;
+	float:left;
+}
+
+.dyhead{
+	width:514px;
+	float:left;
+	margin-top:0px;
+	text-align:center;
+}
+.dyhead a{
+	font-weight:bold;
+	font-size:16px;
+	color:#FF7210;
+	background:url(../image/head.gif) no-repeat 2px 2px;
+	padding-left:40px;
+}
+.dyhead a:hover{
+	font-weight:bold;
+	font-size:16px;
+	color:#FF7210;
+	background:url(../image/head.gif) no-repeat 2px 2px;
+	padding-left:40px;
+}
+
+.dydes{
+	width:500px;
+	float:left;
+	margin-top:10px;
+	border-bottom:#F0F0F0 1px solid;
+	color:#B7B7B7;
+	font-size:12px;
+	line-height:25px;
+}
+.clist{
+	width:514px;
+	margin:0 auto;
+}
+.mt10{
+	padding-top:10px;
+}
+.mt5{
+	padding-top:1px;
+}
+
+.dyright{
+	width:248px;
+	float:left;
+	border:#dce3e9 1px solid;
+	border-right:none;
+	border-bottom:none;
+	height:250px;
+}
+.dyrtitle{
+	height:30px;
+	border-bottom:#dce3e9 1px solid;
+	padding:5px 0px 0px 5px;
+}
+.dylist{
+	width:248px;
+	float:left;
+}
+/*---------- d : 附加信息列表 ---------*/
+.d10{/* 前置时间日期的小列表 */
+	padding:0px 6px;
+	margin-top:0px;
+	padding-top:8px;
+}
+.d10 li{
+	height:25px;
+	line-height:25px;
+	overflow:hidden;
+}
+.d10 li span{
+	color:#AFAFAF;
+	margin-right:5px;
+	float:right;
+}
+.d10 li a{
+	font-size:13px;
+	color:#555555;
+	text-decoration:none;
+}
+.d10 li a:hover{
+	font-size:13px;
+	color:#DD1313;
+	text-decoration:none;
+}
+
+/*---------- d : 附加信息列表 ---------*/
+.d2{/* 前置时间日期的小列表 */
+	padding:4px 4px;
+}
+.d2 li{
+	height:27px;
+	line-height:27px;
+	_line-height:25px;
+	_height:25px;
+	*line-height:25px;
+	*height:25px;
+	overflow:hidden;
+	width:230px;
+	float:left;
+}
+.d2 li span{
+	color:#AFAFAF;
+	margin-right:5px;
+	float:right;
+}
+.d2 li a{
+	font-size:14px;
+	color:#5E76A4;
+	text-decoration:none;
+}
+.d2 li a:hover{
+	font-size:14px;
+	color:#c00;
+	text-decoration:underline;
+}
+
+.ico2 li{
+	padding-left:16px;
+	background:url(../image/ico123.gif) 7px 10px no-repeat;
+}

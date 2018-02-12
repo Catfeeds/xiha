@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h1 v-if="love">人生得一知己足矣</h1>
+            <h1 v-else>人生的遗憾不过是孤独终老</h1>
+        </div>
+        <script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        love: true
+    }
+});
+        </script>
+    </body>
+</html>

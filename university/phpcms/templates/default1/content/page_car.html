@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+		<link href="{CSS_PATH}style-car.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<div class="home">
+			<div id="box">
+				<h5>
+					<span><a href="{$CATEGORYS[46]['url']}" target="_blank">行业分析</a></span>
+					<span><a href="{$CATEGORYS[47]['url']}" target="_blank">独家报道</a>  | </span>
+					<span><a href="{$CATEGORYS[48]['url']}" target="_blank">海外车讯</a>  | </span>
+					<span><a href="{$CATEGORYS[49]['url']}" target="_blank">进口新车</a>  | </span>
+					<span><a href="{$CATEGORYS[50]['url']}" target="_blank">国产汽车</a>  | </span>
+					<a href="{$CATEGORYS[45]['url']}" title="{$CATEGORYS[45]['catname']}" style="color:#187dc0" target="_blank">{$CATEGORYS[45]['catname']}</a>
+				</h5>
+				<!-- 焦点新闻（带题图） Start -->
+				<div id="zxal">
+					<h6>
+						<span><a href="http://auto.ahwang.cn/news/" target="_blank">更多&gt;&gt;</a></span>
+						焦点新闻
+					</h6>
+					<script src="http://api.news18a.com/auto/data/ina_ahwang_list_json.js"></script>
+					<ul>
+						<script>
+							var news = eval(news);
+							var str = '';
+							for(var c in news) {
+								if(c == 'jdxw') {
+									for(var d in news[c]) {
+										if(d < 4) {
+											if(d % 2 == 1) { 
+												str += '<li class="imgright"><a href="'+news[c][d].url+'"><img src="'+news[c][d].pic+'" width="135" height="100"></a><i></i><b><a href="'+news[c][d].url+'" target="_blank">'+news[c][d].shorttitle+'</a></b></li>';
+											}else{
+												str += '<li><a href="'+news[c][d].url+'"><img src="'+news[c][d].pic+'" width="135" height="100"></a><i></i><b><a href="'+news[c][d].url+'" target="_blank">'+news[c][d].shorttitle+'</a></b></li>';
+											}
+										}
+									}
+									document.write(str);
+								}
+							}
+						</script>
+					</ul>
+					<script>
+						var strr = '';
+						for(var e in news) {
+							if(e == 'jdxw') {
+								for(var f in news[e]) {
+									if(f > 7) break;
+									if(f > 3) {
+										strr += '<p><a href="'+news[e][f].url+'" target="_blank">'+news[e][f].shorttitle+'</a></p>';
+									}
+								}
+								document.write(strr);
+							}
+						}
+					</script>
+				</div>
+				<!-- 焦点新闻（带题图） End -->
+							
+				<!-- 独家报道 Start -->
+				<div id="news">
+					<script>
+						var strs = '';
+						for(var a in news) {
+							if(a == 'djbd') {
+								for(var b in news[a]) {
+									if(b == 0) {
+										str = '<h4><a href="'+news[a][b].url+'" target="_blank">'+news[a][b].title+'</a></h4>';
+										document.write(str);
+									}
+									if(b == 1 || b == 2) {
+										strs += '<span>[<a href="'+news[a][b].url+'" target="_blank">'+news[a][b].shorttitle+'</a>]</span>';
+									}
+								}
+								document.write('<p>'+strs+'</p>');
+							}
+						}
+					</script>
+					<ul>
+						<script>
+							for(var i in news) {
+								if(i == 'djbd') {
+									for(var k in news[i]) {
+										if(k == 0 || k == 1 || k == 2) continue; 
+										if(k > 10) break;
+										str = '<li><a href="'+news[i][k].url+'" target="_blank">'+news[i][k].title+'</a></li>';
+										document.write(str);
+									}
+								}
+							}
+						</script>
+					</ul>
+				</div>
+				<!-- 独家报道 End -->
+				
+				
+				<div id="zt" style="margin-bottom:10px;">
+					<div id="zt_tit">
+						<ul id="tags">
+							<li class="selectTag"><b onmousemove="selectTag('tagContent0',this)" href="javascript:void(0)">行业新闻</b></li>
+							<li><b onmousemove="selectTag('tagContent1',this)" href="javascript:void(0)">热点专题</b></li>
+						</ul>
+					</div>
+					
+					<!-- 行业新闻 Start -->
+					<div class="zt_bot" id="tagContent0">
+						<ul style="margin-top: 11px;">
+						<script>
+							for(var j in news) {
+								if(j == 'hyxw') {
+									for(var l in news[j]) {
+										if(l > 8) break;
+										str = '<li><a href="'+news[j][l].url+'" style="" target="_blank">'+news[j][l].title+'</a></li>';
+										document.write(str);
+									}
+								}
+							}
+						</script>
+					  </ul>
+					</div>
+					<!-- 行业新闻 End -->
+					
+					<!-- 热点专题 Start -->
+					<div class="sp_bot" id="tagContent1" style=" display:none;">
+						<p>
+							<script>
+								for(var j in news) {
+									if(j == 'rdzt') {
+										for(var l in news[j]) {
+											if(l > 0) break;
+											str = '<i><a href="'+news[j][l].url+'" target="_blank"><img src="'+news[j][l].title_pic+'" width="90" height="70"></a><strong></strong></i><span style="height: auto; margin-top: 15px;"><b><a href="'+news[j][l].url+'" style="" target="_blank">'+news[j][l].shorttitle+'</a></b></span>';
+											document.write(str);
+										}
+									}
+								}
+							</script>
+						</p>
+						<ul>
+							<script>
+								for(var m in news) {
+									if(m == 'rdzt') {
+										for(var n in news[m]) {
+											if(n == 0) continue;
+											if(n > 6) break;
+											str = '<li><a href="'+news[m][n].url+'" style="" target="_blank">'+news[m][n].title+'</a></li>';
+											document.write(str);
+										}
+									}
+								}
+							</script>
+						</ul>
+					</div>  
+					<!-- 热点专题 End -->
+				</div>
+			<script type="text/javascript">
+				function selectTag(showContent,selfObj){
+					// 操作标签
+					var tag = document.getElementById("tags").getElementsByTagName("li");
+					var taglength = tag.length;
+					for(i=0; i<taglength; i++){
+						tag[i].className = "";
+					}
+					selfObj.parentNode.className = "selectTag";
+					// 操作内容
+					for(i=0; j=document.getElementById("tagContent"+i); i++){
+						j.style.display = "none";
+					}
+					document.getElementById(showContent).style.display = "block";
+				}
+			</script> 
+		</div>
+	</body>
+</html>

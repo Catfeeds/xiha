@@ -1,0 +1,164 @@
+<!--{include file="library/header.lbi"}-->
+<div class="tab-body" style="margin-top:10px;">
+
+	<div class="tab"> 
+		<div class="tab-head border-main"> 
+			<ul class="tab-nav" style="margin-bottom:0px;"> 
+				<li class="active">
+					<a href="index.php?action=sysconfig&op=school">驾校设置</a>
+				</li> 
+				<li>
+					<a href="index.php?action=sysconfig&op=coach">教练设置</a>
+				</li> 
+	<!-- 			<li>
+					<a href="index.php?action=sysconfig&op=order">订单设置</a>
+				</li>  -->
+			</ul> 
+		</div> 
+		<div class="tab-body" style="padding-top:10px;"> 
+			<!-- 基本信息 -->
+			<div class="tab-panel form-x active">
+
+				<div class="media media-x">
+
+					<div class="media-body">
+						<div class="table-responsive"> 
+							<form method="post" class="form-x" style="width:100%" action="index.php?action=sysconfig&op=schooledit" onsubmit="return submitcheck();" enctype="multipart/form-data">
+
+							    <!-- <div class="form-group" style="margin-bottom:0px;">
+							        <div class="label" style="color:#555; font-size:16px; width:170px;">上午上班时间：</div>
+							        <div class="field">
+
+							             开始时间：<input type="text" class="morning_start_clockpicker input input-auto" id="morning_start_time" name="morning_start_time" size="20" value="8:00" placeholder="请填写开始时间"/> - 
+
+							             结束时间：<input type="text" class="morning_end_clockpicker input input-auto" id="morning_end_time" name="morning_end_time" size="20" value="12:00" placeholder="请填写结束时间"/>
+
+							        </div>
+							    </div>
+								
+								<div class="form-group" style="margin-bottom:0px;">
+								    <div class="label" style="color:#555; font-size:16px; width:170px;">下午上班时间：</div>
+								    <div class="field">
+								         开始时间：<input type="text" class="afternoon_start_clockpicker input input-auto" id="afternoon_start_time" name="afternoon_start_time" size="20" value="13:00" placeholder="请填写开始时间"/> - 
+
+								         结束时间：<input type="text" class="afternoon_end_clockpicker input input-auto" id="afternoon_end_time" name="afternoon_end_time" size="20" value="20:00" placeholder="请填写结束时间"/>
+										
+										<div class="alert alert-yellow" style="width:550px;">
+											请以半点或者整点设置
+										</div>
+								    </div>
+								</div> -->
+								
+								<div class="form-group" style="margin-bottom:0px;">
+								    <div class="label" style="color:#555; font-size:16px; width:170px;">订单取消限制：</div>
+								    <div class="field">
+							         	<select class="input input-auto" name="order_limit_time" id="">
+							         		<option value="2" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_cancel_order_time'] == 2}-->selected<!--{/if}--><!--{/if}-->>2小时</option>
+							         		<option value="4" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_cancel_order_time'] == 4}-->selected<!--{/if}--><!--{/if}-->>4小时</option>
+							         		<option value="8" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_cancel_order_time'] == 8}-->selected<!--{/if}--><!--{/if}-->>8小时</option>
+							         		<option value="12" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_cancel_order_time'] == 12}-->selected<!--{/if}--><!--{/if}-->>12小时</option>
+							         		<option value="24" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_cancel_order_time'] == 24}-->selected<!--{/if}--><!--{/if}-->>24小时</option>
+							         	</select>
+										<div class="alert alert-yellow" style="width:550px;">
+											此选项设置的是限制 预约学车 订单取消时间节点（比如提前2个小时取消订单，就选择2）
+										</div>
+								    </div>
+								</div>
+								
+								<div class="form-group" style="margin-bottom:0px;">
+								    <div class="label" style="color:#555; font-size:16px; width:170px;">预约时长限制：</div>
+								    <div class="field">
+							         	<select class="input input-auto" name="appoint_limit_time" id="">
+							         		<option value="2" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_sum_appoint_time'] == 2}-->selected<!--{/if}--><!--{/if}-->>2小时</option>
+							         		<option value="1" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_sum_appoint_time'] == 1}-->selected<!--{/if}--><!--{/if}-->>1小时</option>
+							         		<option value="3" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_sum_appoint_time'] == 3}-->selected<!--{/if}--><!--{/if}-->>3小时</option>
+							         		<option value="4" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_sum_appoint_time'] == 4}-->selected<!--{/if}--><!--{/if}-->>4小时</option>
+							         		<option value="8" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['i_sum_appoint_time'] == 8}-->selected<!--{/if}--><!--{/if}-->>8小时</option>
+							         	</select>
+										<div class="alert alert-yellow" style="width:550px;">
+											此选项设置的是每个人每天 预约学车 多少小时限制（比如只能预约2个小时，就选择2, 如果不限制默认为2个小时）
+										</div>
+								    </div>
+								</div>
+								
+								<div class="form-group" style="margin-bottom:0px;">
+								    <div class="label" style="color:#555; font-size:16px; width:170px;">是否自动生成：</div>
+								    <div class="field">
+										<div class="button-group radio" style="margin-top:0px; padding-left:0px;">
+											<label <!--{if $school_sysconfig['sysconfig_info'] && $school_sysconfig['sysconfig_info']['is_automatic'] == 1}-->class="button active"<!--{else}-->class="button" <!--{/if}-->>
+												<input name="is_automatic" value="1" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['is_automatic'] == 1}-->checked="checked"<!--{/if}--><!--{/if}--> type="radio"><span class="icon icon-check text-green"></span> 是
+											</label>
+											<label <!--{if $school_sysconfig['sysconfig_info'] && $school_sysconfig['sysconfig_info']['is_automatic'] == 2}-->class="button active"<!--{else}-->class="button" <!--{/if}-->>
+												<input name="is_automatic" value="2" <!--{if $school_sysconfig['sysconfig_info']}--><!--{if $school_sysconfig['sysconfig_info']['is_automatic'] == 2}-->checked="checked"<!--{/if}--><!--{/if}--> type="radio"><span class="icon icon-times"></span> 否
+											</label>
+										</div>
+										<span class="clearfix"></span>
+										<div class="alert alert-yellow" style="width:550px;">
+											该项是设置教练的时间配置是否采用自动生成或者手动设置的选项（默认是自动生成）
+										</div>
+								    </div>
+								</div>
+
+								<div class="form-group" style="margin-bottom:0px;">
+								    <div class="label" style="color:#555; font-size:16px; width:170px;">计时班免费时间：</div>
+								    <div class="field">
+										<div class="button-group radio" style="margin-top:0px; padding-left:0px;">
+											<input type="text" class="input input-auto" name="free_time" size="10" value="<!--{if $school_sysconfig['sysconfig_info']['free_time']}--><!--{$school_sysconfig['sysconfig_info']['free_time']}--><!--{else}-->0<!--{/if}-->"> 小时
+										</div>
+										<span class="clearfix"></span>
+										<div class="alert alert-yellow" style="width:550px;">
+											该项是如果学员预约了计时班，可设置学员预约多少小时免费 默认是0小时 表示不免费
+										</div>
+								    </div>
+								</div>
+
+								<div class="form-group" style="margin-bottom:0px;">
+								    <div class="label" style="color:#555; font-size:16px; width:170px;">系统时间设置：</div>
+								    <div class="field">
+										<table class="table table-hover table-striped" >
+										    <tr>
+										        <th width="50">
+										            <input type="button" class="button button-small checkall" name="checkall" checkfor="time_config_id[]" value="全选" /></th>
+										        <th width="100">开始时间</th>
+										        <th width="100">结束时间</th>
+										        <th width="100">是否可被预约</th>
+
+										    </tr> 
+										    <!--{foreach $school_sysconfig['time_list'] as $k => $v}-->
+										        <tr title="<!--{$v['id']}-->">
+										            <td class="checking"><input type="checkbox" name="time_config_id[]" <!--{if $v['is_set'] == 1}-->checked<!--{/if}--> id="checkbox_<!--{$k+1}-->" value="<!--{$v['id']}-->" /></td>
+										            
+										            <td><span><!--{$v['final_start_time']}--></span></td>
+										            <td><!--{$v['final_end_time']}--></td>
+										            <td class="setting">
+									            		<!--{if $v['is_set'] == 1}-->
+									                		<span class="badge bg-green">可以</span>
+										                <!--{else}-->
+										                	<span class="badge bg-gray">不可以</span>
+										                <!--{/if}-->
+										            </td>
+										        </tr>
+										    <!--{/foreach}-->
+										</table> 
+								    </div>
+								</div>
+
+							    <div class="form-group" style="margin-bottom:0px;">
+							        <div class="label"><label></label></div>    
+							        <div class="">
+							        	<button class="button bg-main" type="submit">提交</button> 
+							        	<button class="button bg-primary" type="reset">重置</button>
+							        </div>
+							    </div>
+
+							</form>
+						</div>
+					</div> 
+				</div> 
+			</div>
+
+		</div> 
+	</div>
+</div>
+
+<!--{include file="library/footer.lbi"}-->

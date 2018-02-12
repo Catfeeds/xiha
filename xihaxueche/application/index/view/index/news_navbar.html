@@ -1,0 +1,18 @@
+<div class="xiha-news" style="float:left; width:140px; margin-top: 0px;">
+	<div class="xiha-news-div">
+        <!-- <div class="navbar-collapse collapse navbar-responsive-collapse"> -->
+		<div class="xiha-news-div-div" style="">
+            <!-- <ul class="nav navbar-nav"> -->
+            <h3 style="">新闻中心</h3>
+		  	<ul class="" style="">
+		        <li style="" {if condition="$Request.action eq 'news'"}class="active"{/if}>
+                    <a href="{:url('/news')}" style="color: #555;">嘻哈动态</a>
+                </li>
+                <li style="border: none;" {if condition="$Request.action eq 'industry'"}class="active"{/if}>
+                    <a href="{:url('/industry')}" style="color: #555;">行业新闻</a>
+                </li>
+		  	</ul>
+		</div>
+	</div>
+	
+</div>

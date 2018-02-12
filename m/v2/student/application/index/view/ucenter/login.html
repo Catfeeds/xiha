@@ -1,0 +1,68 @@
+{include file="index/header"/}
+<div class="page" id="login">
+  <header class="bar bar-nav" style="border-bottom: none; background: #fff;">
+    <a class="button button-link button-nav pull-left back" href="{:url('/ucenter', ['token'=>$token, 'device'=>$device])}">
+      <span class="icon icon-left"></span>
+  		返回
+    </a>
+    <a href="{:url('/ucenter/register', ['device'=>$device])}" class="button button-link button-nav pull-right" style="margin-right: 0px;">
+    	注册
+    	<!--<span class="icon icon-right"></span>-->
+  	</a>
+    <h1 class='title'>{$title}</h1>
+  </header>
+  <div class="content" style="background: #fff;">
+	  <div class="content-block" style="">
+	  		<div style="text-align: center;">
+		  		<img src="__PUBLIC__/static/images/xiha-logo.png" style="width: 60%;" alt="" />
+	  		</div>
+				<div class="list-block">
+			    <ul>
+			      <!-- Text inputs -->
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="iconfont" style="font-size: 1rem; color: #999;">&#xe66e;</i></div>
+			          <div class="item-inner" style="margin-left: 0.25rem;">
+			            <div class="item-title label" style="width: 25%;">号码</div>
+			            <div class="item-input">
+			              <input type="text" class="phone" placeholder="请输入手机号码">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="iconfont" style="font-size: 1rem; color: #999;">&#xe66a;</i></div>
+			          <div class="item-inner" style="margin-left: 0.25rem;">
+			            <div class="item-title label" style="width: 25%;">密码</div>
+			            <div class="item-input">
+			              <input type="password" class="pass" placeholder="请输入登录密码">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+		      </ul>
+	  		</div>
+		  	<div class="ucenter-login">
+		  		<a class="button button-block button-fill">立即登录</a>
+		  	</div>
+		  	
+		  	<div class="list-block" style="margin-top: 10px;">
+		  		<ul style="border: none;">
+		  			<li>
+			      	<a href="{:url('/ucenter/forgetpass', ['device'=>$device])}" class="item-content">
+				        <div class="item-inner">
+				          <div class="item-title"></div>
+				          <div class="item-after">忘记密码？</div>
+				        </div>
+			        </a>
+			      </li>
+		  		</ul>
+		  	</div>
+	  </div>
+  </div>
+  <script>
+  	var redirect_url = "{$redirect_url}";
+  </script>
+</div>
+{include file="index/footer"/}

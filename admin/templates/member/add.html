@@ -1,0 +1,290 @@
+<!--{include file="library/header.lbi"}-->
+  <div class="tab-body">
+    <div class="tab-panel active" id="tab-set">
+        <div class="panel-head" style="position:fixed; width:100%; top:0px; z-index:9999; "><a href="index.php?action=member&op=index" class=""><strong>返回会员列表 >></strong></a></div>
+        <br />
+        <form method="post" class="form-x" style="width:100%; margin-bottom:40px; margin-top:40px;" action="index.php?action=member&op=addoperate" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <div class="label"><label for="user_name">昵称</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="user_name" name="user_name" value="" size="50" placeholder="嘻哈学员" data-validate="required:请填写用户名" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="real_name">真实姓名</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="real_name" name="real_name" value="" size="50" placeholder="请填写真实姓名" data-validate="required:请填写真实姓名" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="user_phone">手机号码</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="user_phone" name="user_phone" value="" size="50" placeholder="请填写手机号码" data-validate="required:请填写手机号码" />
+                     <button type="button" class="button border-yellow" id="phonecheck">检测重复</button>
+                     <span id="tips"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="_user_photo">头像</label></div>
+                <div class="field">
+                    <div class="imgdiv">
+                        <img src="templates/assests/images/new_logo_240.png" id="imgShow" width="128" height="128" class="img-border radius-small" />
+                    </div>
+
+                    <a class="button input-file bg-green" href="javascript:void(0);">+ 浏览文件
+                        <input size="100" type="file" name="_user_photo" value="templates/assests/images/new_logo_240.png" id="_user_photo" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" />
+                        <input type="hidden" name="oldimg" value="templates/assests/images/new_logo_240.png">
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label"><label for="car_img"></label></div>
+                <div class="field">
+                    <p class="text-red text-big" style="margin-top:10px; color:#f60; cursor:pointer;">
+                        <i class="icon-exclamation-circle"></i>
+                        图片不要超过100KB, 单张图片标准尺寸为 100*100px
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label"><label for="address">地址</label></div>
+                <div class="field">
+                   <select class="input input-auto" id="province" style="width:20%; float:left" name="province"> 
+                       <option value="">请选择省</option> 
+                       <!--{foreach $provincelist as $key => $value}-->
+                        <option value="<!--{$value.provinceid}-->"><!--{$value.province}--></option>
+                       <!--{/foreach}-->
+                   </select>
+                   <select class="input input-auto" id="city" style="width:20%; float:left" name="city"> 
+                       <option value="">请选择市</option>
+            
+                   </select>
+                   <select class="input input-auto" id="area" style="width:20%; float:left" name="area"> 
+                       <option value="">请选择区域</option> 
+                   </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="s_address">详细地址</label></div>
+                <div class="field">
+                    <!-- <input type="text" class="address_start" value=""> -->
+                    <input type="text" class="input input-auto" value="" id="s_address" name="s_address" value="" size="50" placeholder="详细地址" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="identity_id">身份证</label></div>
+                <div class="field">
+                    <!-- <input type="text" class="address_start" value=""> -->
+                    <input type="text" class="input input-auto" value="" id="identity_id" name="identity_id" value="" size="50" placeholder="请填写身份证" />
+                    <button type="button" class="button border-yellow" id="identitycheck">检测重复</button>
+                    <span id="identity_tips"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label>性别</label></div>
+                <div class="field">
+                    <div class="button-group button-group-small radio">
+                        <label class="button active">
+                            <input name="sex" value="1" checked="checked" type="radio">
+                            <span class="icon icon-male text-green"></span> 男</label>
+                        <label class="button">
+                            <input name="sex" value="0" type="radio">
+                            <span class="icon icon-female text-red"></span> 女</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="age">年龄</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="age"  value="" name="age" value="" size="50" placeholder="年龄" data-validate="required:请填写你年龄"/>
+                </div>
+            </div>
+            
+             <div class="form-group">
+                <div class="label"><label for="from">来源</label></div>
+                <div class="field">
+<!--                    <select name="from" id="from" class='input input-auto'>
+                       <option value="0">苹果</option>
+                       <option value="1">安卓</option>
+                       <option value="2">线下</option>
+                   </select> -->
+                   <div class="button-group border-yellow radio" id="from"> 
+                       <label class="button active"><input name="from" value="2" type="radio" checked="checked">线下</label>
+                       <label class="button"><input name="from" value="0" type="radio">苹果</label>
+                       <label class="button"><input name="from" value="1" type="radio">安卓</label>
+                   </div>
+                </div>
+            </div>                      
+            <div class="form-group">
+                <div class="label"></div>
+                <div class="field">
+                    <button class="button bg-main" type="submit">提交</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        // 上传图片预览
+        window.onload = function () { 
+            new uploadPreview({ UpBtn: "_user_photo", DivShow: "imgdiv", ImgShow: "imgShow" });
+        }
+
+        // 支付方式联动
+        $('.so_pay_type').click(function() {
+            var so_pay_type = $(this).val();
+
+            // 支付宝
+            if(so_pay_type == 1) {
+                $('#so_order_status_ali').css('display','block');
+                $('#so_order_status_xianxia').css('display','none');
+            } else if(so_pay_type == 2) {
+                // 线下
+                $('#so_order_status_ali').css('display','none');
+                $('#so_order_status_xianxia').css('display','block');
+            }
+        });
+
+        // 生成订单号
+        $('#ordernocreate').click(function() {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=createno",
+                dataType:"JSON",
+                success:function(data) {
+                    if(data.code == 200) {
+                        $('#so_order_no').val(data.data);
+                    }
+                }
+            })
+        });
+
+        // 检测订单号
+        $('#ordernocheck').click(function() {
+            var so_order_no = $('#so_order_no').val();
+            if(so_order_no.trim() == '') {
+                layer.msg('请填写订单号',{icon:0, offset:['0px','40%'], time:2500});
+                return false;
+            }
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=checkno",
+                data:{'no':so_order_no},
+                dataType:"JSON",
+                success:function(data) {
+                    // $('#order-tips').html(data.data);
+                    // setInterval(function() {
+                    //     $('#order-tips').html('');
+                    // }, 2000);
+                    if(data.code == -1) {
+                        layer.msg(data.data,{icon:0, offset:['0px','40%'], time:2500});           
+                    } else if(data.code == 1) {
+                        layer.msg(data.data,{icon:1, offset:['0px','40%'], time:2500});           
+                    }
+
+                }
+            })
+        });
+
+        // 城市联动
+        $('#province').change(function() {
+            var province_id = $(this).val();
+            $("#city").load("index.php?action=school&op=getcity&province_id="+province_id);
+        });
+
+        $('#city').change(function() {
+            var city_id = $(this).val();
+            $('#area').load('index.php?action=school&op=getarea&city_id='+city_id);
+            var city_html = $(this).find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            $('#s_address').val(province_html+city_html);
+        })
+
+        $('#area').change(function() {
+            var city_html = $('#city').find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            var area_html = $(this).find('option:selected').html();
+            $('#s_address').val(province_html+city_html+area_html);
+        })
+
+        // 检测手机重复性
+        $('#phonecheck').click(function() {
+            var phone = $('#user_phone').val();
+            if(phone.trim() == '') {
+                layer.msg('请填写手机号',{icon:0, offset:['0px','40%'], time:2500});
+                return false;
+            }
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=phonecheck",
+                // dataType:"JSON",
+                beforeSend:function() {
+                    $('#phonecheck').html('检测中...');
+                },
+                data:{'phone':phone},
+                success:function(data) {
+                    $('#phonecheck').html('检测重复');
+                    if(data == 1) {
+                        $('#tips').removeClass('text-green').addClass('text-yellow');
+                        // $('#tips').html('号码已被注册');  
+                        layer.msg('号码已被注册',{icon:0, offset:['0px','40%'], time:2500});     
+                        // setInterval(function() {
+                        //     $('#tips').html('');
+                        // }, 2000);
+                    } else {
+                        $('#tips').removeClass('text-yellow').addClass('text-green');
+                        // $('#tips').html('号码可以使用！');
+                        layer.msg('号码可以使用！',{icon:1, offset:['0px','40%'], time:2500});     
+                        // setInterval(function() {
+                        //     $('#tips').html('');
+                        // }, 2000);
+                    }
+                }
+            })
+        });
+
+        // 检测身份证
+        $('#identitycheck').click(function() {
+            var identity_id = $('#identity_id').val();
+            if(identity_id.trim() == '') {
+                layer.msg('请填写身份证',{icon:0, offset:['0px','40%'], time:2500});     
+                return false;
+            }
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=identitycheck",
+                data:{'identity_id':identity_id},
+                beforeSend:function() {
+                    $('#identitycheck').html('检测中...');
+                },
+                success:function(data) {
+                    $('#identitycheck').html('检测重复');
+                    if(data == 1) {
+                        $('#identity_tips').removeClass('text-green').addClass('text-yellow');
+                        // $('#identity_tips').html('身份证已被注册');
+                        layer.msg('身份证已被注册',{icon:0, offset:['0px','40%'], time:2500});     
+                        // setInterval(function() {
+                        //     $('#identity_tips').html('');
+                        // }, 2000);
+                    } else {
+                        $('#identity_tips').removeClass('text-yellow').addClass('text-green');
+                        // $('#identity_tips').html('身份证可以使用');
+                        layer.msg('身份证可以使用',{icon:1, offset:['0px','40%'], time:2500});     
+                        // setInterval(function() {
+                        //     $('#identity_tips').html('');
+                        // }, 2000);
+                    }
+                }
+            })
+        });
+    </script>
+<!--{include file="library/footer.lbi"}-->

@@ -1,0 +1,67 @@
+{include file="index/header"/}
+<!--<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=18753d27c9c65"></script>-->
+<div class="page" id="signupshare">
+    <!--{if condition="$device eq '1'"}
+    <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left back" href="{:url('/index')}">
+            <span class="icon icon-left"></span> 返回
+        </a>
+        <a class="button button-link button-nav pull-right -mob-share-open" style="margin-right: 0px;display:none" href="javascript:;">
+            <i class="iconfont" style="font-size: 1rem;">&#xe642;</i>
+        </a>
+        <h1 class='title'>{$title}</h1>
+    </header>
+    {/if}-->
+
+    <div class="content" style="background:#fff; ">
+        <div style="margin-top: 1%;">
+        </div>
+        <div class="bgimg">
+            <div>
+                <ul>
+                    <li class="signup_title">
+                        <p>嘻哈学车报名</p>
+                    </li>
+                    <li class="signup_info">
+                        <div id="signup_info">
+                            <div class="signup_div">
+                                <div class="signup_div1">
+                                    <img src="__PUBLIC__/static/images/default/{$orders_info.user_imgurl}">
+                                </div>
+                            </div>
+                            <div class="signup_div2">
+                                <div class="signup_user">
+                                    <p style="margin-top: 10%;">姓名：{$orders_info.so_username}</p>
+                                    <p>名称：{$orders_info.sh_title} | {$orders_info.license_name}</p>
+                                    <p>金额：￥{$orders_info.total_price}元</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="signup_time">
+                            <div class="signup_time_info">
+                                <p>数量：1张</p>
+                                <p>交易时间: {$orders_info.dt_zhifu_time}</p>
+                            </div>
+                            <div class="signup_img">
+                                <img src="__PUBLIC__/static/images/share/jiaofeichenggong.png">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="signup_erweima">
+                            <div>
+                                <img src="__PUBLIC__/static/images/share/erweima.png ">
+                            </div>
+                            <div>
+                                <p>扫描二维码即可报名</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="index/footer"/}

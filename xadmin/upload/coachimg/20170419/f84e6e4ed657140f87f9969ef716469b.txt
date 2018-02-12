@@ -1,0 +1,25 @@
+http://yuanju.i22.cc/
+
+ftp
+url:yuanju.i22.cc
+user:yuanju
+pass:UE23fweffedf2x
+端口:2188
+
+mysql
+管理地址:http://s44.cc/sql
+data:yuanju
+user:yuanju
+pass:ab23f34fedf2x
+
+后台账号密码
+yuanjudongli
+yuanjudongli888
+
+客户数据库配置
+
+'hostname' => '60.172.229.127',
+'port' => 3306,
+'database' => 'law',
+'username' => 'law',
+'password' => 'law88990011',

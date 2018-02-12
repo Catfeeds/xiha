@@ -1,0 +1,78 @@
+<!--{include file="library/header.lbi"}-->
+  <div class="tab-body">
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x float-left" style="width:40%" action="index.php?action=school&op=addshiftsoperate"  enctype="multipart/form-data">
+
+            <div class="form-group">
+                <div class="label"><label for="sh_title">班制名称</label></div>
+                <div class="field">
+                     <input type="text" class="input" id="sh_title" name="sh_title" size="50" placeholder="请填写班制名称" data-validate="required:请填写班制名称" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="sh_type">班制类型</label></div>
+                <div class="field">
+                    <div class="button-group border-main radio"> 
+                        <label class="button active"><input name="sh_type" value="1" type="radio" checked="checked">计时班</label>
+                        <label class="button"><input name="sh_type" value="2" type="radio">普通班</label> 
+                        <label class="button"><input name="sh_type" value="3" type="radio">VIP班</label> 
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="sh_money">最终价格</label></div>
+                <div class="field">
+                     <!-- <input type="text" class="input" id="sh_money" name="sh_money" size="50" placeholder="请填写最终价格" data-validate="required:请填写最终价格" /> -->
+                     <div class="input-group" style="width:68%"><span class="addon">¥</span><input class="input" type="text" id="sh_money" name="sh_money" size="50" placeholder="金额"  data-validate="required:请填写最终价格" /><span class="addon">元</span></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="sh_original_money">原始价格</label></div>
+                <div class="field">
+                     <!-- <input type="text" class="input" id="sh_original_money" name="sh_original_money" size="50" placeholder="请填写原始价格" data-validate="required:请填写原始价格" /> -->
+                    <div class="input-group" style="width:68%">
+                        <span class="addon">¥</span><input class="input input-auto" type="text" id="sh_original_money" name="sh_original_money" size="50" placeholder="金额"  data-validate="required:请填写原始价格" /><span class="addon">元</span>
+                        
+                    </div>
+                  <!--   <div class="float-left" style="line-height:30px; margin-left:10px;">
+                    </div> -->
+                   <i class="tips icon-exclamation-circle" title="" data-place="right" data-toggle="hover" style="color:#f60; cursor:pointer;"> 原始价格要高于最终价格</i>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="sh_description_2">描述一</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="sh_description_2" name="sh_description_2" size="60" placeholder="请填写简短描述二 例如：学车时间自主安排，专人专车" data-validate="required:请填写简短描述二" />
+                     <span class="tips icon-exclamation-circle" title="" data-place="right" data-toggle="hover" style="color:#f60; cursor:pointer;"> app报名驾校详情左边显示</span>
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <div class="label"><label for="sh_description_1">描述二</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="sh_description_1" name="sh_description_1" size="60" placeholder="请填写简短描述一 例如：最短时间2个月
+" data-validate="required:请填写简短描述一" />
+                     <span class="tips icon-exclamation-circle" title="" data-place="right" data-toggle="hover" style="color:#f60; cursor:pointer;"> app报名驾校详情右边显示</span>
+                </div>
+            </div>
+
+            <input type="hidden" value="<!--{$school_id}-->" name="school_id">
+            <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+        </form>
+        <div class="float-left" style=" margin-left:20px; width:40%; height:100%">
+            <img src="templates/assests/images/shifts.png" alt="">
+            <!-- <iframe id="iframe_map" src="http://localhost/m/school/detail.html?id=1" frameborder="0" width="60%" height="600px" ></iframe> -->
+            <p class="text-red text-big" style="margin-top:10px;"><i class="icon-exclamation-circle"></i> 便于app的美观 请依照图示设置</p>
+        </div>
+    </div>
+
+    <script>
+
+    </script> 
+<!--{include file="library/footer.lbi"}-->

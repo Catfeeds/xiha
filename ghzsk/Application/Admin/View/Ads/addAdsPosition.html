@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加广告场景</title>
+</head>
+<body>
+<div class="pd-20">
+  <form method="post" class="form form-horizontal" id="form-adsposition-add">
+  	<div class="row cl">
+      <label class="form-label col-3">广告场景：</label>
+      <div class="formControls col-5"> <span class="select-box">
+        <select class="select" id="device" size="1" name="device" datatype="*" nullmsg="请选择客户端">
+          <option value="" selected>请选择客户端</option>
+          <option value="1">学员端App</option>
+          <option value="2">教练端App</option>
+          <option value="3">校长端App</option>
+          <option value="4">WebApp</option>
+        </select>
+        </span> </div>
+      <div class="col-4"> </div>
+    </div>
+    <div class="row cl">
+	  <label class="form-label col-3"></label>
+      <div class="formControls col-5"> <span class="select-box">
+        <select class="select" id="position" size="1" name="position" datatype="*" nullmsg="请选择展示位置">
+          <option value="" selected>请选择展示位置</option>
+          <option value="1">启动图片</option>
+          <option value="2">首页广告图</option>
+          <option value="3">科目一广告图</option>
+          <option value="4">科目四广告图</option>
+        </select>
+        </span> </div>
+      <div class="col-4"> </div>
+    </div>
+    <div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>简短标题：</label>
+      <div class="formControls col-5">
+        <input type="text" class="input-text" value="" placeholder="" id="short-name" name="short-name" datatype="*2-16" nullmsg="简短标题不能为空">
+      </div>
+      <div class="col-4"> </div>
+    </div>
+  <div class="row cl">
+     <label class="form-label col-3"></label>
+      <span id="tips" style="color:red;"></span>
+  </div>
+    <div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>基本描述：</label>
+      <div class="formControls col-5">
+        <textarea name="description" cols="" rows="" class="textarea"  placeholder="描述出对广告位的具体解释,不少于10个字..." datatype="*10-100" dragonfly="true" nullmsg="基本描述不能为空！" onKeyUp="textarealength(this,100)"></textarea>
+        <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+      </div>
+      <div class="col-4"> </div>
+    </div>
+    <div class="row cl">
+        <div class="col-10 col-offset-2">
+            <button id="adsposition-submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+            <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+  </form>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery.form.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+  //ajax提交表单
+	$("#form-adsposition-add").Validform({
+		tiptype:2,
+		ajaxPost:true,
+		callback:function(data){
+			if(data.code == 200) {
+				setTimeout(function(){
+					$.Hidemsg(); //公用方法关闭信息提示框;显示方法是$.Showmsg("message goes here.");
+				},1000);
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.layer.msg(data.msg,{icon:1,time:5000});
+        parent.location.reload();
+				parent.layer.close(index);
+			}
+      if(data.code == 400) {
+        setTimeout(function(){
+          $.Hidemsg(); //公用方法关闭信息提示框;显示方法是$.Showmsg("message goes here.");
+        },1000);
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.msg(data.msg,{icon:2,time:5000});
+        parent.layer.close(index);
+      }
+		}
+	});
+
+});
+
+//将客户端和位置选择框中选中的值直接组合后赋给简短标题
+$("#device").change(function() {
+  position_id = $("#position").val();
+  device_id = $("#device").val();
+  if (position_id) {
+    device_html = $(this).find("option:selected").html();
+    position_html = $("#position").find("option:selected").html();
+    $("#short-name").val(device_html+position_html);
+    $.ajax({
+            type:"POST",
+            url:"__URL__/checkScene",
+            data:{'position':position_id,'device':device_id},
+            dataType:"JSON",
+            beforeSend:function() {
+              $('#tips').text('☛ 检测中... ...');
+            },
+            success:function(data) {
+                $('#tips').html(data.msg);
+            }
+        })  
+  }
+});
+
+$("#position").change(function() {
+  position_id = $("#position").val();
+  device_id = $("#device").val();
+  if (device_id) {
+    device_html = $("#device").find("option:selected").html();
+    position_html = $(this).find("option:selected").html();
+    $("#short-name").val(device_html+position_html);
+    $.ajax({
+            type:"POST",
+            url:"__URL__/checkScene",
+            data:{'position':position_id,'device':device_id},
+            dataType:"JSON",
+            beforeSend:function() {
+              $('#tips').text('☛ 检测中... ...');
+            },
+            success:function(data) {
+                $('#tips').html(data.msg);
+            }
+        })  
+  }
+});
+</script>
+</body>
+</html>

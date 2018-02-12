@@ -1,0 +1,303 @@
+<!--{include file="library/header.lbi"}-->
+<!--{if $shiftslist}-->
+  <div class="navsecondebar">
+    <div class="navleftbar" style="">
+        <p class="slide" id="" style="background:#ddd; border-bottom:1px solid #fff; text-align:center; height:41px;">
+           <a href="javascript:showdiv(this);" id="strHref" class="btn-slide" style="line-height:40px;">
+               <!-- <span id="span-icon" class="icon-angle-double-left" style="color:#fff;"></span> -->
+               <span style="font-size:14px; color:#555;">报名订单</span>
+            </a>
+        </p>
+        <ul>
+        <!--{foreach $shiftslist as $key => $value}-->
+          <li>
+            <a href="javascript:;" onclick="javascript:showshiftsorder(<!--{$value['id']}-->, this)"  <!--{if $value['id'] == $shifts_id}-->style="background: #F4F6F8; color:#333;"<!--{/if}-->><!--{$value['sh_title']}--></a>
+          </li>
+        <!--{/foreach}-->
+        </ul>
+      <div class="hidebar"><img src="templates/assests/images/iconfont-iconfontquanbu.png" width="15px" alt=""></div>
+      <div class="showbar" style="display:none;"><img src="templates/assests/images/iconfont-iconfontquanbu.png" width="15px" alt=""></div>
+    </div>
+  </div>  
+<!--{/if}-->
+  <div class="tab-body" style="position:absolute; left:100px; width:100%;">
+    <div class="panel-head"><strong>编辑报名订单</strong></div>
+    <div class="padding border-bottom">
+        <a href="index.php?action=signup&op=index&shifts_id=<!--{$shifts_id}-->" class="">返回订单列表 >></a>
+    </div>
+    <br />
+    <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" style="width:100%; margin-bottom:40px;" action="index.php?action=signup&op=editoperate" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <div class="label"><label for="so_username">真实姓名</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="so_username" name="so_username" value="<!--{$signup_detail.so_username}-->" size="50" placeholder="请填写真实姓名" data-validate="required:请填写真实姓名" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="so_phone">手机号码</label></div>
+                <div class="field">
+                     <input type="text" class="input input-auto" id="so_phone" name="so_phone" value="<!--{$signup_detail.so_phone}-->" size="50" placeholder="请填写手机号码" data-validate="required:请填写手机号码" />
+                     <button type="button" class="button border-yellow" id="phonecheck">检测重复</button>
+                     <span id="tips"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="so_user_identity_id">身份证</label></div>
+                <div class="field">
+                    <!-- <input type="text" class="address_start" value=""> -->
+                    <input type="text" class="input input-auto" id="so_user_identity_id" name="so_user_identity_id" value="<!--{$signup_detail.so_user_identity_id}-->" size="50" placeholder="请填写身份证" />
+                    <button type="button" class="button border-yellow" id="identitycheck">检测重复</button>
+                    <span id="identity_tips"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="so_final_price">最终价格</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="so_final_price"  name="so_final_price" value="<!--{$signup_detail.so_final_price}-->" size="50" placeholder="最终价格数字形式 如:2500" data-validate="required:请填写最终价格"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="so_original_price">原始价格</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="so_original_price" name="so_original_price" value="<!--{$signup_detail.so_original_price}-->" size="50" placeholder="原始价格数字形式 如:3000" data-validate="required:请填写原始价格"/>
+                    <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="原始价格一定要比最终价格多，只作为参考价格显示在app上"></span>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="so_shifts_id">班制</label></div>
+                <div class="field">
+                    <div class="button-group border-main radio"> 
+                        <!--{foreach $shiftslist as $key => $value}-->
+                        <!--{if $key == 0}-->
+                        <label class="button active">
+                            <input name="so_shifts_id" value="<!--{$value.id}-->" type="radio" checked="checked"><!--{$value.sh_title}-->
+                        </label>
+                        <!--{else}-->
+                        <label class="button">
+                            <input name="so_shifts_id" value="<!--{$value.id}-->" type="radio"><!--{$value.sh_title}-->
+                        </label>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="so_pay_type">支付方式</label></div>
+                <div class="field">
+                    <div class="button-group border-green radio" id="so_pay_type"> 
+                        <label <!--{if $signup_detail.so_pay_type == 2}-->class="button active"<!--{else}-->class="button"<!--{/if}-->><input name="so_pay_type" class="so_pay_type" value="2" type="radio" <!--{if $signup_detail.so_pay_type == 2}-->checked="checked"<!--{/if}-->>线下支付</label>
+                        <label <!--{if $signup_detail.so_pay_type == 1}-->class="button active"<!--{else}-->class="button"<!--{/if}-->><input name="so_pay_type" class="so_pay_type" value="1" type="radio" <!--{if $signup_detail.so_pay_type == 1}-->checked="checked"<!--{/if}-->>支付宝</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="so_order_status">订单状态</label></div>
+                <div class="field">
+                    <div class="button-group border-yellow radio" id="so_order_status_xianxia"> 
+                        <label class="button active"><input name="so_order_status" value="3" type="radio" checked="checked">已支付</label>
+                        <label class="button"><input name="so_order_status" value="1" type="radio">未支付</label>
+                    </div>
+
+                    <div class="button-group border-yellow radio" id="so_order_status_ali" style="display:none;"> 
+                        <label class="button active"><input name="so_order_status" value="1" type="radio" checked="checked">已支付</label>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="so_order_no">订单号</label></div>
+                <div class="field">
+                    <input type="text" class="input input-auto" id="so_order_no" name="so_order_no" value="<!--{$signup_detail.so_order_no}-->" size="50" placeholder="请填写订单号" data-validate="required:请填写订单号" />
+                    <button type="button" class="button border-green" id="ordernocreate">自动生成</button>
+                    <button type="button" class="button border-yellow" id="ordernocheck">检测重复</button>
+                    <span id="order-tips"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="so_licence">驾照</label></div>
+                <div class="field">
+                    <div class="button-group border-red radio" id="so_licence"> 
+                        <!--{foreach $lisence_config as $key => $value}-->
+                        <label <!--{if $signup_detail.so_licence == $value}-->class="button active"<!--{else}-->class="button"<!--{/if}-->>
+                            <input name="so_licence" value="<!--{$value}-->" type="radio" <!--{if $signup_detail.so_licence == $value}-->checked="checked"<!--{/if}-->><!--{$value}--> 
+                        </label>
+                        <!--{/foreach}-->
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" value="<!--{$signup_detail.id}-->" name="id">
+            <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+        </form>
+    </div>
+
+    <script>
+        // 上传图片预览
+        // window.onload = function () { 
+        //     new uploadPreview({ UpBtn: "user_photo", DivShow: "imgdiv", ImgShow: "imgShow" });
+        // }
+
+        $(function() {
+            var type = $('#so_pay_type').find('.active input').val();
+            if(type == 1) {
+                $('#so_order_status_ali').css('display','block');
+                $('#so_order_status_xianxia').css('display','none');
+            } else {
+                $('#so_order_status_ali').css('display','none');
+                $('#so_order_status_xianxia').css('display','block');
+            }
+        });
+
+        // 支付方式联动
+        $('.so_pay_type').click(function() {
+            var so_pay_type = $(this).val();
+
+            // 支付宝
+            if(so_pay_type == 1) {
+                $('#so_order_status_ali').css('display','block');
+                $('#so_order_status_xianxia').css('display','none');
+            } else if(so_pay_type == 2) {
+                // 线下
+                $('#so_order_status_ali').css('display','none');
+                $('#so_order_status_xianxia').css('display','block');
+            }
+        });
+
+        // 生成订单号
+        $('#ordernocreate').click(function() {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=createno",
+                dataType:"JSON",
+                success:function(data) {
+                    if(data.code == 200) {
+                        $('#so_order_no').val(data.data);
+                    }
+                }
+            })
+        });
+
+        // 检测订单号
+        $('#ordernocheck').click(function() {
+            var so_order_no = $('#so_order_no').val();
+            if(so_order_no.trim() == '') {
+                alert('请填写订单号');
+                return false;
+            }
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=member&op=checkno",
+                data:{'no':so_order_no},
+                dataType:"JSON",
+                success:function(data) {
+                    $('#order-tips').html(data.data);
+                    setInterval(function() {
+                        $('#order-tips').html('');
+                    }, 2000);
+                }
+            })
+        });
+
+        // 城市联动
+        $('#province').change(function() {
+            var province_id = $(this).val();
+            $("#city").load("index.php?action=school&op=getcity&province_id="+province_id);
+        });
+
+        $('#city').change(function() {
+            var city_id = $(this).val();
+            $('#area').load('index.php?action=school&op=getarea&city_id='+city_id);
+            var city_html = $(this).find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            $('#s_address').val(province_html+city_html);
+        })
+
+        $('#area').change(function() {
+            var city_html = $('#city').find('option:selected').html();
+            var province_html = $('#province').find('option:selected').html();
+            var area_html = $(this).find('option:selected').html();
+            $('#s_address').val(province_html+city_html+area_html);
+        })
+
+        // 检测手机重复性
+        $('#phonecheck').click(function() {
+            var phone = $('#so_phone').val();
+            if(phone.trim() == '') {
+                alert('请填写手机号');
+                return false;
+            }
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=signup&op=phonecheck",
+                // dataType:"JSON",
+                beforeSend:function() {
+                    $('#phonecheck').html('检测中...');
+                },
+                data:{'phone':phone},
+                success:function(data) {
+                    $('#phonecheck').html('检测重复');
+                    if(data == 1) {
+                        $('#tips').removeClass('text-green').addClass('text-yellow');
+                        $('#tips').html('号码已报名驾校');  
+                    } else if(data == 2) {
+                        $('#tips').removeClass('text-yellow').addClass('text-green');
+                        $('#tips').html('号码可以使用！');
+                    } else {
+                        $('#tips').removeClass('text-yellow').addClass('text-green');
+                        $('#tips').html('号码格式不对');
+                    }
+                    setInterval(function() {
+                        $('#tips').html('');
+                    }, 2000);
+                }
+            })
+        });
+
+        // 检测身份证
+        $('#identitycheck').click(function() {
+            var identity_id = $('#so_user_identity_id').val();
+            if(identity_id.trim() == '') {
+                alert('请填写身份证');
+                return false;
+            }
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=signup&op=identitycheck",
+                data:{'identity_id':identity_id},
+                beforeSend:function() {
+                    $('#identitycheck').html('检测中...');
+                },
+                success:function(data) {
+                    $('#identitycheck').html('检测重复');
+                    if(data == 1) {
+                        $('#identity_tips').removeClass('text-green').addClass('text-yellow');
+                        $('#identity_tips').html('身份证已被注册');
+                    } else {
+                        $('#identity_tips').removeClass('text-yellow').addClass('text-green');
+                        $('#identity_tips').html('身份证可以使用');
+                    }
+                    setInterval(function() {
+                        $('#identity_tips').html('');
+                    }, 2000);
+                }
+            })
+        });
+
+        // 选择班制跳转
+        function showshiftsorder(id, obj) {
+          $(obj).html('加载中');    
+          location.href = 'index.php?action=signup&op=index&shifts_id='+id;
+        }
+    </script>
+<!--{include file="library/footer.lbi"}-->

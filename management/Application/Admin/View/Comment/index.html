@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>学员评价教练</title>
+</head>
+<body>
+	<nav class="breadcrumb">
+		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>评价管理<span class="c-gray en">&gt;</span> 学员评价教练 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	</nav>
+	<form method="post" action="{:U('Comment/searchStuCommentCoach')}" name="search">
+		<div class="pd-20">
+			<div class=""> 
+				<!-- <label for="search_type">按评价入口 </label>
+				<select class="" name="search_type" id="search_type" style="width:150px;height:30px">                  
+					<option value="">--不限评价入口--</option>   
+					<option style="" value="1" <if condition="$search_type eq 1">selected</if>>预约学车</option>
+					<option style="" value="2" <if condition="$search_type eq 2">selected</if> >报名驾校</option>
+				</select>    --> 
+			 	<label for="search_star">按评价星级 </label>
+			 	<select class="" name="search_star" id="search_star" style="width:150px;height:30px">                  
+				    <option value="">--不限星级--</option>   
+				    <option style="color:red" value="1.0" <if condition="$search_star eq 1.0">selected</if> >★</option>
+				    <option style="color:red" value="2.0" <if condition="$search_star eq 2.0">selected</if> >★★</option>
+				    <option style="color:red" value="3.0" <if condition="$search_star eq 3.0">selected</if> >★★★</option>
+				    <option style="color:red" value="4.0" <if condition="$search_star eq 4.0">selected</if> >★★★★</option> 
+				    <option style="color:red" value="5.0" <if condition="$search_star eq 5.0">selected</if> >★★★★★</option> 
+			 	</select>    
+			 	<label for="search_info">按关键词</label>
+				<select class="" name="search_info" id="search_info" style="width:150px;height:30px">                  
+				    <option value="">--不限关键词--</option>   
+				    <option style="" value="order_no" <if condition="$search_info eq order_no"> selected</if> >订单号</option>
+				    <option style="" value="s_coach_name" <if condition="$search_info eq s_coach_name">selected</if> >教练姓名</option>
+				    <option style="" value="s_coach_phone" <if condition="$search_info eq s_coach_phone">selected</if> >教练手机</option>
+				    <option style="" value="s_username" <if condition="$search_info eq s_username"> selected</if> >学员昵称</option>
+				    <option style="" value="s_phone" <if condition="$search_info eq s_phone"> selected</if> >学员手机</option>
+				</select>  
+			 	<input type="text" value="{$s_keyword}" name="s_keyword" placeholder="订单号，教练姓名、教练手机，学员昵称、学员手机" class="input-text default size-M"style="width:320px">
+			 	<input type="submit" id="" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20">
+				<span class="r">共有评价：<strong>{$count}</strong>条</span> 
+			</div>
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-hover table-bg table-sort">
+					<thead>	
+						<tr class="text-c">
+							<th width="25"><input type="checkbox" name="" value=""></th>
+							<th width="30">ID</th>
+							<if condition ="$school_id eq 0">
+								<th width="60">所属驾校</th>
+							</if>
+							<th width="60">学员昵称</th>
+							<th width="60">学员手机</th>
+							<th width="60">教练姓名</th>
+							<th width="60">教练手机</th>
+							<th width="60">订单号</th>
+							<th width="60">评价入口</th>
+							<th width="60">教练星级</th>
+							<th width="100">评价内容</th>
+							<th width="60">评价时间</th>
+							<th width="30">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<foreach name="comment_list" item="obj">
+							<tr class="text-c conmmentinfo" data-moudle="{$obj.id}">
+								<td class="va-m"><input type="checkbox" value="1" name=""></td>
+								<td class="va-m">{$obj.id}</td>
+								<if condition ="$school_id eq 0">
+									<td class="va-m">{$obj.s_school_name}</td>
+								</if>
+								<td class="va-m">{$obj.s_username}</td>
+								<td class="va-m">{$obj.s_phone}</td>
+								<td class="va-m">{$obj.s_coach_name}</td>
+								<td class="va-m">{$obj.s_coach_phone}</td>
+								<td class="va-m">{$obj.order_no}</td>
+								<td class="va-m">
+									<switch name="obj.type">
+										<case value="1"><span class="btn btn-success-outline radius">预约学车</span></case>
+										<case value="2"><span class="btn btn-danger-outline radius">报名驾校</span></case>
+									</switch>
+								</td>
+								<td style="color:red" class="va-m"> 
+									<switch name="obj.coach_star">
+										<case value="1.0">★</case>
+										<case value="2.0">★★</case>
+										<case value="3.0">★★★</case>
+										<case value="4.0">★★★★</case>
+										<case value="5.0">★★★★★</case>
+										<default />☆
+									</switch>
+				                </td>
+				                <if condition="$obj.coach_content neq ''">
+									<td class="va-m text-l">
+										<a href="javascript:;" id="hover{$obj.id}" class="contentlist" style="color:#09c;">
+											{$obj.coach_content|mb_substr=0, 10}...
+										<a>
+									</td>
+								<else/>
+									<td>---</td>
+								</if>
+								<td class="va-m">{$obj.addtime}</td>
+								<td class="va-m td-manage">				
+									<a title="删除" href="javascript:;" onclick="javascript:member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+								</td>
+								<td class="displayCommentCoach" style="display:none">
+									<div style="margin: 20px 20px; text-align: center; color: #333">
+										{$obj.coach_content}
+									</div>
+								</td>
+							</tr>
+						</foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="page pagination" style="">
+				<empty name="count">
+					<br /><strong>暂无列表</strong><br /><br /><br />
+				</empty>
+				<p>{$page}</p>
+			</div>
+		</div>
+	</form>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+// 鼠标悬浮图片显出事件
+    $('.contentlist').on({
+        'mouseenter':function() {
+            var id = $(this).attr('id');
+            var displayCommentCoach = $(this).parents('tr.conmmentinfo').find('td.displayCommentCoach').html();
+            layer.tips(displayCommentCoach, '#'+id, {
+                tips: [1, '#fff'],
+                time: 0,
+                area: '350px'
+            });
+        },
+
+        'mouseleave':function() {
+            var index = layer.tips();
+            layer.close(index);  
+        },
+
+        'click':function() {
+            var displayCommentCoach = $(this).parents('tr.conmmentinfo').find('td.displayCommentCoach').html();
+            layer.open({
+                type: 1,
+                area: '350px',
+                shade: [0.3, '#333'],
+                shadeClose: true,
+                moveType:1,
+                shift:0,
+                content: displayCommentCoach
+            });
+        }
+    })
+
+/*用户-删除*/
+	function member_del(obj,id){
+		layer.confirm('确认要删除吗？',function(index){
+			$.ajax({
+				type:"POST",
+				url:"__URL__/delStuCommentCoach",
+				data:{'id':id},
+				dataType:'JSON',
+				success:function(data) {
+					// alert(data);
+					if(data.code == 200) {
+						$(obj).parents("tr").remove();
+						layer.msg('已删除!',{icon:1,time:1000});
+					} else {
+						layer.msg('删除失败!',{icon:2,time:1000});
+					}
+						
+				},
+				error:function() {
+					layer.msg('网络错误，请检查网络!',{icon:2,time:1000});	
+				}
+			});
+		});
+	}
+</script> 
+</body>
+</html>

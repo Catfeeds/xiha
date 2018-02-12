@@ -1,0 +1,86 @@
+{include file="wap/header"/}
+{css href="__PUBLIC__/static/css/swiper.min.css"}
+<div class="container-fluid" style="padding: 0px;">
+	<div class="coach-banner">
+	    <img src="__PUBLIC__/static/images/m-student-banner.png" alt="" style="width: 100%;">
+		<!--<div class="coach-banner-content">
+			<span style="font-size: 32px;">按时计费</span><br />
+			<span style="font-size: 28px; color: #666;">预约学时方便快捷</span>
+		</div>-->
+	</div>
+    <!--产品详情-->
+    <div class="products-detail">
+
+    	<div class="slide-products-inner">
+			<div class="swiper-container" style="">
+		        
+		        <div class="swiper-wrapper" style="">
+		            <div class="swiper-slide" data-id="1" style="background:#fff; text-align:center;">
+		            	<p style="font-size: 32px;">驾校分布</p>
+    					<p style="font-size: 16px; color: #999;">精确定位，覆盖范围广</p>
+		            	<img src="__PUBLIC__/static/images/student/1.png" alt="" style="width: 100%;">
+		            </div>
+		            <div class="swiper-slide" data-id="2" style="background:#fff; text-align:center;">
+		            	<p style="font-size: 32px;">驾校详情</p>
+    					<p style="font-size: 16px; color: #999;">海量驾校信息，学员自选</p>
+		            	<img src="__PUBLIC__/static/images/student/2.png" alt="" style="width: 100%;">
+		            </div>
+		            <div class="swiper-slide" data-id="2" style="background:#fff; text-align:center;">
+		            	<p style="font-size: 32px;">题库升级</p>
+    					<p style="font-size: 16px; color: #999;">海量题库，优质解析</p>
+		            	<img src="__PUBLIC__/static/images/student/3.png" alt="" style="width: 100%;">
+		            </div>
+		            <div class="swiper-slide" data-id="2" style="background:#fff; text-align:center;">
+		            	<p style="font-size: 32px;">学车档案</p>
+    					<p style="font-size: 16px; color: #999;">记录你的学车进度</p>
+		            	<img src="__PUBLIC__/static/images/student/4.png" alt="" style="width: 100%;">
+		            </div>
+		            <div class="swiper-slide" data-id="2" style="background:#fff; text-align:center;">
+		            	<p style="font-size: 32px;">预约详情</p>
+    					<p style="font-size: 16px; color: #999;">提前预约，便捷学车</p>
+		            	<img src="__PUBLIC__/static/images/student/5.png" alt="" style="width: 100%;">
+		            </div>
+	         	</div>
+		        <div class="swiper-pagination"></div>
+		    </div>
+	        <div class="swiper-button-prev" style="left:-5.6rem;"></div>
+	        <div class="swiper-button-next" style="right:-5.6rem;"></div>
+    	</div>
+    	<img src="__PUBLIC__/static/images/app-bg.png" style="width: 100%; opacity: 0.5; position: absolute; bottom: 0px; z-index: -1;" alt=""/>
+    </div>
+    <div class="download">
+    	<img src="__PUBLIC__/static/images/xiha_student_logo.png" style="" alt="" />
+    	<a class="app-name" style="">嘻哈学车学员端</a>
+    	<a class="btn download-btn" style="" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.zfang.xi_ha_xue_che.student.activity">下载APP</a>	
+    </div>
+</div>
+{js href="__PUBLIC__/static/js/swiper.min.js"}
+<script>
+	 window.onload = function () {
+        var mySwiper = new Swiper ('.swiper-container', {
+            loop: true,
+            autoplay: 4000,
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+//          onSlidePrevEnd: function(mySwiper){
+//		      console.log(mySwiper.activeIndex)
+//		    },
+//		    onSlideNextEnd: function(mySwiper){
+//		      console.log(mySwiper.activeIndex)
+//		    }
+//			onSlideChangeEnd: function(mySwiper) {
+//		      console.log(mySwiper.activeIndex)
+//				
+//			},
+//			onSlideChangeStart: function(mySwiper) {
+//				
+//			}
+//			onSlideNextStart: function(swiper) {
+//				console.log(swiper.activeIndex)
+//			}
+ 		});
+
+     };
+</script>
+{include file="wap/footer"/}

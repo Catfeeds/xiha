@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/pintuer.css">
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>学员回收站</title>
+</head>
+<body>
+	<nav class="breadcrumb">
+		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>学员管理<span class="c-gray en">&gt;</span> 学员回收站 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	</nav>
+  	<form method="post" action="{:U('Student/searchDelStudent')}" name="search">
+		<div class="pd-20">
+			<div class=""> 
+				 <label for="search_type">按学员信息 </label>
+				 <select class="" name="search_type" id="search_type" style="width:150px;height:30px">				   
+				    <option style="" value="" >--不限关键词--</option>
+				    <option style="" value="l_user_id" <if condition = "$search_type eq l_user_id">selected</if>>ID</option>
+				    <option style="" value="s_real_name" <if condition = "$search_type eq s_real_name">selected</if>>姓名</option>
+				    <option style="" value="s_phone" <if condition = "$search_type eq s_phone">selected</if>>手机号</option>
+				    <option style="" value="identity_id" <if condition = "$search_type eq identity_id">selected</if>>身份证号</option>
+				 </select>    
+				   
+                 <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" value="{$s_keyword}" placeholder="ID，姓名，手机号，身份证号" style="width:240px;"/>
+				 <input type="submit" id="search_student" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+                <span class="r">共有学员：<strong>{$count}</strong> 个</span> 
+			</div>
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-hover table-bg table-sort">
+					<thead>	
+						<tr class="text-c">
+							<th width="25"><input type="checkbox" name="" value=""></th>
+							<th width="50">ID</th>
+							<th width="60">姓名</th>
+							<th width="60">
+								手机
+                                <span class="tips icon-exclamation-circle" style="color:#f60; cursor:pointer;" data-toggle="hover" data-place="right" title="鼠标点击或悬浮可以查看更多学员信息"></span>
+							</th>
+							<if condition = "$school_id eq 0">
+								<th width="100">驾校</th>
+							</if>
+							<th width="50">性别</th>
+							<th width="50">年龄</th>
+							<th width="80">身份证号</th>
+							<th width="110">地址</th>
+							<th width="60">来源</th>
+							<th width="70">添加时间</th>
+							<!-- <th width="50">操作</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						 <foreach name="student_list" item="obj">
+							<tr class="text-c signup_list"  data-id="{$obj.l_user_id}" data-phone="{$obj.s_phone}" >
+								<td class="va-m"><input type="checkbox" value="1" name=""></td>
+								<td class="va-m">{$obj.l_user_id}</td>
+								<td class="va-m">{$obj.s_real_name}</td>
+								<td class="va-m">
+									<a href="javascript:;" class="studentdetail" id="signuphover{$obj.l_user_id}" style="color:#09c">
+                                        {$obj.s_phone}
+                                    </a>
+								</td>
+								<if condition = "$school_id eq 0">
+									<td class="va-m">{$obj.s_school_name}</td>
+								</if>
+								<td class="va-m">
+									<switch name='obj.sex'>
+										<case value="1"><span class="btn btn-secondary radius">男</span></case>
+										<case value="2"><span class="btn btn-warning radius">女</span></case>
+									</switch>	
+								</td>
+								<td class="va-m">{$obj.age}</td>
+								<td class="va-m">{$obj.identity_id}</td>
+								<td class="va-m">{$obj.address}</td>
+								<td class="va-m">
+									<switch name="obj.i_from">
+										<case value="0"><span class="btn btn-success-outline radius">苹果</span></case>
+										<case value="1"><span class="btn btn-primary-outline radius">安卓</span></case>
+										<case value="2"><span class="btn btn-secondary-outline radius">线下</span></case>
+									</switch>
+								</td>
+								<td class="va-m">{$obj.addtime}</td>
+								<!-- <td class="va-m td-manage" >
+                                    <a title="恢复学员" href="javascript:;" id ="recover"  onclick="recover_del(this,{$obj.l_user_id})" class="ml-5  radius" style="text-decoration:none"><span class = "btn btn-success radius">恢复学员</span></a>
+								</td> -->
+								<td class="studentinfo" style="display:none">
+                                    <table class="table table-border table-bordered table-hover" style="color:#333;"> 
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">姓名</td> 
+                                            <td>{$obj.s_real_name}</td> 
+                                            <td class="blue text-center" style="font-weight:bold">手机号</td> 
+                                            <td>{$obj.s_phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">身份证号</td>
+                                            <td class="red text-red" colspan=3>{$obj.identity_id}</td>
+                                        </tr>
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">昵称</td> 
+                                            <td>{$obj.s_username}</td> 
+                                            <td class="blue text-center" style="font-weight:bold">年龄</td> 
+                                            <td>{$obj.age}</td>
+                                        </tr>
+                                        <if condition ="$school_id eq 0">
+                                            <tr width="100%" > 
+                                                <td class="blue text-center" style="font-weight:bold">所属驾校</td>
+                                                <td class="red text-red" colspan=3>{$obj.s_school_name}</td>
+                                            </tr>
+                                        </if>
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">课程</td> 
+                                            <td>{$obj.lesson_name}</td>
+                                            <td class="blue text-center" style="font-weight:bold">牌照</td> 
+                                            <td>{$obj.license_name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">详细地址</td>
+                                            <td class="red text-red" colspan=3>{$obj.address}</td>
+                                        </tr>
+                                        <tr width="100%" > 
+                                            <td class="blue text-center" style="font-weight:bold">领证次数</td> 
+                                            <td>{$obj.license_num}</td>
+                                            <td class="blue text-center" style="font-weight:bold">学习状态</td> 
+                                            <td>{$obj.learncar_status}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="blue text-center" style="font-weight:bold">更新时间</td>
+                                            <td class="red text-red" colspan=3>{$obj.updatetime}</td>
+                                        </tr>
+                                        <if condition="$role_id eq 1">
+                                        	<tr width="100%" > 
+	                                            <td class="blue text-center" style="font-weight:bold">嘻哈币数量</td> 
+	                                            <td>{$obj.xiha_coin}</td>
+	                                            <td class="blue text-center" style="font-weight:bold">签到数量</td> 
+	                                            <td>{$obj.signin_num}</td>
+                                        	</tr>
+                                        </if>
+                                    </table>
+                                </td>
+							</tr>
+						 </foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="page pagination" style="display:inline;">
+                <empty name="count">
+                    <br /><strong style="display:block;">暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+		</div>
+	</form>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+/*用户-恢复*/
+// function recover_del(obj,id){
+//     layer.confirm('确认要恢复学员吗？',function(index){
+//         $.ajax({
+//             type:"POST",
+//             url:"__URL__/recoverDelStudent",
+//             data:{'id':id},
+//             dataType:'JSON',
+//             success:function(data) {
+//                 if(data.code == 200) {
+//                     $(obj).parents("tr").remove();
+//                     layer.msg('恢复成功!',{icon:1,time:1000});
+//                     location.reload();
+//                 } else {
+//                     layer.msg('恢复失败!',{icon:2,time:1000});
+//                 }
+                    
+//             },
+//             error:function() {
+//                 // document.write(XMLHttpRequest.readState+XMLHttpRequest.status+XMLHttpRequest.responseText);
+//                 layer.msg('网络错误，请检查网络!',{icon:2,time:1000});  
+//             }
+//         });
+//     });
+// }
+
+// 学员详情
+$('.studentdetail').on({
+    'mouseenter':function() {
+        var id = $(this).attr('id');
+        var studentinfo = $(this).parents('tr.signup_list').find('td.studentinfo').html();
+        layer.tips(studentinfo, '#'+id, {
+            tips: [1, '#fff'],
+            time:0,
+            area: '500px'
+        });
+    },
+
+    'mouseleave':function() {
+        var index = layer.tips();
+        layer.close(index);  
+    },
+
+    'click':function() {
+        var studentinfo = $(this).parents('tr.signup_list').find('td.studentinfo').html();
+        layer.open({
+            type: 1,
+            title:'学员详情',
+            area: '500px',
+            shade: [0.3, '#333'],
+            shadeClose: true,
+            moveType:1,
+            shift:0,
+            content: studentinfo
+        });
+    }
+})
+</script> 
+</body>
+</html>

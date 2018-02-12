@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="">
+<meta http-equiv="X-UA-Compatible" content="">
+<meta name="viewport" content="" />
+<meta http-equiv="Cache-Control" content="" />
+<LINK rel="Bookmark" href="__PUBLIC__/Admin/assets/images/xiha.png" >
+<LINK rel="Shortcut Icon" href="__PUBLIC__/Admin/assets/images/xiha.png" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/skin/blue/skin.css" rel="stylesheet" type="text/css" id="" />
+<link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>安徽国华光电知识库管理系统V1.0</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<header class="Hui-header cl"> <a class="Hui-logo l" title="H-ui.admin v2.3" href="{: U('Index/index')}">安徽国华光电知识库管理系统</a> <a class="Hui-logo-m l" href="{: U('Index/index')}" title="H-ui.admin">H-ui</a> <span class="Hui-subtitle l">V1.0</span>
+	<nav class="mainnav cl" id="Hui-nav">
+		<if condition="$user_id neq 17 AND $group_id eq 1">
+			<ul>
+				<li class="dropDown dropDown_click"><a href="javascript:;" aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<ul class="dropDown-menu radius box-shadow">
+						<li><a href="javascript:;" onclick="article_add('添加知识库','{: U('Ghzsk/addZsk')}')"><i class="Hui-iconfont">&#xe616;</i> 添加知识库</a></li>
+						<if condition="$group_id eq 1">
+							<li><a href="javascript:;" onclick="picture_add('添加成员','{: U('Manager/addMember')}')"><i class="Hui-iconfont">&#xe613;</i> 添加用户</a></li>
+						</if>
+					</ul>
+				</li>
+			</ul>
+		</if>
+	</nav>
+	<ul class="Hui-userbar">
+		<li>Hi，{$login_name}</li>
+		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">操作<i class="Hui-iconfont">&#xe6d5;</i></a>
+			<ul class="dropDown-menu radius box-shadow">
+				<li><a href="{: U('Public/logout')}">退出</a></li>
+			</ul>
+		</li>
+		<!-- <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+		<li id="Hui-skin" class="dropDown right dropDown_hover"><a href="javascript:;" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+			<ul class="dropDown-menu radius box-shadow">
+				<li><a href="javascript:;" data-val="__PUBLIC__/Admin/assets/skin/default" title="默认（黑色）">默认（黑色）</a></li>
+				<li><a href="javascript:;" data-val="__PUBLIC__/Admin/assets/skin/blue" title="蓝色">蓝色</a></li>
+				<li><a href="javascript:;" data-val="__PUBLIC__/Admin/assets/skin/green" title="绿色">绿色</a></li>
+				<li><a href="javascript:;" data-val="__PUBLIC__/Admin/assets/skin/red" title="红色">红色</a></li>
+				<li><a href="javascript:;" data-val="__PUBLIC__/Admin/assets/skin/yellow" title="黄色">黄色</a></li>
+				<li><a href="javascript:;" data-val="__PUBLIC__/Admin/assets/skin/orange" title="绿色">橙色</a></li>
+			</ul>
+		</li> -->
+	</ul>
+	<a href="javascript:;" class="Hui-nav-toggle Hui-iconfont" aria-hidden="false">&#xe667;</a> 
+</header>

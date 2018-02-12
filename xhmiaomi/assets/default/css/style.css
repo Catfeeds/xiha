@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* 你自己的样式 */
+
+/*分页*/
+.page {float: right; margin: 20px 0px;}
+.pagination {float: right; margin: 10px}
+.pagination a {background: #eee; border-radius: 3px; width: 30px; height: 20px; display: inline; padding: 5px 12px; margin: 3px;}
+.pagination a:hover {background: #5a98de;}
+.pagination .current { background: #5a98de; border-radius: 3px; width: 18px; height: 20px; display: inline; padding: 5px 12px; margin: 3px; color: #fff;}
+textarea.error {background-color: #fbe2e2; border-color: #c66161; color: #c00;}
+label.error {right: 25px;}
+.avatar-uploader .el-upload {
+border: 1px dashed #d9d9d9;
+border-radius: 6px;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+border-color: #20a0ff;
+}
+.avatar-uploader-icon {
+font-size: 28px;
+color: #8c939d;
+width: 148px;
+height: 148px;
+line-height: 148px;
+text-align: center;
+}
+.avatar {
+width: 146px;
+height: 146px;
+display: block;
+border-radius: 6px;
+}

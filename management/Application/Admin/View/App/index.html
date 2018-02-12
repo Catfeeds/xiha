@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>版本列表</title>
+    <style type="text/css">
+        .appurl a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>APP管理<span class="c-gray en">&gt;</span> 版本列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+            title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <form method="post" action="{:U('App/searchAppInfo')}" name="search">
+        <div class="pd-20">
+            <div class="">
+                <label for="search_name"> 按App系统 </label>
+                <select class="" name="os_type" id="os_type" style="width:150px;height:30px">                
+					<option  value="">--不限系统--</option>
+					<option style="" value="1" <if condition = "$os_type eq 1">selected</if>>安卓</option>
+					<option style="" value="2" <if condition = "$os_type eq 2">selected</if>>苹果</option>
+					<option style="" value="3" <if condition = "$os_type eq 3">selected</if>>PC</option>
+				</select>
+                <label for="search_client"> 按客户端 </label>
+                <select class="" name="app_client" id="app_client" style="width:150px;height:30px">                
+					<option  value="">--不限客户端--</option>
+					<option style="" value="1" <if condition = "$app_client eq 1">selected</if>>学员端</option>
+					<option style="" value="2" <if condition = "$app_client eq 2">selected</if>>教练端</option>
+					<option style="" value="3" <if condition = "$app_client eq 3">selected</if>>校长端</option>
+					<option style="" value="4" <if condition = "$app_client eq 4">selected</if>>猫咪鼠标</option>
+				</select>
+                <label for="search_type"> 按App名称 </label>
+                <input id="s_keyword" class="input-text default size-M" type="text" name="s_keyword" placeholder="请输入App名称" style="width:200px;" value="{$s_keyword}" />
+                <input type="submit" id="search_appinfo" class="btn btn-primary size-M default" style="width:100px" value="搜索" />
+            </div>
+            <br/>
+            <div class="cl pd-5 bg-1 bk-gray">
+                <a href="javascript:;" onclick="addApp('新增App版本','{: U('App/addApp')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 发布新版本</a>
+                <span class="r">共有版本号：<strong>{$count}</strong> 个</span> </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="25"><input type="checkbox" name="" value=""></th>
+                            <th width="30">ID</th>
+                            <th width="80">App名称</th>
+                            <th width="80">系 统</th>
+                            <th width="80">客户端类型</th>
+                            <th width="50">App下载</th>
+                            <th width="80">版本号</th>
+                            <th width="50">版本代号</th>
+                            <th width="50">最低限制版本</th>
+                            <th width="80">发布时间</th>
+                            <th width="50">强制升级？</th>
+                            <th width="40">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="applist" item="obj">
+                            <tr class="text-c">
+                                <td class="va-m"><input type="checkbox" value="1" name=""></td>
+                                <td class="va-m">{$obj.id}</td>
+                                <td class="va-m">{$obj.app_name}</td>
+                                <td class="va-m">
+                                    <switch name="obj.os_type">
+                                        <case value="1"><span class="btn btn-success-outline radius">安卓</span></case>
+                                        <case value="2"><span class="btn btn-warning-outline radius">苹果</span></case>
+                                        <case value="3"><span class="btn btn-warning-outline radius">PC</span></case>
+                                        <default /><span class="btn btn-default-outline radius">未知</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m">
+                                    <switch name="obj.app_client">
+                                        <case value="1"><span class="btn btn-success-outline radius">学员端</span></case>
+                                        <case value="2"><span class="btn btn-secondary-outline radius">教练端</span></case>
+                                        <case value="3"><span class="btn btn-warning-outline radius">校长端</span></case>
+                                        <case value="4"><span class="btn btn-warning-outline radius">猫咪鼠标</span></case>
+                                        <default /><span class="btn btn-default-outline radius">未知</span>
+                                    </switch>
+                                </td>
+                                <if condition="$obj.app_download_url neq ''">
+                                    <td class="va-m appurl"><a href="{$obj.app_download_url}" style="color:yellowgreen;font-size:14px;">下载</a></td>
+                                    <else/>
+                                    <td>--</td>
+                                </if>
+                                <td class="va-m">
+                                    <!-- <span class="btn btn-danger-outline radius">{$obj.version}</span> -->
+                                    {$obj.version}
+                                </td>
+                                <td class="va-m ">{$obj.version_code}</td>
+                                <td class="va-m ">{$obj.force_least_updateversion}</td>
+                                <td>{$obj.addtime}</td>
+                                <td class="va-m setForceStatus">
+                                    <switch name="obj.is_force">
+                                        <case value="0"><span data-id="{$obj.id}" title="0" class="btn btn-success size-S radius">否</span></case>
+                                        <case value="1"><span data-id="{$obj.id}" title="1" class="btn btn-danger size-S radius">是</span></case>
+                                        <default /><span data-id="{$obj.id}" class="btn btn-danger size-S radius">其他</span>
+                                    </switch>
+                                </td>
+                                <td class="va-m td-manage">
+                                    <a title="删除" href="javascript:;" onclick="javascript:member_del(this,{$obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑版本信息','{: U('App/editApp')}?id={$obj.id}','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page pagination" style="">
+                <empty name="count">
+                    <br /><strong>暂无列表</strong><br /><br /><br />
+                </empty>
+                <p>{$page}</p>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        // 设置app升级的强制状态
+        $('.setForceStatus span').click(function() {
+            var sid = $(this).attr('data-id');
+            var status = $(this).attr('title');
+            switch (status) {
+                case '1':
+                    status = 0;
+                    break;
+                case '0':
+                    status = 1;
+                    break;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{:U('App/setForceStatus')}",
+                data: {
+                    'id': sid,
+                    'status': status
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                },
+                error: function() {
+                    layer.msg('网络错误，请检查网络!', {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            })
+        });
+
+        /*用户-添加*/
+        function addApp(title, url) {
+            // layer_show(title,url);
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+
+        }
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function(index) {
+                $.ajax({
+                    type: "POST",
+                    url: "__URL__/delApp",
+                    data: {
+                        'id': id
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {
+                                icon: 1,
+                                time: 1000
+                            });
+                        } else {
+                            layer.msg('删除失败!', {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    },
+                    error: function() {
+                        layer.msg('网络错误，请检查网络!', {
+                            icon: 2,
+                            time: 1000
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

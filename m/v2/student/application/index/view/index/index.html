@@ -1,0 +1,281 @@
+{include file="index/header"/}
+<div class="page" id="index">
+
+	{if condition="$device eq '1'"}
+  	<header class="bar bar-nav">
+  		<button id="city-choose" class="button button-link button-nav pull-left" style="margin-left: 0px;">
+		   	<span id="current-city-point">城市</span>
+		    <span class="icon icon-down" style="font-size:.5rem;"></span>
+	  	</button>
+	  	<!--<a class="button button-link button-nav pull-right" style="margin-right: 0px;" href="{:url('/coinstore')}">
+	    	签到
+  		</a>-->
+    	<h1 class="title">{$title}</h1>
+  	</header>
+  	{/if}
+  	<div class="index-city-all">
+  		<div class="index-city-list">
+	  		<div class="row" style="text-align: center;">
+	  			<div class="col-33">
+	  				<span data-id="340100" class="button button-light city-cell">合肥市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">南京市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">上海市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">北京市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">广州市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">深圳市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell city-active">合肥市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">厦门市</span>
+	  			</div>
+	  			<div class="col-33">
+	  				<span class="button button-light city-cell">淮北市</span>
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="list-block media-list inset">
+			    <ul>
+			      <li>
+			        <a href="{:url('/index/citylist', ['cityid'=>'', 'device'=>$device])}" class="item-link item-content">
+			          <div class="item-media">
+			          	<i class="iconfont" style="font-size: 1rem; color:#11cd6e">&#xe60c;</i>
+			          </div>
+			          <div class="item-inner" style="margin: 0px;">
+			            <div class="item-title-row">
+			              <div class="item-title">当前城市：<span id="current-place">定位中</span></div>
+			              <div class="item-after">查看更多</div>
+			            </div>
+			          </div>
+			        </a>
+			      </li>
+			    </ul>
+			</div>
+			
+  		</div>
+  		<div id="location_info" style="display: none;"></div>
+  	</div>
+  	
+  	<!--嘻哈券-->
+  	<!--<div class="index-xhtickets">
+  		<a class="external" href="{:url('/index/xhtickets', ['device'=>$device])}"><img src="__PUBLIC__/static/images/index-getxhtickets.png" style="width: 80px;" alt="" /></a>
+  	</div>-->
+  	<!--content-->
+  	<div class="content" style="margin:0 0 2.5rem 0;">
+		<div class="swiper-container">
+		  	<div class="swiper-wrapper" style="width:100%;">
+			    <div class="swiper-slide" style="background: #f5f5f5; width:100%;">
+			    	<img src="__PUBLIC__/static/images/index-banner-01.png" style="width: 100%; " alt="">
+			    </div>
+		  	</div>
+	        <div class="swiper-pagination"></div>
+		</div>
+		
+		<div class="index-logo-list">
+		    <div class="row">
+		      <div class="col-25">
+		      	<a href="{:url('/index/signupflow', ['device'=>$device])}"><img src="__PUBLIC__/static/images/index-signupflow-logo.png" alt="" /></a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/index/learncarflow', ['device'=>$device])}"><img src="__PUBLIC__/static/images/index-learncarflow-logo.png" alt="" /></a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/article', ['device'=>$device, 'type'=>2])}" class="external"><img src="__PUBLIC__/static/images/index-haowai-logo.png" alt="" /></a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/index/issue', ['device'=>$device])}"><img src="__PUBLIC__/static/images/index-normalquestions-logo.png" alt="" /></a>
+		      </div>
+		    </div>
+	  	</div>
+	  	
+	  	<div class="xiha-jingxuan">
+	  		<div class="xiha-jingxuan-img">
+		  		<img src="__PUBLIC__/static/images/xiha-jingxuan-logo.png" style="" alt="" />
+	  		</div>
+	  		<div class="xiha-jingxuan-content">
+	  			嘻哈学车为您提供最靠谱教练
+	  		</div>
+	  	</div>
+	  	
+	  	<!--推荐教练列表-->
+  		<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="{:url('/signup/detail', ['id'=>1, 'device'=>$device])}" class="item-link item-content">
+		          <div class="item-media">
+		          	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 3rem; border-radius: 50%;'>
+		          </div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title"><span style="color:#777777;">计时培训</span> <span style="color:#FEAE4D; font-weight: 500;">130元/时</span>起</div>
+		          </div>
+		        </a>
+		      </li>
+		    </ul>
+		    <ul>
+		      <li>
+		        <a href="javascript:;" class="item-link item-content">
+		          <div class="item-inner shifts-list" style="background: none; position: relative;">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	<i class="iconfont" style="font-size: 1rem; color: #eb4f38;">&#xe628;</i> 学车优惠券200元
+	                  </div>
+		            </div>
+		            <span class="iconfont shifts-btn" style="top:10px; color:#11cd6e; font-size:1rem;">
+	            		&#xe601;
+	            	</span>
+		          </div>
+		        </a>
+		      </li>
+		      <li>
+		        <a href="{:url('/signup/shifts', ['id'=>1, 'device'=>$device])}" class="item-link item-content">
+		          <div class="item-inner shifts-list" style="background: none; position: relative;">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	劲爆VIP班
+		              	<span style="padding-left: 5px; font-size: 12px;">C1</span> 
+		              	<span style="border: 1px solid #32CF86; border-radius: 3px; color: #32CF86; font-size: 0.6rem; padding: 2px 5px;">劲爆大优惠</span>
+		              </div>
+		            </div>
+		            <div class="item-subtitle">最快7天上车，4人/车，自行前往</div>
+		            <div class="item-text"><span style="font-weight: 500; font-size: 1rem; color: #FEAE4D; padding-right: 5px;">3100元</span><span style="color: #999;">市场价4600元</span></div>
+	            	<button class="button button-warning shifts-btn">
+	            		<div class="">
+	            			全额支付
+			            </div>
+	            		<div class="xiha-signup">在线报名</div>
+	            	</button>
+		          </div>
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-inner shifts-list" style="background: none; position: relative;">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	劲爆VIP班
+		              	<span style="padding-left: 5px; font-size: 12px;">C1</span> 
+		              	<span style="border: 1px solid #32CF86; border-radius: 3px; color: #32CF86; font-size: 0.6rem; padding: 2px 5px;">劲爆大优惠</span>
+		              </div>
+		            </div>
+		            <div class="item-subtitle">最快7天上车，4人/车，自行前往</div>
+		            <div class="item-text"><span style="font-weight: 500; font-size: 1rem; color: #FEAE4D; padding-right: 5px;">3100元</span><span style="color: #999;">市场价4600元</span></div>
+	            	<button class="button button-warning shifts-btn">
+	            		<div class="">
+	            			全额支付
+			            </div>
+	            		<div class="xiha-signup">在线报名</div>
+	            	</button>
+		          </div>
+		        </a>
+		      </li>
+		      <li>
+		      	<p style="text-align: center;height: 40px; line-height: 40px;"><a href="{:url('/test')}">查看更多班型 <span class="icon icon-right"></span></a></p>
+		      </li>
+		    </ul>
+	  	</div>
+	  	
+	  	<div class="list-block media-list" style="margin: 0px; margin-bottom: 10px;">
+		    <ul style="border-bottom: none;">
+		      <li>
+		        <a href="{:url('/signup/detail', ['id'=>1, 'device'=>$device])}" class="item-link item-content">
+		          <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 3rem; border-radius: 50%;'></div>
+		          <div class="item-inner">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	张三
+		              	<img src="__PUBLIC__/static/images/signup-medal-logo.png" style="width:1rem;" alt="" />
+		              	合肥八一驾校
+		              </div>
+		  
+		            </div>
+		            <div class="item-subtitle">
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#FEAE4D" >&#xe611;</i>	
+		            	<i class="iconfont" style="color:#ccc" >&#xe611;</i>	
+		            </div>
+		            <div class="item-title"><span style="color:#777777;">计时培训</span> <span style="color:#FEAE4D; font-weight: 500;">130元/时</span>起</div>
+		          </div>
+		        </a>
+		      </li>
+		    </ul>
+		    <ul>
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-inner shifts-list" style="background: none; position: relative;">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	劲爆VIP班
+		              	<span style="padding-left: 5px; font-size: 12px;">C1</span> 
+		              	<span style="border: 1px solid #32CF86; border-radius: 3px; color: #32CF86; font-size: 0.6rem; padding: 2px 5px;">劲爆大优惠</span>
+		              </div>
+		            </div>
+		            <div class="item-subtitle">最快7天上车，4人/车，自行前往</div>
+		            <div class="item-text"><span style="font-weight: 500; font-size: 1rem; color: #FEAE4D; padding-right: 5px;">3100元</span><span style="color: #999;">市场价4600元</span></div>
+	            	<button class="button button-warning shifts-btn">
+	            		<div class="">
+	            			全额支付
+			            </div>
+	            		<div class="xiha-signup">在线报名</div>
+	            	</button>
+		          </div>
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="item-link item-content">
+		          <div class="item-inner shifts-list" style="background: none; position: relative;">
+		            <div class="item-title-row">
+		              <div class="item-title">
+		              	劲爆VIP班
+		              	<span style="padding-left: 5px; font-size: 12px;">C1</span> 
+		              	<span style="border: 1px solid #32CF86; border-radius: 3px; color: #32CF86; font-size: 0.6rem; padding: 2px 5px;">劲爆大优惠</span>
+		              </div>
+		            </div>
+		            <div class="item-subtitle">最快7天上车，4人/车，自行前往</div>
+		            <div class="item-text"><span style="font-weight: 500; font-size: 1rem; color: #FEAE4D; padding-right: 5px;">3100元</span><span style="color: #999;">市场价4600元</span></div>
+	            	<button class="button button-warning shifts-btn">
+	            		<div class="">
+	            			全额支付
+			            </div>
+	            		<div class="xiha-signup">在线报名</div>
+	            	</button>
+		          </div>
+		        </a>
+		      </li>
+		      <li>
+		      	<p style="text-align: center;height: 40px; line-height: 40px;"><a href="{:url('/test')}">查看更多班型 <span class="icon icon-right"></span></a></p>
+		      </li>
+		    </ul>
+	  	</div>
+	  	
+  	</div>  
+	{include file="index/navbar"/}
+</div>
+{include file="index/footer"/}
+

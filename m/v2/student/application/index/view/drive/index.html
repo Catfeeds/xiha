@@ -1,0 +1,113 @@
+{include file="index/header"/}
+<div class="page" id="drive">
+  	<header class="bar bar-nav">
+    	<h1 class="title" id="lesson-choose">科目一 <span class="icon icon-down" style="font-size: 0.8rem;"></span></h1>
+  	</header>
+	{include file="drive/lesson_navbar"}
+  	<div class="content" style="margin:0 0 2.5rem 0;">
+  		<!--驾考内容-->
+		<div class="drive-banner">
+			<img src="__PUBLIC__/static/images/index-banner-01.png" style="width: 100%;" alt="" />
+		</div>
+		<div class="index-logo-list" style="margin: 0px;">
+		    <div class="row">
+		      <div class="col-50">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-exam-02.png" style="width: 35px;" alt="" />
+		      		<p style="font-size: 0.8rem; color:#333; text-align: center;">题库练习</p>
+		      		<p style="font-size: 0.6rem; color: #999; text-align: center;">2016最新题库</p>
+		      	</a>
+		      </div>
+		      <div class="col-50">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-exam-01.png" style="width: 35px;" alt="" />
+		      		<p style="font-size: 0.8rem; color:#333; text-align: center;">模拟考试</p>
+		      		<p style="font-size: 0.6rem; color: #999; text-align: center;">实战驾考题库</p>
+		      	</a>
+		      </div>
+		    </div>
+		    
+		    <div class="row" style="margin-top: 20px;">
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-02.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-03.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-04.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-01.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		    </div>
+	  	</div>
+	  	
+	    <p class="drive-cate-title" style="">
+	    	自学自考
+	    </p>
+	  	<div class="index-logo-list" style="margin: 0px;">
+		    <div class="row" style="">
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-05.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-06.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-07.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		      <div class="col-25">
+		      	<a href="{:url('/test')}">
+		      		<img src="__PUBLIC__/static/images/drive-lesson01-08.png" style="width: 50px;" alt="" />
+		      	</a>
+		      </div>
+		    </div>
+	  	</div>
+	    <a href="{:url('/article', ['l'=>$lesson_id, 'device'=>$device])}">
+		  	<div class="drive-cate-title" style="">
+		    	科目一考友圈
+		    	<div class="drive-quanzi-info">
+		    		<span style="color:#e89d4d;">2.5万</span>人讨论<span style="color:#e89d4d;">100万</span>人关注
+		    		<span class="icon icon-right"></span>
+		    	</div>
+		    </div>
+		    <div class="index-logo-list" style="margin: 0px;">
+			    <div class="row" style="">
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			      <div class="col-20">
+		      		<img src="__PUBLIC__/static/images/no-picture.png" style="width: 60px;" alt="" />
+			      </div>
+			    </div>
+		  	</div>
+	    </a>
+  	</div>
+  	<!--navbar底部导航-->
+	{include file="index/navbar"/}
+</div>
+{include file="index/footer"/}

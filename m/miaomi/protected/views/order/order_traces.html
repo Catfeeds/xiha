@@ -1,0 +1,15 @@
+{echo:JS::import("form")}
+<div style="overflow: auto;width:900px;height: 450px;margin-top:10px;">
+		<h3 class="lineD mt10">物流详情：</h3>
+		<table class="default" style="margin-bottom: 10px;">
+			{foreach:$express}
+			<tr>
+				<td style="width:20%;">{$item['AcceptTime']}</td>
+				<td>{$item['AcceptStation']}</td>
+			</tr>
+			{/foreach}
+		</table>
+</div>
+
+<script type="text/javascript">
+</script>

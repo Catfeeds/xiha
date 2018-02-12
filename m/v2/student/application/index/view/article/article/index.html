@@ -1,0 +1,65 @@
+{include file="index/header"}
+    <div class="page" id="article_article">
+        {if condition="$device eq '1'"}
+          	<header class="bar bar-nav">
+          		<!--<a class="button button-link button-nav pull-left no-transition" href="{:url('/index', ['device'=>$device])}">
+        	      <span class="icon icon-left"></span>
+        	   	   返回 
+        	    </a>-->
+        	    <a class="button button-link button-nav pull-right -mob-share-open" style="margin-right: 0px;" href="javascript:;">
+        	    	<i class="iconfont" style="font-size: 1.6rem;">&#xe685;</i>
+        			</a>
+            	<h1 class="title">嘻哈号外</h1>
+          	</header>
+      	{/if}
+      
+      	<div class="content" style="background: #fff;">
+    	  	<div id="ads_list">
+    			<!--广告列表-->
+    	  	</div>
+    			<div class="buttons-tab" id="cate_list" style="width: 100%; overflow: hidden; overflow-x: scroll;">
+    			<!--分类列表-->
+    	 		</div>
+    		
+    			<div id="article_list">
+    				<!--文章列表-->
+    				{include file="article/article/article_list"}
+    			</div>
+    			
+    	  </div>
+      
+      <!--广告-->
+        <script type="text/template" id="ads_list_tpl">
+        	{@if data.length > 0}
+        	<div class="swiper-container">
+        	  	<div class="swiper-wrapper" style="width:100%;">
+        	  		{@each data as item, index}
+            		    <div class="swiper-slide" style="background: #f5f5f5; width:100%;">
+            		    	<img src="${item.resource_url}" style="width: 100%; min-height: 110px;" alt="">
+            		    </div>
+        		    {@/each}
+        	  	</div>
+            <div class="swiper-pagination"></div>
+        	</div>
+        	{@/if}
+        </script>
+      
+        <!--分类-->
+        <script type="text/template" id="cate_list_tpl">
+    		{@each cate_list as item, index}
+    			{@if (item.id == {$cate_id}) || (index == 0 && {$cate_id} == 1)}
+        			<a data-href="" data-page="1" data-id="${item.id}" class="active button external">${item.title}</a>
+            	{@else}
+        			<a data-href="" data-page="1" data-id="${item.id}" class="button external">${item.title}</a>
+        		{@/if}
+    		{@/each}
+        </script>
+	</div>
+	<script>
+		var type = "{$type}";
+		var cate_id = "{$cate_id}";
+		var current_page = "{$page}";
+	</script>
+	{include file="index/sharebar"/}
+</div>
+{include file="index/footer_article"}

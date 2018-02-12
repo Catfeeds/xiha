@@ -1,0 +1,647 @@
+<!--{include file="library/header.lbi"}-->
+    <style type="text/css">
+        /*.pagination .drop-menu li {border:none;}*/
+        .pagination-group li {width:50px;}
+    </style>
+    <div class="line-big" style="margin:20px 0px 0px 10px;">
+        <div class="xm3">
+            <div class="panel border-back">
+                <div class="panel-body text-center">
+                    <img class="radius-circle" width="120" height="120" src="<!--{$school_detail.s_thumb}-->">
+                    <br>
+                </div>
+                <div class="panel-foot bg-back border-back">
+                    您好，<!--{$school_detail.s_school_name}--> 
+                    <div style="float:right;">
+                        <a href="javascript:;" onclick="javascript:showinfo('#school_info')" style="color:#09c;">驾校信息</a> |
+                        <a href="javascript:;" onclick="javascript:showinfo('#shifts_info')" style="color:#09c;">班制简介</a> 
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="panel">
+                <div class="panel-head">
+                    <strong>订单数目统计</strong>
+                </div>
+                <ul class="list-group">
+                    <li>
+                        <select name="signuporderselect" class="input-auto float-right" style="margin-left:10px;" id="signuporderselect">
+                            <option value="1">已支付</option>
+                            <option value="2">未支付</option>
+                            <option value="3">已取消</option>
+                            <option value="101">已删除</option>
+                        </select>
+                        <span class="float-right badge bg-red" id="signuporder"><!--{$signuporder}--></span>
+                        <span class="iconfont">&#xe66c;</span>
+                        <a href="index.php?action=signup&op=index">报名驾校订单</a>
+                    </li>
+
+                    <li>
+                        <select name="learncarorderselect" class="input-auto float-right" style="margin-left:10px;" id="learncarorderselect">
+                            <option value="1">待完成</option>
+                            <option value="2">已完成</option>
+                            <option value="3">已取消</option>
+                            <option value="101">已删除</option>
+                        </select>
+                        <span class="float-right badge bg-red" id="learncarorder"><!--{$learncarorder}--></span>
+                        <span class="iconfont">&#xe6fb;</span>
+                        <a href="index.php?action=learncar&op=index">预约学车订单</a>
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <div class="panel">
+                <div class="panel-head">
+                    <strong>订单人数统计</strong>
+                </div>
+                <ul class="list-group">
+                    <li>
+                        <select name="signupmemberselect" class="input-auto float-right" style="margin-left:10px;" id="signupmemberselect">
+                            <option value="1">已支付</option>
+                            <option value="2">未支付</option>
+                            <option value="3">已取消</option>
+                            <option value="101">已删除</option>
+                        </select>
+                        <span class="float-right badge bg-red" id="signupmember"><!--{$signupmember}--></span>
+                        <span class="iconfont">&#xe66c;</span>
+                        <a href="index.php?action=signup&op=index">报名驾校订单</a>
+                    </li>
+
+                    <li>
+                        <select name="learncarmemberselect" class="input-auto float-right" style="margin-left:10px;" id="learncarmemberselect">
+                            <option value="1">待完成</option>
+                            <option value="2">已完成</option>
+                            <option value="3">已取消</option>
+                            <option value="101">已删除</option>
+                        </select>
+                        <span class="float-right badge bg-red" id="learncarmember"><!--{$learncarmember}--></span>
+                        <span class="iconfont">&#xe6fb;</span>
+                        <a href="index.php?action=learncar&op=index">预约学车订单</a>
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <div class="panel">
+                <div class="panel-head">
+                    <strong>人员统计</strong>
+                </div>
+                <ul class="list-group">
+                    <li>
+                        <select name="memberselect" class="input-auto float-right" style="margin-left:10px;" id="memberselect">
+                            <option value="1">线上的</option>
+                            <option value="2">线下的</option>
+                        </select>
+                        <span class="float-right badge bg-red" id="member"><!--{$membernum}--></span>
+                        <span class="iconfont">&#xe6b7;</span>
+                        <a href="index.php?action=member&op=index">本校学员</a>
+                    </li>
+                </ul>
+            </div>
+            <br>
+        </div>
+
+        <div class="xm9">
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div class="panel">
+                <div id="orderchart" class="main" style="height:400px; min-width:600px;"></div>
+                
+                <!-- <ul class="pagination pagination-group">
+                    <li><a href="javascript:;">年</a></li>
+                    <li>
+                        <div class="button-group">
+                          <button type="button" class="button dropdown-toggle">
+                              月 <span class="downward"></span>
+                          </button>
+                          <ul class="drop-menu" style="width:103px; height:115px;">
+                                <li>
+                                    <a href="javascript:;">1</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">2</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">3</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">4</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">5</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">6</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">7</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">8</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">9</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">10</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">11</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">12</a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li><a href="javascript:;">日</a></li>
+                </ul> -->
+
+                <div class="button-group border-main radio" id="echartsselect">
+                    <label class="button active">
+                        <input name="echartscheck" value="1" checked="checked" type="radio">年
+                    </label>
+                    <label class="button button-group dropdown-toggle" style="border-radius:0; padding-left:10px; padding-right:10px;">
+
+                        月 <span class="downward"></span>
+                        
+                        <ul id="monthselect" class="pagination-group drop-menu" style="width:100px; height:135px;">
+                            <li>
+                                <a title="1" href="javascript:;">1</a>
+                            </li>
+                            <li>
+                                <a title="2" href="javascript:;">2</a>
+                            </li>
+                            <li>
+                                <a title="3" href="javascript:;">3</a>
+                            </li>
+                            <li>
+                                <a title="4" href="javascript:;">4</a>
+                            </li>
+                            <li>
+                                <a title="5" href="javascript:;">5</a>
+                            </li>
+                            <li>
+                                <a title="6" href="javascript:;">6</a>
+                            </li>
+                            <li>
+                                <a title="7" href="javascript:;">7</a>
+                            </li>
+                            <li>
+                                <a title="8" href="javascript:;">8</a>
+                            </li>
+                            <li>
+                                <a title="9" href="javascript:;">9</a>
+                            </li>
+                            <li>
+                                <a title="10" href="javascript:;">10</a>
+                            </li>
+                            <li>
+                                <a title="11" href="javascript:;">11</a>
+                            </li>
+                            <li>
+                                <a title="12" href="javascript:;">12</a>
+                            </li>
+                        </ul>
+                    </label>
+                    <label class="button button-group dropdown-toggle" style="padding-left:10px; padding-right:10px;">
+                        日 <span class="downward"></span>
+                        
+                        <ul id="dayselect" title="<!--{$currentmonthday['month']}-->" class="pagination-group drop-menu" style="width:365px;">
+                            <!--{if $currentmonthday}-->
+                            <!--{foreach $currentmonthday['day'] as $key => $value}-->
+                                <li>
+                                    <a title="<!--{$key}-->" href="javascript:;"><!--{$key}--></a>
+                                </li>
+                            <!--{/foreach}-->
+                            <!--{/if}-->
+                        </ul>
+                    </label>
+
+                </div>
+
+            </div>
+                
+            <div class="panel" id="school_info" style="display:none">
+                <div class="panel-head"><h4 style="color:blue">驾校信息</h4></div>
+                <table class="table">
+                    <tr>
+                        <td width="110" align="right">法人：</td>
+                        <td><!--{$school_detail.s_frdb}--></td>
+                        <td width="90" align="right">法人手机：</td>
+                        <td><!--{$school_detail.s_frdb_mobile}--></td>
+                    </tr>
+                    <tr>
+                        <td width="110" align="right">地址：</td>
+                        <td><!--{$school_detail.s_address}--></td>
+                        <td width="90" align="right">银行名：</td>
+                        <td><!--{$school_detail.s_yh_name}--></td>
+                    </tr>
+                    <tr>
+                        <td width="110" align="right">银行账号：</td>
+                        <td><!--{$school_detail.s_yh_zhanghao}--></td>
+                        <td width="90" align="right">户名：</td>
+                        <td><!--{$school_detail.s_yh_huming}--></td>
+                    </tr>
+                </table>
+                <div class="alert">
+                    <h4 style="color:blue">驾校简介</h4>
+                    <p class="text-gray padding-top">
+                        <!--{$school_detail.s_shuoming}-->
+                    </p>
+                </div>
+            </div>
+ 
+            <div class="alert" id="shifts_info" style="display:none">
+                <h4 style="color:blue">班制简介</h4>
+                <p class="text-gray padding-top">
+                    <!--{$school_detail.shifts_intro}-->
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function showinfo(obj) {
+            //捕获页
+            layer.open({
+                type: 1,
+                shade: false,
+                title: false, //不显示标题
+                content: $(obj), //捕获的元素
+                area:['800px', '500px'],
+                cancel: function(index){
+                    layer.close(index);
+                    // this.content.show(); // 还显示捕获的元素
+                }
+            });
+        }
+    </script>
+    <script src="templates/assests/echarts/build/source/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'templates/assests/echarts/build/dist'
+            }
+        });
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('orderchart')); 
+                myChart.clear();
+                myChart.showLoading({
+                    text: '正在努力的读取数据中...',    //loading话术
+                });
+
+                var signup_num = new Array();
+                var learncar_num = new Array();
+
+                $.ajax({
+                    type:"POST",
+                    url:"index.php?action=school&op=echarts",
+                    async:false,
+                    dataType:"JSON",
+                    beforeSend:function() {
+                        myChart.showLoading({
+                            text: '正在努力的读取数据中...',    //loading话术
+                        });
+                    },
+                    success:function(data) {
+                        myChart.hideLoading();    
+                        if(data.code == 200) {
+                            // 报名驾校
+                            $.each(data.data.signup, function(e,t) {
+                                signup_num[e-1] = parseInt(t);
+                            });
+                            // 预约学车
+                            $.each(data.data.learncar, function(e,t) {
+                                learncar_num[e-1] = parseInt(t);
+                            })
+                        }
+                    },
+                    error:function() {
+                        alert('网络错误，请检查网络');
+                        return false;
+                    }
+                })
+                // console.log(signup_num)
+                // console.log(learncar_num)
+
+                var option = {
+                    title : {
+                        text: '一年已完成订单数量统计',
+                        subtext: '数据仅供参考'
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        // data:['蒸发量','降水量']
+                        data:['报名驾校','预约学车']
+
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            // mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'报名驾校',
+                            type:'bar',
+                            data:[10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'预约学车',
+                            type:'bar',
+                            data:[10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name : '平均值'}
+                                ]
+                            }
+                        }
+                    ]
+                };
+                // 新的订单数据
+                option.series[0].data = signup_num;
+                option.series[1].data = learncar_num;
+
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+                myChart.hideLoading();
+
+                // option.legend.data.push('预约学车');
+                // option.series.push({
+                //         name: '预约学车',                            // 系列名称
+                //         type: 'bar',                           // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+                //         data: [112, 23, 45, 56, 233, 343, 454, 89, 343, 123, 45, 123]
+                // });
+                // myChart.setOption(option);
+
+                // 获取当前年数据统计
+                $('#echartsselect').find('input').click(function() {
+                    var checked_id = $(this).val();
+                    var signup_num = new Array();
+                    var learncar_num = new Array();
+                    option.xAxis[0].data = [];
+
+                    myChart.clear();
+                    
+                    $.ajax({
+                        type:"POST",
+                        url:"index.php?action=school&op=echarts",
+                        async:true,
+                        dataType:"JSON",
+                        beforeSend:function() {
+                            myChart.showLoading({
+                                text: '正在努力的读取数据中...',    //loading话术
+                            });
+                        },
+                        success:function(data) {
+                            myChart.hideLoading();    
+                            if(data.code == 200) {
+                                // 报名驾校
+                                $.each(data.data.signup, function(e,t) {
+                                    signup_num[e-1] = parseInt(t);
+                                });
+                                // 预约学车
+                                $.each(data.data.learncar, function(e,t) {
+                                    learncar_num[e-1] = parseInt(t);
+                                })
+
+                                option.title.text = '一年已完成订单数量统计';        
+                                option.xAxis[0].data = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+                                option.series[0].data = signup_num;
+                                option.series[1].data = learncar_num;
+                                myChart.setOption(option); 
+                            }
+                        },
+                        error:function() {
+                            alert('网络错误，请检查网络');
+                            return false;
+                        }
+                    })
+                });
+
+                // 获取月份信息
+                $('#monthselect').find('li').click(function() {
+                    var month = $(this).find('a').attr('title');
+                    var day_num = new Array();
+                    var signup_num = new Array();
+                    var learncar_num = new Array();
+                    option.xAxis[0].data = [];
+
+                    myChart.clear();
+
+                    if(month) {
+                        $.ajax({
+                            type:"POST",
+                            url:"index.php?action=school&op=getajaxmonthinfo",
+                            data:{'type':2, 'month':month},
+                            async:true,
+                            beforeSend:function() {
+                                myChart.showLoading({
+                                    text: '正在努力的读取数据中...',    //loading话术
+                                });
+                            },
+                            dataType:"JSON",
+                            success:function(data) {
+                                myChart.hideLoading();
+                                var html = '';
+                                if(data.code == 1) {
+                                    $('#dayselect').attr('title',data.data.month);
+                                    option.title.text = data.data.month+'月已完成订单数量统计';
+                                    $.each(data.data.day, function(e, t) {
+                                        day_num[e-1] = parseInt(e)+'日';
+                                        // 选择月份赋值给日
+                                        html += '<li> <a title="'+e+'" href="javascript:;">'+e+'</a> </li>';
+                                    });
+                                    $('#dayselect').html(html);
+
+                                    // 报名驾校
+                                    $.each(data.data.signup, function(e,t) {
+                                        signup_num[e-1] = parseInt(t);
+                                    });
+                                    // 预约学车
+                                    $.each(data.data.learncar, function(e,t) {
+                                        learncar_num[e-1] = parseInt(t);
+                                    });
+                                    option.xAxis[0].data = day_num;
+                                    option.series[0].data = signup_num;
+                                    option.series[1].data = learncar_num;
+
+                                    myChart.setOption(option); 
+
+                                    // 获取每天的订单数据
+                                    $('#dayselect').find('li').click(function() {
+                                        option.xAxis[0].data = [];
+                                        myChart.clear();
+                                        var day = $(this).find('a').attr('title');
+                                        var month = $(this).parent().attr('title');
+                                        getajaxdayinfo(month, day, option, myChart);
+                                    });
+                                }
+                            },
+                            error:function() {
+                                myChart.hideLoading();
+                                alert('网络错误，请检查网络');
+                                return false;
+                            }
+                        })  
+                    } else {
+                        layer.msg('请选择月份',{icon:0, offset:['0px','40%'], time:2500});
+                        return false;
+                    }
+                });
+                
+                // 获取每天的订单数据
+                $('#dayselect').find('li').click(function() {
+                    var day = $(this).find('a').attr('title');
+                    var month = $(this).parent().attr('title');
+                    var day_num = new Array();
+                    var signup_num = new Array();
+                    var learncar_num = new Array();
+                    
+                    option.xAxis[0].data = [];
+                    myChart.clear();
+                    getajaxdayinfo(month, day, option, myChart);
+
+                });
+
+            }
+        );
+        
+        function getajaxdayinfo(month, day, option, myChart) {
+            var day_num = new Array();
+            var signup_num = new Array();
+            var learncar_num = new Array();
+
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=getajaxdayinfo",
+                data:{'month':month, 'day':day},
+                async:true,
+                beforeSend:function() {
+                    myChart.showLoading({
+                        text: '正在努力的读取数据中...',    //loading话术
+                    });
+                },
+                dataType:"JSON",
+                success:function(data) {
+                    myChart.hideLoading();
+                    if(data.code == 1) {
+                        // 时间段
+                        $.each(data.data.day, function(e,t) {
+                            day_num[e] = t.start_time+'-'+t.end_time;
+                            // day_num[e] = t.start_time;
+                        });
+                        option.title.text = month+'月'+day+'已完成订单数量统计';
+                        // 报名驾校
+                        $.each(data.data.signup, function(e,t) {
+                            signup_num[e] = parseInt(t);
+                        });
+                        // 预约学车
+                        $.each(data.data.learncar, function(e,t) {
+                            learncar_num[e] = parseInt(t);
+                        });
+                        option.xAxis[0].data = day_num;
+                        option.series[0].data = signup_num;
+                        option.series[1].data = learncar_num;
+                        myChart.setOption(option);
+                    }
+                },
+                error:function() {
+                    myChart.hideLoading();
+                    alert('网络错误，请检查网络');
+                    return false;
+                }
+            });
+        }
+
+    </script>
+    <script>
+        $(function() {
+            setInterval('getajaxstatistics(1, 1, "#signuporder")', 100000);
+            setInterval('getajaxstatistics(2, 1, "#learncarorder")', 100000);
+            setInterval('getajaxstatistics(3, 1, "#member")', 100000);
+        });
+
+        // 报名驾校订单数目统计
+        $('#signuporderselect').on('change', function() {
+            getajaxstatistics(1, this.value, '#signuporder');
+        })
+        // 预约学车订单数目统计
+        $('#learncarorderselect').on('change', function() {
+            getajaxstatistics(2, this.value, '#learncarorder');
+        })
+        // 报名驾校订单人数统计
+        $('#signupmemberselect').on('change', function() {
+            getajaxstatistics(1, this.value, '#signupmember');
+        })
+        // 预约学车订单人数统计
+        $('#learncarmemberselect').on('change', function() {
+            getajaxstatistics(2, this.value, '#learncarmember');
+        })
+        // 线上线下学员统计
+        $('#memberselect').on('change', function() {
+            getajaxstatistics(3, this.value, '#member');
+        })
+        function getajaxstatistics(type, status, obj) {
+            $.ajax({
+                type:"POST",
+                url:"index.php?action=school&op=statistics",
+                data:{'type':type, 'status':status},
+                dataType:"JSON",
+                success:function(data) {
+                    if(data.code == 1) {
+                        $(obj).html(data.data);
+                    }
+                },
+                error:function() {
+                    alert('网络错误，请检查网络');
+                    return false;
+                }
+            })
+        }
+    </script>
+<!--{include file="library/footer.lbi"}-->

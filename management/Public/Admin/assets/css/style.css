@@ -1,0 +1,106 @@
+@charset "utf-8";
+/* 你自己的样式 */
+.pagination {
+	text-align:center; 
+}
+.pagination a {
+	background: #eee;
+	border-radius: 3px;
+	width:30px;
+	height:20px;
+	display: inline;
+	padding:5px 12px;
+	margin: 2px;
+}
+.pagination .current {
+	background: #5a98de;
+	border-radius: 3px;
+	width:18px;
+	height:20px;
+	display: inline-table;
+	padding:5px 12px;
+	color:#fff;
+}
+
+.yearselect {margin-left:20px; }
+.yearselect, .monthselect, .dayselect {width: 70px; float: left;}
+.proselect,.cityselect,.eareselect { float: left;}
+
+.HuiTab {}
+.HuiTab .tabBar {border: none;}
+.HuiTab .tabBar span {margin: 1px; }
+.HuiTab .tabBar span.current {background: #09c !important;}
+
+.coach_info {}
+.coach_info .school_name {color: #a0aebf;}
+.coach_info p {border-bottom: 1px solid #e7e7e7; padding-bottom: 10px; }
+.coach_info ul.coach_info_ul {}
+.coach_info ul.coach_info_ul li {list-style: none; float: left; width: 100px; }
+.coach_info ul li.active a span {border-bottom: 2px solid #4c81be; padding-bottom: 10px; width: auto;}
+.coach_home_left {margin-top: 50px; float: left; width: 200px; }
+.coach_pic {width: 150px; height: 150px; text-align: center; margin: 0px auto;}
+.coach_pic img {border-radius: 5px; border:1px solid #dfdfdf; }
+.coach_tj {margin-top:20px;}
+.coach_tj .coach_tj_ul {overflow: hidden; padding-bottom: 15px; border-bottom: 1px solid #eee;}
+.coach_tj ul.coach_tj_ul li {float: left; list-style: none; padding-right: 15px; margin-right: 15px; text-align: center; border-right: 1px solid #eee;}
+.coach_tj ul.coach_tj_ul li:last-child {margin-right: 0px; border: none}
+.coach_tj ul.coach_tj_ul .num {color:#4c81be;}
+.coach_home_right {float: left; margin-top: 50px; min-width: 570px; }
+
+.coach_base_info {margin-top: 20px; }
+.coach_base_info .coach_base_info_ul {}
+.coach_base_info .coach_base_info_ul li {list-style: none; margin-bottom: 8px;}
+.coach_base_info .coach_base_info_ul span {color: #4c81be; font-size: 13px;}
+#coach_profile {margin-top: 20px; }
+.more_info_content ul {list-style: none}
+.more_info_content li.more_info_line {
+    width: 99%;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.more_info_content li.more_info_line h5 {
+    line-height: 22px;
+    height: 22px;
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #eee;
+}
+
+.more_info_content li.more_info_line h5 span {
+    font-size: 14px;
+    line-height: 40px;
+    display: block;
+    height: 40px;
+    padding: 0 10px 0 0;
+    color: #2a80b9;
+    background: #fff;
+	float: left;
+}
+
+.more_info_content li {
+    line-height: 24px;
+    float: left;
+    width: 47%;
+    margin: 0 0 14px;
+}
+
+.more_info_content li span.more_info_title {
+    display: block;
+    float: left;
+    height: 24px;
+    padding: 0 10px 0 0;
+    text-align: left;
+    color: #5f6b7e;
+}
+.more_info_content li span:nth-child(2) {
+    color: #3d5266;
+	font-size: 13px;
+}
+.time_list_ul {float: left; padding: 15px; }
+.time_list_ul li {float: left; list-style: none; width: 120px;}
+.signup_list {}
+.signup_list .signup_list_cell {width: 200px; border: 1px solid #e7e7e7; border-radius: 5px; text-align: center; padding: 5px; float: left; margin: 10px; }
+.appoint_log ul li {margin-bottom: 10px; color: #5f6b7e}
+.signup_log ul li {margin-bottom: 10px; color: #5f6b7e}
+.comment_log ul li {margin-bottom: 10px; color: #5f6b7e}

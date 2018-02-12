@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+	<title>默认头像</title>
+</head>
+<body>
+	<div class="hui-content" id="photo_click" style="text-align: left;margin: 20px 20px">
+		<img id="1" src="__PUBLIC__/Admin/assets/images/default/1.png" style="with:115px; height:115px;" alt="">
+		<img id="2" src="__PUBLIC__/Admin/assets/images/default/2.png" style="with:115px; height:115px;" alt="">
+		<img id="3" src="__PUBLIC__/Admin/assets/images/default/3.png" style="with:115px; height:115px;" alt="">
+		<img id="4" src="__PUBLIC__/Admin/assets/images/default/4.png" style="with:115px; height:115px;" alt="">
+		<img id="5" src="__PUBLIC__/Admin/assets/images/default/5.png" style="with:115px; height:115px;" alt="">
+		<img id="6" src="__PUBLIC__/Admin/assets/images/default/6.png" style="with:115px; height:115px;" alt="">
+		<img id="7" src="__PUBLIC__/Admin/assets/images/default/7.png" style="with:115px; height:115px;" alt="">
+		<img id="8" src="__PUBLIC__/Admin/assets/images/default/8.png" style="with:115px; height:115px;" alt="">
+		<img id="9" src="__PUBLIC__/Admin/assets/images/default/9.png" style="with:115px; height:115px;" alt="">
+		<img id="10" src="__PUBLIC__/Admin/assets/images/default/10.png" style="with:115px; height:115px;" alt="">
+		<img id="11" src="__PUBLIC__/Admin/assets/images/default/11.png" style="with:115px; height:115px;" alt="">
+		<img id="12" src="__PUBLIC__/Admin/assets/images/default/12.png" style="with:115px; height:115px;" alt="">
+		<img id="13" src="__PUBLIC__/Admin/assets/images/default/13.png" style="with:115px; height:115px;" alt="">
+		<img id="14" src="__PUBLIC__/Admin/assets/images/default/14.png" style="with:115px; height:115px;" alt="">
+		<img id="15" src="__PUBLIC__/Admin/assets/images/default/15.png" style="with:115px; height:115px;" alt="">
+		<img id="16" src="__PUBLIC__/Admin/assets/images/default/16.png" stysle="with:115px; height:115px;" alt="">
+	</div>
+	<div class="hui-content" id="cancel-iframe" style="margin:10px 20px;">
+		<button class="btn btn-primary radius">确定</button>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+	<script>
+		var index = parent.layer.getFrameIndex(window.name)
+		// 点选图片
+		$('#photo_click').find('img').on('click', function() {
+			$(this).css({'border':'3px solid #09c'}).siblings().css('border','none');
+			var id = $(this).attr('id');
+			parent.$('#photo_id').val(id);
+		 	// parent.layer.close(index);
+		});
+		$('#cancel-iframe').click(function() {
+		 	parent.layer.close(index);
+		})
+	</script>
+</body>
+</html>

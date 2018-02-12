@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/html5.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/respond.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="__PUBLIC__/Admin/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/jquery-ui.css" />
+<link href="__PUBLIC__/Admin/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<!-- <link href="__PUBLIC__/Admin/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="__PUBLIC__/Admin/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/assets/lib/Hui-iconfont/1.0.6/iconfont.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/assets/css/select2-bootstrap.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]--> 
+<title>添加评价</title>
+</head>
+<body>
+    <div class="pd-20">
+        <form action="{:U('Comment/addStudentCommentSchool')}" method="post" class="form form-horizontal" id="addCouponForm">
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>驾校名称：</label>
+                <div class="formControls col-2">
+                    <select class="form-control" select2 ng-model="b" placeholder="请选择驾校" name="school_id" id="school_id" datatype="*1-32" nullmsg="驾校名称不能为空" style="">
+                        <foreach name="school_list" item="value">
+                            <option value="{$value.l_school_id}">{$value.s_school_name}</option>
+                        </foreach>
+                    </select>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>评价者：</label>
+                <div class="formControls col-2">
+                    <select class="form-control" select2 ng-model="c" name="user_id" id="user_id" placeholder="请选择评价者" datatype="*1-32" nullmsg="评价者不能为空" style="">
+                        <!-- <foreach name="school_list" item="value">
+                            <option value="{$value.l_school_id}">{$value.s_school_name}</option>
+                        </foreach> -->
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>订单号：</label>
+                <div class="formControls col-2">
+                    <select class="form-control" name="order_no" id="order_no" placeholder="请选择订单号" datatype="*1-32" nullmsg="订单号不能为空" style="border-radius: 0px; height: 30px; width: 218px; border-color:#ccc;">
+                       
+                    </select>
+                </div>
+            </div> -->
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>订单号：</label>
+                <div class="formControls col-2" id="order_no">
+                    <input type="text" class="input-text" id="" value="" name="order_no" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>评价入口：</label>
+                <div class="formControls col-2">
+                    <input type="text" class="input-text" id="" value="报名班制" name="type_name" readonly/>
+                    <input type="hidden" class="input-text" id="" value="2" name="type" />
+                    <!-- <select class="form-control" name="type" id="type" datatype="*1-32" nullmsg="评价入口不能为空" style="border-radius:0px;height:30px;width:218px;border-color:#ccc;">
+                        <option value="">请选择评价入口</option>
+                        <option value="1">报名班制</option>
+                        <option value="2">预约学车</option>
+                    </select> -->
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-2">评价星级：</label>
+                <div class="formControls col-4" >
+                    <input type="button" value="-" onclick="subNum(this)" class="btn btn-warning" style="border-radius:0px;" >
+                    <input type="text" style="width:140px;text-align:center" class="input-text" value="3"  placeholder="请输入评价星级" id="star" name="star">
+                    <input type="button" value="+" onclick="addNum(this)" class="btn btn-warning" style="border-radius:0px;" >
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-2"><span class="c-red">*</span>评价内容：</label>
+                <div class="formControls col-4">
+                    <textarea name="content" style="" id="content" cols="" rows="" class="textarea"  placeholder="评价内容不能为空"  dragonfly="true"  onKeyUp="textarealength(this,200)" ></textarea>
+                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+                </div>
+            </div>
+            <div class="form-label col-3">
+                <span style="color:red;">最多200个字符</span>
+            </div>
+            <div class="row cl">
+                <div class="col-8 col-offset-2">
+                    <button id="submitOne" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/assets/js/selectindex.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/laydate.dev.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery-ui-datepicker.js"></script> -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/lib/icheck/jquery.icheck.min.js"></script>  -->
+<!-- <script type="text/javascript" src="__PUBLIC__/Admin/assets/js/jquery.form.min.js"></script> -->
+
+<script type="text/javascript">
+     // 星级的增加和减少
+    function subNum(obj){
+        var temp=parseInt(obj.nextElementSibling.value);
+        if(temp>1){
+            temp-=1;
+            obj.nextElementSibling.value=temp;
+        }
+    }
+    function addNum(obj){
+        var temp=parseInt(obj.previousElementSibling.value);
+        if (temp < 5) {
+            temp+=1;
+        }
+        obj.previousElementSibling.value=temp;
+    }
+    
+    // 表单验证
+    $( function () {
+        $('#addCouponForm').Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+            }
+        });
+    }) 
+
+   // 获取学员信息通过驾校id
+    $('#school_id').click(function() {
+      var school_id = $('#school_id').val();
+       $.ajax({
+            type:"POST",
+            url:"__URL__/getUserList",
+            data:{'school_id':school_id},
+            dataType:'JSON',
+            success:function(data) {
+                if(data.code == 200) {
+                    if (data.data) {
+                        var i = 0;
+                        var max = data.data.length;
+                        html = '' ;
+                        if (max > 0) {
+                            html +='<option value="" >请选择学员</option>';
+                            for ( ; i < max; i++) {
+                                html +='<option value="'+data.data[i]['l_user_id']+'" >'+data.data[i]['user_name']+'</option>';
+                            }
+                        } else {
+                            html +='<option value="" >暂无学员</option>';
+                        }
+                        var userlist = document.getElementById('user_id');
+                        userlist.innerHTML = html;
+                    }
+                } else {
+                    layer.msg(data.msg,{icon:2,time:1000});
+                }
+            },
+            error:function() {
+                layer.msg('网络错误，请检查网络!',{icon:2,time:1000});    
+            }
+        });
+    })
+
+    // 通过user_id获取此学员的订单号
+    $('#user_id').click(function() {
+        var user_id = $('#user_id').val();
+        $.ajax({
+            type:"POST",
+            url:"__URL__/getOrderNoList",
+            data:{'user_id':user_id},
+            dataType:'JSON',
+            success:function(data) {
+                if(data.code == 200) {
+                    html = '';
+                    html += '<input type="text" name="order_no" value="'+data.data+'" class="input-text" />';
+                    var ordernolist = document.getElementById('order_no');
+                    ordernolist.innerHTML = html;
+                } else {
+                    layer.msg(data.msg,{icon:2,time:1000});
+                }
+            },
+            error:function() {
+                layer.msg('网络错误，请检查网络!',{icon:2,time:1000});    
+            }
+        });
+    })
+    
+</script>
+</body>
+</html>

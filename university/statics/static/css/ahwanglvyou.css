@@ -1,0 +1,203 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0px; padding:0px;}
+h2,h3{font-family: "Microsoft YaHei","微软雅黑","宋体";}
+ol, ul , li{
+    list-style: none outside none; margin:0px; padding:0px
+}
+h2{ margin:0px;	font: 100 16px/35px simHei;font-family: "Microsoft YaHei","微软雅黑","宋体";}
+	.current_lvyou {
+    background: url("http://img.ahwang.cn/templates/default/lvyou/images/tit_bg.gif") top no-repeat ;
+    height: 500px;
+    padding-top: 3px;
+    width: 980px;
+	margin-left:0px
+
+
+}
+
+img{ border:0px}
+li{    background: url("http://img.ahwang.cn/templates/default/xinan/2012/images/sign.gif") no-repeat scroll 0 13px; float:left}
+h3, p{ margin:0px; padding:0px;}
+.current_lvyou a{ color:#666666; text-decoration:none}
+.center {
+    margin-left: 0px;
+
+}
+
+.current_lvyou dl{ margin-top:0px; float:left; width:978px; margin-bottom:0px;	border-left:1px solid #CCC;	border-right:1px solid #CCC;}
+.current_lvyou  dt{ margin-top:0px;  float:left}
+.current_lvyou  dl dt em {
+    color: #45B0E6;
+    display: inline-block;
+    font: 100 24px/30px simHei;
+    padding-left: 22px;
+    padding-right: 23px;
+    padding-top: 3px;
+}
+.current_lvyou em a ,.current_lvyou dl dd a,.ly_whzl h2 a,#ly_roc_top h3 a,.ly_cyah_wrap h2 a,#whzl_top h3 a,#ly_cyah_roc li h3 a,.ly_tbch h2 a{
+    padding: 0 3px;
+	color:#45B0E6;
+	text-decoration:none
+}
+.current_lvyou  dd {
+    float: right;
+    line-height: 44px;
+    padding-right: 0;
+    text-align: center;
+    width: 70px;
+	font-size:12px
+}
+.ly_wrap{ width:978px;border-left:1px solid #CCC;	border-right:1px solid #CCC; float:left; border-bottom:1px #CCC solid; margin-bottom:15px}
+.ly_left_wrap{ width:315px; height:440px; float:left; border-top:1px solid #CCC; border-right:1px solid #CCC; margin-left:10px; display:inline; margin-bottom:15px}
+
+.ly_focus{ width:315px; height:215px; float:left; margin:15px 0px 0px 6px; display:inline}
+.edu_fouce {
+    border-right: 1px solid #DCE2E8;
+    border-top: 1px solid #DCE2E8;
+    float: right;
+    width: 313px;
+}
+.edu_fouce_img {
+    border: 1px solid #CCCCCC;
+    height: 209px;
+    margin: 0px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    width: 287px;
+}
+.edu_fouce_img_list {
+    height: 208px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 286px;
+}
+.edu_fouce_img_list ul {
+    height: 286px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 9999px;
+	margin-top:0px;
+	padding:0px
+}
+.edu_fouce_img_list ul li {
+    float: left;
+    height: 208px;
+    list-style: none outside none;
+    position: relative;
+    width: 286px;
+}
+
+
+.edu_fouce_img_list ul li a, .cc-rg ul li a img {
+    border: 0 none;
+    display: block;
+    height: 208px;
+    width: 286px;
+}
+.edu_fouce_img_list ol {
+    bottom: 5px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    z-index: 10;
+}
+.edu_fouce_img_list ol li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 10px;
+    margin: 0 5px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 10px;
+}
+.edu_fouce_img_list ol li.cur {
+    background: none repeat scroll 0 0 #FB9532;
+}
+.edu_fouce_img_list .fi_ovl {
+    background: none repeat scroll 0 0 #000000;
+    bottom: 0;
+    height: 36px;
+    left: 0;
+    opacity: 0.7;
+    position: absolute;
+    width: 100%;
+}
+.edu_fouce_img_list .fi_tt {
+    bottom: 2px;
+    color: #FFFFFF;
+    font: 600 12px/32px "宋体";
+    left: 0;
+    padding: 0 10px;
+    position: absolute;
+    text-align: left;
+}
+.edu_fouce_img_list .fi_desc {
+    bottom: 8px;
+    color: #FFFFFF;
+    font: 300 12px/20px "宋体";
+    left: 0;
+    padding: 0 80px 0 10px;
+    position: absolute;
+    text-align: left;
+}
+.edu_fouce a, .edu_news a {
+    color: #505050;
+}
+.ly_whzl{ width:315px; float:right; height:auto;}
+.ly_whzl h2{border-bottom:1px solid #CCC; padding-left:10px; margin:10px 0px; display:block}
+.ly_cyah_wrap h2{ border-bottom:1px solid #CCC; width:100%; float:left}
+.ly_whzl ul{ margin-left:0px; padding:0px; margin-bottom:0px}
+.ly_whzl li,.ly_tbch_subject li,.ly_cyah_subject li{
+    font-size: 14px;
+    height: 25px;
+    line-height: 28px;
+    overflow: hidden;
+    text-indent: 10px;
+	width:225px;
+}
+#whzl_top{ background:none; height:110px; overflow:hidden; text-indent:0px; width:315px;}
+#whzl_top img{ float:left}
+#whzl_top h3{ width:162px; float:left; text-align:center}
+#whzl_top p{ width:140px; padding:0px 8px; float:right; font-size:12px; line-height:20px;}
+.ly_right_wrap{ height:450px; width:645px; float:right;}
+.ly_right_top{ width:645px; height:295px; float:left}
+.ly_roc_news{ width:385px; height:295px; float:left;}
+#ly_roc_top{ padding:0px; background:none; width:385px; height:auto; margin-left:0px}
+#ly_roc_top h3{ margin:8px 0px; text-align:center}
+#ly_roc_top p{ margin:0px; text-align:left; font-size:12px; line-height:20px; padding:0px 10px; margin-bottom:10px}
+.ly_roc_img{ position:absolute; width:111px; float:left; height:106px; font-size:12px;}
+.ly_roc_img img{ padding:2px; border:1px solid #CCC}
+.ly_roc_img b{ font-weight:normal;
+    background: none repeat scroll 0 0 #000000;
+    bottom: 3px;
+    color: #FFFFFF;
+    font-weight: normal;
+    left: 3px;
+    line-height: 25px;
+    opacity: 0.6;
+    padding: 3px 0 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 105px;}
+.ly_roc_news ul li{ width:111px; height:106px; float:left; margin-right:4px; margin-left:10px; background:none}
+.ly_tbch{ width:250px; height:295px; float:right;}
+.ly_tbch h2{ padding-left:10px;color:#45B0E6;}
+.ly_tbch_subject{ height:265px; width:238px; border-left:1px solid #CCC; border-top:1px solid #CCC; float:left; padding-left:10px;}
+#ly_tbch_roc{ background:none; padding-left:0px; margin-left:2px; height:auto; text-indent:0px; display:inline; text-align:center; width:225px; margin-top:12px; float:left; line-height:35px}
+.ly_cyah_wrap{ width:645px;}
+.ly_cyah_subject ul{ width:280px; float:left; margin-top:10px}
+.ly_cyah_subject li{ width:270px; }
+#ly_cyah_roc{ width:355px; height:100px; background:none; float:right}
+#ly_cyah_roc li { background:none; height:auto; width:355px;}
+#ly_cyah_roc li img{ float:left}
+#ly_cyah_roc li h3{ width:200px; text-align:center; float:left;}
+#ly_cyah_roc li p{ line-height:25px; padding:0px 5px; float:right; width:185px; font-size:12px}

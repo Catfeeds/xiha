@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <title>hello vue - Vue.component</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <ol>
+                <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+            </ol>
+        </div>
+        <script>
+Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }} is nice.</li>'
+})
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        groceryList: [
+        {text: 'Egg'},
+        {text: 'Apple'},
+        {text: 'Orange'}
+        ]
+    }
+})
+        </script>
+    </body>
+</html>
